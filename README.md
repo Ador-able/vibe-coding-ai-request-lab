@@ -346,20 +346,26 @@ Git不会恢复模型费用或页面对话；源码ZIP没有Git历史，使用�
 
 实现位于 `src/decisions/`，复用 `sendRecordedRequest` 和已有依赖。模型调用只有 `/api/decisions/generate` 一条路径；本地选择与编辑不发送请求。
 
-固定起点 `vcm-12-03-start` 为 `e0de2818c16e76e392d9c31a03defc9873f25538`，包含此前完成版；本节从实现分支启动，完成标签在真实验收后固定：
+固定起点 `vcm-12-03-start` 为 `e0de2818c16e76e392d9c31a03defc9873f25538`，包含此前完成版；完成点为 `vcm-12-03-end`。从GitHub克隆后进入固定完成点：
 
 ```powershell
-git switch codex/decisions-lab
+git switch -c my-decisions-lab vcm-12-03-end
 pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-保留实验后从起点重新实现：
+需要恢复时，先提交自己的实验，再从完成点新开分支；重新实现本课可改用起点。
 
 ```powershell
 git add .
 git commit -m "保存我的文案判断练习"
-git switch -c my-decisions-lab-retry vcm-12-03-start
+git switch -c my-decisions-lab-retry vcm-12-03-end
 ```
 
 起点尚无文案对比页。Git不恢复模型费用或页面编辑稿；源码ZIP不含Git历史，使用标签需从公开仓库克隆。定向检查：`pnpm exec tsx --test test/decisions.test.ts`，只验证解析、原稿与编辑稿分离及真实HTTP传输边界，不代表模型实际文案质量。
+
+### 一次真实判断与编辑
+
+[原始请求和人工编辑记录](evidence/vcm-12-03/说明.md)保留一次真实调用：输入296、输出349 token。信息优先稿把未提供报名方式写成“不设报名方式”；参与感优先稿遗漏具体时段与楼层，把每家庭一本书改成每人一本，另有未经确认的活动描述。
+
+人先两份都不采用，再以第二版为基础直接修改；放弃后选回仍保留人工稿。导出中的模型原稿未变，当前编辑稿明确由人完成，没有再次请求模型或对外发布。这是一轮教学演示，不作效果统计；模型的理由和结构正确不意味着事实正确。

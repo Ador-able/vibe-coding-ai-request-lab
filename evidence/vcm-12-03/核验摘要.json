@@ -1,0 +1,22 @@
+{
+  "executionCommit": "7eacdd69fcb8b450e87b0383389ac2b9e6283946",
+  "recordSha256": "4dc33e7fc0e86916c35cfe657e8b8b449310aab0303b904f019421b0a1a7dc57",
+  "modelCalls": 1,
+  "usage": {
+    "completion_tokens": 349,
+    "prompt_tokens": 296,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 645
+  },
+  "httpStatus": 200,
+  "finishReason": "stop",
+  "requestMatchesImplementation": true,
+  "originalsMatchRawModelResponse": true,
+  "selectedOption": 1,
+  "currentDraftMatchesHumanEditedSlot": true,
+  "originalFileBytesPreserved": true,
+  "noCredentialOrPrivateServiceValuesFound": true,
+  "noTrackedPrivatePaths": true
+}
