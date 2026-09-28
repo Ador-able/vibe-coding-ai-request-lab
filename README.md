@@ -52,7 +52,7 @@ pnpm start
 开始练习前，从指定标签新建自己的分支：
 
 ```powershell
-git switch -c my-lesson-01 vcm-01-01-start
+git switch -c my-lesson-01 vcm-01-01-end
 ```
 
 `vcm-01-01-start` 是可运行的问答模板，`vcm-01-01-end` 包含本节请求观察面板。第一节直接使用 `end` 版本观察请求，`start` 用于比较。
