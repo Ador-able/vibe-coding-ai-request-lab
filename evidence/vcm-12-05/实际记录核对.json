@@ -1,0 +1,134 @@
+{
+  "rawFile": "订单规则-实际请求记录.json",
+  "sha256": "68b7c4d4424c06b49f6fa08cc8e194e865a6d05742f7d4bd556f37de4ade4422",
+  "bytes": 21652,
+  "utf16Length": 15887,
+  "allChecksPassed": true,
+  "actualExecutionCommit": "c5603c94a1abfb53a1be0820feab7922c360cb5c",
+  "actualModelCalls": 7,
+  "messageCounts": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "comparisonOnlyRuleChanged": true,
+  "withdrawalInputEqualsInitialInput": true,
+  "requests": [
+    {
+      "id": "afe38f60-ae66-46d6-9e98-cba8ea3b0ed1",
+      "order": "A",
+      "ruleMode": "none",
+      "sku": null,
+      "reason": "无法确定'常规蓝12把'具体对应哪个产品，需确认'常规蓝'是否指蓝色塑料椅或深蓝布艺椅",
+      "usage": {
+        "completion_tokens": 39,
+        "prompt_tokens": 149,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 188
+      },
+      "durationMs": 595
+    },
+    {
+      "id": "88be3705-be21-404c-ae23-fd2d3633901a",
+      "order": "B",
+      "ruleMode": "none",
+      "sku": null,
+      "reason": "无法确定'常规蓝'具体对应哪个产品，需确认是蓝色塑料椅还是深蓝布艺椅",
+      "usage": {
+        "completion_tokens": 31,
+        "prompt_tokens": 148,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 179
+      },
+      "durationMs": 485
+    },
+    {
+      "id": "5b6899af-3cfb-4ada-be05-10b4a4ecc4f2",
+      "order": "C",
+      "ruleMode": "none",
+      "sku": "BL01",
+      "reason": "订单中提到的'蓝色塑料椅'与产品目录中的'sku: BL01'匹配，且数量为6把，符合描述。",
+      "usage": {
+        "completion_tokens": 41,
+        "prompt_tokens": 149,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 190
+      },
+      "durationMs": 433
+    },
+    {
+      "id": "c7746a6e-8f08-4779-9662-9766eb3d5372",
+      "order": "A",
+      "ruleMode": "saved",
+      "sku": "BL07",
+      "reason": "根据经人确认的业务规则，青禾门店使用‘常规蓝’简称时指代BL07（深蓝布艺椅），且订单中明确为‘常规蓝12把’，符合该规则。",
+      "usage": {
+        "completion_tokens": 57,
+        "prompt_tokens": 226,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 283
+      },
+      "durationMs": 606
+    },
+    {
+      "id": "26a75bec-3a35-4ec9-b73d-049e7c6dcb4f",
+      "order": "B",
+      "ruleMode": "saved",
+      "sku": null,
+      "reason": "订单客户为远山门店，不适用青禾门店的简称规则；且‘常规蓝’未明确对应产品目录中的具体名称或规格，需确认‘常规蓝’在远山门店的具体指代产品",
+      "usage": {
+        "completion_tokens": 54,
+        "prompt_tokens": 225,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 279
+      },
+      "durationMs": 516
+    },
+    {
+      "id": "245b92c9-37a4-4f6a-91de-1a04a59e6732",
+      "order": "C",
+      "ruleMode": "saved",
+      "sku": "BL01",
+      "reason": "订单中明确写出‘蓝色塑料椅’，与产品目录中的BL01（蓝色塑料椅）匹配。",
+      "usage": {
+        "completion_tokens": 34,
+        "prompt_tokens": 226,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 260
+      },
+      "durationMs": 485
+    },
+    {
+      "id": "27dc1939-082a-448c-bb7a-bc53fd7c57a6",
+      "order": "A",
+      "ruleMode": "none",
+      "sku": null,
+      "reason": "无法确定'常规蓝'具体指代蓝色塑料椅还是深蓝布艺椅，需确认客户具体需求",
+      "usage": {
+        "completion_tokens": 32,
+        "prompt_tokens": 149,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 181
+      },
+      "durationMs": 576
+    }
+  ]
+}

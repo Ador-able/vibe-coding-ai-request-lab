@@ -1,0 +1,368 @@
+{
+  "catalog": [
+    {
+      "sku": "BL01",
+      "name": "蓝色塑料椅"
+    },
+    {
+      "sku": "BL07",
+      "name": "深蓝布艺椅"
+    }
+  ],
+  "orders": [
+    {
+      "id": "A",
+      "customer": "青禾门店",
+      "text": "常规蓝12把"
+    },
+    {
+      "id": "B",
+      "customer": "远山门店",
+      "text": "常规蓝8把"
+    },
+    {
+      "id": "C",
+      "customer": "青禾门店",
+      "text": "蓝色塑料椅6把"
+    }
+  ],
+  "ruleAtExport": {
+    "text": "青禾门店使用“常规蓝”这个简称时，指的是 BL07（深蓝布艺椅）。\n\n这条约定只适用于青禾门店的这个简称，不推广到其他客户。\n订单明确写出产品名称或规格时，按明确描述匹配目录，不把青禾门店的所有订单都归为 BL07。",
+    "enabled": false,
+    "confirmedAt": "2026-09-28T22:07:28.558Z",
+    "updatedAt": "2026-09-28T22:09:26.314Z"
+  },
+  "ruleEvents": [
+    {
+      "action": "save",
+      "at": "2026-09-28T22:07:28.561Z",
+      "rule": {
+        "text": "青禾门店使用“常规蓝”这个简称时，指的是 BL07（深蓝布艺椅）。\n\n这条约定只适用于青禾门店的这个简称，不推广到其他客户。\n订单明确写出产品名称或规格时，按明确描述匹配目录，不把青禾门店的所有订单都归为 BL07。",
+        "enabled": true,
+        "confirmedAt": "2026-09-28T22:07:28.558Z",
+        "updatedAt": "2026-09-28T22:07:28.558Z"
+      }
+    },
+    {
+      "action": "disable",
+      "at": "2026-09-28T22:09:26.316Z",
+      "rule": {
+        "text": "青禾门店使用“常规蓝”这个简称时，指的是 BL07（深蓝布艺椅）。\n\n这条约定只适用于青禾门店的这个简称，不推广到其他客户。\n订单明确写出产品名称或规格时，按明确描述匹配目录，不把青禾门店的所有订单都归为 BL07。",
+        "enabled": false,
+        "confirmedAt": "2026-09-28T22:07:28.558Z",
+        "updatedAt": "2026-09-28T22:09:26.314Z"
+      }
+    }
+  ],
+  "attempts": [
+    {
+      "orderId": "A",
+      "ruleMode": "none",
+      "startedAt": "2026-09-28T22:05:56.654Z",
+      "run": {
+        "id": "afe38f60-ae66-46d6-9e98-cba8ea3b0ed1",
+        "order": {
+          "id": "A",
+          "customer": "青禾门店",
+          "text": "常规蓝12把"
+        },
+        "ruleMode": "none",
+        "ruleSnapshot": null,
+        "request": {
+          "step": "订单A · 不带规则",
+          "startedAt": "2026-09-28T22:05:56.662Z",
+          "requestBody": "{\"model\":\"qwen-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"根据给定产品目录识别订单中的产品；资料均为教学虚构。如有经人确认的业务规则，应遵守它限定的客户和描述范围，不扩大适用范围。信息不足时不要猜测。只返回JSON对象，包含sku和reason两个字段：sku为产品编号或null，reason简述依据；无法确定时sku为null，reason说明需要确认什么。\"},{\"role\":\"user\",\"content\":\"产品目录：\\n[{\\\"sku\\\":\\\"BL01\\\",\\\"name\\\":\\\"蓝色塑料椅\\\"},{\\\"sku\\\":\\\"BL07\\\",\\\"name\\\":\\\"深蓝布艺椅\\\"}]\\n\\n订单：\\n{\\\"id\\\":\\\"A\\\",\\\"customer\\\":\\\"青禾门店\\\",\\\"text\\\":\\\"常规蓝12把\\\"}\"}],\"stream\":false,\"enable_thinking\":false,\"temperature\":0,\"max_tokens\":384,\"response_format\":{\"type\":\"json_object\"}}",
+          "httpStatus": 200,
+          "responseModel": "qwen-flash",
+          "usage": {
+            "completion_tokens": 39,
+            "prompt_tokens": 149,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 188
+          },
+          "finishReason": "stop",
+          "responseMessage": {
+            "content": "{\"sku\":null,\"reason\":\"无法确定'常规蓝12把'具体对应哪个产品，需确认'常规蓝'是否指蓝色塑料椅或深蓝布艺椅\"}",
+            "role": "assistant"
+          },
+          "durationMs": 595
+        },
+        "rawAnswer": "{\"sku\":null,\"reason\":\"无法确定'常规蓝12把'具体对应哪个产品，需确认'常规蓝'是否指蓝色塑料椅或深蓝布艺椅\"}",
+        "answer": {
+          "sku": null,
+          "reason": "无法确定'常规蓝12把'具体对应哪个产品，需确认'常规蓝'是否指蓝色塑料椅或深蓝布艺椅"
+        }
+      },
+      "transportError": null
+    },
+    {
+      "orderId": "B",
+      "ruleMode": "none",
+      "startedAt": "2026-09-28T22:06:27.623Z",
+      "run": {
+        "id": "88be3705-be21-404c-ae23-fd2d3633901a",
+        "order": {
+          "id": "B",
+          "customer": "远山门店",
+          "text": "常规蓝8把"
+        },
+        "ruleMode": "none",
+        "ruleSnapshot": null,
+        "request": {
+          "step": "订单B · 不带规则",
+          "startedAt": "2026-09-28T22:06:27.625Z",
+          "requestBody": "{\"model\":\"qwen-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"根据给定产品目录识别订单中的产品；资料均为教学虚构。如有经人确认的业务规则，应遵守它限定的客户和描述范围，不扩大适用范围。信息不足时不要猜测。只返回JSON对象，包含sku和reason两个字段：sku为产品编号或null，reason简述依据；无法确定时sku为null，reason说明需要确认什么。\"},{\"role\":\"user\",\"content\":\"产品目录：\\n[{\\\"sku\\\":\\\"BL01\\\",\\\"name\\\":\\\"蓝色塑料椅\\\"},{\\\"sku\\\":\\\"BL07\\\",\\\"name\\\":\\\"深蓝布艺椅\\\"}]\\n\\n订单：\\n{\\\"id\\\":\\\"B\\\",\\\"customer\\\":\\\"远山门店\\\",\\\"text\\\":\\\"常规蓝8把\\\"}\"}],\"stream\":false,\"enable_thinking\":false,\"temperature\":0,\"max_tokens\":384,\"response_format\":{\"type\":\"json_object\"}}",
+          "httpStatus": 200,
+          "responseModel": "qwen-flash",
+          "usage": {
+            "completion_tokens": 31,
+            "prompt_tokens": 148,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 179
+          },
+          "finishReason": "stop",
+          "responseMessage": {
+            "content": "{\"sku\":null,\"reason\":\"无法确定'常规蓝'具体对应哪个产品，需确认是蓝色塑料椅还是深蓝布艺椅\"}",
+            "role": "assistant"
+          },
+          "durationMs": 485
+        },
+        "rawAnswer": "{\"sku\":null,\"reason\":\"无法确定'常规蓝'具体对应哪个产品，需确认是蓝色塑料椅还是深蓝布艺椅\"}",
+        "answer": {
+          "sku": null,
+          "reason": "无法确定'常规蓝'具体对应哪个产品，需确认是蓝色塑料椅还是深蓝布艺椅"
+        }
+      },
+      "transportError": null
+    },
+    {
+      "orderId": "C",
+      "ruleMode": "none",
+      "startedAt": "2026-09-28T22:06:52.524Z",
+      "run": {
+        "id": "5b6899af-3cfb-4ada-be05-10b4a4ecc4f2",
+        "order": {
+          "id": "C",
+          "customer": "青禾门店",
+          "text": "蓝色塑料椅6把"
+        },
+        "ruleMode": "none",
+        "ruleSnapshot": null,
+        "request": {
+          "step": "订单C · 不带规则",
+          "startedAt": "2026-09-28T22:06:52.528Z",
+          "requestBody": "{\"model\":\"qwen-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"根据给定产品目录识别订单中的产品；资料均为教学虚构。如有经人确认的业务规则，应遵守它限定的客户和描述范围，不扩大适用范围。信息不足时不要猜测。只返回JSON对象，包含sku和reason两个字段：sku为产品编号或null，reason简述依据；无法确定时sku为null，reason说明需要确认什么。\"},{\"role\":\"user\",\"content\":\"产品目录：\\n[{\\\"sku\\\":\\\"BL01\\\",\\\"name\\\":\\\"蓝色塑料椅\\\"},{\\\"sku\\\":\\\"BL07\\\",\\\"name\\\":\\\"深蓝布艺椅\\\"}]\\n\\n订单：\\n{\\\"id\\\":\\\"C\\\",\\\"customer\\\":\\\"青禾门店\\\",\\\"text\\\":\\\"蓝色塑料椅6把\\\"}\"}],\"stream\":false,\"enable_thinking\":false,\"temperature\":0,\"max_tokens\":384,\"response_format\":{\"type\":\"json_object\"}}",
+          "httpStatus": 200,
+          "responseModel": "qwen-flash",
+          "usage": {
+            "completion_tokens": 41,
+            "prompt_tokens": 149,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 190
+          },
+          "finishReason": "stop",
+          "responseMessage": {
+            "content": "{\"sku\":\"BL01\",\"reason\":\"订单中提到的'蓝色塑料椅'与产品目录中的'sku: BL01'匹配，且数量为6把，符合描述。\"}",
+            "role": "assistant"
+          },
+          "durationMs": 433
+        },
+        "rawAnswer": "{\"sku\":\"BL01\",\"reason\":\"订单中提到的'蓝色塑料椅'与产品目录中的'sku: BL01'匹配，且数量为6把，符合描述。\"}",
+        "answer": {
+          "sku": "BL01",
+          "reason": "订单中提到的'蓝色塑料椅'与产品目录中的'sku: BL01'匹配，且数量为6把，符合描述。"
+        }
+      },
+      "transportError": null
+    },
+    {
+      "orderId": "A",
+      "ruleMode": "saved",
+      "startedAt": "2026-09-28T22:07:34.413Z",
+      "run": {
+        "id": "c7746a6e-8f08-4779-9662-9766eb3d5372",
+        "order": {
+          "id": "A",
+          "customer": "青禾门店",
+          "text": "常规蓝12把"
+        },
+        "ruleMode": "saved",
+        "ruleSnapshot": {
+          "text": "青禾门店使用“常规蓝”这个简称时，指的是 BL07（深蓝布艺椅）。\n\n这条约定只适用于青禾门店的这个简称，不推广到其他客户。\n订单明确写出产品名称或规格时，按明确描述匹配目录，不把青禾门店的所有订单都归为 BL07。",
+          "enabled": true,
+          "confirmedAt": "2026-09-28T22:07:28.558Z",
+          "updatedAt": "2026-09-28T22:07:28.558Z"
+        },
+        "request": {
+          "step": "订单A · 附带已保存规则",
+          "startedAt": "2026-09-28T22:07:34.415Z",
+          "requestBody": "{\"model\":\"qwen-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"根据给定产品目录识别订单中的产品；资料均为教学虚构。如有经人确认的业务规则，应遵守它限定的客户和描述范围，不扩大适用范围。信息不足时不要猜测。只返回JSON对象，包含sku和reason两个字段：sku为产品编号或null，reason简述依据；无法确定时sku为null，reason说明需要确认什么。\"},{\"role\":\"user\",\"content\":\"产品目录：\\n[{\\\"sku\\\":\\\"BL01\\\",\\\"name\\\":\\\"蓝色塑料椅\\\"},{\\\"sku\\\":\\\"BL07\\\",\\\"name\\\":\\\"深蓝布艺椅\\\"}]\\n\\n订单：\\n{\\\"id\\\":\\\"A\\\",\\\"customer\\\":\\\"青禾门店\\\",\\\"text\\\":\\\"常规蓝12把\\\"}\\n\\n经人确认的业务规则：\\n青禾门店使用“常规蓝”这个简称时，指的是 BL07（深蓝布艺椅）。\\n\\n这条约定只适用于青禾门店的这个简称，不推广到其他客户。\\n订单明确写出产品名称或规格时，按明确描述匹配目录，不把青禾门店的所有订单都归为 BL07。\"}],\"stream\":false,\"enable_thinking\":false,\"temperature\":0,\"max_tokens\":384,\"response_format\":{\"type\":\"json_object\"}}",
+          "httpStatus": 200,
+          "responseModel": "qwen-flash",
+          "usage": {
+            "completion_tokens": 57,
+            "prompt_tokens": 226,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 283
+          },
+          "finishReason": "stop",
+          "responseMessage": {
+            "content": "{\"sku\":\"BL07\",\"reason\":\"根据经人确认的业务规则，青禾门店使用‘常规蓝’简称时指代BL07（深蓝布艺椅），且订单中明确为‘常规蓝12把’，符合该规则。\"}",
+            "role": "assistant"
+          },
+          "durationMs": 606
+        },
+        "rawAnswer": "{\"sku\":\"BL07\",\"reason\":\"根据经人确认的业务规则，青禾门店使用‘常规蓝’简称时指代BL07（深蓝布艺椅），且订单中明确为‘常规蓝12把’，符合该规则。\"}",
+        "answer": {
+          "sku": "BL07",
+          "reason": "根据经人确认的业务规则，青禾门店使用‘常规蓝’简称时指代BL07（深蓝布艺椅），且订单中明确为‘常规蓝12把’，符合该规则。"
+        }
+      },
+      "transportError": null
+    },
+    {
+      "orderId": "B",
+      "ruleMode": "saved",
+      "startedAt": "2026-09-28T22:08:08.613Z",
+      "run": {
+        "id": "26a75bec-3a35-4ec9-b73d-049e7c6dcb4f",
+        "order": {
+          "id": "B",
+          "customer": "远山门店",
+          "text": "常规蓝8把"
+        },
+        "ruleMode": "saved",
+        "ruleSnapshot": {
+          "text": "青禾门店使用“常规蓝”这个简称时，指的是 BL07（深蓝布艺椅）。\n\n这条约定只适用于青禾门店的这个简称，不推广到其他客户。\n订单明确写出产品名称或规格时，按明确描述匹配目录，不把青禾门店的所有订单都归为 BL07。",
+          "enabled": true,
+          "confirmedAt": "2026-09-28T22:07:28.558Z",
+          "updatedAt": "2026-09-28T22:07:28.558Z"
+        },
+        "request": {
+          "step": "订单B · 附带已保存规则",
+          "startedAt": "2026-09-28T22:08:08.616Z",
+          "requestBody": "{\"model\":\"qwen-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"根据给定产品目录识别订单中的产品；资料均为教学虚构。如有经人确认的业务规则，应遵守它限定的客户和描述范围，不扩大适用范围。信息不足时不要猜测。只返回JSON对象，包含sku和reason两个字段：sku为产品编号或null，reason简述依据；无法确定时sku为null，reason说明需要确认什么。\"},{\"role\":\"user\",\"content\":\"产品目录：\\n[{\\\"sku\\\":\\\"BL01\\\",\\\"name\\\":\\\"蓝色塑料椅\\\"},{\\\"sku\\\":\\\"BL07\\\",\\\"name\\\":\\\"深蓝布艺椅\\\"}]\\n\\n订单：\\n{\\\"id\\\":\\\"B\\\",\\\"customer\\\":\\\"远山门店\\\",\\\"text\\\":\\\"常规蓝8把\\\"}\\n\\n经人确认的业务规则：\\n青禾门店使用“常规蓝”这个简称时，指的是 BL07（深蓝布艺椅）。\\n\\n这条约定只适用于青禾门店的这个简称，不推广到其他客户。\\n订单明确写出产品名称或规格时，按明确描述匹配目录，不把青禾门店的所有订单都归为 BL07。\"}],\"stream\":false,\"enable_thinking\":false,\"temperature\":0,\"max_tokens\":384,\"response_format\":{\"type\":\"json_object\"}}",
+          "httpStatus": 200,
+          "responseModel": "qwen-flash",
+          "usage": {
+            "completion_tokens": 54,
+            "prompt_tokens": 225,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 279
+          },
+          "finishReason": "stop",
+          "responseMessage": {
+            "content": "{\"sku\":null,\"reason\":\"订单客户为远山门店，不适用青禾门店的简称规则；且‘常规蓝’未明确对应产品目录中的具体名称或规格，需确认‘常规蓝’在远山门店的具体指代产品\"}",
+            "role": "assistant"
+          },
+          "durationMs": 516
+        },
+        "rawAnswer": "{\"sku\":null,\"reason\":\"订单客户为远山门店，不适用青禾门店的简称规则；且‘常规蓝’未明确对应产品目录中的具体名称或规格，需确认‘常规蓝’在远山门店的具体指代产品\"}",
+        "answer": {
+          "sku": null,
+          "reason": "订单客户为远山门店，不适用青禾门店的简称规则；且‘常规蓝’未明确对应产品目录中的具体名称或规格，需确认‘常规蓝’在远山门店的具体指代产品"
+        }
+      },
+      "transportError": null
+    },
+    {
+      "orderId": "C",
+      "ruleMode": "saved",
+      "startedAt": "2026-09-28T22:08:25.552Z",
+      "run": {
+        "id": "245b92c9-37a4-4f6a-91de-1a04a59e6732",
+        "order": {
+          "id": "C",
+          "customer": "青禾门店",
+          "text": "蓝色塑料椅6把"
+        },
+        "ruleMode": "saved",
+        "ruleSnapshot": {
+          "text": "青禾门店使用“常规蓝”这个简称时，指的是 BL07（深蓝布艺椅）。\n\n这条约定只适用于青禾门店的这个简称，不推广到其他客户。\n订单明确写出产品名称或规格时，按明确描述匹配目录，不把青禾门店的所有订单都归为 BL07。",
+          "enabled": true,
+          "confirmedAt": "2026-09-28T22:07:28.558Z",
+          "updatedAt": "2026-09-28T22:07:28.558Z"
+        },
+        "request": {
+          "step": "订单C · 附带已保存规则",
+          "startedAt": "2026-09-28T22:08:25.555Z",
+          "requestBody": "{\"model\":\"qwen-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"根据给定产品目录识别订单中的产品；资料均为教学虚构。如有经人确认的业务规则，应遵守它限定的客户和描述范围，不扩大适用范围。信息不足时不要猜测。只返回JSON对象，包含sku和reason两个字段：sku为产品编号或null，reason简述依据；无法确定时sku为null，reason说明需要确认什么。\"},{\"role\":\"user\",\"content\":\"产品目录：\\n[{\\\"sku\\\":\\\"BL01\\\",\\\"name\\\":\\\"蓝色塑料椅\\\"},{\\\"sku\\\":\\\"BL07\\\",\\\"name\\\":\\\"深蓝布艺椅\\\"}]\\n\\n订单：\\n{\\\"id\\\":\\\"C\\\",\\\"customer\\\":\\\"青禾门店\\\",\\\"text\\\":\\\"蓝色塑料椅6把\\\"}\\n\\n经人确认的业务规则：\\n青禾门店使用“常规蓝”这个简称时，指的是 BL07（深蓝布艺椅）。\\n\\n这条约定只适用于青禾门店的这个简称，不推广到其他客户。\\n订单明确写出产品名称或规格时，按明确描述匹配目录，不把青禾门店的所有订单都归为 BL07。\"}],\"stream\":false,\"enable_thinking\":false,\"temperature\":0,\"max_tokens\":384,\"response_format\":{\"type\":\"json_object\"}}",
+          "httpStatus": 200,
+          "responseModel": "qwen-flash",
+          "usage": {
+            "completion_tokens": 34,
+            "prompt_tokens": 226,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 260
+          },
+          "finishReason": "stop",
+          "responseMessage": {
+            "content": "{\"sku\":\"BL01\",\"reason\":\"订单中明确写出‘蓝色塑料椅’，与产品目录中的BL01（蓝色塑料椅）匹配。\"}",
+            "role": "assistant"
+          },
+          "durationMs": 485
+        },
+        "rawAnswer": "{\"sku\":\"BL01\",\"reason\":\"订单中明确写出‘蓝色塑料椅’，与产品目录中的BL01（蓝色塑料椅）匹配。\"}",
+        "answer": {
+          "sku": "BL01",
+          "reason": "订单中明确写出‘蓝色塑料椅’，与产品目录中的BL01（蓝色塑料椅）匹配。"
+        }
+      },
+      "transportError": null
+    },
+    {
+      "orderId": "A",
+      "ruleMode": "none",
+      "startedAt": "2026-09-28T22:09:32.234Z",
+      "run": {
+        "id": "27dc1939-082a-448c-bb7a-bc53fd7c57a6",
+        "order": {
+          "id": "A",
+          "customer": "青禾门店",
+          "text": "常规蓝12把"
+        },
+        "ruleMode": "none",
+        "ruleSnapshot": null,
+        "request": {
+          "step": "订单A · 不带规则",
+          "startedAt": "2026-09-28T22:09:32.235Z",
+          "requestBody": "{\"model\":\"qwen-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"根据给定产品目录识别订单中的产品；资料均为教学虚构。如有经人确认的业务规则，应遵守它限定的客户和描述范围，不扩大适用范围。信息不足时不要猜测。只返回JSON对象，包含sku和reason两个字段：sku为产品编号或null，reason简述依据；无法确定时sku为null，reason说明需要确认什么。\"},{\"role\":\"user\",\"content\":\"产品目录：\\n[{\\\"sku\\\":\\\"BL01\\\",\\\"name\\\":\\\"蓝色塑料椅\\\"},{\\\"sku\\\":\\\"BL07\\\",\\\"name\\\":\\\"深蓝布艺椅\\\"}]\\n\\n订单：\\n{\\\"id\\\":\\\"A\\\",\\\"customer\\\":\\\"青禾门店\\\",\\\"text\\\":\\\"常规蓝12把\\\"}\"}],\"stream\":false,\"enable_thinking\":false,\"temperature\":0,\"max_tokens\":384,\"response_format\":{\"type\":\"json_object\"}}",
+          "httpStatus": 200,
+          "responseModel": "qwen-flash",
+          "usage": {
+            "completion_tokens": 32,
+            "prompt_tokens": 149,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 181
+          },
+          "finishReason": "stop",
+          "responseMessage": {
+            "content": "{\"sku\":null,\"reason\":\"无法确定'常规蓝'具体指代蓝色塑料椅还是深蓝布艺椅，需确认客户具体需求\"}",
+            "role": "assistant"
+          },
+          "durationMs": 576
+        },
+        "rawAnswer": "{\"sku\":null,\"reason\":\"无法确定'常规蓝'具体指代蓝色塑料椅还是深蓝布艺椅，需确认客户具体需求\"}",
+        "answer": {
+          "sku": null,
+          "reason": "无法确定'常规蓝'具体指代蓝色塑料椅还是深蓝布艺椅，需确认客户具体需求"
+        }
+      },
+      "transportError": null
+    }
+  ]
+}

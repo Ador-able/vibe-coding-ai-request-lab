@@ -412,17 +412,26 @@ git switch -c my-correction-lab-retry vcm-12-04-end
 
 页面记录仅保留在当前页，刷新前下载JSON；保存的业务规则则独立留在本机。导出包含规则文本和订单，不包含认证头或私密服务地址。实验不会写入真实订单系统或对外发送。
 
+固定起点 `vcm-12-05-start` 为 `6ce9a93189b887d5f31138f5e51f1387fa0fd305`，包含此前实验，不含订单规则页；完成点为 `vcm-12-05-end`。从GitHub克隆后建立练习分支：
+
 ```powershell
+git switch -c my-feedback-lab vcm-12-05-end
 pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-固定起点 `vcm-12-05-start` 为 `6ce9a93189b887d5f31138f5e51f1387fa0fd305`，包含此前实验，不含订单规则页。重新实现时先提交自己的改动，再从起点新开分支：
+恢复完成版时先提交自己的改动，再从完成点新开分支；重新实现本节可把最后一行的标签改为起点。
 
 ```powershell
 git add .
 git commit -m "保存我的订单规则实验"
-git switch -c my-feedback-lab-rebuild vcm-12-05-start
+git switch -c my-feedback-lab-retry vcm-12-05-end
 ```
 
-Git不会恢复本机规则、页面记录或模型费用。实现位于 `src/feedback/`；定向检查为 `pnpm exec tsx --test test/feedback.test.ts`。本地HTTP桩只验证独立请求、规则启停与快照，不作为真实模型效果证据。
+Git不会恢复本机规则、页面记录或模型费用。源码ZIP没有Git历史，使用标签需从公开仓库克隆。实现位于 `src/feedback/`；定向检查为 `pnpm exec tsx --test test/feedback.test.ts`。本地HTTP桩只验证独立请求、规则启停与快照，不作为真实模型效果证据。
+
+### 三订单对照与停用后的真实结果
+
+[实际规则、七次请求与截图](evidence/vcm-12-05/说明.md)保留一次真实运行。三订单不带规则时依次得到 `null / null / BL01`，附带同一人工确认规则后为 `BL07 / null / BL01`；停用后选择不带规则再次运行A，得到 `null`。
+
+七次请求均只有两条消息。每组前后只改变是否追加规则，第7次请求体与第1次完全相同；没有模型训练、旧会话或程序改写答案。规则在本轮帮助识别青禾简称，同时没有扩展到远山或覆盖明确品名。输入合计1272、输出288 token；有限教学观察不作为总体效果统计或生产准确率保证。
