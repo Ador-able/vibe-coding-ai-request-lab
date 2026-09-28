@@ -26,7 +26,7 @@ async function client(url: string, id: string, onEvent?: (event: Chunk) => Promi
   const transport = new DefaultChatTransport<AssistantMessage>({ api: `${url}/api/streaming/run`, prepareSendMessagesRequest: () => ({ body: { runId: id, material: '明确计划仍有开放时间和值班安排待确认。' } }) });
   const events: Chunk[] = []; let message: AssistantMessage | null = null;
   const stream = await transport.sendMessages({ trigger: 'submit-message', chatId: id, messageId: undefined, messages: [], abortSignal: undefined });
-  const recorded = stream.pipeThrough(new TransformStream({ async transform(event, controller) { events.push(event as Chunk); await onEvent?.(event as Chunk); controller.enqueue(event); } }));
+  const recorded = stream.pipeThrough(new TransformStream({ async transform(event, controller) { events.push(structuredClone(event) as Chunk); await onEvent?.(event as Chunk); controller.enqueue(event); } }));
   for await (const snapshot of readUIMessageStream<AssistantMessage>({ stream: recorded, onError: () => {} })) message = snapshot;
   const record = await (await fetch(`${url}/api/streaming/${id}/record`)).json() as RunRecord;
   return { events, message: message!, record };
@@ -42,6 +42,11 @@ test('两个真实HTTP子流合成一条消息，同ID进度更新；空增量�
     assert.equal(result.events.filter((event) => event.type === 'start').length, 1); assert.equal(result.events.filter((event) => event.type === 'finish').length, 1);
     assert.equal(result.events.filter((event) => event.type === 'finish-step').length, 2); assert.equal(result.events.at(-1)?.type, 'finish');
     assert.equal(result.message.id, 'completed-run'); assert.equal(result.message.parts.filter((part) => part.type === 'data-progress').length, 1);
+    const progressHistory = (events: Chunk[]) => events.filter((event) => event.type === 'data-progress').map((event) => event.data.stage);
+    assert.deepEqual(progressHistory(result.events), ['summary', 'questions', 'completed']);
+    assert.deepEqual(progressHistory(result.record.uiEvents.map((item) => item.event)), ['summary', 'questions', 'completed']);
+    assert.deepEqual(result.message.parts.filter((part) => part.type === 'data-progress').map((part) => part.data.stage), ['completed']);
+    assert.deepEqual(result.record.finalMessage?.parts.filter((part) => part.type === 'data-progress').map((part) => part.data.stage), ['completed']);
     assert.deepEqual(result.message.parts.filter((part) => part.type === 'text').map((part) => part.text), result.record.stages.map((stage) => stage.answer));
     assert.equal(result.message.metadata?.state, 'completed'); assert.equal(result.message.metadata?.stages.length, 2);
     assert(result.events.filter((event) => event.type === 'text-delta').every((event) => event.delta.length > 0));

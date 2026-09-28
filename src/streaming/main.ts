@@ -76,7 +76,8 @@ get('run').addEventListener('click', async () => {
     const incoming = await transport.sendMessages({ trigger: 'submit-message', chatId: attempt.id, messageId: undefined, messages: [], abortSignal: undefined });
     const recorded = incoming.pipeThrough(new TransformStream({ transform(chunk, controller) {
       const event = chunk as Chunk;
-      attempt.events.push({ elapsedMs: Math.round((performance.now() - start) * 10) / 10, event });
+      // SDK合并同ID片段时可能修改对象，事件历史保存收到时的独立快照。
+      attempt.events.push({ elapsedMs: Math.round((performance.now() - start) * 10) / 10, event: structuredClone(event) });
       if (event.type === 'finish') finished = true;
       if (event.type === 'error') { attempt.state = 'failed'; attempt.error = event.errorText; }
       if (event.type === 'abort') { attempt.state = 'stopped'; attempt.error = event.reason || '已停止，任务未完成。'; }

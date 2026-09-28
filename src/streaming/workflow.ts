@@ -27,7 +27,8 @@ export function createWorkflow(record: RunRecord, env: NodeJS.ProcessEnv, signal
     stages: record.stages.map((stage) => ({ stage: stage.stage, model: stage.responseModel, finishReason: stage.finishReason, usage: stage.usage })) });
   return createUIMessageStream<AssistantMessage>({
     execute: async ({ writer }) => {
-      const write = (event: Chunk) => { record.uiEvents.push({ elapsedMs: elapsed(), event }); writer.write(event); };
+      // SDK会就地更新同ID的数据片段；历史记录必须在交给SDK前拍下快照。
+      const write = (event: Chunk) => { record.uiEvents.push({ elapsedMs: elapsed(), event: structuredClone(event) }); writer.write(event); };
       const progress = (stage: Stage | RunRecord['state'], label: string) => write({ type: 'data-progress', id: 'workflow-progress', data: { stage, label } });
       write({ type: 'start', messageId: record.id, messageMetadata: metadata() });
       try {
@@ -62,6 +63,6 @@ export function createWorkflow(record: RunRecord, env: NodeJS.ProcessEnv, signal
       } finally { record.durationMs = elapsed(); }
     },
     onError: () => '消息流处理失败，已收到的文字保留。',
-    onEnd: ({ responseMessage }) => { record.finalMessage = responseMessage; },
+    onEnd: ({ responseMessage }) => { record.finalMessage = structuredClone(responseMessage); },
   });
 }
