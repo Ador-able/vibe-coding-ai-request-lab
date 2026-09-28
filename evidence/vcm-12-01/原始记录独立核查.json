@@ -1,0 +1,50 @@
+{
+  "recordSha256": "e3f1b674aa378a3b7269a489142a71466500ce21331c1720fe099f22cbdcc50b",
+  "attempts": 3,
+  "automaticRetries": 0,
+  "fullHistoryVerified": true,
+  "rows": [
+    {
+      "round": 1,
+      "messageCount": 2,
+      "responseModel": "qwen-flash",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 201,
+        "prompt_tokens": 197,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 398
+      }
+    },
+    {
+      "round": 2,
+      "messageCount": 4,
+      "responseModel": "qwen-flash",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 157,
+        "prompt_tokens": 516,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 673
+      }
+    },
+    {
+      "round": 3,
+      "messageCount": 6,
+      "responseModel": "qwen-flash",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 164,
+        "prompt_tokens": 803,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 967
+      }
+    }
+  ]
+}

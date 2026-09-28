@@ -310,20 +310,26 @@ Git 恢复不恢复模型费用、隐式缓存状态或浏览器中的实验记�
 
 调用链为 `src/collaboration/main.ts` → 独立 `/api/collaboration/turn` → `sendRecordedRequest`。活动资料在 `scenario.ts`，成功历史规则在 `contract.ts`。沿用现有依赖，没有新增框架或会话数据库。
 
-固定起点 `vcm-12-01-start` 为 `4764fa0885d5b6aae1de2543886ceece6dde460e`，包含上一课完成版。本节从实现分支启动，完成标签将在真实验收后固定：
+固定起点 `vcm-12-01-start` 为 `4764fa0885d5b6aae1de2543886ceece6dde460e`，包含上一课完成版；完成点为 `vcm-12-01-end`。从GitHub克隆后进入固定完成点：
 
 ```powershell
-git switch codex/human-loop-lab
+git switch -c my-collaboration-lab vcm-12-01-end
 pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-需要保留自己的尝试再从起点重新实现时：
+需要恢复时，先提交自己的实验，再从完成点新开分支。若要重新实现本课，可改用起点；起点尚无共写页。
 
 ```powershell
 git add .
 git commit -m "保存我的共写练习"
-git switch -c my-collaboration-lab-retry vcm-12-01-start
+git switch -c my-collaboration-lab-retry vcm-12-01-end
 ```
 
 Git不会恢复模型费用或页面对话；源码ZIP没有Git历史，使用标签需从公开仓库克隆。定向检查：`pnpm exec tsx --test test/collaboration.test.ts`。本地HTTP桩只验证反馈与完整历史确实被发送、失败不进入成功历史，不代表模型的真实共写表现。
+
+### 三轮真实共写与人工定稿
+
+[原始记录与人工定稿](evidence/vcm-12-01/说明.md)保留一次真实练习。三轮请求分别含2、4、6条消息，完整带上此前对话，均正常stop，没有重试。实际输入/输出token依次为197/201、516/157、803/164。
+
+人选择亲子陪伴方向、补充活动安排并提出纠正。第二轮擅自加入“先到先得”；第三轮删掉它，却又把“报名方式尚未提供”写成“不设报名链接”。最终文字由人继续核对和编辑，单独标为人工定稿，没有冒充模型第四轮回答。反馈能改变方向，但不能保证每条事实都已准确；这一轮结果不推广为模型整体能力结论。
