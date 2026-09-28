@@ -15,6 +15,7 @@
     "test": "node --import tsx --test test/*.test.ts"
   },
   "dependencies": {
+    "eventsource-parser": "4.1.1",
     "express": "^5.2.1"
   },
   "devDependencies": {

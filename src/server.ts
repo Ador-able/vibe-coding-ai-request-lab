@@ -6,6 +6,7 @@ import { askModel, ModelError, readConfig } from './model.ts';
 import { createContextRouter } from './context/routes.ts';
 import { createQualityRouter } from './quality/routes.ts';
 import { createMemoryRouter } from './memory/routes.ts';
+import { createLatencyRouter } from './latency/routes.ts';
 import type { AskPayload, AskResult, RequestTrace, Stage } from './contract.ts';
 
 export function createApp(env: NodeJS.ProcessEnv = process.env, log = console.log) {
@@ -15,6 +16,7 @@ export function createApp(env: NodeJS.ProcessEnv = process.env, log = console.lo
   app.use('/api/context', createContextRouter(env));
   app.use('/api/quality', createQualityRouter(env));
   app.use('/api/memory', createMemoryRouter(env));
+  app.use('/api/latency', createLatencyRouter(env));
 
   app.post('/api/ask', async (req, res) => {
     const beganAt = performance.now();
