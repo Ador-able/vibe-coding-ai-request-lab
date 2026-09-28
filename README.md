@@ -4,7 +4,17 @@
 
 发送后展开“查看这次请求”，可以对照页面实际发送的 JSON、后端阶段、请求编号和累计耗时。缺配置时不会出现“请求模型”与“收到模型回复”。浏览器看到后端的 HTTP 状态；模型服务的状态由后端记录，两者不一定相同。
 
-## 从课程包创建练习目录
+## 从 GitHub 开始
+
+```powershell
+git clone https://github.com/Ador-able/vibe-coding-ai-request-lab.git
+cd vibe-coding-ai-request-lab
+git switch -c my-lesson-01 vcm-01-01-end
+```
+
+按课程指定的标签建立练习分支，避免把持续更新的 `main` 当成固定教材版本。
+
+## 从离线课程包开始
 
 下载包中的 `ai-request-lab.bundle` 包含完整 Git 存档。在解压目录执行：
 
@@ -58,6 +68,10 @@ git switch -c my-lesson-01 vcm-01-01-end
 ```
 
 `vcm-01-01-start` 是可运行的问答模板，`vcm-01-01-end` 包含本节请求观察面板。第一节直接使用 `end` 版本观察请求，`start` 用于比较。
+
+| 课程 | 起点 | 完成点 |
+| --- | --- | --- |
+| 一次提问经过哪些程序 | `vcm-01-01-start` · `39b4a51497c4` | `vcm-01-01-end` · `020e4fd763dc` |
 
 需要重来时，先在自己的分支提交实验，再从课程存档新开分支：
 
