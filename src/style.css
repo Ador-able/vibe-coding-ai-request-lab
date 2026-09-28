@@ -1,0 +1,26 @@
+:root { font-family: 'Noto Sans SC', 'Microsoft YaHei', system-ui, sans-serif; color: #142e38; background: #f1f5f5; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+main { max-width: 1080px; padding: 54px 40px 64px; margin: auto; }
+header { margin-bottom: 30px; }
+.eyebrow { color: #487982; font-size: 13px; letter-spacing: .08em; font-weight: 600; }
+h1 { margin: 12px 0 10px; font-size: 34px; letter-spacing: -.04em; }
+header p { margin: 0; color: #63777f; font-size: 16px; }
+.workspace { background: #fff; border: 1px solid #d8e3e4; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px #163d4510; }
+form { padding: 28px; }
+label { display: block; font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+textarea { display: block; resize: vertical; width: 100%; border: 1px solid #c3d6d8; border-radius: 8px; padding: 15px 16px; font: inherit; font-size: 15px; line-height: 1.8; color: inherit; background: #fcfefe; }
+textarea:focus { outline: 3px solid #bee5e9; border-color: #247986; }
+textarea::placeholder { color: #83999f; }
+.actions { display: flex; gap: 24px; align-items: center; justify-content: space-between; margin-top: 18px; }
+#status { font-size: 13px; line-height: 1.7; color: #678087; }
+#status.error { color: #9b472f; }
+button { flex-shrink: 0; border: 0; border-radius: 8px; padding: 12px 20px; color: #fff; background: #1e6f7a; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
+button span { margin-left: 16px; }
+button:hover { background: #175e68; }
+button:disabled { cursor: wait; opacity: .65; }
+.response { border-top: 1px solid #e4ebed; padding: 24px 28px 30px; background: #fbfdfd; min-height: 150px; }
+h2 { margin: 0 0 13px; font-size: 14px; color: #526f79; }
+#answer { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.9; font-size: 15px; }
+#answer.empty { color: #8ba0a6; }
+@media(max-width: 600px) { main { padding: 32px 16px; } h1 { font-size: 28px; } form, .response { padding: 22px 20px; } .actions { gap: 16px; align-items: flex-start; } }
