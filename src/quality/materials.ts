@@ -58,7 +58,7 @@ function sampleCases(sample: 'A' | 'B'): QualityCase[] {
   const conflict = [...middle];
   conflict[120] = { id: `${sample}-D205`, text: releaseText(fact.project, fact.version, fact.otherOwner, fact.date) };
   const documents: Record<QualityCondition, Document[]> = {
-    short: [...irrelevant.slice(0, 7), key, ...irrelevant.slice(7, 15)],
+    short: [...irrelevant.slice(72, 79), key, ...irrelevant.slice(79, 87)],
     middle, first: [key, ...irrelevant], last: [...irrelevant, key], similar, conflict,
   };
   return (Object.keys(QUALITY_CONDITIONS) as QualityCondition[]).map((condition) => {

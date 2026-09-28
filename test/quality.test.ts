@@ -17,6 +17,8 @@ test('长度仅增加无关资料，三种位置使用严格相同的文档集�
     assert.equal(short.documents.length, 16); assert.equal(middle.documents.length, 160);
     assert.deepEqual(sorted(first), sorted(middle)); assert.deepEqual(sorted(last), sorted(middle));
     assert.ok(short.documents.every((doc) => middle.documents.some((other) => other.id === doc.id && other.text === doc.text)));
+    const positions = short.documents.map((doc) => middle.documents.findIndex((other) => other.id === doc.id));
+    assert.deepEqual(positions, [...positions].sort((a, b) => a - b));
     const key = middle.expected.source_ids[0];
     assert.equal(short.documents[7].id, key); assert.equal(middle.documents[79].id, key);
     assert.equal(first.documents[0].id, key); assert.equal(last.documents[159].id, key);
