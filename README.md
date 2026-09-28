@@ -471,3 +471,14 @@ git switch -c my-structured-lab-retry vcm-04-01-end
 [完整记录与核对脚本](evidence/vcm-04-01/说明.md)保留六次真实调用：明确待办在三种方式下均返回2项；严格模式遇到未知负责人和日期时返回null，只有状态及撤销任务时返回空列表。三模式的实际请求仅 `response_format` 不同，全部正常结束，没有重试。
 
 本轮没有出现格式失败，不能据此认定某模式必然失败或保证永远正确。页面人工反例同时通过结构与原句定位，却填错负责人；它明确属于人工构造，不计入六次模型结果。
+
+## 流式事件实验：工作纪要起点
+
+独立入口 `http://127.0.0.1:4320/streaming.html`，使用Node.js 24.12.0与pnpm 11.20.0。起点是可编辑的虚构工作纪要，不调用模型。
+
+```powershell
+pnpm install --frozen-lockfile
+pnpm streaming:dev
+```
+
+生产运行使用 `pnpm build`、`pnpm streaming:start`；其他实验使用各自的启动命令。依赖 `ai@7.0.122` 用于UI消息流的组合与读取，已有 `eventsource-parser` 用于模型SSE解析。本节不实现会话存储与恢复。

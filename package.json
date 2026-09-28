@@ -12,11 +12,14 @@
     "start": "node --env-file-if-exists=.env --import tsx src/server.ts --production",
     "structured:dev": "node --env-file-if-exists=.env --import tsx src/structured/server.ts",
     "structured:start": "node --env-file-if-exists=.env --import tsx src/structured/server.ts --production",
+    "streaming:dev": "node --env-file-if-exists=.env --import tsx src/streaming/server.ts",
+    "streaming:start": "node --env-file-if-exists=.env --import tsx src/streaming/server.ts --production",
     "build": "vite build",
     "check": "tsc --noEmit",
     "test": "node --import tsx --test test/*.test.ts"
   },
   "dependencies": {
+    "ai": "7.0.122",
     "eventsource-parser": "4.1.1",
     "express": "^5.2.1",
     "zod": "4.6.5"
