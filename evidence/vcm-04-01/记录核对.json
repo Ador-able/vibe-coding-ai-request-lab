@@ -1,0 +1,62 @@
+{
+  "executionCommit": "f659ab30306cefb8927b0034412bcc60c4ea74e8",
+  "files": {
+    "浏览器实测-六次请求.json": "072513266655011507e54396c5bb9faeba77970591e123a3de3345db49e291a4"
+  },
+  "modelCalls": 6,
+  "rows": [
+    {
+      "label": "明确待办",
+      "mode": "prompt",
+      "items": 2,
+      "input": 291,
+      "output": 129,
+      "finishReason": "stop"
+    },
+    {
+      "label": "明确待办",
+      "mode": "object",
+      "items": 2,
+      "input": 293,
+      "output": 129,
+      "finishReason": "stop"
+    },
+    {
+      "label": "明确待办",
+      "mode": "strict",
+      "items": 2,
+      "input": 293,
+      "output": 129,
+      "finishReason": "stop"
+    },
+    {
+      "label": "缺负责人和日期",
+      "mode": "strict",
+      "items": 1,
+      "input": 283,
+      "output": 70,
+      "finishReason": "stop"
+    },
+    {
+      "label": "只有状态",
+      "mode": "strict",
+      "items": 0,
+      "input": 282,
+      "output": 4,
+      "finishReason": "stop"
+    },
+    {
+      "label": "撤销或否定任务",
+      "mode": "strict",
+      "items": 0,
+      "input": 298,
+      "output": 4,
+      "finishReason": "stop"
+    }
+  ],
+  "firstThreeDifferOnlyInResponseFormat": true,
+  "rawAnswersMatchResponses": true,
+  "literalEvidenceLocated": true,
+  "noCredentialFieldsOrValuesFound": true,
+  "scope": "一次受控教学观察，不证明某模式必然失败或结果永远正确；人工错负责人反例不属于这六次调用。"
+}

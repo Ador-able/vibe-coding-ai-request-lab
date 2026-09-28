@@ -1,0 +1,462 @@
+{
+  "model": "qwen3.7-flash-2026-07-15",
+  "attempts": [
+    {
+      "label": "明确待办",
+      "mode": "prompt",
+      "material": "周一项目例会。陈岚负责在周三下班前提交展板初稿。周宇负责联系场地管理员，周五上午反馈确认结果。上周预算已经核对完成。",
+      "run": {
+        "id": "eb58c237-374a-4ec2-a7cb-6d6e603fb971",
+        "mode": "prompt",
+        "material": "周一项目例会。陈岚负责在周三下班前提交展板初稿。周宇负责联系场地管理员，周五上午反馈确认结果。上周预算已经核对完成。",
+        "request": {
+          "step": "仅提示词要求JSON",
+          "startedAt": "2026-09-28T23:13:30.811Z",
+          "requestBody": "{\"model\":\"qwen3.7-flash-2026-07-15\",\"messages\":[{\"role\":\"system\",\"content\":\"从会议纪要提取会议结束时仍需执行的待办，只依据原文。已完成的状态、被取消的安排或明确不用执行的任务不列入items。没有待办时返回items空数组。负责人或截止时间未确定时保留字段并填null，不猜测；dueText沿用原文时间文字，不推算日历日期。evidence逐字引用一段连续原句，不改写。只输出JSON，不加围栏或说明。输出遵守以下JSON Schema：\\n{\\\"$schema\\\":\\\"http://json-schema.org/draft-07/schema#\\\",\\\"type\\\":\\\"object\\\",\\\"properties\\\":{\\\"items\\\":{\\\"type\\\":\\\"array\\\",\\\"items\\\":{\\\"type\\\":\\\"object\\\",\\\"properties\\\":{\\\"task\\\":{\\\"type\\\":\\\"string\\\",\\\"description\\\":\\\"尚需执行的待办事项\\\"},\\\"owner\\\":{\\\"description\\\":\\\"原文明确的负责人，未确定为null\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},\\\"dueText\\\":{\\\"description\\\":\\\"原文明确的截止时间文字，未确定为null\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},\\\"evidence\\\":{\\\"type\\\":\\\"string\\\",\\\"description\\\":\\\"支持此项待办的连续原句，逐字保留\\\"}},\\\"required\\\":[\\\"task\\\",\\\"owner\\\",\\\"dueText\\\",\\\"evidence\\\"],\\\"additionalProperties\\\":false}}},\\\"required\\\":[\\\"items\\\"],\\\"additionalProperties\\\":false}\"},{\"role\":\"user\",\"content\":\"周一项目例会。陈岚负责在周三下班前提交展板初稿。周宇负责联系场地管理员，周五上午反馈确认结果。上周预算已经核对完成。\"}],\"stream\":false,\"enable_thinking\":false,\"temperature\":0,\"max_tokens\":1024}",
+          "httpStatus": 200,
+          "responseModel": "qwen3.7-flash-2026-07-15",
+          "usage": {
+            "completion_tokens": 129,
+            "prompt_tokens": 291,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "text_tokens": 291
+            },
+            "total_tokens": 420
+          },
+          "finishReason": "stop",
+          "responseMessage": {
+            "content": "{\n  \"items\": [\n    {\n      \"task\": \"提交展板初稿\",\n      \"owner\": \"陈岚\",\n      \"dueText\": \"周三下班前\",\n      \"evidence\": \"陈岚负责在周三下班前提交展板初稿\"\n    },\n    {\n      \"task\": \"联系场地管理员，周五上午反馈确认结果\",\n      \"owner\": \"周宇\",\n      \"dueText\": \"周五上午\",\n      \"evidence\": \"周宇负责联系场地管理员，周五上午反馈确认结果\"\n    }\n  ]\n}",
+            "role": "assistant"
+          },
+          "durationMs": 1380
+        },
+        "rawAnswer": "{\n  \"items\": [\n    {\n      \"task\": \"提交展板初稿\",\n      \"owner\": \"陈岚\",\n      \"dueText\": \"周三下班前\",\n      \"evidence\": \"陈岚负责在周三下班前提交展板初稿\"\n    },\n    {\n      \"task\": \"联系场地管理员，周五上午反馈确认结果\",\n      \"owner\": \"周宇\",\n      \"dueText\": \"周五上午\",\n      \"evidence\": \"周宇负责联系场地管理员，周五上午反馈确认结果\"\n    }\n  ]\n}",
+        "inspection": {
+          "checks": [
+            {
+              "label": "完整结束",
+              "status": "pass",
+              "detail": "finish_reason=stop，且有正文、无拒绝标记。"
+            },
+            {
+              "label": "JSON解析",
+              "status": "pass",
+              "detail": "原始正文可直接解析为JSON。"
+            },
+            {
+              "label": "字段结构",
+              "status": "pass",
+              "detail": "同一Zod定义的safeParse通过；未核验语义。"
+            },
+            {
+              "label": "原句定位",
+              "status": "pass",
+              "detail": "2/2条原句存在；仍需人工检查引用是否支持提取内容。"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "task": "提交展板初稿",
+                "owner": "陈岚",
+                "dueText": "周三下班前",
+                "evidence": "陈岚负责在周三下班前提交展板初稿"
+              },
+              {
+                "task": "联系场地管理员，周五上午反馈确认结果",
+                "owner": "周宇",
+                "dueText": "周五上午",
+                "evidence": "周宇负责联系场地管理员，周五上午反馈确认结果"
+              }
+            ]
+          },
+          "evidence": [
+            {
+              "index": 0,
+              "found": true,
+              "start": 7
+            },
+            {
+              "index": 1,
+              "found": true,
+              "start": 24
+            }
+          ]
+        }
+      },
+      "transportError": null
+    },
+    {
+      "label": "明确待办",
+      "mode": "object",
+      "material": "周一项目例会。陈岚负责在周三下班前提交展板初稿。周宇负责联系场地管理员，周五上午反馈确认结果。上周预算已经核对完成。",
+      "run": {
+        "id": "2e5e41d0-08bf-413b-a7f7-4d68baa1b857",
+        "mode": "object",
+        "material": "周一项目例会。陈岚负责在周三下班前提交展板初稿。周宇负责联系场地管理员，周五上午反馈确认结果。上周预算已经核对完成。",
+        "request": {
+          "step": "JSON Object",
+          "startedAt": "2026-09-28T23:13:57.372Z",
+          "requestBody": "{\"model\":\"qwen3.7-flash-2026-07-15\",\"messages\":[{\"role\":\"system\",\"content\":\"从会议纪要提取会议结束时仍需执行的待办，只依据原文。已完成的状态、被取消的安排或明确不用执行的任务不列入items。没有待办时返回items空数组。负责人或截止时间未确定时保留字段并填null，不猜测；dueText沿用原文时间文字，不推算日历日期。evidence逐字引用一段连续原句，不改写。只输出JSON，不加围栏或说明。输出遵守以下JSON Schema：\\n{\\\"$schema\\\":\\\"http://json-schema.org/draft-07/schema#\\\",\\\"type\\\":\\\"object\\\",\\\"properties\\\":{\\\"items\\\":{\\\"type\\\":\\\"array\\\",\\\"items\\\":{\\\"type\\\":\\\"object\\\",\\\"properties\\\":{\\\"task\\\":{\\\"type\\\":\\\"string\\\",\\\"description\\\":\\\"尚需执行的待办事项\\\"},\\\"owner\\\":{\\\"description\\\":\\\"原文明确的负责人，未确定为null\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},\\\"dueText\\\":{\\\"description\\\":\\\"原文明确的截止时间文字，未确定为null\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},\\\"evidence\\\":{\\\"type\\\":\\\"string\\\",\\\"description\\\":\\\"支持此项待办的连续原句，逐字保留\\\"}},\\\"required\\\":[\\\"task\\\",\\\"owner\\\",\\\"dueText\\\",\\\"evidence\\\"],\\\"additionalProperties\\\":false}}},\\\"required\\\":[\\\"items\\\"],\\\"additionalProperties\\\":false}\"},{\"role\":\"user\",\"content\":\"周一项目例会。陈岚负责在周三下班前提交展板初稿。周宇负责联系场地管理员，周五上午反馈确认结果。上周预算已经核对完成。\"}],\"stream\":false,\"enable_thinking\":false,\"temperature\":0,\"max_tokens\":1024,\"response_format\":{\"type\":\"json_object\"}}",
+          "httpStatus": 200,
+          "responseModel": "qwen3.7-flash-2026-07-15",
+          "usage": {
+            "completion_tokens": 129,
+            "prompt_tokens": 293,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "text_tokens": 293
+            },
+            "total_tokens": 422
+          },
+          "finishReason": "stop",
+          "responseMessage": {
+            "content": "{\n  \"items\": [\n    {\n      \"task\": \"提交展板初稿\",\n      \"owner\": \"陈岚\",\n      \"dueText\": \"周三下班前\",\n      \"evidence\": \"陈岚负责在周三下班前提交展板初稿\"\n    },\n    {\n      \"task\": \"联系场地管理员，周五上午反馈确认结果\",\n      \"owner\": \"周宇\",\n      \"dueText\": \"周五上午\",\n      \"evidence\": \"周宇负责联系场地管理员，周五上午反馈确认结果\"\n    }\n  ]\n}",
+            "role": "assistant"
+          },
+          "durationMs": 1118
+        },
+        "rawAnswer": "{\n  \"items\": [\n    {\n      \"task\": \"提交展板初稿\",\n      \"owner\": \"陈岚\",\n      \"dueText\": \"周三下班前\",\n      \"evidence\": \"陈岚负责在周三下班前提交展板初稿\"\n    },\n    {\n      \"task\": \"联系场地管理员，周五上午反馈确认结果\",\n      \"owner\": \"周宇\",\n      \"dueText\": \"周五上午\",\n      \"evidence\": \"周宇负责联系场地管理员，周五上午反馈确认结果\"\n    }\n  ]\n}",
+        "inspection": {
+          "checks": [
+            {
+              "label": "完整结束",
+              "status": "pass",
+              "detail": "finish_reason=stop，且有正文、无拒绝标记。"
+            },
+            {
+              "label": "JSON解析",
+              "status": "pass",
+              "detail": "原始正文可直接解析为JSON。"
+            },
+            {
+              "label": "字段结构",
+              "status": "pass",
+              "detail": "同一Zod定义的safeParse通过；未核验语义。"
+            },
+            {
+              "label": "原句定位",
+              "status": "pass",
+              "detail": "2/2条原句存在；仍需人工检查引用是否支持提取内容。"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "task": "提交展板初稿",
+                "owner": "陈岚",
+                "dueText": "周三下班前",
+                "evidence": "陈岚负责在周三下班前提交展板初稿"
+              },
+              {
+                "task": "联系场地管理员，周五上午反馈确认结果",
+                "owner": "周宇",
+                "dueText": "周五上午",
+                "evidence": "周宇负责联系场地管理员，周五上午反馈确认结果"
+              }
+            ]
+          },
+          "evidence": [
+            {
+              "index": 0,
+              "found": true,
+              "start": 7
+            },
+            {
+              "index": 1,
+              "found": true,
+              "start": 24
+            }
+          ]
+        }
+      },
+      "transportError": null
+    },
+    {
+      "label": "明确待办",
+      "mode": "strict",
+      "material": "周一项目例会。陈岚负责在周三下班前提交展板初稿。周宇负责联系场地管理员，周五上午反馈确认结果。上周预算已经核对完成。",
+      "run": {
+        "id": "ff08ed8c-026e-40fd-8402-bd3a66a5d581",
+        "mode": "strict",
+        "material": "周一项目例会。陈岚负责在周三下班前提交展板初稿。周宇负责联系场地管理员，周五上午反馈确认结果。上周预算已经核对完成。",
+        "request": {
+          "step": "JSON Schema · strict",
+          "startedAt": "2026-09-28T23:14:11.881Z",
+          "requestBody": "{\"model\":\"qwen3.7-flash-2026-07-15\",\"messages\":[{\"role\":\"system\",\"content\":\"从会议纪要提取会议结束时仍需执行的待办，只依据原文。已完成的状态、被取消的安排或明确不用执行的任务不列入items。没有待办时返回items空数组。负责人或截止时间未确定时保留字段并填null，不猜测；dueText沿用原文时间文字，不推算日历日期。evidence逐字引用一段连续原句，不改写。只输出JSON，不加围栏或说明。输出遵守以下JSON Schema：\\n{\\\"$schema\\\":\\\"http://json-schema.org/draft-07/schema#\\\",\\\"type\\\":\\\"object\\\",\\\"properties\\\":{\\\"items\\\":{\\\"type\\\":\\\"array\\\",\\\"items\\\":{\\\"type\\\":\\\"object\\\",\\\"properties\\\":{\\\"task\\\":{\\\"type\\\":\\\"string\\\",\\\"description\\\":\\\"尚需执行的待办事项\\\"},\\\"owner\\\":{\\\"description\\\":\\\"原文明确的负责人，未确定为null\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},\\\"dueText\\\":{\\\"description\\\":\\\"原文明确的截止时间文字，未确定为null\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},\\\"evidence\\\":{\\\"type\\\":\\\"string\\\",\\\"description\\\":\\\"支持此项待办的连续原句，逐字保留\\\"}},\\\"required\\\":[\\\"task\\\",\\\"owner\\\",\\\"dueText\\\",\\\"evidence\\\"],\\\"additionalProperties\\\":false}}},\\\"required\\\":[\\\"items\\\"],\\\"additionalProperties\\\":false}\"},{\"role\":\"user\",\"content\":\"周一项目例会。陈岚负责在周三下班前提交展板初稿。周宇负责联系场地管理员，周五上午反馈确认结果。上周预算已经核对完成。\"}],\"stream\":false,\"enable_thinking\":false,\"temperature\":0,\"max_tokens\":1024,\"response_format\":{\"type\":\"json_schema\",\"json_schema\":{\"name\":\"meeting_tasks\",\"strict\":true,\"schema\":{\"$schema\":\"http://json-schema.org/draft-07/schema#\",\"type\":\"object\",\"properties\":{\"items\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"task\":{\"type\":\"string\",\"description\":\"尚需执行的待办事项\"},\"owner\":{\"description\":\"原文明确的负责人，未确定为null\",\"type\":[\"string\",\"null\"]},\"dueText\":{\"description\":\"原文明确的截止时间文字，未确定为null\",\"type\":[\"string\",\"null\"]},\"evidence\":{\"type\":\"string\",\"description\":\"支持此项待办的连续原句，逐字保留\"}},\"required\":[\"task\",\"owner\",\"dueText\",\"evidence\"],\"additionalProperties\":false}}},\"required\":[\"items\"],\"additionalProperties\":false}}}}",
+          "httpStatus": 200,
+          "responseModel": "qwen3.7-flash-2026-07-15",
+          "usage": {
+            "completion_tokens": 129,
+            "prompt_tokens": 293,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "text_tokens": 293
+            },
+            "total_tokens": 422
+          },
+          "finishReason": "stop",
+          "responseMessage": {
+            "content": "{\n  \"items\": [\n    {\n      \"task\": \"提交展板初稿\",\n      \"owner\": \"陈岚\",\n      \"dueText\": \"周三下班前\",\n      \"evidence\": \"陈岚负责在周三下班前提交展板初稿\"\n    },\n    {\n      \"task\": \"联系场地管理员，周五上午反馈确认结果\",\n      \"owner\": \"周宇\",\n      \"dueText\": \"周五上午\",\n      \"evidence\": \"周宇负责联系场地管理员，周五上午反馈确认结果\"\n    }\n  ]\n}",
+            "role": "assistant"
+          },
+          "durationMs": 1257
+        },
+        "rawAnswer": "{\n  \"items\": [\n    {\n      \"task\": \"提交展板初稿\",\n      \"owner\": \"陈岚\",\n      \"dueText\": \"周三下班前\",\n      \"evidence\": \"陈岚负责在周三下班前提交展板初稿\"\n    },\n    {\n      \"task\": \"联系场地管理员，周五上午反馈确认结果\",\n      \"owner\": \"周宇\",\n      \"dueText\": \"周五上午\",\n      \"evidence\": \"周宇负责联系场地管理员，周五上午反馈确认结果\"\n    }\n  ]\n}",
+        "inspection": {
+          "checks": [
+            {
+              "label": "完整结束",
+              "status": "pass",
+              "detail": "finish_reason=stop，且有正文、无拒绝标记。"
+            },
+            {
+              "label": "JSON解析",
+              "status": "pass",
+              "detail": "原始正文可直接解析为JSON。"
+            },
+            {
+              "label": "字段结构",
+              "status": "pass",
+              "detail": "同一Zod定义的safeParse通过；未核验语义。"
+            },
+            {
+              "label": "原句定位",
+              "status": "pass",
+              "detail": "2/2条原句存在；仍需人工检查引用是否支持提取内容。"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "task": "提交展板初稿",
+                "owner": "陈岚",
+                "dueText": "周三下班前",
+                "evidence": "陈岚负责在周三下班前提交展板初稿"
+              },
+              {
+                "task": "联系场地管理员，周五上午反馈确认结果",
+                "owner": "周宇",
+                "dueText": "周五上午",
+                "evidence": "周宇负责联系场地管理员，周五上午反馈确认结果"
+              }
+            ]
+          },
+          "evidence": [
+            {
+              "index": 0,
+              "found": true,
+              "start": 7
+            },
+            {
+              "index": 1,
+              "found": true,
+              "start": 24
+            }
+          ]
+        }
+      },
+      "transportError": null
+    },
+    {
+      "label": "缺负责人和日期",
+      "mode": "strict",
+      "material": "会议决定整理一份活动物料清单，但没有指定负责人，也没有确定完成日期。现有场地资料已上传，供大家参考。",
+      "run": {
+        "id": "d1ab0b35-5bb0-49e1-925e-75c5f65dbff9",
+        "mode": "strict",
+        "material": "会议决定整理一份活动物料清单，但没有指定负责人，也没有确定完成日期。现有场地资料已上传，供大家参考。",
+        "request": {
+          "step": "JSON Schema · strict",
+          "startedAt": "2026-09-28T23:15:05.855Z",
+          "requestBody": "{\"model\":\"qwen3.7-flash-2026-07-15\",\"messages\":[{\"role\":\"system\",\"content\":\"从会议纪要提取会议结束时仍需执行的待办，只依据原文。已完成的状态、被取消的安排或明确不用执行的任务不列入items。没有待办时返回items空数组。负责人或截止时间未确定时保留字段并填null，不猜测；dueText沿用原文时间文字，不推算日历日期。evidence逐字引用一段连续原句，不改写。只输出JSON，不加围栏或说明。输出遵守以下JSON Schema：\\n{\\\"$schema\\\":\\\"http://json-schema.org/draft-07/schema#\\\",\\\"type\\\":\\\"object\\\",\\\"properties\\\":{\\\"items\\\":{\\\"type\\\":\\\"array\\\",\\\"items\\\":{\\\"type\\\":\\\"object\\\",\\\"properties\\\":{\\\"task\\\":{\\\"type\\\":\\\"string\\\",\\\"description\\\":\\\"尚需执行的待办事项\\\"},\\\"owner\\\":{\\\"description\\\":\\\"原文明确的负责人，未确定为null\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},\\\"dueText\\\":{\\\"description\\\":\\\"原文明确的截止时间文字，未确定为null\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},\\\"evidence\\\":{\\\"type\\\":\\\"string\\\",\\\"description\\\":\\\"支持此项待办的连续原句，逐字保留\\\"}},\\\"required\\\":[\\\"task\\\",\\\"owner\\\",\\\"dueText\\\",\\\"evidence\\\"],\\\"additionalProperties\\\":false}}},\\\"required\\\":[\\\"items\\\"],\\\"additionalProperties\\\":false}\"},{\"role\":\"user\",\"content\":\"会议决定整理一份活动物料清单，但没有指定负责人，也没有确定完成日期。现有场地资料已上传，供大家参考。\"}],\"stream\":false,\"enable_thinking\":false,\"temperature\":0,\"max_tokens\":1024,\"response_format\":{\"type\":\"json_schema\",\"json_schema\":{\"name\":\"meeting_tasks\",\"strict\":true,\"schema\":{\"$schema\":\"http://json-schema.org/draft-07/schema#\",\"type\":\"object\",\"properties\":{\"items\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"task\":{\"type\":\"string\",\"description\":\"尚需执行的待办事项\"},\"owner\":{\"description\":\"原文明确的负责人，未确定为null\",\"type\":[\"string\",\"null\"]},\"dueText\":{\"description\":\"原文明确的截止时间文字，未确定为null\",\"type\":[\"string\",\"null\"]},\"evidence\":{\"type\":\"string\",\"description\":\"支持此项待办的连续原句，逐字保留\"}},\"required\":[\"task\",\"owner\",\"dueText\",\"evidence\"],\"additionalProperties\":false}}},\"required\":[\"items\"],\"additionalProperties\":false}}}}",
+          "httpStatus": 200,
+          "responseModel": "qwen3.7-flash-2026-07-15",
+          "usage": {
+            "completion_tokens": 70,
+            "prompt_tokens": 283,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "text_tokens": 283
+            },
+            "total_tokens": 353
+          },
+          "finishReason": "stop",
+          "responseMessage": {
+            "content": "{\n  \"items\": [\n    {\n      \"task\": \"整理一份活动物料清单\",\n      \"owner\": null,\n      \"dueText\": null,\n      \"evidence\": \"会议决定整理一份活动物料清单，但没有指定负责人，也没有确定完成日期。\"\n    }\n  ]\n}",
+            "role": "assistant"
+          },
+          "durationMs": 939
+        },
+        "rawAnswer": "{\n  \"items\": [\n    {\n      \"task\": \"整理一份活动物料清单\",\n      \"owner\": null,\n      \"dueText\": null,\n      \"evidence\": \"会议决定整理一份活动物料清单，但没有指定负责人，也没有确定完成日期。\"\n    }\n  ]\n}",
+        "inspection": {
+          "checks": [
+            {
+              "label": "完整结束",
+              "status": "pass",
+              "detail": "finish_reason=stop，且有正文、无拒绝标记。"
+            },
+            {
+              "label": "JSON解析",
+              "status": "pass",
+              "detail": "原始正文可直接解析为JSON。"
+            },
+            {
+              "label": "字段结构",
+              "status": "pass",
+              "detail": "同一Zod定义的safeParse通过；未核验语义。"
+            },
+            {
+              "label": "原句定位",
+              "status": "pass",
+              "detail": "1/1条原句存在；仍需人工检查引用是否支持提取内容。"
+            }
+          ],
+          "data": {
+            "items": [
+              {
+                "task": "整理一份活动物料清单",
+                "owner": null,
+                "dueText": null,
+                "evidence": "会议决定整理一份活动物料清单，但没有指定负责人，也没有确定完成日期。"
+              }
+            ]
+          },
+          "evidence": [
+            {
+              "index": 0,
+              "found": true,
+              "start": 0
+            }
+          ]
+        }
+      },
+      "transportError": null
+    },
+    {
+      "label": "只有状态",
+      "mode": "strict",
+      "material": "本次只同步进展：展板已制作完成，场地预约已确认，预算已核对。本次会议没有新增任务。",
+      "run": {
+        "id": "c01ec4a1-fe23-4977-9d59-bfcb76757c48",
+        "mode": "strict",
+        "material": "本次只同步进展：展板已制作完成，场地预约已确认，预算已核对。本次会议没有新增任务。",
+        "request": {
+          "step": "JSON Schema · strict",
+          "startedAt": "2026-09-28T23:16:24.632Z",
+          "requestBody": "{\"model\":\"qwen3.7-flash-2026-07-15\",\"messages\":[{\"role\":\"system\",\"content\":\"从会议纪要提取会议结束时仍需执行的待办，只依据原文。已完成的状态、被取消的安排或明确不用执行的任务不列入items。没有待办时返回items空数组。负责人或截止时间未确定时保留字段并填null，不猜测；dueText沿用原文时间文字，不推算日历日期。evidence逐字引用一段连续原句，不改写。只输出JSON，不加围栏或说明。输出遵守以下JSON Schema：\\n{\\\"$schema\\\":\\\"http://json-schema.org/draft-07/schema#\\\",\\\"type\\\":\\\"object\\\",\\\"properties\\\":{\\\"items\\\":{\\\"type\\\":\\\"array\\\",\\\"items\\\":{\\\"type\\\":\\\"object\\\",\\\"properties\\\":{\\\"task\\\":{\\\"type\\\":\\\"string\\\",\\\"description\\\":\\\"尚需执行的待办事项\\\"},\\\"owner\\\":{\\\"description\\\":\\\"原文明确的负责人，未确定为null\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},\\\"dueText\\\":{\\\"description\\\":\\\"原文明确的截止时间文字，未确定为null\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},\\\"evidence\\\":{\\\"type\\\":\\\"string\\\",\\\"description\\\":\\\"支持此项待办的连续原句，逐字保留\\\"}},\\\"required\\\":[\\\"task\\\",\\\"owner\\\",\\\"dueText\\\",\\\"evidence\\\"],\\\"additionalProperties\\\":false}}},\\\"required\\\":[\\\"items\\\"],\\\"additionalProperties\\\":false}\"},{\"role\":\"user\",\"content\":\"本次只同步进展：展板已制作完成，场地预约已确认，预算已核对。本次会议没有新增任务。\"}],\"stream\":false,\"enable_thinking\":false,\"temperature\":0,\"max_tokens\":1024,\"response_format\":{\"type\":\"json_schema\",\"json_schema\":{\"name\":\"meeting_tasks\",\"strict\":true,\"schema\":{\"$schema\":\"http://json-schema.org/draft-07/schema#\",\"type\":\"object\",\"properties\":{\"items\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"task\":{\"type\":\"string\",\"description\":\"尚需执行的待办事项\"},\"owner\":{\"description\":\"原文明确的负责人，未确定为null\",\"type\":[\"string\",\"null\"]},\"dueText\":{\"description\":\"原文明确的截止时间文字，未确定为null\",\"type\":[\"string\",\"null\"]},\"evidence\":{\"type\":\"string\",\"description\":\"支持此项待办的连续原句，逐字保留\"}},\"required\":[\"task\",\"owner\",\"dueText\",\"evidence\"],\"additionalProperties\":false}}},\"required\":[\"items\"],\"additionalProperties\":false}}}}",
+          "httpStatus": 200,
+          "responseModel": "qwen3.7-flash-2026-07-15",
+          "usage": {
+            "completion_tokens": 4,
+            "prompt_tokens": 282,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "text_tokens": 282
+            },
+            "total_tokens": 286
+          },
+          "finishReason": "stop",
+          "responseMessage": {
+            "content": "{\"items\":[]}",
+            "role": "assistant"
+          },
+          "durationMs": 420
+        },
+        "rawAnswer": "{\"items\":[]}",
+        "inspection": {
+          "checks": [
+            {
+              "label": "完整结束",
+              "status": "pass",
+              "detail": "finish_reason=stop，且有正文、无拒绝标记。"
+            },
+            {
+              "label": "JSON解析",
+              "status": "pass",
+              "detail": "原始正文可直接解析为JSON。"
+            },
+            {
+              "label": "字段结构",
+              "status": "pass",
+              "detail": "同一Zod定义的safeParse通过；未核验语义。"
+            },
+            {
+              "label": "原句定位",
+              "status": "skip",
+              "detail": "没有条目需要定位；是否漏提仍需核查。"
+            }
+          ],
+          "data": {
+            "items": []
+          },
+          "evidence": []
+        }
+      },
+      "transportError": null
+    },
+    {
+      "label": "撤销或否定任务",
+      "mode": "strict",
+      "material": "原计划让陈岚周三提交展板初稿。会议决定取消这项任务，不需要再提交初稿。周宇不需要联系场地管理员，预约已经完成。本次不安排新的待办。",
+      "run": {
+        "id": "11e5e9de-1666-49f6-a54f-f37d1bb6388c",
+        "mode": "strict",
+        "material": "原计划让陈岚周三提交展板初稿。会议决定取消这项任务，不需要再提交初稿。周宇不需要联系场地管理员，预约已经完成。本次不安排新的待办。",
+        "request": {
+          "step": "JSON Schema · strict",
+          "startedAt": "2026-09-28T23:16:31.772Z",
+          "requestBody": "{\"model\":\"qwen3.7-flash-2026-07-15\",\"messages\":[{\"role\":\"system\",\"content\":\"从会议纪要提取会议结束时仍需执行的待办，只依据原文。已完成的状态、被取消的安排或明确不用执行的任务不列入items。没有待办时返回items空数组。负责人或截止时间未确定时保留字段并填null，不猜测；dueText沿用原文时间文字，不推算日历日期。evidence逐字引用一段连续原句，不改写。只输出JSON，不加围栏或说明。输出遵守以下JSON Schema：\\n{\\\"$schema\\\":\\\"http://json-schema.org/draft-07/schema#\\\",\\\"type\\\":\\\"object\\\",\\\"properties\\\":{\\\"items\\\":{\\\"type\\\":\\\"array\\\",\\\"items\\\":{\\\"type\\\":\\\"object\\\",\\\"properties\\\":{\\\"task\\\":{\\\"type\\\":\\\"string\\\",\\\"description\\\":\\\"尚需执行的待办事项\\\"},\\\"owner\\\":{\\\"description\\\":\\\"原文明确的负责人，未确定为null\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},\\\"dueText\\\":{\\\"description\\\":\\\"原文明确的截止时间文字，未确定为null\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},\\\"evidence\\\":{\\\"type\\\":\\\"string\\\",\\\"description\\\":\\\"支持此项待办的连续原句，逐字保留\\\"}},\\\"required\\\":[\\\"task\\\",\\\"owner\\\",\\\"dueText\\\",\\\"evidence\\\"],\\\"additionalProperties\\\":false}}},\\\"required\\\":[\\\"items\\\"],\\\"additionalProperties\\\":false}\"},{\"role\":\"user\",\"content\":\"原计划让陈岚周三提交展板初稿。会议决定取消这项任务，不需要再提交初稿。周宇不需要联系场地管理员，预约已经完成。本次不安排新的待办。\"}],\"stream\":false,\"enable_thinking\":false,\"temperature\":0,\"max_tokens\":1024,\"response_format\":{\"type\":\"json_schema\",\"json_schema\":{\"name\":\"meeting_tasks\",\"strict\":true,\"schema\":{\"$schema\":\"http://json-schema.org/draft-07/schema#\",\"type\":\"object\",\"properties\":{\"items\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"task\":{\"type\":\"string\",\"description\":\"尚需执行的待办事项\"},\"owner\":{\"description\":\"原文明确的负责人，未确定为null\",\"type\":[\"string\",\"null\"]},\"dueText\":{\"description\":\"原文明确的截止时间文字，未确定为null\",\"type\":[\"string\",\"null\"]},\"evidence\":{\"type\":\"string\",\"description\":\"支持此项待办的连续原句，逐字保留\"}},\"required\":[\"task\",\"owner\",\"dueText\",\"evidence\"],\"additionalProperties\":false}}},\"required\":[\"items\"],\"additionalProperties\":false}}}}",
+          "httpStatus": 200,
+          "responseModel": "qwen3.7-flash-2026-07-15",
+          "usage": {
+            "completion_tokens": 4,
+            "prompt_tokens": 298,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "text_tokens": 298
+            },
+            "total_tokens": 302
+          },
+          "finishReason": "stop",
+          "responseMessage": {
+            "content": "{\"items\":[]}",
+            "role": "assistant"
+          },
+          "durationMs": 442
+        },
+        "rawAnswer": "{\"items\":[]}",
+        "inspection": {
+          "checks": [
+            {
+              "label": "完整结束",
+              "status": "pass",
+              "detail": "finish_reason=stop，且有正文、无拒绝标记。"
+            },
+            {
+              "label": "JSON解析",
+              "status": "pass",
+              "detail": "原始正文可直接解析为JSON。"
+            },
+            {
+              "label": "字段结构",
+              "status": "pass",
+              "detail": "同一Zod定义的safeParse通过；未核验语义。"
+            },
+            {
+              "label": "原句定位",
+              "status": "skip",
+              "detail": "没有条目需要定位；是否漏提仍需核查。"
+            }
+          ],
+          "data": {
+            "items": []
+          },
+          "evidence": []
+        }
+      },
+      "transportError": null
+    }
+  ]
+}
