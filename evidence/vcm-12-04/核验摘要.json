@@ -1,0 +1,41 @@
+{
+  "executionCommit": "7eacdd69fcb8b450e87b0383389ac2b9e6283946",
+  "startCommit": "65befe4a50dd845a125e3777f534c65a2f07b8f1",
+  "files": {
+    "交回任务-实际请求记录.json": "d6b21749c7246774c5041cd3143c636b9773b42c65da9980961494e8890c34e8",
+    "活动安排-当前稿.md": "64d0847beb01762feef0e32bb1152ffdf5c705e614fe83a36e94dbb5847bb263"
+  },
+  "modelCalls": 2,
+  "messageCounts": [
+    2,
+    4
+  ],
+  "usage": [
+    {
+      "completion_tokens": 76,
+      "prompt_tokens": 260,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 336
+    },
+    {
+      "completion_tokens": 148,
+      "prompt_tokens": 507,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 655
+    }
+  ],
+  "originalFileBytesPreserved": true,
+  "requestBodiesMatchImplementation": true,
+  "fullPriorHistoryRetained": true,
+  "answersMatchRawResponses": true,
+  "humanCurrentDraftFactsPresentInLatestInput": true,
+  "executionCodeUnchanged": true,
+  "noCredentialOrPrivateServiceValuesFound": true,
+  "noTrackedPrivatePaths": true,
+  "observation": "第二轮采用新时间地点与志愿者交接方向，仍推断报名状态并增加未给定的现场职责；不是完整合格稿。",
+  "scope": "非流式文字对话；未测试工具取消、回滚或外部发送。"
+}
