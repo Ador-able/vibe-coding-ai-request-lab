@@ -1,0 +1,31 @@
+@import '../context/style.css';
+main { max-width: 1180px; padding-top: 28px; }
+header { margin-bottom: 20px; }
+h1 { font-size: 26px; }
+.common { display: grid; grid-template-columns: 1.6fr 1fr; gap: 28px; padding: 18px 22px; background: #e8f1f1; border-left: 4px solid #43848b; }
+.common h2 { font-size: 15px; margin-bottom: 8px; }
+.common p, .common li { font-size: 14px; line-height: 1.8; }
+.common p { margin: 0; }
+.common ul { margin: 0; padding-left: 18px; }
+.generate-bar, .export-bar { display: flex; align-items: center; gap: 18px; margin-top: 18px; }
+#status { min-height: 20px; margin: 12px 0; }
+#run-picker { margin: 16px 0; font-size: 14px; }
+#comparison { background: white; padding: 22px; border: 1px solid #ccdfe1; border-radius: 9px; }
+.options { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+.option { min-width: 0; }
+.option + .option { border-left: 1px solid #d4e1e3; padding-left: 28px; }
+.option h3 { font-size: 14px; color: #326875; margin: 0 0 8px; }
+.option h4 { margin: 0; font-size: 18px; line-height: 1.6; overflow-wrap: anywhere; }
+.copy { font-size: 15px; line-height: 1.85; white-space: pre-wrap; overflow-wrap: anywhere; margin: 12px 0 16px; }
+.option dl { grid-template-columns: 62px 1fr; gap: 10px; font-size: 14px; }
+.option dd { color: #345967; overflow-wrap: anywhere; }
+.option button { margin-top: 18px; }
+.option button[aria-pressed=true] { background: #17494e; outline: 2px solid #6daeb1; outline-offset: 2px; }
+.decision-state { margin: 18px 0 0; border-top: 1px solid #d6e4e5; padding-top: 14px; font-size: 14px; }
+#editor { margin-top: 20px; padding: 22px; background: #fff; border: 1px solid #a8c9ce; border-radius: 9px; }
+#editor label { display: block; font-size: 14px; font-weight: 600; margin: 14px 0 7px; }
+#editor input, #editor textarea { width: 100%; padding: 10px 12px; border: 1px solid #aec7cc; border-radius: 5px; background: #fbfdfd; color: #173b46; font: inherit; font-size: 15px; line-height: 1.8; }
+#editor textarea { resize: vertical; min-height: 160px; }
+.json pre { max-height: 440px; overflow: auto; }
+@media (max-width: 760px) { .common, .options { grid-template-columns: 1fr; gap: 20px; } .option + .option { border-left: none; padding-left: 0; border-top: 1px solid #d4e1e3; padding-top: 20px; } .common, #comparison, #editor { padding: 18px; } }
+@media (max-width: 440px) { .generate-bar, .export-bar { align-items: stretch; flex-direction: column; gap: 4px; } .option dl { grid-template-columns: 62px 1fr; gap: 10px; } .option dd { margin-bottom: 0; } }
