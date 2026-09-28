@@ -1,0 +1,73 @@
+{
+  "codeCommit": "5225a34e89a84c79b7dfdd93feae7292077a2988",
+  "records": [
+    {
+      "name": "三流程-真实请求记录.json",
+      "sha256": "80180680144665698b10a68eb524dfffcee66561a0b3107090de997c491ba0f9"
+    },
+    {
+      "name": "新会话-真实请求记录.json",
+      "sha256": "b2adf2fff15161867bff68275fb0701aa1f53ac7bf0efc371484f7df26237ffd"
+    }
+  ],
+  "totals": [
+    {
+      "flow": "full",
+      "calls": 1,
+      "finalInput": 1088,
+      "totalInput": 1088,
+      "totalOutput": 352,
+      "total": 1440
+    },
+    {
+      "flow": "retrieve",
+      "calls": 2,
+      "finalInput": 558,
+      "totalInput": 1190,
+      "totalOutput": 279,
+      "total": 1469
+    },
+    {
+      "flow": "summary",
+      "calls": 2,
+      "finalInput": 413,
+      "totalInput": 1493,
+      "totalOutput": 474,
+      "total": 1967
+    },
+    {
+      "flow": "note",
+      "calls": 1,
+      "finalInput": 1101,
+      "totalInput": 1101,
+      "totalOutput": 288,
+      "total": 1389
+    }
+  ],
+  "verifiedBoundaries": [
+    "全文请求包含10份原文。",
+    "选读实际选中C01–C04，后续请求只加载这些原文。",
+    "摘要的最终请求只带实际摘要，没有补回原文。",
+    "新会话只有系统规则和当前用户消息，包含人工便笺及C01–C05原文，没有旧聊天。"
+  ],
+  "humanReview": {
+    "full": "含16:20清场期限，但额外提出未获批准时按原计划在广场举行、遇雨改期或取消；材料没有规定这些处理方案。不能视为完全可靠。",
+    "retrieve": "选取阶段漏C05，最终回答没有16:20清场期限。",
+    "summary": "摘要原本读到C05，但摘要与最终回答均遗漏16:20清场期限；遗漏发生在改写阶段。",
+    "note": "新会话回答包含16:20清场、书面确认及未决清场志愿者。便笺为人工核对，且请求同时带原文，不能归因为便笺单独作用。"
+  },
+  "note": {
+    "origin": "reader-confirmed-teaching-note",
+    "confirmedAt": "2026-09-28T19:29:08.642Z",
+    "sourceIds": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05"
+    ],
+    "restartVerifiedByOperator": true,
+    "costScope": "只记录重启后这一次模型请求，不计先前任务和人工核对，不能与三流程作同等成本或质量比较。"
+  },
+  "limits": "一项教学虚构任务的一轮真实观察，共6次调用，无模型重试或改提示词挑结果。两个最终输入更短的方案在本轮整链输入输出合计都更多；token并非费用，也不代表普遍规律。语义判断由人对照原文完成，没有自动通过评分。"
+}
