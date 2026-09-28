@@ -1,0 +1,163 @@
+{
+  "startedAt": "2026-09-28T18:57:02.436Z",
+  "model": "qwen-flash",
+  "code": "1469bb6a08271959b3fa16e5355f9f8adbf5006a",
+  "rawSha256": "e754a4ea5e5521ca7cf24e536201193cf0d52d3ac11abe7179d323f5cb569275",
+  "conditions": {
+    "enable_thinking": false,
+    "temperature": 0,
+    "max_tokens": 512,
+    "response_format": "json_object",
+    "toolsProvided": false
+  },
+  "sampleScope": "固定六条件各A/B两份合成资料，共12次独立请求；每行只描述本次两份样例，不是模型准确率。",
+  "excludedSetupFailures": {
+    "count": 2,
+    "httpStatus": 400,
+    "reason": "接入失败，没有模型回答，不是质量样本；错误原记录不在此公开证据中。"
+  },
+  "groups": [
+    {
+      "condition": "short",
+      "label": "短材料 · 16条",
+      "sampleCount": 2,
+      "inputTokenRange": [
+        1685,
+        1685
+      ],
+      "factsPass": 2,
+      "sourcesPass": 2,
+      "allPass": 2
+    },
+    {
+      "condition": "middle",
+      "label": "长材料 · 关键项居中",
+      "sampleCount": 2,
+      "inputTokenRange": [
+        14875,
+        14875
+      ],
+      "factsPass": 2,
+      "sourcesPass": 2,
+      "allPass": 2
+    },
+    {
+      "condition": "first",
+      "label": "长材料 · 关键项首位",
+      "sampleCount": 2,
+      "inputTokenRange": [
+        14875,
+        14875
+      ],
+      "factsPass": 2,
+      "sourcesPass": 2,
+      "allPass": 2
+    },
+    {
+      "condition": "last",
+      "label": "长材料 · 关键项末位",
+      "sampleCount": 2,
+      "inputTokenRange": [
+        14875,
+        14875
+      ],
+      "factsPass": 2,
+      "sourcesPass": 2,
+      "allPass": 2
+    },
+    {
+      "condition": "similar",
+      "label": "长材料 · 相似干扰",
+      "sampleCount": 2,
+      "inputTokenRange": [
+        14924,
+        14924
+      ],
+      "factsPass": 1,
+      "sourcesPass": 1,
+      "allPass": 1
+    },
+    {
+      "condition": "conflict",
+      "label": "长材料 · 真实冲突",
+      "sampleCount": 2,
+      "inputTokenRange": [
+        14887,
+        14887
+      ],
+      "factsPass": 0,
+      "sourcesPass": 1,
+      "allPass": 0
+    }
+  ],
+  "differences": [
+    {
+      "caseId": "similar-A",
+      "actual": {
+        "status": "conflict",
+        "owner": null,
+        "freeze_date": null,
+        "source_ids": [
+          "A-D201",
+          "A-D073"
+        ]
+      },
+      "expected": {
+        "status": "resolved",
+        "owner": "苏雨桐",
+        "freeze_date": "2026-10-12",
+        "source_ids": [
+          "A-D073"
+        ]
+      },
+      "factsPass": false,
+      "sourcesPass": false
+    },
+    {
+      "caseId": "conflict-A",
+      "actual": {
+        "status": "conflict",
+        "owner": null,
+        "freeze_date": null,
+        "source_ids": [
+          "A-D073",
+          "A-D205"
+        ]
+      },
+      "expected": {
+        "status": "conflict",
+        "owner": null,
+        "freeze_date": "2026-10-12",
+        "source_ids": [
+          "A-D073",
+          "A-D205"
+        ]
+      },
+      "factsPass": false,
+      "sourcesPass": true
+    },
+    {
+      "caseId": "conflict-B",
+      "actual": {
+        "status": "resolved",
+        "owner": "周予安",
+        "freeze_date": "2026-11-06",
+        "source_ids": [
+          "B-D073"
+        ]
+      },
+      "expected": {
+        "status": "conflict",
+        "owner": null,
+        "freeze_date": "2026-11-06",
+        "source_ids": [
+          "B-D073",
+          "B-D205"
+        ]
+      },
+      "factsPass": false,
+      "sourcesPass": false
+    }
+  ],
+  "limits": "背景由20种事务模板按地点和批次组合。本次未观察到长度或首中末位置导致错误；这不保证长材料普遍可靠，也不能用少量样例推断整体能力或单一因果。"
+}
