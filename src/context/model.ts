@@ -69,7 +69,7 @@ export async function callContextModel(
       if (message.tool_calls?.length) throw new ModelError('MODEL_RESPONSE_INVALID', '模型在禁止工具调用时仍返回了调用指令；程序没有执行它。');
       if (record.finishReason !== 'stop') throw new ModelError('MODEL_RESPONSE_INCOMPLETE', '模型没有完整结束回答，原始返回已保留在记录中。');
       if (!message.content?.trim()) throw new ModelError('MODEL_RESPONSE_INVALID', '模型没有返回回答文字。');
-    } else if (record.finishReason !== 'tool_calls' || message.tool_calls?.length !== 1) {
+    } else if (!['stop', 'tool_calls'].includes(record.finishReason ?? '') || message.tool_calls?.length !== 1) {
       throw new ModelError('MODEL_RESPONSE_INVALID', '模型没有返回本实验要求的一次工具调用，首轮尚未建立。');
     }
     return message;

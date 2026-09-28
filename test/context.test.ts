@@ -64,7 +64,7 @@ test('真实 HTTP 边界的请求体等于检查器记录；追问共享首轮�
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify({ model: 'test-model-version', usage, choices: [{
       message: index === 1 ? instruction : { role: 'assistant', content: index === 2 ? RELEASE.published_at : `测试桩输出 ${index}` },
-      finish_reason: index === 1 ? 'tool_calls' : 'stop',
+      finish_reason: 'stop',
     }] }));
   });
   const upstreamUrl = await listen(upstream);
@@ -75,6 +75,7 @@ test('真实 HTTP 边界的请求体等于检查器记录；追问共享首轮�
     assert.equal(status, 200); assert.equal(initial.ok, true); assert.ok(initial.sessionId);
     assert.equal(bodies.length, 2);
     assert.equal(initial.run.tools[0].callId, 'test-call-1');
+    assert.equal(initial.run.requests[0].finishReason, 'stop');
     initial.run.requests.forEach((record, i) => {
       assert.equal(record.requestBody, bodies[i]);
       assert.deepEqual(record.usage, usage);
@@ -110,7 +111,7 @@ test('模型失败保留请求记录但不暴露上游错误正文；禁止工�
     calls++;
     res.setHeader('Content-Type', 'application/json');
     if (calls === 1) { res.writeHead(401); res.end('{"error":"private-key private-workspace"}'); return; }
-    res.end(JSON.stringify({ usage: { total_tokens: 10 }, choices: [{ message: instruction, finish_reason: 'tool_calls' }] }));
+    res.end(JSON.stringify({ usage: { total_tokens: 10 }, choices: [{ message: instruction, finish_reason: calls === 4 ? 'length' : 'tool_calls' }] }));
   });
   const upstreamUrl = await listen(upstream);
   const backend = createServer(createApp({ MODEL: 'test-model', API_KEY: 'private-key', API_BASE_URL: upstreamUrl }, () => {}));
@@ -130,5 +131,11 @@ test('模型失败保留请求记录但不暴露上游错误正文；禁止工�
     assert.equal(unwantedTool.data.run.requests[1].finishReason, 'tool_calls');
     assert.equal(unwantedTool.data.run.error?.code, 'MODEL_RESPONSE_INVALID');
     assert.equal(unwantedTool.data.sessionId, undefined);
+    const truncated = await post(url, 'start', {});
+    assert.equal(truncated.status, 502);
+    assert.equal(truncated.data.run.requests[0].finishReason, 'length');
+    assert.equal(truncated.data.run.tools.length, 0);
+    assert.equal(truncated.data.run.answer, null);
+    assert.equal(truncated.data.sessionId, undefined);
   } finally { await close(backend); await close(upstream); }
 });
