@@ -1,6 +1,6 @@
 # 请求观察室
 
-用一个问题走完“浏览器 → 本地后端 → 模型服务 → 浏览器”。每次独立提问，不保存聊天记录。
+用一个问题走完“浏览器 → 本地后端 → 模型服务 → 浏览器”。首页每次独立提问，不保存聊天记录；上下文实验页用于对比同一首轮历史的不同保留范围。
 
 发送后展开“查看这次请求”，可以对照页面实际发送的 JSON、后端阶段、请求编号和累计耗时。缺配置时不会出现“请求模型”与“收到模型回复”。浏览器看到后端的 HTTP 状态；模型服务的状态由后端记录，两者不一定相同。
 
@@ -31,7 +31,7 @@ cd ..\ai-request-lab-practice
 
 ```powershell
 pnpm install --frozen-lockfile
-Copy-Item .env.example .env
+if (-not (Test-Path .env)) { Copy-Item .env.example .env }
 pnpm dev
 ```
 
@@ -84,3 +84,40 @@ git switch -c my-lesson-01-retry vcm-01-01-start
 原分支及实验提交仍然保留。Git 只恢复仓库文件，不恢复 `.env`、依赖、模型费用或外部服务状态。
 
 接口依据：[百炼兼容 Chat API](https://help.aliyun.com/zh/model-studio/qwen-api-via-openai-chat-completions)。
+
+## 一次请求里实际装了什么
+
+入口：`http://127.0.0.1:4318/context.html`。沿用上方 Node、pnpm 和模型 API 配置，使用支持 Function Calling 的非思考文本模型，例如 `qwen-flash`。
+
+1. 点击“查询发布时间”。模型先请求 `get_release_info`，本机函数返回一份虚构版本记录，模型再回答发布时间。首轮共两次模型请求。
+2. 分别选择“仅本轮问题”“保留聊天文字”“保留完整历史”，发送同一句负责人追问。所有条件使用同一份首轮历史，每次追问只调用模型一次。
+3. 展开记录，比较消息、工具定义、工具调用及结果。检查器来自实际发送的请求体；下载的 JSON 保留其原始字符串及实际返回的 `usage`、`finish_reason` 和消息。
+
+三种追问的系统规则、工具定义和参数相同，只改变历史消息。`tool_choice: none` 禁止重新查询；追问结果不会追加到首轮历史。温度固定为 0，不能据此保证模型回答完全一致。若模型猜测、答错或首轮没有遵守“只回答时间”，页面会保留原文，需结合请求记录判断对照是否成立。
+
+版本资料是本地合成数据，模型返回来自实际 API。本实验不提供模拟成功回退，也不代表模型具有跨请求的长期记忆。历史由本机服务内存持有，浏览器不能回传改写；刷新页面需重新建立首轮，关闭服务后历史清空。每轮最多等待 90 秒，失败会留下已有请求和工具记录；页面不显示请求头、密钥、服务地址或上游原始错误。
+
+| 文件 | 职责 |
+| --- | --- |
+| `src/context/main.ts` | 切换条件、比较真实回答、查看及下载请求记录 |
+| `src/context/routes.ts` | 保存首轮会话、执行工具、发起独立追问 |
+| `src/context/scenario.ts` | 虚构版本资料、工具定义、三种历史投影 |
+| `src/context/model.ts` | 序列化并记录同一个请求体，调用模型 API |
+
+本课起点为 `vcm-03-01-start`（`81a685749108`），完成点为 `vcm-03-01-end`。从完成点进入可运行的实验：
+
+```powershell
+git switch -c my-context-lab vcm-03-01-end
+pnpm install --frozen-lockfile
+pnpm dev
+```
+
+需要恢复时，先在自己的分支提交实验，再从完成点新建分支；起点只包含原问答页。Git 不恢复密钥、费用、服务内存或外部状态。
+
+```powershell
+git add .
+git commit -m "保存我的上下文实验"
+git switch -c my-context-lab-retry vcm-03-01-end
+```
+
+定向检查：`pnpm exec tsx --test test/context.test.ts`。测试桩验证协议和历史投影，不是实际模型输出。工具调用协议依据：[百炼 Function Calling](https://help.aliyun.com/zh/model-studio/qwen-function-calling)。
