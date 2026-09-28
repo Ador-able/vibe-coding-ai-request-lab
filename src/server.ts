@@ -7,11 +7,13 @@ import { createContextRouter } from './context/routes.ts';
 import { createQualityRouter } from './quality/routes.ts';
 import { createMemoryRouter } from './memory/routes.ts';
 import { createLatencyRouter } from './latency/routes.ts';
+import { createCollaborationRouter } from './collaboration/routes.ts';
 import type { AskPayload, AskResult, RequestTrace, Stage } from './contract.ts';
 
 export function createApp(env: NodeJS.ProcessEnv = process.env, log = console.log) {
   const app = express();
   app.disable('x-powered-by');
+  app.use('/api/collaboration', createCollaborationRouter(env));
   app.use(express.json({ limit: '16kb' }));
   app.use('/api/context', createContextRouter(env));
   app.use('/api/quality', createQualityRouter(env));

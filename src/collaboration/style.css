@@ -1,0 +1,22 @@
+@import '../context/style.css';
+main { max-width: 980px; }
+.facts { margin-bottom: 24px; padding: 18px 22px; border-left: 4px solid #458f96; background: #e8f1f1; }
+.facts h2 { font-size: 15px; }
+.facts p { font-size: 14px; margin: 10px 0 0; line-height: 1.8; }
+#conversation { margin: 26px 0; }
+.latest-turn { background: white; padding: 22px; border: 1px solid #cadcde; border-radius: 9px; margin-top: 16px; }
+.latest-turn h3 { margin-bottom: 18px; }
+.small-label { margin-bottom: 6px; }
+.human-input { font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; color: #355b67; }
+.answer { font-size: 15px; line-height: 1.9; }
+.turn-body > .small-label:not(:first-child) { border-top: 1px solid #dfebed; padding-top: 16px; margin-top: 18px; }
+.previous-turn .turn-body { padding: 0 20px 16px; }
+#compose { background: white; border: 1px solid #c9dfe2; border-radius: 9px; padding: 22px; }
+#input-label { display: block; font-size: 16px; font-weight: 600; margin-bottom: 14px; }
+textarea { width: 100%; resize: vertical; min-height: 125px; border: 1px solid #afc9ce; border-radius: 6px; padding: 12px; font: inherit; font-size: 14px; line-height: 1.8; color: #173b46; background: #fbfdfd; }
+textarea:focus-visible { outline: 2px solid #458f96; outline-offset: 2px; }
+.compose-actions, .record-bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.compose-actions { margin-top: 12px; }
+.record-bar { justify-content: flex-start; }
+.json pre { max-height: 460px; overflow: auto; }
+@media (max-width: 620px) { h1 { font-size: 24px; } .facts, #compose, .latest-turn { padding: 18px; } .compose-actions, .record-bar { flex-direction: column; align-items: stretch; gap: 8px; } }
