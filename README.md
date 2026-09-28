@@ -2,6 +2,17 @@
 
 用一个问题走完“浏览器 → 本地后端 → 模型服务 → 浏览器”。每次独立提问，不保存聊天记录。
 
+## 从课程包创建练习目录
+
+下载包中的 `ai-request-lab.bundle` 包含完整 Git 存档。在解压目录执行：
+
+```powershell
+git clone .\ai-request-lab.bundle ..\ai-request-lab-practice
+cd ..\ai-request-lab-practice
+```
+
+若已在 Git 克隆目录中，可直接运行。旁边的源码用于查看；只有通过 Git 克隆的目录才能切换课程标签。
+
 ## 运行
 
 使用 Node.js 24.12.0、pnpm 11.20.0。在项目目录执行：
@@ -44,6 +55,16 @@ pnpm start
 git switch -c my-lesson-01 vcm-01-01-start
 ```
 
-先把当前实验保存到自己的分支，再从课程存档另开分支；不要直接覆盖已有实验。`vcm-01-01-start` 是可运行的问答模板，`vcm-01-01-end` 包含本节请求观察结果。Git 只恢复仓库文件，不恢复 `.env`、依赖、模型费用或外部服务状态。
+`vcm-01-01-start` 是可运行的问答模板，`vcm-01-01-end` 包含本节请求观察面板。第一节直接使用 `end` 版本观察请求，`start` 用于比较。
+
+需要重来时，先在自己的分支提交实验，再从课程存档新开分支：
+
+```powershell
+git add .
+git commit -m "保存我的实验"
+git switch -c my-lesson-01-retry vcm-01-01-start
+```
+
+原分支及实验提交仍然保留。Git 只恢复仓库文件，不恢复 `.env`、依赖、模型费用或外部服务状态。
 
 接口依据：[百炼兼容 Chat API](https://help.aliyun.com/zh/model-studio/qwen-api-via-openai-chat-completions)。

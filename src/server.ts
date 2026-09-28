@@ -19,7 +19,7 @@ export function createApp(env: NodeJS.ProcessEnv = process.env, log = console.lo
       log(JSON.stringify({ requestId: trace.requestId, ...stage }));
     };
     const reply = (status: number, body: AskPayload) => {
-      record('返回页面', status < 400 ? '后端已发送回答' : `后端已发送错误说明（HTTP ${status}）`);
+      record('返回页面', status < 400 ? 'HTTP 200 · 携带回答' : `HTTP ${status} · 携带错误说明`);
       res.status(status).json({ ...body, trace });
     };
 
@@ -74,7 +74,7 @@ async function start() {
     app.use(express.static(resolve('dist/client')));
   } else {
     const { createServer } = await import('vite');
-    const vite = await createServer({ server: { middlewareMode: true }, appType: 'spa' });
+    const vite = await createServer({ server: { middlewareMode: true, ws: { host: '127.0.0.1' } }, appType: 'spa' });
     app.use(vite.middlewares);
   }
   const server = app.listen(4318, '127.0.0.1', () => console.log('请求观察室：http://127.0.0.1:4318'));
