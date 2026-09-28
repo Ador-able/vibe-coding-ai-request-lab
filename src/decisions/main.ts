@@ -46,6 +46,11 @@ function renderDecision() {
 
 function render() {
   const work = works[current];
+  const error = work?.transportError || work?.run?.error?.message;
+  const status = get('status');
+  status.className = !busy && error ? 'error' : '';
+  status.textContent = busy ? '正在根据同一资料与目标生成两份文案…' : error
+    || (work?.run?.options ? '两份文案已生成。先对照给定资料，再决定怎样处理。' : '');
   get('run-picker').hidden = works.length < 2;
   const select = get<HTMLSelectElement>('run-choice'); select.replaceChildren(...works.map((item, index) => new Option(`第${index + 1}次生成${item.run?.error || item.transportError ? ' · 未完成' : ''}`, String(index))));
   select.value = String(current); select.disabled = busy;
@@ -85,16 +90,14 @@ get('generate').addEventListener('click', async () => {
   if (busy) return;
   busy = true; const work: Work = { run: null, transportError: null, decision: emptyDecision() }; works.push(work); current = works.length - 1;
   get<HTMLButtonElement>('generate').disabled = true;
-  const status = get('status'); status.className = ''; status.textContent = '正在根据同一资料与目标生成两份文案…'; render();
+  render();
   try {
     const response = await fetch('/api/decisions/generate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
     const data = await response.json() as DecisionResponse;
     if (!data.run) throw new Error('没有收到可读取的实验记录。');
     work.run = data.run;
-    status.textContent = data.run.error?.message || '两份文案已生成。先对照给定资料，再决定怎样处理。';
-    if (data.run.error) status.className = 'error';
   } catch (error) {
-    work.transportError = error instanceof Error ? error.message : '本机连接中断，没有自动重试。'; status.textContent = work.transportError; status.className = 'error';
+    work.transportError = error instanceof Error ? error.message : '本机连接中断，没有自动重试。';
   } finally {
     busy = false; get<HTMLButtonElement>('generate').disabled = false; get('generate').textContent = '再生成两份文案'; get('generate').className = 'secondary';
     get<HTMLButtonElement>('download').disabled = false; render();
