@@ -20,7 +20,7 @@ export function createQualityRouter(env: NodeJS.ProcessEnv) {
       const config = readConfig(env);
       if (config.model !== 'qwen-flash') throw new ModelError('CONFIG_INVALID', '本实验固定使用 qwen-flash，请将 MODEL 配置为 qwen-flash 后重启服务。', 503);
       const requestBody = JSON.stringify({ model: config.model, messages: caseMessages(item), stream: false,
-        enable_thinking: false, temperature: 0, max_tokens: 512, tool_choice: 'none', response_format: { type: 'json_object' } });
+        enable_thinking: false, temperature: 0, max_tokens: 512, response_format: { type: 'json_object' } });
       result.request = { step: '固定样例提取', startedAt: new Date().toISOString(), requestBody };
       const message = await sendRecordedRequest(config, result.request, AbortSignal.any([controller.signal, AbortSignal.timeout(90_000)]));
       if (!isObject(message) || typeof message.content !== 'string') {

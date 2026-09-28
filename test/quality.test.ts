@@ -99,7 +99,7 @@ test('HTTP 边界收到的原串就是检查器请求，失败保留记录且不
     const body = JSON.parse(received);
     assert.deepEqual(body.messages, caseMessages(get('short', 'A')));
     assert.deepEqual(body.response_format, { type: 'json_object' });
-    assert.equal(body.tools, undefined); assert.equal(body.tool_choice, 'none');
+    assert.equal(Object.hasOwn(body, 'tools'), false); assert.equal(Object.hasOwn(body, 'tool_choice'), false);
     assert.equal(body.temperature, 0); assert.equal(body.max_tokens, 512); assert.equal(body.enable_thinking, false);
     assert.equal(success.data.result.assessment?.allCorrect, true);
     const failed = await send();

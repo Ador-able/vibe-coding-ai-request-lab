@@ -133,7 +133,7 @@ git switch -c my-context-lab-retry vcm-03-01-end-r2
 
 入口：`http://127.0.0.1:4318/quality.html`。本课固定使用 `qwen-flash`，`.env` 中的 `MODEL` 应设为该值；其余模型 API 配置和启动步骤同上。
 
-点击“运行 12 个样例”后，页面串行请求 6 种条件的 A、B 两份合成资料，每次独立请求，不携带此前回答。任务始终是按项目名称与版本号查负责人、冻结日期并引用记录编号。使用相同输出规则、非思考模式、温度 0、`max_tokens: 512` 和 `response_format: json_object`，不提供工具，`tool_choice: none`。JSON Object 的支持范围与提示词要求依据[百炼结构化输出文档](https://help.aliyun.com/zh/model-studio/qwen-structured-output)。
+点击“运行 12 个样例”后，页面串行请求 6 种条件的 A、B 两份合成资料，每次独立请求，不携带此前回答。任务始终是按项目名称与版本号查负责人、冻结日期并引用记录编号。使用相同输出规则、非思考模式、温度 0、`max_tokens: 512` 和 `response_format: json_object`；不提供工具，请求中不传 `tools` 和 `tool_choice`。JSON Object 的支持范围与提示词要求依据[百炼结构化输出文档](https://help.aliyun.com/zh/model-studio/qwen-structured-output)。
 
 | 条件 | 固定变化 |
 | --- | --- |
