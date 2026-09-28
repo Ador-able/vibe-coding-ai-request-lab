@@ -1,0 +1,167 @@
+{
+  "sessionId": "970ae134-d73b-4097-86a4-f57fc15273bf",
+  "firstRound": {
+    "id": "6b6839ce-b1d3-4e7d-84af-2ddeb7301ea8",
+    "label": "首轮：查询发布时间",
+    "startedAt": "2026-09-28T18:20:13.206Z",
+    "answer": "2026年9月28日 14:30（北京时间）",
+    "requests": [
+      {
+        "step": "请求工具调用",
+        "startedAt": "2026-09-28T18:20:13.206Z",
+        "requestBody": "{\"model\":\"qwen-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"你是版本记录查询助手。只根据本次请求中的消息和工具结果回答；不要猜测版本信息。证据不足时，明确说明缺少什么信息。仅回答当前问题要求的字段，用简洁的中文表述。\"},{\"role\":\"user\",\"content\":\"release-2026-09-28 的发布时间是什么？请只回答发布时间。\"}],\"tools\":[{\"type\":\"function\",\"function\":{\"name\":\"get_release_info\",\"description\":\"查询指定版本的发布记录。\",\"parameters\":{\"type\":\"object\",\"properties\":{\"release_id\":{\"type\":\"string\",\"description\":\"需要查询的版本编号。\"}},\"required\":[\"release_id\"],\"additionalProperties\":false}}}],\"tool_choice\":{\"type\":\"function\",\"function\":{\"name\":\"get_release_info\"}},\"stream\":false,\"enable_thinking\":false,\"parallel_tool_calls\":false,\"max_tokens\":512,\"temperature\":0}",
+        "httpStatus": 200,
+        "responseModel": "qwen-flash",
+        "usage": {
+          "completion_tokens": 22,
+          "prompt_tokens": 245,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "total_tokens": 267
+        },
+        "finishReason": "stop",
+        "responseMessage": {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"release_id\": \"release-2026-09-28\"}",
+                "name": "get_release_info"
+              },
+              "id": "call_f2ad7d71af154725824158",
+              "index": 0,
+              "type": "function"
+            }
+          ]
+        },
+        "durationMs": 641
+      },
+      {
+        "step": "根据工具结果回答",
+        "startedAt": "2026-09-28T18:20:13.848Z",
+        "requestBody": "{\"model\":\"qwen-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"你是版本记录查询助手。只根据本次请求中的消息和工具结果回答；不要猜测版本信息。证据不足时，明确说明缺少什么信息。仅回答当前问题要求的字段，用简洁的中文表述。\"},{\"role\":\"user\",\"content\":\"release-2026-09-28 的发布时间是什么？请只回答发布时间。\"},{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"id\":\"call_f2ad7d71af154725824158\",\"type\":\"function\",\"function\":{\"name\":\"get_release_info\",\"arguments\":\"{\\\"release_id\\\": \\\"release-2026-09-28\\\"}\"}}]},{\"role\":\"tool\",\"tool_call_id\":\"call_f2ad7d71af154725824158\",\"content\":\"{\\\"release_id\\\":\\\"release-2026-09-28\\\",\\\"published_at\\\":\\\"2026年9月28日 14:30（北京时间）\\\",\\\"owner\\\":\\\"林晓禾\\\",\\\"notes\\\":\\\"优化导出页面的提示信息。\\\"}\"}],\"tools\":[{\"type\":\"function\",\"function\":{\"name\":\"get_release_info\",\"description\":\"查询指定版本的发布记录。\",\"parameters\":{\"type\":\"object\",\"properties\":{\"release_id\":{\"type\":\"string\",\"description\":\"需要查询的版本编号。\"}},\"required\":[\"release_id\"],\"additionalProperties\":false}}}],\"tool_choice\":\"none\",\"stream\":false,\"enable_thinking\":false,\"parallel_tool_calls\":false,\"max_tokens\":512,\"temperature\":0}",
+        "httpStatus": 200,
+        "responseModel": "qwen-flash",
+        "usage": {
+          "completion_tokens": 19,
+          "prompt_tokens": 182,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "total_tokens": 201
+        },
+        "finishReason": "stop",
+        "responseMessage": {
+          "content": "2026年9月28日 14:30（北京时间）",
+          "role": "assistant"
+        },
+        "durationMs": 367
+      }
+    ],
+    "tools": [
+      {
+        "callId": "call_f2ad7d71af154725824158",
+        "name": "get_release_info",
+        "arguments": "{\"release_id\": \"release-2026-09-28\"}",
+        "result": "{\"release_id\":\"release-2026-09-28\",\"published_at\":\"2026年9月28日 14:30（北京时间）\",\"owner\":\"林晓禾\",\"notes\":\"优化导出页面的提示信息。\"}"
+      }
+    ]
+  },
+  "runs": [
+    {
+      "id": "fd21865c-f440-420d-869a-c85a76bd87fd",
+      "label": "仅本轮问题",
+      "startedAt": "2026-09-28T18:20:28.047Z",
+      "answer": "请提供具体的版本信息或相关上下文，以便查询负责人。当前信息不足，无法确定负责人。",
+      "requests": [
+        {
+          "step": "固定追问",
+          "startedAt": "2026-09-28T18:20:28.047Z",
+          "requestBody": "{\"model\":\"qwen-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"你是版本记录查询助手。只根据本次请求中的消息和工具结果回答；不要猜测版本信息。证据不足时，明确说明缺少什么信息。仅回答当前问题要求的字段，用简洁的中文表述。\"},{\"role\":\"user\",\"content\":\"这个版本的负责人是谁？\"}],\"tools\":[{\"type\":\"function\",\"function\":{\"name\":\"get_release_info\",\"description\":\"查询指定版本的发布记录。\",\"parameters\":{\"type\":\"object\",\"properties\":{\"release_id\":{\"type\":\"string\",\"description\":\"需要查询的版本编号。\"}},\"required\":[\"release_id\"],\"additionalProperties\":false}}}],\"tool_choice\":\"none\",\"stream\":false,\"enable_thinking\":false,\"parallel_tool_calls\":false,\"max_tokens\":512,\"temperature\":0}",
+          "httpStatus": 200,
+          "responseModel": "qwen-flash",
+          "usage": {
+            "completion_tokens": 22,
+            "prompt_tokens": 65,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 87
+          },
+          "finishReason": "stop",
+          "responseMessage": {
+            "content": "请提供具体的版本信息或相关上下文，以便查询负责人。当前信息不足，无法确定负责人。",
+            "role": "assistant"
+          },
+          "durationMs": 413
+        }
+      ],
+      "tools": [],
+      "condition": "current"
+    },
+    {
+      "id": "d88bffd4-3aae-41ed-b2b4-422103658e07",
+      "label": "保留聊天文字",
+      "startedAt": "2026-09-28T18:20:39.156Z",
+      "answer": "缺少相关信息，无法确定负责人。",
+      "requests": [
+        {
+          "step": "固定追问",
+          "startedAt": "2026-09-28T18:20:39.156Z",
+          "requestBody": "{\"model\":\"qwen-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"你是版本记录查询助手。只根据本次请求中的消息和工具结果回答；不要猜测版本信息。证据不足时，明确说明缺少什么信息。仅回答当前问题要求的字段，用简洁的中文表述。\"},{\"role\":\"user\",\"content\":\"release-2026-09-28 的发布时间是什么？请只回答发布时间。\"},{\"role\":\"assistant\",\"content\":\"2026年9月28日 14:30（北京时间）\"},{\"role\":\"user\",\"content\":\"这个版本的负责人是谁？\"}],\"tools\":[{\"type\":\"function\",\"function\":{\"name\":\"get_release_info\",\"description\":\"查询指定版本的发布记录。\",\"parameters\":{\"type\":\"object\",\"properties\":{\"release_id\":{\"type\":\"string\",\"description\":\"需要查询的版本编号。\"}},\"required\":[\"release_id\"],\"additionalProperties\":false}}}],\"tool_choice\":\"none\",\"stream\":false,\"enable_thinking\":false,\"parallel_tool_calls\":false,\"max_tokens\":512,\"temperature\":0}",
+          "httpStatus": 200,
+          "responseModel": "qwen-flash",
+          "usage": {
+            "completion_tokens": 7,
+            "prompt_tokens": 115,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 122
+          },
+          "finishReason": "stop",
+          "responseMessage": {
+            "content": "缺少相关信息，无法确定负责人。",
+            "role": "assistant"
+          },
+          "durationMs": 254
+        }
+      ],
+      "tools": [],
+      "condition": "chat"
+    },
+    {
+      "id": "d58172aa-6b4b-4d60-a227-7656663df00c",
+      "label": "保留完整历史",
+      "startedAt": "2026-09-28T18:21:01.235Z",
+      "answer": "林晓禾",
+      "requests": [
+        {
+          "step": "固定追问",
+          "startedAt": "2026-09-28T18:21:01.235Z",
+          "requestBody": "{\"model\":\"qwen-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"你是版本记录查询助手。只根据本次请求中的消息和工具结果回答；不要猜测版本信息。证据不足时，明确说明缺少什么信息。仅回答当前问题要求的字段，用简洁的中文表述。\"},{\"role\":\"user\",\"content\":\"release-2026-09-28 的发布时间是什么？请只回答发布时间。\"},{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"id\":\"call_f2ad7d71af154725824158\",\"type\":\"function\",\"function\":{\"name\":\"get_release_info\",\"arguments\":\"{\\\"release_id\\\": \\\"release-2026-09-28\\\"}\"}}]},{\"role\":\"tool\",\"tool_call_id\":\"call_f2ad7d71af154725824158\",\"content\":\"{\\\"release_id\\\":\\\"release-2026-09-28\\\",\\\"published_at\\\":\\\"2026年9月28日 14:30（北京时间）\\\",\\\"owner\\\":\\\"林晓禾\\\",\\\"notes\\\":\\\"优化导出页面的提示信息。\\\"}\"},{\"role\":\"assistant\",\"content\":\"2026年9月28日 14:30（北京时间）\"},{\"role\":\"user\",\"content\":\"这个版本的负责人是谁？\"}],\"tools\":[{\"type\":\"function\",\"function\":{\"name\":\"get_release_info\",\"description\":\"查询指定版本的发布记录。\",\"parameters\":{\"type\":\"object\",\"properties\":{\"release_id\":{\"type\":\"string\",\"description\":\"需要查询的版本编号。\"}},\"required\":[\"release_id\"],\"additionalProperties\":false}}}],\"tool_choice\":\"none\",\"stream\":false,\"enable_thinking\":false,\"parallel_tool_calls\":false,\"max_tokens\":512,\"temperature\":0}",
+          "httpStatus": 200,
+          "responseModel": "qwen-flash",
+          "usage": {
+            "completion_tokens": 3,
+            "prompt_tokens": 217,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 220
+          },
+          "finishReason": "stop",
+          "responseMessage": {
+            "content": "林晓禾",
+            "role": "assistant"
+          },
+          "durationMs": 245
+        }
+      ],
+      "tools": [],
+      "condition": "full"
+    }
+  ]
+}
