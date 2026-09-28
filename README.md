@@ -436,13 +436,32 @@ Git不会恢复本机规则、页面记录或模型费用。源码ZIP没有Git�
 
 七次请求均只有两条消息。每组前后只改变是否追加规则，第7次请求体与第1次完全相同；没有模型训练、旧会话或程序改写答案。规则在本轮帮助识别青禾简称，同时没有扩展到远山或覆盖明确品名。输入合计1272、输出288 token；有限教学观察不作为总体效果统计或生产准确率保证。
 
-## 结构化输出：会议纪要材料起点
+## 结构化输出还需要程序检查
 
-独立入口：`http://127.0.0.1:4319/structured.html`，使用Node.js 24.12.0与pnpm 11.20.0。此起点包含四份可编辑的虚构会议纪要，可直接启动阅读；不调用模型，不含输出Schema或提取功能。后续实验在此工作台增加三种输出方式与程序检查。原4318服务使用独立启动命令。
+独立入口：`http://127.0.0.1:4319/structured.html`，使用Node.js 24.12.0与pnpm 11.20.0。四份可编辑的虚构纪要包含明确待办、缺少负责人和日期、只有状态，以及撤销任务。选择材料与输出方式后点击“提取待办”，每次只调用一次模型。
+
+三种方式共用型号、输入、系统说明与输出预算，仅改变 `response_format`：不设置、JSON Object、严格JSON Schema。`src/structured/schema.ts` 中的同一个Zod定义用于生成JSON Schema及运行时 `safeParse`。内外对象均拒绝额外字段；负责人和日期字段必须存在，未知时为 `null`；`items: []` 合法。这是本实验的字段约定，不代表所有服务的Schema都必须这样设计。
+
+程序先检查结束状态、拒绝和正文，再检查JSON解析、字段结构和原句定位。截断、拒绝、空正文及无效JSON不会变成空列表，也不会自动修补或重试。定位原句只检查连续字符串是否存在，不证明任务、负责人、日期正确，也不能发现全部漏提。折叠区的错误负责人案例由人构造，不是模型调用结果。
+
+本节沿用 `.env` 中的 `API_BASE_URL` 和 `API_KEY`，独立选择默认型号 `qwen3.7-flash-2026-07-15`；不使用或改写其他课程的 `MODEL`。可在启动前设置 `STRUCTURED_MODEL`，但须自行核对该型号是否支持严格Schema。旧 `qwen-flash` 不在本节使用的严格模式支持列表中，详见[百炼结构化输出文档](https://help.aliyun.com/zh/model-studio/qwen-structured-output)。本实验仅使用文本、非思考、温度0，输出上限1024 token，90秒超时；达到上限时明确显示未完整结束。
+
+固定起点 `vcm-04-01-start` 为 `002e49d824a8a3535fd664d89d3e43fc18c05459`，是可独立运行的材料工作台，不含提取功能；完成点为 `vcm-04-01-end`。从公开仓库克隆后开始完整实验：
 
 ```powershell
+git switch -c my-structured-lab vcm-04-01-end
 pnpm install --frozen-lockfile
 pnpm structured:dev
 ```
 
-生产运行使用 `pnpm build`、`pnpm structured:start`。规则、私密配置与页面记录不由Git恢复；修改实验前可在自己的分支提交存档。
+生产运行使用 `pnpm build`、`pnpm structured:start`；4318的其他实验仍使用原启动命令。恢复前先保留自己的改动，再建立分支；想从材料工作台重新实现，可把最后一行标签换成起点。
+
+```powershell
+git add .
+git commit -m "保存我的结构化输出实验"
+git switch -c my-structured-lab-retry vcm-04-01-end
+```
+
+页面保留每次输入、原始模型正文、实际发送的请求体、响应消息与用量，刷新前下载JSON。私密认证头与服务地址不进入导出。Git不能恢复 `.env`、浏览器记录或模型费用；源码ZIP没有Git历史，使用标签需从公开仓库克隆。
+
+实现位于 `src/structured/`，定向检查为 `pnpm exec tsx --test test/structured.test.ts`。本地HTTP桩只验证发送与检查边界，不作为模型效果证据。[Zod文档](https://zod.dev/json-schema)说明了Schema生成与运行时定义的关系。

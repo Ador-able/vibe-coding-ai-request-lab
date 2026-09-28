@@ -2,3 +2,28 @@
 main { max-width: 1160px; }
 label { display: block; font-size: 14px; font-weight: 600; margin: 14px 0 8px; }
 textarea { display: block; width: 100%; resize: vertical; font: inherit; font-size: 15px; line-height: 1.8; padding: 12px; color: #173b46; border: 1px solid #b5cdd1; border-radius: 6px; }
+.input-controls { display: flex; flex-wrap: wrap; gap: 24px; }
+.input-controls label { display: grid; gap: 8px; margin-top: 0; }
+.input-controls select { min-width: 210px; font-size: 14px; }
+.action-bar, .record-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 16px; }
+.record-tools { margin: 0; min-width: 0; }
+.record-tools select { max-width: 340px; font-size: 13px; }
+.checks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 18px 0 0; }
+.check { border-top: 3px solid #b5c5c8; padding: 12px 0 0; }
+.check.pass { border-color: #448477; }
+.check.fail { border-color: #aa603c; }
+.check strong { font-size: 14px; }
+.check p { color: #456672; font-size: 13px; margin: 8px 0 0; }
+.comparison { display: grid; grid-template-columns: 1fr 1.2fr; gap: 28px; margin-top: 26px; }
+.comparison > section { min-width: 0; }
+.comparison pre { font-family: inherit; font-size: 15px; line-height: 1.9; padding: 16px; border: 1px solid #cbdddf; border-radius: 6px; background: #e8f1f1; }
+.task { border-bottom: 1px solid #cbdddf; padding-bottom: 12px; margin-bottom: 15px; }
+.task h4 { margin: 0; font-size: 16px; line-height: 1.7; overflow-wrap: anywhere; }
+.task .meta { margin: 6px 0; }
+.quote { margin: 6px 0; padding-left: 12px; border-left: 3px solid #afcbd0; font-size: 14px; overflow-wrap: anywhere; }
+.task .note { margin-bottom: 0; }
+#raw-answer { background: white; font-size: 14px; }
+#inspector pre, #schema { max-height: 480px; overflow: auto; }
+#counterexample .inspector-body p { font-size: 14px; }
+@media (max-width: 760px) { .checks { grid-template-columns: repeat(2, 1fr); } .comparison { grid-template-columns: 1fr; gap: 18px; } h1 { font-size: 24px; } }
+@media (max-width: 440px) { .input-controls { display: grid; grid-template-columns: 1fr; gap: 4px; } .input-controls select { width: 100%; } .record-tools { width: 100%; } .record-tools select { width: 100%; max-width: 100%; } .action-bar { align-items: flex-start; } }
