@@ -14,16 +14,9 @@ git switch -c my-lesson-01 vcm-01-01-end
 
 按课程指定的标签建立练习分支，避免把持续更新的 `main` 当成固定教材版本。
 
-## 从离线课程包开始
+## 从源码 ZIP 开始
 
-源码 ZIP 可以按下方“运行”步骤启动，但不包含 Git 历史。要切换课程存档，请从 GitHub 克隆，或使用含 `ai-request-lab.bundle` 的课程包。在 bundle 所在目录执行：
-
-```powershell
-git clone .\ai-request-lab.bundle ..\ai-request-lab-practice
-cd ..\ai-request-lab-practice
-```
-
-若已在 Git 克隆目录中，可直接运行。旁边的源码用于查看；只有通过 Git 克隆的目录才能切换课程标签。
+解压源码 ZIP，进入包含 `package.json` 的目录，按下方“运行”步骤启动。源码 ZIP 不含 Git 历史；需要通过课程标签恢复时，请先从 GitHub 克隆仓库，再切换到指定标签。
 
 ## 运行
 
@@ -118,10 +111,10 @@ git switch -c my-lesson-01-retry vcm-01-01-start
 | `src/context/scenario.ts` | 虚构版本资料、工具定义、三种历史投影 |
 | `src/context/model.ts` | 序列化并记录同一个请求体，调用模型 API |
 
-本课起点为 `vcm-03-01-start`（`81a685749108`），完成点为 `vcm-03-01-end`。从完成点进入可运行的实验：
+本课起点为 `vcm-03-01-start`（`81a685749108`），完成点为 `vcm-03-01-end-r2`。在 Git 克隆目录中，从完成点进入可运行的实验：
 
 ```powershell
-git switch -c my-context-lab vcm-03-01-end
+git switch -c my-context-lab vcm-03-01-end-r2
 pnpm install --frozen-lockfile
 pnpm dev
 ```
@@ -131,7 +124,7 @@ pnpm dev
 ```powershell
 git add .
 git commit -m "保存我的上下文实验"
-git switch -c my-context-lab-retry vcm-03-01-end
+git switch -c my-context-lab-retry vcm-03-01-end-r2
 ```
 
 定向检查：`pnpm exec tsx --test test/context.test.ts`。测试桩验证协议和历史投影，不是实际模型输出。工具调用协议依据：[百炼 Function Calling](https://help.aliyun.com/zh/model-studio/qwen-function-calling)。
