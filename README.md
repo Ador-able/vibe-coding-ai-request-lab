@@ -472,13 +472,34 @@ git switch -c my-structured-lab-retry vcm-04-01-end
 
 本轮没有出现格式失败，不能据此认定某模式必然失败或保证永远正确。页面人工反例同时通过结构与原句定位，却填错负责人；它明确属于人工构造，不计入六次模型结果。
 
-## 流式事件实验：工作纪要起点
+## 流式输出是一串有顺序的事件
 
-独立入口 `http://127.0.0.1:4320/streaming.html`，使用Node.js 24.12.0与pnpm 11.20.0。起点是可编辑的虚构工作纪要，不调用模型。
+独立入口 `http://127.0.0.1:4320/streaming.html`，使用Node.js 24.12.0与pnpm 11.20.0，沿用 `.env` 的 `API_BASE_URL`、`API_KEY`、`MODEL`。材料是虚构工作纪要，可直接编辑。
+
+点击“生成摘要和问题”后，应用先请求一段摘要，再把原文和实际摘要交给同一型号生成2至3条待确认问题。每阶段都是一次真实流式调用，温度0、非思考，输出上限分别256和384 token；任务总超时90秒，没有自动重试或模拟打字延迟。
+
+两段文字属于同一条助手消息，各自使用独立文字ID。进度片段始终使用 `workflow-progress`，按应用实际阶段更新，不代表模型内部推理。每阶段必须正常stop且有正文；问题文本完整返回后才检查是否为2至3条连续编号的问题。整个任务只有一次start，只有两阶段及数量检查完成后才发总finish；子流结束不代替总完成。格式检查不验证问题的内容质量。
+
+“停止”按本次请求编号取消上游，保留收到的文字并标记未完成。关闭页面或断开连接也取消上游，不继续后台生成。截断、流中异常、问题数量不符均不显示完成；原始文字与已收事件保留。页面不会自动滚动，因此上滚查阅原文时不会被拉回底部。
+
+“本次记录”列出实际已收到的UI事件，不是回放中的生成。下载内容包括实际请求体、供应商正常SSE事件及相对到达时间、结束原因、用量、UI事件和最终消息；不包含认证头与私密服务地址。供应商错误原文不公开，只保留安全错误说明。UI计时和每个上游阶段的计时起点不同；事件块不等于单个token。
+
+依赖 `ai@7.0.122` 提供UI消息流的组合、传输解析和同ID片段更新；上游仍复用原有fetch与 `eventsource-parser`，保留实际百炼SSE。未另加模型适配层。[UI协议](https://ai-sdk.dev/docs/ai-sdk-ui/stream-protocol)、[数据片段](https://ai-sdk.dev/docs/ai-sdk-ui/streaming-data)和[消息元数据](https://ai-sdk.dev/docs/ai-sdk-ui/message-metadata)说明了这些信息的不同用途。
+
+固定起点 `vcm-04-02-start` 为 `5606372686a2f7fab2d7e2b5bed41ee5c8fcfb4d`，仅含可运行的材料工作台；完成点为 `vcm-04-02-end`。从公开仓库克隆后开始完整实验：
 
 ```powershell
+git switch -c my-streaming-lab vcm-04-02-end
 pnpm install --frozen-lockfile
 pnpm streaming:dev
 ```
 
-生产运行使用 `pnpm build`、`pnpm streaming:start`；其他实验使用各自的启动命令。依赖 `ai@7.0.122` 用于UI消息流的组合与读取，已有 `eventsource-parser` 用于模型SSE解析。本节不实现会话存储与恢复。
+生产运行使用 `pnpm build`、`pnpm streaming:start`；其他实验使用各自的启动命令。恢复前先保留自己的改动，再从固定完成点建立新分支；重新实现本节可将最后一行标签改为起点。
+
+```powershell
+git add .
+git commit -m "保存我的流式消息实验"
+git switch -c my-streaming-lab-retry vcm-04-02-end
+```
+
+页面记录刷新即丢失，应先下载；后台脱敏记录只存在当前进程内存中，重启即清除，不提供会话持久化或断流恢复。Git不会恢复私密配置、运行记录或模型费用；源码ZIP没有Git历史，标签恢复需从公开仓库克隆。实现入口在 `src/streaming/`，定向检查为 `pnpm exec tsx --test test/streaming.test.ts`，测试中的HTTP桩不是模型效果证据。

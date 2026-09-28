@@ -5,7 +5,7 @@ import type { StreamRecord } from './contract.ts';
 
 export async function streamModel(
   config: ModelConfig,
-  record: StreamRecord,
+  record: Omit<StreamRecord, 'condition'>,
   signal: AbortSignal,
   onContent: (text: string, elapsedMs: number) => void,
 ) {

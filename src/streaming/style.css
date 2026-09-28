@@ -2,3 +2,18 @@
 main { max-width: 1080px; }
 label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 10px; }
 textarea { width: 100%; resize: vertical; font: inherit; font-size: 15px; line-height: 1.8; padding: 14px; color: #173b46; border: 1px solid #b5cdd1; border-radius: 6px; }
+.actions, .message-heading, .record-tools { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.actions { margin-top: 14px; }
+#assistant { border-top: 2px solid #448477; padding-top: 22px; }
+.message-heading { justify-content: space-between; }
+.progress { color: #285d6c; font-size: 14px; }
+#message section { margin-top: 24px; }
+#message h3 { margin-bottom: 7px; }
+.answer { font-size: 16px; line-height: 1.9; }
+.record-tools label { margin: 0; display: flex; gap: 10px; align-items: center; }
+.table-scroll { max-height: 380px; overflow: auto; }
+#events td:last-child { white-space: pre-wrap; overflow-wrap: anywhere; min-width: 260px; }
+table { min-width: 660px; }
+thead { position: sticky; top: 0; }
+#raw-record { max-height: 520px; overflow: auto; }
+@media (max-width: 600px) { .record-tools { align-items: stretch; } .record-tools label { width: 100%; } .message-heading { align-items: flex-start; } }
