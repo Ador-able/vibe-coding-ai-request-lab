@@ -128,3 +128,43 @@ git switch -c my-context-lab-retry vcm-03-01-end-r2
 ```
 
 定向检查：`pnpm exec tsx --test test/context.test.ts`。测试桩验证协议和历史投影，不是实际模型输出。工具调用协议依据：[百炼 Function Calling](https://help.aliyun.com/zh/model-studio/qwen-function-calling)。
+
+## 上下文装得下，不等于用得好
+
+入口：`http://127.0.0.1:4318/quality.html`。本课固定使用 `qwen-flash`，`.env` 中的 `MODEL` 应设为该值；其余模型 API 配置和启动步骤同上。
+
+点击“运行 12 个样例”后，页面串行请求 6 种条件的 A、B 两份合成资料，每次独立请求，不携带此前回答。任务始终是按项目名称与版本号查负责人、冻结日期并引用记录编号。使用相同输出规则、非思考模式、温度 0、`max_tokens: 512` 和 `response_format: json_object`，不提供工具，`tool_choice: none`。JSON Object 的支持范围与提示词要求依据[百炼结构化输出文档](https://help.aliyun.com/zh/model-studio/qwen-structured-output)。
+
+| 条件 | 固定变化 |
+| --- | --- |
+| 短材料 | 16 条，目标记录在第 8 条 |
+| 长材料，关键项居中 | 160 条，目标记录在第 80 条；保留短材料全部记录，只增加无关事务 |
+| 长材料，关键项首位 / 末位 | 与居中组的文档集合完全相同，只移动目标记录 |
+| 相似干扰 | 在居中组中替换 4 条无关记录，换成相近项目名或相邻版本；总条数不变 |
+| 真实冲突 | 在居中组中替换 1 条无关记录；同项目、同版本、同确认日期，负责人不同，冻结日期一致 |
+
+每条资料有稳定编号，长度约 121–127 个字符；无关材料由多类办公事务组成。条件标签与期望结果不进入模型输入。资料数量不是 token 阈值，页面仅显示实际 API 返回的 `usage.prompt_tokens`，没有用其他分词器估算。
+
+评分分别检查状态、负责人、日期与引用。冲突组需要 `status: conflict`、`owner: null`，保留一致日期，并引用双方记录。字段缺失、输出截断和错误引用不判通过；页面始终保留模型原文与实际请求体。表格每行只有两份样例，不把 12 次结果合并为模型准确率。全部通过同样是有效观察；少量合成资料的一次差异不能单独证明原因，也不能代表模型处理所有长材料的能力。
+
+一次完整运行发起 12 次 API 请求，可能收费。请求失败立即停止、保留已有结果，不自动重试，失败项不计入效果判定。每个样例最多等待 90 秒。再次点击“新开始一次”会保留本页旧记录，可从下拉框切换并分别下载；刷新页面会丢失未下载的记录。材料预览不调用模型，也不是模型生成结果。
+
+实现位于 `src/quality/`：`materials.ts` 固定资料和输入，`routes.ts` 执行独立请求，`assess.ts` 解析评分，`main.ts` 串行运行并显示结果。`src/recorded-model.ts` 与上下文保留实验共用请求记录传输逻辑。
+
+本课起点 `vcm-03-02-start` 指向 `c73d22209d47`，包含上一课完成版；完成点为 `vcm-03-02-end`。在 Git 克隆目录中从完成点新建练习分支：
+
+```powershell
+git switch -c my-quality-lab vcm-03-02-end
+pnpm install --frozen-lockfile
+pnpm dev
+```
+
+要恢复材料或代码，先提交自己的实验，再从完成点新开分支；这不会恢复模型费用或页面运行记录。
+
+```powershell
+git add .
+git commit -m "保存我的材料对照实验"
+git switch -c my-quality-lab-retry vcm-03-02-end
+```
+
+定向检查：`pnpm exec tsx --test test/quality.test.ts`。HTTP 测试桩只验证协议、受控材料和评分逻辑，不提供模型能力的实测结论。
