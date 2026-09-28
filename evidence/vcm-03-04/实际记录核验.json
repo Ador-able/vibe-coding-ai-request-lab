@@ -1,0 +1,65 @@
+{
+  "verifiedAt": "2026-09-28T20:06:38.095Z",
+  "implementationCommit": "a3898711886307537e9cbc8b7bc2704c34dbae32",
+  "recordSha256": "71d1aca2c4d0710b42cae01cd0f8384d2420db55e65d33e67c0541a7fe39bb41",
+  "calls": 5,
+  "retries": 0,
+  "checks": "按下载原始SSE独立重建正文、首非空正文和流结束时间、用量；逐字核对长请求和重复请求、前缀单处变化。五次均stop/DONE，答案均48小时。",
+  "rows": [
+    {
+      "condition": "short",
+      "firstContentMs": 285.3,
+      "streamEndMs": 478.6,
+      "input": 214,
+      "cached": 0,
+      "output": 31,
+      "events": 15,
+      "finishReason": "stop",
+      "answer": "青禾资料台 4.2 导出的 CSV 下载链接有效期为 48 小时，依据手册 M21。"
+    },
+    {
+      "condition": "long",
+      "firstContentMs": 407.3,
+      "streamEndMs": 689.3,
+      "input": 4465,
+      "cached": 0,
+      "output": 31,
+      "events": 15,
+      "finishReason": "stop",
+      "answer": "青禾资料台 4.2 导出的 CSV 下载链接有效期为 48 小时，依据手册 M21。"
+    },
+    {
+      "condition": "repeat",
+      "firstContentMs": 283.4,
+      "streamEndMs": 509.4,
+      "input": 4465,
+      "cached": 4352,
+      "output": 31,
+      "events": 15,
+      "finishReason": "stop",
+      "answer": "青禾资料台 4.2 导出的 CSV 下载链接有效期为 48 小时，依据手册 M21。"
+    },
+    {
+      "condition": "prefix",
+      "firstContentMs": 421.1,
+      "streamEndMs": 723.3,
+      "input": 4465,
+      "cached": 0,
+      "output": 31,
+      "events": 15,
+      "finishReason": "stop",
+      "answer": "青禾资料台 4.2 导出的 CSV 下载链接有效期为 48 小时，依据手册 M21。"
+    },
+    {
+      "condition": "detailed",
+      "firstContentMs": 447,
+      "streamEndMs": 2096.8,
+      "input": 4491,
+      "cached": 0,
+      "output": 286,
+      "events": 79,
+      "finishReason": "stop",
+      "answer": "青禾资料台 4.2 导出的 CSV 下载链接有效期为 **48 小时**。\n\n导出前，应确认当前资料表、筛选范围与共享视图设置，并检查自身是否具备导出权限（M19）。导出操作读取的是当前可访问字段内容，因此需确保所有必要信息已正确填写且权限允许（M19）。若需整表数据，应取消无关筛选，避免因列表标题误解范围（M19）。\n\n下载后，建议核对文件名、生成时间、表头及样例内容，确认其来自预期任务（M23）。浏览器显示“下载完成”仅表示文件已保存至本地，不保证内容符合业务要求。如发现行数不符，应回查当时的筛选条件与权限设置，不可仅修改文件名掩盖差异（M23）。\n\n链接失效后，无法继续下载原文件，需返回原资料表重新发起导出（M21）。重新导出会基于当前数据生成新文件，旧链接不再有效。已下载的本地副本不会自动删除，但其内容可能已过时，使用时应注明生成时间与适用范围（M24）。若链接仍有效但打开失败，应确认账号是否仍有导出权限，必要时联系管理员核查任务记录（M21）。"
+    }
+  ]
+}
