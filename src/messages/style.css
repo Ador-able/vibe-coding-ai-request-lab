@@ -1,0 +1,4 @@
+@import '../context/style.css';
+main { max-width: 1080px; }
+label { display: block; font-size: 14px; font-weight: 600; margin: 18px 0 8px; }
+textarea { width: 100%; resize: vertical; font: inherit; font-size: 15px; line-height: 1.8; padding: 12px; color: #173b46; border: 1px solid #b5cdd1; border-radius: 6px; }

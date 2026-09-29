@@ -509,3 +509,14 @@ git switch -c my-streaming-lab-retry vcm-04-02-end
 [原始记录、核对脚本与截图](evidence/vcm-04-02/说明.md)保留一次完整任务和一次问题阶段的实际停止，分别有57和46个UI事件。两侧事件逐项一致；历史保留三个阶段，最终消息仅保留一个最新进度片段。完整任务只有一次总finish；停止任务保留半句并以abort结束，问题阶段的finishReason和usage保持null。
 
 事件正确不代表内容已核实。本轮摘要把预计人数写成了人数上限，问题也加入原文没有给定的“今日内”，仍需人工核查。事件数不代表token数，缺失用量不代表免费；此观察不作速度或质量统计。
+
+## 消息保存实验：纪要材料起点
+
+独立入口 `http://127.0.0.1:4321/messages.html`，使用Node.js 24.12.0与pnpm 11.20.0。起点包含可编辑的虚构纪要和第一轮问题，不调用模型或保存对话。
+
+```powershell
+pnpm install --frozen-lockfile
+pnpm messages:dev
+```
+
+生产运行使用 `pnpm build`、`pnpm messages:start`。其他实验沿用各自入口与命令。

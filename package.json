@@ -14,6 +14,8 @@
     "structured:start": "node --env-file-if-exists=.env --import tsx src/structured/server.ts --production",
     "streaming:dev": "node --env-file-if-exists=.env --import tsx src/streaming/server.ts",
     "streaming:start": "node --env-file-if-exists=.env --import tsx src/streaming/server.ts --production",
+    "messages:dev": "node --env-file-if-exists=.env --import tsx src/messages/server.ts",
+    "messages:start": "node --env-file-if-exists=.env --import tsx src/messages/server.ts --production",
     "build": "vite build",
     "check": "tsc --noEmit",
     "test": "node --import tsx --test test/*.test.ts"
