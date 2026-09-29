@@ -1,0 +1,2498 @@
+{
+  "attempts": [
+    {
+      "id": "a999e682-bc4a-4e36-a934-bcfa7751470c",
+      "material": "青禾社区共享书架筹备纪要（教学虚构）\n计划于10月12日下午开放一层共享书架，由林晓负责整理捐赠图书，许宁负责制作借阅说明。\n图书仅在社区活动室内阅读，暂不外借；每次开放预计接待20人，使用后请把图书放回原处。\n书架和阅读桌已经到位，志愿者值班名单尚未确定，现场开放的具体起止时间还需与场地管理员确认。\n借阅说明中的损坏处理方式也尚未讨论。先完成材料整理，再决定是否如期开放，不提前对外承诺。",
+      "state": "completed",
+      "message": {
+        "id": "a999e682-bc4a-4e36-a934-bcfa7751470c",
+        "metadata": {
+          "model": "qwen-flash",
+          "state": "completed",
+          "stages": [
+            {
+              "stage": "summary",
+              "model": "qwen-flash",
+              "finishReason": "stop",
+              "usage": {
+                "total_tokens": 275,
+                "completion_tokens": 96,
+                "prompt_tokens": 179,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0
+                }
+              }
+            },
+            {
+              "stage": "questions",
+              "model": "qwen-flash",
+              "finishReason": "stop",
+              "usage": {
+                "total_tokens": 366,
+                "completion_tokens": 61,
+                "prompt_tokens": 305,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0
+                }
+              }
+            }
+          ]
+        },
+        "role": "assistant",
+        "parts": [
+          {
+            "type": "data-progress",
+            "id": "workflow-progress",
+            "data": {
+              "stage": "completed",
+              "label": "摘要和待确认问题均已完整结束"
+            }
+          },
+          {
+            "type": "step-start"
+          },
+          {
+            "type": "text",
+            "text": "共享书架计划10月12日下午开放，林晓负责图书整理，许宁负责借阅说明制作。书架与阅读桌已到位，图书限在活动室内阅读，不外借，每次限20人，使用后需归位。志愿者值班名单未定，开放起止时间待与场地管理员确认。借阅说明中损坏处理方式尚未讨论。材料整理完成后评估是否如期开放，暂不对外承诺。",
+            "state": "done"
+          },
+          {
+            "type": "step-start"
+          },
+          {
+            "type": "text",
+            "text": "1. 借阅说明中关于图书损坏的处理方式，是否已有初步意见或标准？  \n2. 志愿者值班名单的确定时间及负责人是谁？  \n3. 与场地管理员确认后的共享书架开放具体起止时间能否在今日内明确？",
+            "state": "done"
+          }
+        ]
+      },
+      "events": [
+        {
+          "elapsedMs": 30.5,
+          "event": {
+            "type": "start",
+            "messageId": "a999e682-bc4a-4e36-a934-bcfa7751470c",
+            "messageMetadata": {
+              "model": "qwen-flash",
+              "state": "running",
+              "stages": []
+            }
+          }
+        },
+        {
+          "elapsedMs": 32.1,
+          "event": {
+            "type": "data-progress",
+            "id": "workflow-progress",
+            "data": {
+              "stage": "summary",
+              "label": "应用正在生成摘要"
+            }
+          }
+        },
+        {
+          "elapsedMs": 32.3,
+          "event": {
+            "type": "start-step"
+          }
+        },
+        {
+          "elapsedMs": 32.4,
+          "event": {
+            "type": "text-start",
+            "id": "summary"
+          }
+        },
+        {
+          "elapsedMs": 273.3,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "共享"
+          }
+        },
+        {
+          "elapsedMs": 274.2,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "书"
+          }
+        },
+        {
+          "elapsedMs": 278.4,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "架"
+          }
+        },
+        {
+          "elapsedMs": 286.3,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "计划"
+          }
+        },
+        {
+          "elapsedMs": 303.9,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "10月1"
+          }
+        },
+        {
+          "elapsedMs": 328.1,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "2日下午开放，"
+          }
+        },
+        {
+          "elapsedMs": 367.8,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "林晓负责图书"
+          }
+        },
+        {
+          "elapsedMs": 369.2,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "整理，许宁"
+          }
+        },
+        {
+          "elapsedMs": 385.9,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "负责借阅说明"
+          }
+        },
+        {
+          "elapsedMs": 406.4,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "制作。书架"
+          }
+        },
+        {
+          "elapsedMs": 455.5,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "与阅读桌已"
+          }
+        },
+        {
+          "elapsedMs": 455.8,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "到位，图书限"
+          }
+        },
+        {
+          "elapsedMs": 467.7,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "在活动室内阅读"
+          }
+        },
+        {
+          "elapsedMs": 490.1,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "，不外借"
+          }
+        },
+        {
+          "elapsedMs": 527.9,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "，每次限2"
+          }
+        },
+        {
+          "elapsedMs": 530,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "0人，使用"
+          }
+        },
+        {
+          "elapsedMs": 572.3,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "后需归位"
+          }
+        },
+        {
+          "elapsedMs": 572.9,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "。志愿者值班名单"
+          }
+        },
+        {
+          "elapsedMs": 619,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "未定，开放"
+          }
+        },
+        {
+          "elapsedMs": 620.8,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "起止时间待"
+          }
+        },
+        {
+          "elapsedMs": 654.6,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "与场地管理员确认"
+          }
+        },
+        {
+          "elapsedMs": 656.2,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "。借阅说明"
+          }
+        },
+        {
+          "elapsedMs": 692.7,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "中损坏处理方式"
+          }
+        },
+        {
+          "elapsedMs": 695,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "尚未讨论。材料"
+          }
+        },
+        {
+          "elapsedMs": 735.6,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "整理完成后评估是否"
+          }
+        },
+        {
+          "elapsedMs": 764.7,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "如期开放，暂"
+          }
+        },
+        {
+          "elapsedMs": 766.2,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "不对外承诺。"
+          }
+        },
+        {
+          "elapsedMs": 835.9,
+          "event": {
+            "type": "text-end",
+            "id": "summary"
+          }
+        },
+        {
+          "elapsedMs": 836.7,
+          "event": {
+            "type": "finish-step"
+          }
+        },
+        {
+          "elapsedMs": 836.8,
+          "event": {
+            "type": "data-progress",
+            "id": "workflow-progress",
+            "data": {
+              "stage": "questions",
+              "label": "摘要已结束，应用正在生成待确认问题"
+            }
+          }
+        },
+        {
+          "elapsedMs": 837.2,
+          "event": {
+            "type": "start-step"
+          }
+        },
+        {
+          "elapsedMs": 837.2,
+          "event": {
+            "type": "text-start",
+            "id": "questions"
+          }
+        },
+        {
+          "elapsedMs": 1089.5,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": "1"
+          }
+        },
+        {
+          "elapsedMs": 1093.3,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": "."
+          }
+        },
+        {
+          "elapsedMs": 1123.7,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": " 借阅说明中"
+          }
+        },
+        {
+          "elapsedMs": 1144.1,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": "关于图书损坏的"
+          }
+        },
+        {
+          "elapsedMs": 1190,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": "处理方式，是否"
+          }
+        },
+        {
+          "elapsedMs": 1192.1,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": "已有初步意见或"
+          }
+        },
+        {
+          "elapsedMs": 1207.6,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": "标准？  \n2"
+          }
+        },
+        {
+          "elapsedMs": 1226.7,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": ". 志愿"
+          }
+        },
+        {
+          "elapsedMs": 1267.7,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": "者值班名单的"
+          }
+        },
+        {
+          "elapsedMs": 1269.7,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": "确定时间及负责人"
+          }
+        },
+        {
+          "elapsedMs": 1290.1,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": "是谁？  \n3"
+          }
+        },
+        {
+          "elapsedMs": 1327.8,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": ". 与场地"
+          }
+        },
+        {
+          "elapsedMs": 1331.2,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": "管理员确认后的共享"
+          }
+        },
+        {
+          "elapsedMs": 1351.3,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": "书架开放具体"
+          }
+        },
+        {
+          "elapsedMs": 1391.1,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": "起止时间能否"
+          }
+        },
+        {
+          "elapsedMs": 1394.2,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": "在今日内明确"
+          }
+        },
+        {
+          "elapsedMs": 1405.2,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": "？"
+          }
+        },
+        {
+          "elapsedMs": 1433.4,
+          "event": {
+            "type": "text-end",
+            "id": "questions"
+          }
+        },
+        {
+          "elapsedMs": 1434.1,
+          "event": {
+            "type": "finish-step"
+          }
+        },
+        {
+          "elapsedMs": 1434.2,
+          "event": {
+            "type": "data-progress",
+            "id": "workflow-progress",
+            "data": {
+              "stage": "completed",
+              "label": "摘要和待确认问题均已完整结束"
+            }
+          }
+        },
+        {
+          "elapsedMs": 1434.6,
+          "event": {
+            "type": "finish",
+            "finishReason": "stop",
+            "messageMetadata": {
+              "model": "qwen-flash",
+              "state": "completed",
+              "stages": [
+                {
+                  "stage": "summary",
+                  "model": "qwen-flash",
+                  "finishReason": "stop",
+                  "usage": {
+                    "total_tokens": 275,
+                    "completion_tokens": 96,
+                    "prompt_tokens": 179,
+                    "prompt_tokens_details": {
+                      "cached_tokens": 0
+                    }
+                  }
+                },
+                {
+                  "stage": "questions",
+                  "model": "qwen-flash",
+                  "finishReason": "stop",
+                  "usage": {
+                    "total_tokens": 366,
+                    "completion_tokens": 61,
+                    "prompt_tokens": 305,
+                    "prompt_tokens_details": {
+                      "cached_tokens": 0
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "serverRecord": {
+        "id": "a999e682-bc4a-4e36-a934-bcfa7751470c",
+        "material": "青禾社区共享书架筹备纪要（教学虚构）\n计划于10月12日下午开放一层共享书架，由林晓负责整理捐赠图书，许宁负责制作借阅说明。\n图书仅在社区活动室内阅读，暂不外借；每次开放预计接待20人，使用后请把图书放回原处。\n书架和阅读桌已经到位，志愿者值班名单尚未确定，现场开放的具体起止时间还需与场地管理员确认。\n借阅说明中的损坏处理方式也尚未讨论。先完成材料整理，再决定是否如期开放，不提前对外承诺。",
+        "startedAt": "2026-09-28T23:53:44.296Z",
+        "state": "completed",
+        "durationMs": 1422.2,
+        "stages": [
+          {
+            "id": "a999e682-bc4a-4e36-a934-bcfa7751470c-summary",
+            "stage": "summary",
+            "offsetMs": 0.5,
+            "startedAt": "2026-09-28T23:53:44.297Z",
+            "requestBody": "{\"model\":\"qwen-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"只依据工作纪要写一段约120字的简明摘要，区分已确定安排和未决事项。不补造事实，不提出问题，不加标题。\"},{\"role\":\"user\",\"content\":\"青禾社区共享书架筹备纪要（教学虚构）\\n计划于10月12日下午开放一层共享书架，由林晓负责整理捐赠图书，许宁负责制作借阅说明。\\n图书仅在社区活动室内阅读，暂不外借；每次开放预计接待20人，使用后请把图书放回原处。\\n书架和阅读桌已经到位，志愿者值班名单尚未确定，现场开放的具体起止时间还需与场地管理员确认。\\n借阅说明中的损坏处理方式也尚未讨论。先完成材料整理，再决定是否如期开放，不提前对外承诺。\"}],\"stream\":true,\"stream_options\":{\"include_usage\":true},\"enable_thinking\":false,\"temperature\":0,\"max_tokens\":256}",
+            "responseModel": "qwen-flash",
+            "httpStatus": 200,
+            "events": [
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null,\"choices\":[{\"logprobs\":null,\"index\":0,\"delta\":{\"content\":\"\",\"role\":\"assistant\"},\"finish_reason\":null}]}",
+                "elapsedMs": 262.3
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"共享\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 262.3
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"书\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 262.8
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"架\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 267.4
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"计划\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 275.4
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"10月1\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 293
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"2日下午开放，\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 317.1
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"林晓负责图书\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 357
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"整理，许宁\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 357.8
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"负责借阅说明\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 375.2
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"制作。书架\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 395.7
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"与阅读桌已\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 444.8
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"到位，图书限\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 445
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"在活动室内阅读\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 457
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"，不外借\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 479.3
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"，每次限2\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 517.1
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"0人，使用\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 518.4
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"后需归位\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 561.3
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"。志愿者值班名单\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 561.8
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"未定，开放\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 608.1
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"起止时间待\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 610.1
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"与场地管理员确认\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 643.7
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"。借阅说明\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 644.9
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"中损坏处理方式\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 682
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"尚未讨论。材料\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 684.3
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"整理完成后评估是否\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 724.6
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"如期开放，暂\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 753.8
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"不对外承诺。\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 755.6
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[{\"delta\":{\"content\":\"\"},\"index\":0,\"finish_reason\":\"stop\",\"logprobs\":null}],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 810.8
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-587d9911-1467-9ca0-9274-940a7e0d03b4\",\"choices\":[],\"created\":1790639628,\"object\":\"chat.completion.chunk\",\"usage\":{\"total_tokens\":275,\"completion_tokens\":96,\"prompt_tokens\":179,\"prompt_tokens_details\":{\"cached_tokens\":0}}}",
+                "elapsedMs": 810.9
+              },
+              {
+                "data": "[DONE]",
+                "elapsedMs": 810.9
+              }
+            ],
+            "answer": "共享书架计划10月12日下午开放，林晓负责图书整理，许宁负责借阅说明制作。书架与阅读桌已到位，图书限在活动室内阅读，不外借，每次限20人，使用后需归位。志愿者值班名单未定，开放起止时间待与场地管理员确认。借阅说明中损坏处理方式尚未讨论。材料整理完成后评估是否如期开放，暂不对外承诺。",
+            "firstContentMs": 262.3,
+            "streamEndMs": 810.9,
+            "endedBy": "done",
+            "finishReason": "stop",
+            "usage": {
+              "total_tokens": 275,
+              "completion_tokens": 96,
+              "prompt_tokens": 179,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              }
+            }
+          },
+          {
+            "id": "a999e682-bc4a-4e36-a934-bcfa7751470c-questions",
+            "stage": "questions",
+            "offsetMs": 824.2,
+            "startedAt": "2026-09-28T23:53:45.121Z",
+            "requestBody": "{\"model\":\"qwen-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"只依据工作纪要及摘要，提出2至3个需要负责人进一步确认的问题。只写编号问题，每个问题单独一行，以1.、2.、3.依次开始；不加标题、开场或答案，不把已经确定的安排当作未决事项。\"},{\"role\":\"user\",\"content\":\"工作纪要：\\n青禾社区共享书架筹备纪要（教学虚构）\\n计划于10月12日下午开放一层共享书架，由林晓负责整理捐赠图书，许宁负责制作借阅说明。\\n图书仅在社区活动室内阅读，暂不外借；每次开放预计接待20人，使用后请把图书放回原处。\\n书架和阅读桌已经到位，志愿者值班名单尚未确定，现场开放的具体起止时间还需与场地管理员确认。\\n借阅说明中的损坏处理方式也尚未讨论。先完成材料整理，再决定是否如期开放，不提前对外承诺。\\n\\n刚生成的摘要：\\n共享书架计划10月12日下午开放，林晓负责图书整理，许宁负责借阅说明制作。书架与阅读桌已到位，图书限在活动室内阅读，不外借，每次限20人，使用后需归位。志愿者值班名单未定，开放起止时间待与场地管理员确认。借阅说明中损坏处理方式尚未讨论。材料整理完成后评估是否如期开放，暂不对外承诺。\"}],\"stream\":true,\"stream_options\":{\"include_usage\":true},\"enable_thinking\":false,\"temperature\":0,\"max_tokens\":384}",
+            "responseModel": "qwen-flash",
+            "httpStatus": 200,
+            "events": [
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-fdea0be9-5331-9e9c-a8d7-7beb4afb9b4d\",\"created\":1790639629,\"object\":\"chat.completion.chunk\",\"usage\":null,\"choices\":[{\"logprobs\":null,\"index\":0,\"delta\":{\"content\":\"\",\"role\":\"assistant\"},\"finish_reason\":null}]}",
+                "elapsedMs": 255
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-fdea0be9-5331-9e9c-a8d7-7beb4afb9b4d\",\"choices\":[{\"delta\":{\"content\":\"1\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639629,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 255
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-fdea0be9-5331-9e9c-a8d7-7beb4afb9b4d\",\"choices\":[{\"delta\":{\"content\":\".\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639629,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 259
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-fdea0be9-5331-9e9c-a8d7-7beb4afb9b4d\",\"choices\":[{\"delta\":{\"content\":\" 借阅说明中\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639629,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 289.4
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-fdea0be9-5331-9e9c-a8d7-7beb4afb9b4d\",\"choices\":[{\"delta\":{\"content\":\"关于图书损坏的\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639629,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 309.8
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-fdea0be9-5331-9e9c-a8d7-7beb4afb9b4d\",\"choices\":[{\"delta\":{\"content\":\"处理方式，是否\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639629,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 355.6
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-fdea0be9-5331-9e9c-a8d7-7beb4afb9b4d\",\"choices\":[{\"delta\":{\"content\":\"已有初步意见或\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639629,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 357.2
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-fdea0be9-5331-9e9c-a8d7-7beb4afb9b4d\",\"choices\":[{\"delta\":{\"content\":\"标准？  \\n2\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639629,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 373.3
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-fdea0be9-5331-9e9c-a8d7-7beb4afb9b4d\",\"choices\":[{\"delta\":{\"content\":\". 志愿\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639629,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 392.2
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-fdea0be9-5331-9e9c-a8d7-7beb4afb9b4d\",\"choices\":[{\"delta\":{\"content\":\"者值班名单的\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639629,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 433.3
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-fdea0be9-5331-9e9c-a8d7-7beb4afb9b4d\",\"choices\":[{\"delta\":{\"content\":\"确定时间及负责人\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639629,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 435.3
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-fdea0be9-5331-9e9c-a8d7-7beb4afb9b4d\",\"choices\":[{\"delta\":{\"content\":\"是谁？  \\n3\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639629,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 455.6
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-fdea0be9-5331-9e9c-a8d7-7beb4afb9b4d\",\"choices\":[{\"delta\":{\"content\":\". 与场地\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639629,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 493.3
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-fdea0be9-5331-9e9c-a8d7-7beb4afb9b4d\",\"choices\":[{\"delta\":{\"content\":\"管理员确认后的共享\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639629,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 496.9
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-fdea0be9-5331-9e9c-a8d7-7beb4afb9b4d\",\"choices\":[{\"delta\":{\"content\":\"书架开放具体\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639629,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 516.8
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-fdea0be9-5331-9e9c-a8d7-7beb4afb9b4d\",\"choices\":[{\"delta\":{\"content\":\"起止时间能否\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639629,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 556.7
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-fdea0be9-5331-9e9c-a8d7-7beb4afb9b4d\",\"choices\":[{\"delta\":{\"content\":\"在今日内明确\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639629,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 559.9
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-fdea0be9-5331-9e9c-a8d7-7beb4afb9b4d\",\"choices\":[{\"delta\":{\"content\":\"？\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639629,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 570.7
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-fdea0be9-5331-9e9c-a8d7-7beb4afb9b4d\",\"choices\":[{\"delta\":{\"content\":\"\"},\"index\":0,\"finish_reason\":\"stop\",\"logprobs\":null}],\"created\":1790639629,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 597.2
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-fdea0be9-5331-9e9c-a8d7-7beb4afb9b4d\",\"choices\":[],\"created\":1790639629,\"object\":\"chat.completion.chunk\",\"usage\":{\"total_tokens\":366,\"completion_tokens\":61,\"prompt_tokens\":305,\"prompt_tokens_details\":{\"cached_tokens\":0}}}",
+                "elapsedMs": 597.3
+              },
+              {
+                "data": "[DONE]",
+                "elapsedMs": 597.3
+              }
+            ],
+            "answer": "1. 借阅说明中关于图书损坏的处理方式，是否已有初步意见或标准？  \n2. 志愿者值班名单的确定时间及负责人是谁？  \n3. 与场地管理员确认后的共享书架开放具体起止时间能否在今日内明确？",
+            "firstContentMs": 255,
+            "streamEndMs": 597.3,
+            "endedBy": "done",
+            "finishReason": "stop",
+            "usage": {
+              "total_tokens": 366,
+              "completion_tokens": 61,
+              "prompt_tokens": 305,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              }
+            }
+          }
+        ],
+        "uiEvents": [
+          {
+            "elapsedMs": 0.3,
+            "event": {
+              "type": "start",
+              "messageId": "a999e682-bc4a-4e36-a934-bcfa7751470c",
+              "messageMetadata": {
+                "model": "qwen-flash",
+                "state": "running",
+                "stages": []
+              }
+            }
+          },
+          {
+            "elapsedMs": 0.5,
+            "event": {
+              "type": "data-progress",
+              "id": "workflow-progress",
+              "data": {
+                "stage": "summary",
+                "label": "应用正在生成摘要"
+              }
+            }
+          },
+          {
+            "elapsedMs": 0.6,
+            "event": {
+              "type": "start-step"
+            }
+          },
+          {
+            "elapsedMs": 0.6,
+            "event": {
+              "type": "text-start",
+              "id": "summary"
+            }
+          },
+          {
+            "elapsedMs": 263.1,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "共享"
+            }
+          },
+          {
+            "elapsedMs": 263.5,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "书"
+            }
+          },
+          {
+            "elapsedMs": 268.2,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "架"
+            }
+          },
+          {
+            "elapsedMs": 276.1,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "计划"
+            }
+          },
+          {
+            "elapsedMs": 293.8,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "10月1"
+            }
+          },
+          {
+            "elapsedMs": 317.9,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "2日下午开放，"
+            }
+          },
+          {
+            "elapsedMs": 357.7,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "林晓负责图书"
+            }
+          },
+          {
+            "elapsedMs": 358.6,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "整理，许宁"
+            }
+          },
+          {
+            "elapsedMs": 375.9,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "负责借阅说明"
+            }
+          },
+          {
+            "elapsedMs": 396.4,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "制作。书架"
+            }
+          },
+          {
+            "elapsedMs": 445.5,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "与阅读桌已"
+            }
+          },
+          {
+            "elapsedMs": 445.7,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "到位，图书限"
+            }
+          },
+          {
+            "elapsedMs": 457.7,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "在活动室内阅读"
+            }
+          },
+          {
+            "elapsedMs": 480,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "，不外借"
+            }
+          },
+          {
+            "elapsedMs": 517.8,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "，每次限2"
+            }
+          },
+          {
+            "elapsedMs": 519.2,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "0人，使用"
+            }
+          },
+          {
+            "elapsedMs": 562,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "后需归位"
+            }
+          },
+          {
+            "elapsedMs": 562.5,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "。志愿者值班名单"
+            }
+          },
+          {
+            "elapsedMs": 608.8,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "未定，开放"
+            }
+          },
+          {
+            "elapsedMs": 610.8,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "起止时间待"
+            }
+          },
+          {
+            "elapsedMs": 644.5,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "与场地管理员确认"
+            }
+          },
+          {
+            "elapsedMs": 645.6,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "。借阅说明"
+            }
+          },
+          {
+            "elapsedMs": 682.7,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "中损坏处理方式"
+            }
+          },
+          {
+            "elapsedMs": 685,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "尚未讨论。材料"
+            }
+          },
+          {
+            "elapsedMs": 725.3,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "整理完成后评估是否"
+            }
+          },
+          {
+            "elapsedMs": 754.6,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "如期开放，暂"
+            }
+          },
+          {
+            "elapsedMs": 756.3,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "不对外承诺。"
+            }
+          },
+          {
+            "elapsedMs": 824.1,
+            "event": {
+              "type": "text-end",
+              "id": "summary"
+            }
+          },
+          {
+            "elapsedMs": 824.2,
+            "event": {
+              "type": "finish-step"
+            }
+          },
+          {
+            "elapsedMs": 824.2,
+            "event": {
+              "type": "data-progress",
+              "id": "workflow-progress",
+              "data": {
+                "stage": "questions",
+                "label": "摘要已结束，应用正在生成待确认问题"
+              }
+            }
+          },
+          {
+            "elapsedMs": 824.3,
+            "event": {
+              "type": "start-step"
+            }
+          },
+          {
+            "elapsedMs": 824.3,
+            "event": {
+              "type": "text-start",
+              "id": "questions"
+            }
+          },
+          {
+            "elapsedMs": 1079.3,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": "1"
+            }
+          },
+          {
+            "elapsedMs": 1083.3,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": "."
+            }
+          },
+          {
+            "elapsedMs": 1113.7,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": " 借阅说明中"
+            }
+          },
+          {
+            "elapsedMs": 1134,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": "关于图书损坏的"
+            }
+          },
+          {
+            "elapsedMs": 1179.9,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": "处理方式，是否"
+            }
+          },
+          {
+            "elapsedMs": 1181.5,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": "已有初步意见或"
+            }
+          },
+          {
+            "elapsedMs": 1197.5,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": "标准？  \n2"
+            }
+          },
+          {
+            "elapsedMs": 1216.5,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": ". 志愿"
+            }
+          },
+          {
+            "elapsedMs": 1257.6,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": "者值班名单的"
+            }
+          },
+          {
+            "elapsedMs": 1259.5,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": "确定时间及负责人"
+            }
+          },
+          {
+            "elapsedMs": 1279.9,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": "是谁？  \n3"
+            }
+          },
+          {
+            "elapsedMs": 1317.6,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": ". 与场地"
+            }
+          },
+          {
+            "elapsedMs": 1321.2,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": "管理员确认后的共享"
+            }
+          },
+          {
+            "elapsedMs": 1341.1,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": "书架开放具体"
+            }
+          },
+          {
+            "elapsedMs": 1381,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": "起止时间能否"
+            }
+          },
+          {
+            "elapsedMs": 1384.1,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": "在今日内明确"
+            }
+          },
+          {
+            "elapsedMs": 1395,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": "？"
+            }
+          },
+          {
+            "elapsedMs": 1421.8,
+            "event": {
+              "type": "text-end",
+              "id": "questions"
+            }
+          },
+          {
+            "elapsedMs": 1421.9,
+            "event": {
+              "type": "finish-step"
+            }
+          },
+          {
+            "elapsedMs": 1422.1,
+            "event": {
+              "type": "data-progress",
+              "id": "workflow-progress",
+              "data": {
+                "stage": "completed",
+                "label": "摘要和待确认问题均已完整结束"
+              }
+            }
+          },
+          {
+            "elapsedMs": 1422.2,
+            "event": {
+              "type": "finish",
+              "finishReason": "stop",
+              "messageMetadata": {
+                "model": "qwen-flash",
+                "state": "completed",
+                "stages": [
+                  {
+                    "stage": "summary",
+                    "model": "qwen-flash",
+                    "finishReason": "stop",
+                    "usage": {
+                      "total_tokens": 275,
+                      "completion_tokens": 96,
+                      "prompt_tokens": 179,
+                      "prompt_tokens_details": {
+                        "cached_tokens": 0
+                      }
+                    }
+                  },
+                  {
+                    "stage": "questions",
+                    "model": "qwen-flash",
+                    "finishReason": "stop",
+                    "usage": {
+                      "total_tokens": 366,
+                      "completion_tokens": 61,
+                      "prompt_tokens": 305,
+                      "prompt_tokens_details": {
+                        "cached_tokens": 0
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "finalMessage": {
+          "id": "a999e682-bc4a-4e36-a934-bcfa7751470c",
+          "metadata": {
+            "model": "qwen-flash",
+            "state": "completed",
+            "stages": [
+              {
+                "stage": "summary",
+                "model": "qwen-flash",
+                "finishReason": "stop",
+                "usage": {
+                  "total_tokens": 275,
+                  "completion_tokens": 96,
+                  "prompt_tokens": 179,
+                  "prompt_tokens_details": {
+                    "cached_tokens": 0
+                  }
+                }
+              },
+              {
+                "stage": "questions",
+                "model": "qwen-flash",
+                "finishReason": "stop",
+                "usage": {
+                  "total_tokens": 366,
+                  "completion_tokens": 61,
+                  "prompt_tokens": 305,
+                  "prompt_tokens_details": {
+                    "cached_tokens": 0
+                  }
+                }
+              }
+            ]
+          },
+          "role": "assistant",
+          "parts": [
+            {
+              "type": "data-progress",
+              "id": "workflow-progress",
+              "data": {
+                "stage": "completed",
+                "label": "摘要和待确认问题均已完整结束"
+              }
+            },
+            {
+              "type": "step-start"
+            },
+            {
+              "type": "text",
+              "text": "共享书架计划10月12日下午开放，林晓负责图书整理，许宁负责借阅说明制作。书架与阅读桌已到位，图书限在活动室内阅读，不外借，每次限20人，使用后需归位。志愿者值班名单未定，开放起止时间待与场地管理员确认。借阅说明中损坏处理方式尚未讨论。材料整理完成后评估是否如期开放，暂不对外承诺。",
+              "state": "done"
+            },
+            {
+              "type": "step-start"
+            },
+            {
+              "type": "text",
+              "text": "1. 借阅说明中关于图书损坏的处理方式，是否已有初步意见或标准？  \n2. 志愿者值班名单的确定时间及负责人是谁？  \n3. 与场地管理员确认后的共享书架开放具体起止时间能否在今日内明确？",
+              "state": "done"
+            }
+          ]
+        }
+      },
+      "error": null
+    },
+    {
+      "id": "1692c1db-b70d-4461-9665-33ead969b100",
+      "material": "青禾社区共享书架筹备纪要（教学虚构）\n计划于10月12日下午开放一层共享书架，由林晓负责整理捐赠图书，许宁负责制作借阅说明。\n图书仅在社区活动室内阅读，暂不外借；每次开放预计接待20人，使用后请把图书放回原处。\n书架和阅读桌已经到位，志愿者值班名单尚未确定，现场开放的具体起止时间还需与场地管理员确认。\n借阅说明中的损坏处理方式也尚未讨论。先完成材料整理，再决定是否如期开放，不提前对外承诺。",
+      "state": "stopped",
+      "message": {
+        "id": "1692c1db-b70d-4461-9665-33ead969b100",
+        "metadata": {
+          "model": "qwen-flash",
+          "state": "stopped",
+          "stages": [
+            {
+              "stage": "summary",
+              "model": "qwen-flash",
+              "finishReason": "stop",
+              "usage": {
+                "total_tokens": 273,
+                "completion_tokens": 94,
+                "prompt_tokens": 179,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0
+                }
+              }
+            },
+            {
+              "stage": "questions",
+              "model": "qwen-flash",
+              "finishReason": null,
+              "usage": null
+            }
+          ]
+        },
+        "role": "assistant",
+        "parts": [
+          {
+            "type": "data-progress",
+            "id": "workflow-progress",
+            "data": {
+              "stage": "stopped",
+              "label": "已停止，收到的文字仍保留，任务未完成。"
+            }
+          },
+          {
+            "type": "step-start"
+          },
+          {
+            "type": "text",
+            "text": "共享书架计划10月12日下午开放，林晓负责图书整理，许宁负责借阅说明制作。书架与阅读桌已到位，图书仅限在活动室内阅读，不外借，每次限20人，使用后需归位。志愿者值班名单及开放具体时间待与场地管理员确认。借阅说明中损坏处理方式未定。材料整理完成后评估是否如期开放，暂不对外承诺。",
+            "state": "done"
+          },
+          {
+            "type": "step-start"
+          },
+          {
+            "type": "text",
+            "text": "1. 志愿者值班名单何时确定？是否需在开放前完成排班并",
+            "state": "streaming"
+          }
+        ]
+      },
+      "events": [
+        {
+          "elapsedMs": 6.1,
+          "event": {
+            "type": "start",
+            "messageId": "1692c1db-b70d-4461-9665-33ead969b100",
+            "messageMetadata": {
+              "model": "qwen-flash",
+              "state": "running",
+              "stages": []
+            }
+          }
+        },
+        {
+          "elapsedMs": 6.4,
+          "event": {
+            "type": "data-progress",
+            "id": "workflow-progress",
+            "data": {
+              "stage": "summary",
+              "label": "应用正在生成摘要"
+            }
+          }
+        },
+        {
+          "elapsedMs": 6.6,
+          "event": {
+            "type": "start-step"
+          }
+        },
+        {
+          "elapsedMs": 6.7,
+          "event": {
+            "type": "text-start",
+            "id": "summary"
+          }
+        },
+        {
+          "elapsedMs": 249.2,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "共享"
+          }
+        },
+        {
+          "elapsedMs": 253,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "书"
+          }
+        },
+        {
+          "elapsedMs": 257.6,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "架"
+          }
+        },
+        {
+          "elapsedMs": 262.1,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "计划"
+          }
+        },
+        {
+          "elapsedMs": 283.8,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "10月1"
+          }
+        },
+        {
+          "elapsedMs": 304.1,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "2日下午开放，"
+          }
+        },
+        {
+          "elapsedMs": 354.1,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "林晓负责图书"
+          }
+        },
+        {
+          "elapsedMs": 357.5,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "整理，许宁"
+          }
+        },
+        {
+          "elapsedMs": 365.9,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "负责借阅说明"
+          }
+        },
+        {
+          "elapsedMs": 387.1,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "制作。书架"
+          }
+        },
+        {
+          "elapsedMs": 438.4,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "与阅读桌已"
+          }
+        },
+        {
+          "elapsedMs": 440.5,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "到位，图书仅"
+          }
+        },
+        {
+          "elapsedMs": 449,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "限在活动室内"
+          }
+        },
+        {
+          "elapsedMs": 469.7,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "阅读，不外"
+          }
+        },
+        {
+          "elapsedMs": 518.3,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "借，每次限"
+          }
+        },
+        {
+          "elapsedMs": 520.2,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "20人，"
+          }
+        },
+        {
+          "elapsedMs": 532,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "使用后需归"
+          }
+        },
+        {
+          "elapsedMs": 553.1,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "位。志愿者值班"
+          }
+        },
+        {
+          "elapsedMs": 607.7,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "名单及开放具体"
+          }
+        },
+        {
+          "elapsedMs": 611.3,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "时间待与场地"
+          }
+        },
+        {
+          "elapsedMs": 617.1,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "管理员确认。借"
+          }
+        },
+        {
+          "elapsedMs": 636.6,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "阅说明中损坏"
+          }
+        },
+        {
+          "elapsedMs": 694.9,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "处理方式未定"
+          }
+        },
+        {
+          "elapsedMs": 697.1,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "。材料整理完成后"
+          }
+        },
+        {
+          "elapsedMs": 699.9,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "评估是否如期开放"
+          }
+        },
+        {
+          "elapsedMs": 749.6,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "，暂不对外"
+          }
+        },
+        {
+          "elapsedMs": 752.9,
+          "event": {
+            "type": "text-delta",
+            "id": "summary",
+            "delta": "承诺。"
+          }
+        },
+        {
+          "elapsedMs": 779.2,
+          "event": {
+            "type": "text-end",
+            "id": "summary"
+          }
+        },
+        {
+          "elapsedMs": 779.9,
+          "event": {
+            "type": "finish-step"
+          }
+        },
+        {
+          "elapsedMs": 780,
+          "event": {
+            "type": "data-progress",
+            "id": "workflow-progress",
+            "data": {
+              "stage": "questions",
+              "label": "摘要已结束，应用正在生成待确认问题"
+            }
+          }
+        },
+        {
+          "elapsedMs": 780.3,
+          "event": {
+            "type": "start-step"
+          }
+        },
+        {
+          "elapsedMs": 780.3,
+          "event": {
+            "type": "text-start",
+            "id": "questions"
+          }
+        },
+        {
+          "elapsedMs": 926.1,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": "1"
+          }
+        },
+        {
+          "elapsedMs": 930.1,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": "."
+          }
+        },
+        {
+          "elapsedMs": 939.2,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": " 志"
+          }
+        },
+        {
+          "elapsedMs": 960.7,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": "愿者值班名单"
+          }
+        },
+        {
+          "elapsedMs": 981.8,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": "何时确定？是否"
+          }
+        },
+        {
+          "elapsedMs": 1023.2,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": "需在开放前"
+          }
+        },
+        {
+          "elapsedMs": 1023.7,
+          "event": {
+            "type": "text-delta",
+            "id": "questions",
+            "delta": "完成排班并"
+          }
+        },
+        {
+          "elapsedMs": 1035,
+          "event": {
+            "type": "data-progress",
+            "id": "workflow-progress",
+            "data": {
+              "stage": "stopped",
+              "label": "已停止，收到的文字仍保留，任务未完成。"
+            }
+          }
+        },
+        {
+          "elapsedMs": 1035.6,
+          "event": {
+            "type": "message-metadata",
+            "messageMetadata": {
+              "model": "qwen-flash",
+              "state": "stopped",
+              "stages": [
+                {
+                  "stage": "summary",
+                  "model": "qwen-flash",
+                  "finishReason": "stop",
+                  "usage": {
+                    "total_tokens": 273,
+                    "completion_tokens": 94,
+                    "prompt_tokens": 179,
+                    "prompt_tokens_details": {
+                      "cached_tokens": 0
+                    }
+                  }
+                },
+                {
+                  "stage": "questions",
+                  "model": "qwen-flash",
+                  "finishReason": null,
+                  "usage": null
+                }
+              ]
+            }
+          }
+        },
+        {
+          "elapsedMs": 1035.9,
+          "event": {
+            "type": "abort",
+            "reason": "已停止，收到的文字仍保留，任务未完成。"
+          }
+        }
+      ],
+      "serverRecord": {
+        "id": "1692c1db-b70d-4461-9665-33ead969b100",
+        "material": "青禾社区共享书架筹备纪要（教学虚构）\n计划于10月12日下午开放一层共享书架，由林晓负责整理捐赠图书，许宁负责制作借阅说明。\n图书仅在社区活动室内阅读，暂不外借；每次开放预计接待20人，使用后请把图书放回原处。\n书架和阅读桌已经到位，志愿者值班名单尚未确定，现场开放的具体起止时间还需与场地管理员确认。\n借阅说明中的损坏处理方式也尚未讨论。先完成材料整理，再决定是否如期开放，不提前对外承诺。",
+        "startedAt": "2026-09-28T23:54:17.869Z",
+        "state": "stopped",
+        "durationMs": 1031.8,
+        "stages": [
+          {
+            "id": "1692c1db-b70d-4461-9665-33ead969b100-summary",
+            "stage": "summary",
+            "offsetMs": 0.1,
+            "startedAt": "2026-09-28T23:54:17.870Z",
+            "requestBody": "{\"model\":\"qwen-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"只依据工作纪要写一段约120字的简明摘要，区分已确定安排和未决事项。不补造事实，不提出问题，不加标题。\"},{\"role\":\"user\",\"content\":\"青禾社区共享书架筹备纪要（教学虚构）\\n计划于10月12日下午开放一层共享书架，由林晓负责整理捐赠图书，许宁负责制作借阅说明。\\n图书仅在社区活动室内阅读，暂不外借；每次开放预计接待20人，使用后请把图书放回原处。\\n书架和阅读桌已经到位，志愿者值班名单尚未确定，现场开放的具体起止时间还需与场地管理员确认。\\n借阅说明中的损坏处理方式也尚未讨论。先完成材料整理，再决定是否如期开放，不提前对外承诺。\"}],\"stream\":true,\"stream_options\":{\"include_usage\":true},\"enable_thinking\":false,\"temperature\":0,\"max_tokens\":256}",
+            "responseModel": "qwen-flash",
+            "httpStatus": 200,
+            "events": [
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null,\"choices\":[{\"logprobs\":null,\"index\":0,\"delta\":{\"content\":\"\",\"role\":\"assistant\"},\"finish_reason\":null}]}",
+                "elapsedMs": 246
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"共享\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 246
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"书\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 249.9
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"架\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 254.5
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"计划\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 258.5
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"10月1\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 280.6
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"2日下午开放，\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 300.8
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"林晓负责图书\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 350.7
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"整理，许宁\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 354.4
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"负责借阅说明\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 362.9
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"制作。书架\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 383.9
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"与阅读桌已\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 435.2
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"到位，图书仅\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 437.3
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"限在活动室内\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 445.7
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"阅读，不外\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 466.7
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"借，每次限\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 515
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"20人，\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 516.7
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"使用后需归\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 528.8
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"位。志愿者值班\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 549.9
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"名单及开放具体\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 604.4
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"时间待与场地\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 608.1
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"管理员确认。借\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 613.9
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"阅说明中损坏\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 633.3
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"处理方式未定\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 691.6
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"。材料整理完成后\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 694
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"评估是否如期开放\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 696.5
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"，暂不对外\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 746.2
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"承诺。\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 749.8
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[{\"delta\":{\"content\":\"\"},\"index\":0,\"finish_reason\":\"stop\",\"logprobs\":null}],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 774.2
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-c935d7ff-e0ec-96dd-b9f8-b892e942129f\",\"choices\":[],\"created\":1790639661,\"object\":\"chat.completion.chunk\",\"usage\":{\"total_tokens\":273,\"completion_tokens\":94,\"prompt_tokens\":179,\"prompt_tokens_details\":{\"cached_tokens\":0}}}",
+                "elapsedMs": 774.2
+              },
+              {
+                "data": "[DONE]",
+                "elapsedMs": 774.3
+              }
+            ],
+            "answer": "共享书架计划10月12日下午开放，林晓负责图书整理，许宁负责借阅说明制作。书架与阅读桌已到位，图书仅限在活动室内阅读，不外借，每次限20人，使用后需归位。志愿者值班名单及开放具体时间待与场地管理员确认。借阅说明中损坏处理方式未定。材料整理完成后评估是否如期开放，暂不对外承诺。",
+            "firstContentMs": 246,
+            "streamEndMs": 774.3,
+            "endedBy": "done",
+            "finishReason": "stop",
+            "usage": {
+              "total_tokens": 273,
+              "completion_tokens": 94,
+              "prompt_tokens": 179,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              }
+            }
+          },
+          {
+            "id": "1692c1db-b70d-4461-9665-33ead969b100-questions",
+            "stage": "questions",
+            "offsetMs": 775,
+            "startedAt": "2026-09-28T23:54:18.645Z",
+            "requestBody": "{\"model\":\"qwen-flash\",\"messages\":[{\"role\":\"system\",\"content\":\"只依据工作纪要及摘要，提出2至3个需要负责人进一步确认的问题。只写编号问题，每个问题单独一行，以1.、2.、3.依次开始；不加标题、开场或答案，不把已经确定的安排当作未决事项。\"},{\"role\":\"user\",\"content\":\"工作纪要：\\n青禾社区共享书架筹备纪要（教学虚构）\\n计划于10月12日下午开放一层共享书架，由林晓负责整理捐赠图书，许宁负责制作借阅说明。\\n图书仅在社区活动室内阅读，暂不外借；每次开放预计接待20人，使用后请把图书放回原处。\\n书架和阅读桌已经到位，志愿者值班名单尚未确定，现场开放的具体起止时间还需与场地管理员确认。\\n借阅说明中的损坏处理方式也尚未讨论。先完成材料整理，再决定是否如期开放，不提前对外承诺。\\n\\n刚生成的摘要：\\n共享书架计划10月12日下午开放，林晓负责图书整理，许宁负责借阅说明制作。书架与阅读桌已到位，图书仅限在活动室内阅读，不外借，每次限20人，使用后需归位。志愿者值班名单及开放具体时间待与场地管理员确认。借阅说明中损坏处理方式未定。材料整理完成后评估是否如期开放，暂不对外承诺。\"}],\"stream\":true,\"stream_options\":{\"include_usage\":true},\"enable_thinking\":false,\"temperature\":0,\"max_tokens\":384}",
+            "responseModel": "qwen-flash",
+            "httpStatus": 200,
+            "events": [
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-ed13f53f-e89d-9378-8b9e-fa3e31f85090\",\"created\":1790639662,\"object\":\"chat.completion.chunk\",\"usage\":null,\"choices\":[{\"logprobs\":null,\"index\":0,\"delta\":{\"content\":\"\",\"role\":\"assistant\"},\"finish_reason\":null}]}",
+                "elapsedMs": 148
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-ed13f53f-e89d-9378-8b9e-fa3e31f85090\",\"choices\":[{\"delta\":{\"content\":\"1\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639662,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 148
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-ed13f53f-e89d-9378-8b9e-fa3e31f85090\",\"choices\":[{\"delta\":{\"content\":\".\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639662,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 152.1
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-ed13f53f-e89d-9378-8b9e-fa3e31f85090\",\"choices\":[{\"delta\":{\"content\":\" 志\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639662,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 161.2
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-ed13f53f-e89d-9378-8b9e-fa3e31f85090\",\"choices\":[{\"delta\":{\"content\":\"愿者值班名单\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639662,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 182.5
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-ed13f53f-e89d-9378-8b9e-fa3e31f85090\",\"choices\":[{\"delta\":{\"content\":\"何时确定？是否\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639662,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 203.6
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-ed13f53f-e89d-9378-8b9e-fa3e31f85090\",\"choices\":[{\"delta\":{\"content\":\"需在开放前\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639662,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 245.1
+              },
+              {
+                "data": "{\"model\":\"qwen-flash\",\"id\":\"chatcmpl-ed13f53f-e89d-9378-8b9e-fa3e31f85090\",\"choices\":[{\"delta\":{\"content\":\"完成排班并\"},\"index\":0,\"finish_reason\":null,\"logprobs\":null}],\"created\":1790639662,\"object\":\"chat.completion.chunk\",\"usage\":null}",
+                "elapsedMs": 245.4
+              }
+            ],
+            "answer": "1. 志愿者值班名单何时确定？是否需在开放前完成排班并",
+            "firstContentMs": 148,
+            "streamEndMs": null,
+            "endedBy": null,
+            "finishReason": null,
+            "usage": null,
+            "error": {
+              "code": "REQUEST_CANCELLED",
+              "message": "本次请求已取消。"
+            }
+          }
+        ],
+        "uiEvents": [
+          {
+            "elapsedMs": 0.1,
+            "event": {
+              "type": "start",
+              "messageId": "1692c1db-b70d-4461-9665-33ead969b100",
+              "messageMetadata": {
+                "model": "qwen-flash",
+                "state": "running",
+                "stages": []
+              }
+            }
+          },
+          {
+            "elapsedMs": 0.1,
+            "event": {
+              "type": "data-progress",
+              "id": "workflow-progress",
+              "data": {
+                "stage": "summary",
+                "label": "应用正在生成摘要"
+              }
+            }
+          },
+          {
+            "elapsedMs": 0.2,
+            "event": {
+              "type": "start-step"
+            }
+          },
+          {
+            "elapsedMs": 0.2,
+            "event": {
+              "type": "text-start",
+              "id": "summary"
+            }
+          },
+          {
+            "elapsedMs": 246.2,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "共享"
+            }
+          },
+          {
+            "elapsedMs": 250.1,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "书"
+            }
+          },
+          {
+            "elapsedMs": 254.7,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "架"
+            }
+          },
+          {
+            "elapsedMs": 258.7,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "计划"
+            }
+          },
+          {
+            "elapsedMs": 280.8,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "10月1"
+            }
+          },
+          {
+            "elapsedMs": 301,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "2日下午开放，"
+            }
+          },
+          {
+            "elapsedMs": 350.9,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "林晓负责图书"
+            }
+          },
+          {
+            "elapsedMs": 354.6,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "整理，许宁"
+            }
+          },
+          {
+            "elapsedMs": 363,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "负责借阅说明"
+            }
+          },
+          {
+            "elapsedMs": 384.1,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "制作。书架"
+            }
+          },
+          {
+            "elapsedMs": 435.4,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "与阅读桌已"
+            }
+          },
+          {
+            "elapsedMs": 437.5,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "到位，图书仅"
+            }
+          },
+          {
+            "elapsedMs": 445.9,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "限在活动室内"
+            }
+          },
+          {
+            "elapsedMs": 466.9,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "阅读，不外"
+            }
+          },
+          {
+            "elapsedMs": 515.2,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "借，每次限"
+            }
+          },
+          {
+            "elapsedMs": 516.9,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "20人，"
+            }
+          },
+          {
+            "elapsedMs": 529,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "使用后需归"
+            }
+          },
+          {
+            "elapsedMs": 550.1,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "位。志愿者值班"
+            }
+          },
+          {
+            "elapsedMs": 604.6,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "名单及开放具体"
+            }
+          },
+          {
+            "elapsedMs": 608.3,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "时间待与场地"
+            }
+          },
+          {
+            "elapsedMs": 614,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "管理员确认。借"
+            }
+          },
+          {
+            "elapsedMs": 633.4,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "阅说明中损坏"
+            }
+          },
+          {
+            "elapsedMs": 691.8,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "处理方式未定"
+            }
+          },
+          {
+            "elapsedMs": 694.2,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "。材料整理完成后"
+            }
+          },
+          {
+            "elapsedMs": 696.7,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "评估是否如期开放"
+            }
+          },
+          {
+            "elapsedMs": 746.4,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "，暂不对外"
+            }
+          },
+          {
+            "elapsedMs": 749.9,
+            "event": {
+              "type": "text-delta",
+              "id": "summary",
+              "delta": "承诺。"
+            }
+          },
+          {
+            "elapsedMs": 774.9,
+            "event": {
+              "type": "text-end",
+              "id": "summary"
+            }
+          },
+          {
+            "elapsedMs": 775,
+            "event": {
+              "type": "finish-step"
+            }
+          },
+          {
+            "elapsedMs": 775,
+            "event": {
+              "type": "data-progress",
+              "id": "workflow-progress",
+              "data": {
+                "stage": "questions",
+                "label": "摘要已结束，应用正在生成待确认问题"
+              }
+            }
+          },
+          {
+            "elapsedMs": 775,
+            "event": {
+              "type": "start-step"
+            }
+          },
+          {
+            "elapsedMs": 775,
+            "event": {
+              "type": "text-start",
+              "id": "questions"
+            }
+          },
+          {
+            "elapsedMs": 923,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": "1"
+            }
+          },
+          {
+            "elapsedMs": 927.2,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": "."
+            }
+          },
+          {
+            "elapsedMs": 936.2,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": " 志"
+            }
+          },
+          {
+            "elapsedMs": 957.6,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": "愿者值班名单"
+            }
+          },
+          {
+            "elapsedMs": 978.7,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": "何时确定？是否"
+            }
+          },
+          {
+            "elapsedMs": 1020.2,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": "需在开放前"
+            }
+          },
+          {
+            "elapsedMs": 1020.5,
+            "event": {
+              "type": "text-delta",
+              "id": "questions",
+              "delta": "完成排班并"
+            }
+          },
+          {
+            "elapsedMs": 1031.7,
+            "event": {
+              "type": "data-progress",
+              "id": "workflow-progress",
+              "data": {
+                "stage": "stopped",
+                "label": "已停止，收到的文字仍保留，任务未完成。"
+              }
+            }
+          },
+          {
+            "elapsedMs": 1031.8,
+            "event": {
+              "type": "message-metadata",
+              "messageMetadata": {
+                "model": "qwen-flash",
+                "state": "stopped",
+                "stages": [
+                  {
+                    "stage": "summary",
+                    "model": "qwen-flash",
+                    "finishReason": "stop",
+                    "usage": {
+                      "total_tokens": 273,
+                      "completion_tokens": 94,
+                      "prompt_tokens": 179,
+                      "prompt_tokens_details": {
+                        "cached_tokens": 0
+                      }
+                    }
+                  },
+                  {
+                    "stage": "questions",
+                    "model": "qwen-flash",
+                    "finishReason": null,
+                    "usage": null
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "elapsedMs": 1031.8,
+            "event": {
+              "type": "abort",
+              "reason": "已停止，收到的文字仍保留，任务未完成。"
+            }
+          }
+        ],
+        "finalMessage": {
+          "id": "1692c1db-b70d-4461-9665-33ead969b100",
+          "metadata": {
+            "model": "qwen-flash",
+            "state": "stopped",
+            "stages": [
+              {
+                "stage": "summary",
+                "model": "qwen-flash",
+                "finishReason": "stop",
+                "usage": {
+                  "total_tokens": 273,
+                  "completion_tokens": 94,
+                  "prompt_tokens": 179,
+                  "prompt_tokens_details": {
+                    "cached_tokens": 0
+                  }
+                }
+              },
+              {
+                "stage": "questions",
+                "model": "qwen-flash",
+                "finishReason": null,
+                "usage": null
+              }
+            ]
+          },
+          "role": "assistant",
+          "parts": [
+            {
+              "type": "data-progress",
+              "id": "workflow-progress",
+              "data": {
+                "stage": "stopped",
+                "label": "已停止，收到的文字仍保留，任务未完成。"
+              }
+            },
+            {
+              "type": "step-start"
+            },
+            {
+              "type": "text",
+              "text": "共享书架计划10月12日下午开放，林晓负责图书整理，许宁负责借阅说明制作。书架与阅读桌已到位，图书仅限在活动室内阅读，不外借，每次限20人，使用后需归位。志愿者值班名单及开放具体时间待与场地管理员确认。借阅说明中损坏处理方式未定。材料整理完成后评估是否如期开放，暂不对外承诺。",
+              "state": "done"
+            },
+            {
+              "type": "step-start"
+            },
+            {
+              "type": "text",
+              "text": "1. 志愿者值班名单何时确定？是否需在开放前完成排班并",
+              "state": "streaming"
+            }
+          ]
+        },
+        "error": "已停止，收到的文字仍保留，任务未完成。"
+      },
+      "error": "已停止，收到的文字仍保留，任务未完成。"
+    }
+  ]
+}

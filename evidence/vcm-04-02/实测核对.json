@@ -1,0 +1,354 @@
+{
+  "verifiedCode": "bc6325ef26487866203fe83543be416d4510c676",
+  "recordSha256": "ed55fb5db98890efb90f4bbb5f365a0c952582b3225ecd2f2d6b06472828ce04",
+  "assertions": "正常完成与实际停止均通过；双侧事件一致；历史快照不再变化；按文本段重建与模型返回一致",
+  "attempts": [
+    {
+      "attempt": 1,
+      "state": "completed",
+      "uiEventCount": 57,
+      "progress": [
+        "summary",
+        "questions",
+        "completed"
+      ],
+      "keyEvents": [
+        {
+          "elapsedMs": 30.5,
+          "event": {
+            "type": "start",
+            "messageId": "a999e682-bc4a-4e36-a934-bcfa7751470c",
+            "messageMetadata": {
+              "model": "qwen-flash",
+              "state": "running",
+              "stages": []
+            }
+          }
+        },
+        {
+          "elapsedMs": 32.1,
+          "event": {
+            "type": "data-progress",
+            "id": "workflow-progress",
+            "data": {
+              "stage": "summary",
+              "label": "应用正在生成摘要"
+            }
+          }
+        },
+        {
+          "elapsedMs": 32.3,
+          "event": {
+            "type": "start-step"
+          }
+        },
+        {
+          "elapsedMs": 32.4,
+          "event": {
+            "type": "text-start",
+            "id": "summary"
+          }
+        },
+        {
+          "elapsedMs": 835.9,
+          "event": {
+            "type": "text-end",
+            "id": "summary"
+          }
+        },
+        {
+          "elapsedMs": 836.7,
+          "event": {
+            "type": "finish-step"
+          }
+        },
+        {
+          "elapsedMs": 836.8,
+          "event": {
+            "type": "data-progress",
+            "id": "workflow-progress",
+            "data": {
+              "stage": "questions",
+              "label": "摘要已结束，应用正在生成待确认问题"
+            }
+          }
+        },
+        {
+          "elapsedMs": 837.2,
+          "event": {
+            "type": "start-step"
+          }
+        },
+        {
+          "elapsedMs": 837.2,
+          "event": {
+            "type": "text-start",
+            "id": "questions"
+          }
+        },
+        {
+          "elapsedMs": 1433.4,
+          "event": {
+            "type": "text-end",
+            "id": "questions"
+          }
+        },
+        {
+          "elapsedMs": 1434.1,
+          "event": {
+            "type": "finish-step"
+          }
+        },
+        {
+          "elapsedMs": 1434.2,
+          "event": {
+            "type": "data-progress",
+            "id": "workflow-progress",
+            "data": {
+              "stage": "completed",
+              "label": "摘要和待确认问题均已完整结束"
+            }
+          }
+        },
+        {
+          "elapsedMs": 1434.6,
+          "event": {
+            "type": "finish",
+            "finishReason": "stop",
+            "messageMetadata": {
+              "model": "qwen-flash",
+              "state": "completed",
+              "stages": [
+                {
+                  "stage": "summary",
+                  "model": "qwen-flash",
+                  "finishReason": "stop",
+                  "usage": {
+                    "total_tokens": 275,
+                    "completion_tokens": 96,
+                    "prompt_tokens": 179,
+                    "prompt_tokens_details": {
+                      "cached_tokens": 0
+                    }
+                  }
+                },
+                {
+                  "stage": "questions",
+                  "model": "qwen-flash",
+                  "finishReason": "stop",
+                  "usage": {
+                    "total_tokens": 366,
+                    "completion_tokens": 61,
+                    "prompt_tokens": 305,
+                    "prompt_tokens_details": {
+                      "cached_tokens": 0
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "stages": [
+        {
+          "stage": "summary",
+          "responseModel": "qwen-flash",
+          "firstContentMs": 262.3,
+          "streamEndMs": 810.9,
+          "endedBy": "done",
+          "finishReason": "stop",
+          "usage": {
+            "total_tokens": 275,
+            "completion_tokens": 96,
+            "prompt_tokens": 179,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "answer": "共享书架计划10月12日下午开放，林晓负责图书整理，许宁负责借阅说明制作。书架与阅读桌已到位，图书限在活动室内阅读，不外借，每次限20人，使用后需归位。志愿者值班名单未定，开放起止时间待与场地管理员确认。借阅说明中损坏处理方式尚未讨论。材料整理完成后评估是否如期开放，暂不对外承诺。"
+        },
+        {
+          "stage": "questions",
+          "responseModel": "qwen-flash",
+          "firstContentMs": 255,
+          "streamEndMs": 597.3,
+          "endedBy": "done",
+          "finishReason": "stop",
+          "usage": {
+            "total_tokens": 366,
+            "completion_tokens": 61,
+            "prompt_tokens": 305,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "answer": "1. 借阅说明中关于图书损坏的处理方式，是否已有初步意见或标准？  \n2. 志愿者值班名单的确定时间及负责人是谁？  \n3. 与场地管理员确认后的共享书架开放具体起止时间能否在今日内明确？"
+        }
+      ]
+    },
+    {
+      "attempt": 2,
+      "state": "stopped",
+      "uiEventCount": 46,
+      "progress": [
+        "summary",
+        "questions",
+        "stopped"
+      ],
+      "keyEvents": [
+        {
+          "elapsedMs": 6.1,
+          "event": {
+            "type": "start",
+            "messageId": "1692c1db-b70d-4461-9665-33ead969b100",
+            "messageMetadata": {
+              "model": "qwen-flash",
+              "state": "running",
+              "stages": []
+            }
+          }
+        },
+        {
+          "elapsedMs": 6.4,
+          "event": {
+            "type": "data-progress",
+            "id": "workflow-progress",
+            "data": {
+              "stage": "summary",
+              "label": "应用正在生成摘要"
+            }
+          }
+        },
+        {
+          "elapsedMs": 6.6,
+          "event": {
+            "type": "start-step"
+          }
+        },
+        {
+          "elapsedMs": 6.7,
+          "event": {
+            "type": "text-start",
+            "id": "summary"
+          }
+        },
+        {
+          "elapsedMs": 779.2,
+          "event": {
+            "type": "text-end",
+            "id": "summary"
+          }
+        },
+        {
+          "elapsedMs": 779.9,
+          "event": {
+            "type": "finish-step"
+          }
+        },
+        {
+          "elapsedMs": 780,
+          "event": {
+            "type": "data-progress",
+            "id": "workflow-progress",
+            "data": {
+              "stage": "questions",
+              "label": "摘要已结束，应用正在生成待确认问题"
+            }
+          }
+        },
+        {
+          "elapsedMs": 780.3,
+          "event": {
+            "type": "start-step"
+          }
+        },
+        {
+          "elapsedMs": 780.3,
+          "event": {
+            "type": "text-start",
+            "id": "questions"
+          }
+        },
+        {
+          "elapsedMs": 1035,
+          "event": {
+            "type": "data-progress",
+            "id": "workflow-progress",
+            "data": {
+              "stage": "stopped",
+              "label": "已停止，收到的文字仍保留，任务未完成。"
+            }
+          }
+        },
+        {
+          "elapsedMs": 1035.6,
+          "event": {
+            "type": "message-metadata",
+            "messageMetadata": {
+              "model": "qwen-flash",
+              "state": "stopped",
+              "stages": [
+                {
+                  "stage": "summary",
+                  "model": "qwen-flash",
+                  "finishReason": "stop",
+                  "usage": {
+                    "total_tokens": 273,
+                    "completion_tokens": 94,
+                    "prompt_tokens": 179,
+                    "prompt_tokens_details": {
+                      "cached_tokens": 0
+                    }
+                  }
+                },
+                {
+                  "stage": "questions",
+                  "model": "qwen-flash",
+                  "finishReason": null,
+                  "usage": null
+                }
+              ]
+            }
+          }
+        },
+        {
+          "elapsedMs": 1035.9,
+          "event": {
+            "type": "abort",
+            "reason": "已停止，收到的文字仍保留，任务未完成。"
+          }
+        }
+      ],
+      "stages": [
+        {
+          "stage": "summary",
+          "responseModel": "qwen-flash",
+          "firstContentMs": 246,
+          "streamEndMs": 774.3,
+          "endedBy": "done",
+          "finishReason": "stop",
+          "usage": {
+            "total_tokens": 273,
+            "completion_tokens": 94,
+            "prompt_tokens": 179,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "answer": "共享书架计划10月12日下午开放，林晓负责图书整理，许宁负责借阅说明制作。书架与阅读桌已到位，图书仅限在活动室内阅读，不外借，每次限20人，使用后需归位。志愿者值班名单及开放具体时间待与场地管理员确认。借阅说明中损坏处理方式未定。材料整理完成后评估是否如期开放，暂不对外承诺。"
+        },
+        {
+          "stage": "questions",
+          "responseModel": "qwen-flash",
+          "firstContentMs": 148,
+          "streamEndMs": null,
+          "endedBy": null,
+          "finishReason": null,
+          "usage": null,
+          "answer": "1. 志愿者值班名单何时确定？是否需在开放前完成排班并"
+        }
+      ]
+    }
+  ]
+}
