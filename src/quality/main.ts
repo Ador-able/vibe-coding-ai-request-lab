@@ -5,8 +5,7 @@ import { QUALITY_CONDITIONS, type Batch, type CaseResult, type QualityCase, type
 document.querySelector('#app')!.innerHTML = `
   <header><a href="/">请求观察室</a><a href="/context.html">上下文保留实验</a><span class="eyebrow">材料对照实验</span>
     <h1>材料对照</h1><p>改变材料长度、位置和干扰，比较提取结果与引用。</p></header>
-  <section class="run-panel"><div><strong>固定 6 种条件 × 样例 A / B</strong><p>每种条件 2 份教学虚构资料</p></div><button id="run" disabled>运行 12 个样例</button></section>
-  <p class="note">调用模型 12 次，按次计费。</p>
+  <section class="run-panel"><div><p class="run-description">6 种材料条件，每种比较样例 A / B</p><p>教学虚构资料 · 本次调用模型 12 次，按次计费</p></div><button id="run" disabled>运行 12 个样例</button></section>
   <p id="status" role="status">正在读取合成材料……</p><progress id="progress" max="12" value="0" hidden></progress>
   <section id="observations" hidden><div class="result-toolbar"><label for="batch">查看运行记录</label><select id="batch"></select><button id="download" class="secondary">下载这次运行</button></div>
     <p class="note">每种条件最多 2 例，不代表整体准确率。</p>

@@ -1,6 +1,6 @@
 @import '../quality/style.css';
 .run-panel { align-items: flex-start; }
-.run-panel strong { font-size: 16px; line-height: 1.9; font-weight: 500; }
+.run-panel .run-description { line-height: 1.65; }
 #comparison { margin-top: 22px; padding: 22px; background: #fff; border: 1px solid #d1e0e2; border-radius: 12px; }
 table { min-width: 920px; }
 td, th { font-size: 13px; }

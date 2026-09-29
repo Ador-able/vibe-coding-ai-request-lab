@@ -12,7 +12,7 @@ app.innerHTML = `
     <p>逐次比较输入长度、重复前缀与输出长度。每次运行调用模型 1 次。</p>
   </header>
   <section class="experiment">
-    <div class="section-heading"><h2>${QUESTION}</h2></div>
+    <p class="question">${QUESTION}</p>
     <p class="note">按顺序各运行一次，比较等待时间与实际用量。</p>
     <div class="table-scroll"><table><thead><tr><th>条件</th><th>操作</th><th>首段正文</th><th>流结束</th><th>输入 token</th><th>其中命中缓存</th><th>输出 token</th></tr></thead><tbody id="comparison-body"></tbody></table></div>
     <p id="status" role="status" aria-live="polite">先运行短材料，观察首段正文何时出现。</p>

@@ -8,7 +8,7 @@ app.innerHTML = `<header><a href="/">请求观察室</a><span class="eyebrow">�
   <h1>活动共写</h1><p>比较两个方向，提出选择或纠正，再看 AI 怎样改写。</p></header>
   <section class="facts"><h2>已有活动资料 · 教学虚构</h2><p id="facts"></p></section>
   <section id="conversation" hidden><div class="section-heading"><h2>共写记录</h2><button id="copy" class="secondary" type="button">复制最新回答</button></div><div id="turns"></div></section>
-  <form id="compose"><label id="input-label" for="input">先告诉 AI 我们想比较什么</label>
+  <form id="compose"><label id="input-label" for="input">本轮要求</label>
     <textarea id="input" rows="5" maxlength="6000" required></textarea>
     <div class="compose-actions"><p class="note">每次提交调用模型 1 次。</p><button id="send" type="submit">生成两个方向</button></div>
   </form>
@@ -88,7 +88,7 @@ element<HTMLFormElement>('compose').addEventListener('submit', async (event) => 
     } else {
       history = acceptTurn(history, data.result);
       input.value = ''; input.placeholder = '写下我们选择什么、为什么这样选，以及需要补充或纠正的地方。';
-      element('input-label').textContent = '读完后，告诉 AI 我们的判断'; element('send').textContent = '发送反馈';
+      element('input-label').textContent = '下一轮反馈'; element('send').textContent = '发送反馈';
       status.textContent = '回答已保留。我们可以继续提出选择、补充或纠正。'; renderHistory();
     }
   } catch (error) {

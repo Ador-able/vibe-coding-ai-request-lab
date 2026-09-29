@@ -5,7 +5,7 @@ import type { Source, TEACHING_NOTE } from './materials.ts';
 
 document.querySelector('#app')!.innerHTML = `
   <header><a href="/">请求观察室</a><span class="eyebrow">材料选择实验</span><h1>材料与记忆</h1><p>比较全文、选读和摘要；再试着用任务便笺开启新会话。</p></header>
-  <section class="run-panel"><div><strong id="question"></strong><p>10 份教学虚构资料 · 每次比较调用模型 5 次</p></div><button id="start" disabled>比较三条流程</button></section>
+  <section class="run-panel"><div><p class="run-description" id="question"></p><p>10 份教学虚构资料 · 每次比较调用模型 5 次</p></div><button id="start" disabled>比较三条流程</button></section>
   <p id="status" role="status">正在载入资料……</p>
   <section id="comparison" hidden><h2>三条流程的实际结果</h2><p class="note">对照最后一次输入与完整流程用量；回答需自行核对。</p><div class="table-scroll"><table><thead><tr><th>流程</th><th>实际调用</th><th>最后回答输入</th><th>整链输入</th><th>整链输出</th><th>输入＋输出</th><th>实际回答</th></tr></thead><tbody id="results"></tbody></table></div></section>
   <details id="request-detail" hidden><summary id="request-title">查看完整请求记录</summary><div id="request-content" class="inspector-body"></div></details>

@@ -1,7 +1,6 @@
 @import '../context/style.css';
 main { max-width: 1260px; }
 .experiment { padding: 24px; border: 1px solid #c8dcdf; border-radius: 12px; background: white; }
-.experiment h2 { font-size: 18px; }
 table { min-width: 990px; }
 td, th { font-size: 13px; }
 td strong { font-size: 14px; }
@@ -15,7 +14,7 @@ td button { font-size: 13px; padding: 9px 12px; }
 .json pre, #materials-content { max-height: 420px; overflow: auto; }
 .guide-body > p { font-size: 14px; color: #355864; }
 .badge { font-size: 13px; }
-@media (max-width: 760px) { .experiment { padding: 18px; } .download-bar { align-items: flex-start; flex-direction: column; gap: 8px; } .experiment h2 { font-size: 16px; line-height: 1.6; } }
+@media (max-width: 760px) { .experiment { padding: 18px; } .download-bar { align-items: flex-start; flex-direction: column; gap: 8px; } }
 
 .experiment { background: white; border-color: #dce3eb; box-shadow: none; border-radius: 8px; }
 .answer-area { background: #f7f9fb; border-color: #dde3eb; }

@@ -6,7 +6,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <header><span class="eyebrow">AI 实验</span><h1>请求观察室</h1><p>提一个问题，看看回答从哪里来。</p></header>
   <section class="workspace">
     <form id="question-form">
-      <label for="question">我们想问什么？</label>
+      <label for="question">问题</label>
       <textarea id="question" rows="4" maxlength="2000" required placeholder="例如：用两句话解释，为什么浏览器页面里不应该放 API 密钥？"></textarea>
       <div class="actions"><span id="status" role="status">每次发送都是一次独立提问。</span><button type="submit">发送问题 <span aria-hidden="true">↗</span></button></div>
     </form>

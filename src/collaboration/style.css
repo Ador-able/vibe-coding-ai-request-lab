@@ -12,7 +12,7 @@ main { max-width: 980px; }
 .turn-body > .small-label:not(:first-child) { border-top: 1px solid #dfebed; padding-top: 16px; margin-top: 18px; }
 .previous-turn .turn-body { padding: 0 20px 16px; }
 #compose { background: white; border: 1px solid #c9dfe2; border-radius: 9px; padding: 22px; }
-#input-label { display: block; font-size: 16px; font-weight: 600; margin-bottom: 14px; }
+#input-label { display: block; font-size: 14px; font-weight: 400; margin-bottom: 10px; }
 textarea { width: 100%; resize: vertical; min-height: 125px; border: 1px solid #afc9ce; border-radius: 6px; padding: 12px; font: inherit; font-size: 14px; line-height: 1.8; color: #173b46; background: #fbfdfd; }
 textarea:focus-visible { outline: 2px solid #458f96; outline-offset: 2px; }
 .compose-actions, .record-bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
