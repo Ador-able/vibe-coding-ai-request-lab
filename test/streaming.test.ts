@@ -51,24 +51,34 @@ test('两个真实HTTP子流合成一条消息，同ID进度更新；空增量�
     assert.equal(result.message.metadata?.state, 'completed'); assert.equal(result.message.metadata?.stages.length, 2);
     assert(result.events.filter((event) => event.type === 'text-delta').every((event) => event.delta.length > 0));
     assert.deepEqual(result.events, result.record.uiEvents.map((item) => item.event));
-    result.record.stages.forEach((stage, i) => { assert.equal(stage.requestBody, bodies[i]); assert.equal(stage.finishReason, 'stop'); assert.equal(stage.endedBy, 'done'); assert.deepEqual(stage.usage, { prompt_tokens: 30, completion_tokens: 12 }); });
+    result.record.stages.forEach((stage, i) => {
+      assert.equal(stage.requestBody, bodies[i]); assert.equal(stage.finishReason, 'stop'); assert.equal(stage.sdkFinishReason, 'stop');
+      assert.deepEqual(stage.usage, { prompt_tokens: 30, completion_tokens: 12 });
+      assert.equal(stage.providerChunks.length, 4);
+      const request = JSON.parse(stage.requestBody);
+      assert.equal(request.enable_thinking, false); assert.equal(request.temperature, 0);
+      assert.deepEqual(request.stream_options, { include_usage: true });
+      assert.equal(request.max_tokens, i === 0 ? 256 : 384);
+    });
     assert(JSON.parse(bodies[1]).messages[1].content.includes(result.record.stages[0].answer));
     assert(!JSON.stringify(result).includes('test-private-key')); assert(!JSON.stringify(result).includes(base));
   } finally { await close(backend); await close(upstream); }
 });
 
-test('截断、问题数量不符和流中异常都保留已收文字，不产生任务完成事件', async () => {
-  for (const scenario of ['length', 'questions', 'broken'] as const) {
+test('HTTP错误不重试，截断、问题数量不符和流中异常不产生任务完成事件', async () => {
+  for (const scenario of ['http', 'length', 'questions', 'broken'] as const) {
     let calls = 0;
     const upstream = createServer(async (req, res) => {
       for await (const _part of req) { /* 读取测试请求。 */ } calls++;
-      if (scenario === 'broken') { res.setHeader('Content-Type', 'text/event-stream'); res.write(delta('已收到部分摘要')); res.end('data: {"error":{"message":"test-secret-provider-error"}}\r\n\r\n'); }
+      if (scenario === 'http') { res.statusCode = 429; res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify({ error: { message: 'test-secret-provider-error' } })); }
+      else if (scenario === 'broken') { res.setHeader('Content-Type', 'text/event-stream'); res.write(delta('已收到部分摘要')); res.end('data: {"error":{"message":"test-secret-provider-error"}}\r\n\r\n'); }
       else await send(res, calls === 1 ? '计划尚待确认。' : '1. 只有一个问题？', scenario === 'length' ? 'length' : 'stop');
     });
     const base = await listen(upstream); const backend = createServer(createStreamingApp({ API_BASE_URL: base, API_KEY: 'test-key', MODEL: 'stream-test' })); const url = await listen(backend);
     try {
       const result = await client(url, `${scenario}-run`);
-      assert.equal(result.record.state, 'failed'); assert(result.message.parts.some((part) => part.type === 'text' && part.text.length > 0));
+      assert.equal(result.record.state, 'failed');
+      assert.equal(result.message.parts.some((part) => part.type === 'text' && part.text.length > 0), scenario !== 'http');
       assert(!result.events.some((event) => event.type === 'finish')); assert(result.events.some((event) => event.type === 'error'));
       assert.equal(calls, scenario === 'questions' ? 2 : 1); assert.equal(result.message.metadata?.state, 'failed');
       assert(!JSON.stringify(result).includes('test-secret-provider-error'));
@@ -87,6 +97,7 @@ test('按请求ID停止会中止上游，旧请求的停止操作不影响新请
   try {
     const first = await client(url, 'first-run', async (event) => { if (event.type === 'text-delta') await stop('first-run'); });
     assert.equal(first.record.state, 'stopped'); assert.equal(calls, 1); assert(first.events.some((event) => event.type === 'abort')); assert(!first.events.some((event) => event.type === 'finish'));
+    assert.equal(first.record.stages[0].usage, null); assert.equal(first.record.stages[0].finishReason, null);
     const second = await client(url, 'second-run', async (event) => {
       if (event.type !== 'text-delta') return;
       await stop('first-run');
@@ -95,6 +106,22 @@ test('按请求ID停止会中止上游，旧请求的停止操作不影响新请
     });
     assert.equal(second.record.state, 'stopped'); assert.equal(calls, 2);
     await new Promise<void>((resolve) => setImmediate(resolve)); assert.deepEqual(closed.sort(), ['1', '2']);
+  } finally { await close(backend); await close(upstream); }
+});
+
+test('供应商未报告用量时保持未知，不能用SDK默认值冒充零用量', async () => {
+  let calls = 0;
+  const upstream = createServer(async (req, res) => {
+    for await (const _part of req) {} calls++;
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.end(delta(calls === 1 ? '仍有事项待定。' : '1. 何时确定开放时间？\n2. 谁负责安排？') + delta('', 'stop') + 'data: [DONE]\r\n\r\n');
+  });
+  const base = await listen(upstream); const backend = createServer(createStreamingApp({ API_BASE_URL: base, API_KEY: 'test-key', MODEL: 'stream-test' })); const url = await listen(backend);
+  try {
+    const result = await client(url, 'unknown-usage');
+    assert.equal(result.record.state, 'completed'); assert.equal(calls, 2);
+    assert(result.record.stages.every((stage) => stage.usage === null));
+    assert(result.message.metadata?.stages.every((stage) => stage.usage === null));
   } finally { await close(backend); await close(upstream); }
 });
 

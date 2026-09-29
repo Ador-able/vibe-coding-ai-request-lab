@@ -482,14 +482,16 @@ git switch -c my-structured-lab-retry vcm-04-01-end
 
 “停止”按本次请求编号取消上游，保留收到的文字并标记未完成。关闭页面或断开连接也取消上游，不继续后台生成。截断、流中异常、问题数量不符均不显示完成；原始文字与已收事件保留。页面不会自动滚动，因此上滚查阅原文时不会被拉回底部。
 
-“本次记录”列出实际已收到的UI事件，不是回放中的生成。下载内容包括实际请求体、供应商正常SSE事件及相对到达时间、结束原因、用量、UI事件和最终消息；不包含认证头与私密服务地址。供应商错误原文不公开，只保留安全错误说明。UI计时和每个上游阶段的计时起点不同；事件块不等于单个token。
+“本次记录”列出实际已收到的UI事件，不是回放中的生成。下载包含SDK实际发送的请求体、透传的供应商JSON片段及相对到达时间、结束原因、原始用量、UI事件和最终消息；不包含认证头、私密服务地址、SSE分隔符或供应商的`[DONE]`。SDK消费结束时间不等于模型内部计算时间，片段数不等于token数。供应商未报告的用量保持`null`；错误原文不公开，只保留安全说明。
 
-依赖 `ai@7.0.122` 提供UI消息流的组合、传输解析和同ID片段更新；上游仍复用原有fetch与 `eventsource-parser`，保留实际百炼SSE。未另加模型适配层。[UI协议](https://ai-sdk.dev/docs/ai-sdk-ui/stream-protocol)、[数据片段](https://ai-sdk.dev/docs/ai-sdk-ui/streaming-data)和[消息元数据](https://ai-sdk.dev/docs/ai-sdk-ui/message-metadata)说明了这些信息的不同用途。
+本节统一使用AI SDK生态：`ai@7.0.122` 的Core `streamText`负责生成流，UI负责页面事件与同ID片段更新；官方 `@ai-sdk/openai-compatible@3.0.59` 将Core请求适配到百炼的兼容接口。应用只编排两个阶段，不自行解析模型SSE。provider的受支持`fetch`钩子只记录实发请求和HTTP状态；供应商JSON片段来自SDK的`includeRawChunks`。模型请求设置`maxRetries: 0`，流中故障也不自动重试，不使用模拟文字或回退模型。
 
-固定起点 `vcm-04-02-start` 为 `5606372686a2f7fab2d7e2b5bed41ee5c8fcfb4d`，仅含可运行的材料工作台；完成点为 `vcm-04-02-end`。从公开仓库克隆后开始完整实验：
+[Core流式生成](https://ai-sdk.dev/docs/reference/ai-sdk-core/stream-text)、[兼容provider](https://ai-sdk.dev/providers/openai-compatible-providers)、[UI协议](https://ai-sdk.dev/docs/ai-sdk-ui/stream-protocol)说明了各层的接口。AI SDK是TypeScript工具集，不是模型；本项目运行在本地Node.js，不依赖Next.js或Vercel托管。
+
+固定起点 `vcm-04-02-start` 为 `5606372686a2f7fab2d7e2b5bed41ee5c8fcfb4d`，仅含可运行的材料工作台；完成点为 `vcm-04-02-end-r2`。从公开仓库克隆后开始完整实验：
 
 ```powershell
-git switch -c my-streaming-lab vcm-04-02-end
+git switch -c my-streaming-lab vcm-04-02-end-r2
 pnpm install --frozen-lockfile
 pnpm streaming:dev
 ```
@@ -499,13 +501,9 @@ pnpm streaming:dev
 ```powershell
 git add .
 git commit -m "保存我的流式消息实验"
-git switch -c my-streaming-lab-retry vcm-04-02-end
+git switch -c my-streaming-lab-retry vcm-04-02-end-r2
 ```
 
 页面记录刷新即丢失，应先下载；后台脱敏记录只存在当前进程内存中，重启即清除，不提供会话持久化或断流恢复。Git不会恢复私密配置、运行记录或模型费用；源码ZIP没有Git历史，标签恢复需从公开仓库克隆。实现入口在 `src/streaming/`，定向检查为 `pnpm exec tsx --test test/streaming.test.ts`，测试中的HTTP桩不是模型效果证据。
 
-### 完整与停止的真实记录
-
-[原始记录、核对脚本与截图](evidence/vcm-04-02/说明.md)保留一次完整任务和一次问题阶段的实际停止，分别有57和46个UI事件。两侧事件逐项一致；历史保留三个阶段，最终消息仅保留一个最新进度片段。完整任务只有一次总finish；停止任务保留半句并以abort结束，问题阶段的finishReason和usage保持null。
-
-事件正确不代表内容已核实。本轮摘要把预计人数写成了人数上限，问题也加入原文没有给定的“今日内”，仍需人工核查。事件数不代表token数，缺失用量不代表免费；此观察不作速度或质量统计。
+完整结束只说明两阶段与格式检查通过。生成的事实、取舍和问题仍需对照纪要核查，不能据此判断内容正确或作效果统计。

@@ -19,6 +19,7 @@
     "test": "node --import tsx --test test/*.test.ts"
   },
   "dependencies": {
+    "@ai-sdk/openai-compatible": "3.0.59",
     "ai": "7.0.122",
     "eventsource-parser": "4.1.1",
     "express": "^5.2.1",

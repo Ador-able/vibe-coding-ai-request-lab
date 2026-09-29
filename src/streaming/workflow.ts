@@ -1,15 +1,7 @@
 import { createUIMessageStream } from 'ai';
 import { ModelError, readConfig } from '../model.ts';
-import { streamModel } from '../latency/model.ts';
+import { streamStage } from './model.ts';
 import type { AssistantMessage, Chunk, Metadata, RunRecord, Stage, StageRecord } from './contract.ts';
-
-export function buildStageBody(model: string, material: string, stage: Stage, summary = '') {
-  const system = stage === 'summary'
-    ? '只依据工作纪要写一段约120字的简明摘要，区分已确定安排和未决事项。不补造事实，不提出问题，不加标题。'
-    : '只依据工作纪要及摘要，提出2至3个需要负责人进一步确认的问题。只写编号问题，每个问题单独一行，以1.、2.、3.依次开始；不加标题、开场或答案，不把已经确定的安排当作未决事项。';
-  return JSON.stringify({ model, messages: [{ role: 'system', content: system }, { role: 'user', content: stage === 'summary' ? material : `工作纪要：\n${material}\n\n刚生成的摘要：\n${summary}` }],
-    stream: true, stream_options: { include_usage: true }, enable_thinking: false, temperature: 0, max_tokens: stage === 'summary' ? 256 : 384 });
-}
 
 // 只在正文完整结束后检查行数，不把正在到达的半句当成最终问题。
 export function checkQuestions(text: string) {
@@ -37,11 +29,11 @@ export function createWorkflow(record: RunRecord, env: NodeJS.ProcessEnv, signal
         for (const stage of ['summary', 'questions'] as const) {
           signal.throwIfAborted();
           progress(stage, stage === 'summary' ? '应用正在生成摘要' : '摘要已结束，应用正在生成待确认问题');
-          const item: StageRecord = { id: `${record.id}-${stage}`, stage, offsetMs: elapsed(), startedAt: '', requestBody: buildStageBody(config.model, record.material, stage, summary),
-            responseModel: null, httpStatus: null, events: [], answer: '', firstContentMs: null, streamEndMs: null, endedBy: null, finishReason: null, usage: null };
+          const item: StageRecord = { id: `${record.id}-${stage}`, stage, offsetMs: elapsed(), startedAt: '', requestBody: '',
+            responseModel: null, httpStatus: null, providerChunks: [], answer: '', firstContentMs: null, streamEndMs: null, finishReason: null, sdkFinishReason: null, usage: null };
           record.stages.push(item);
           write({ type: 'start-step' }); write({ type: 'text-start', id: stage });
-          await streamModel(config, item, signal, (delta) => write({ type: 'text-delta', id: stage, delta }));
+          await streamStage(config, item, record.material, summary, signal, (delta) => write({ type: 'text-delta', id: stage, delta }));
           signal.throwIfAborted();
           write({ type: 'text-end', id: stage }); write({ type: 'finish-step' });
           if (stage === 'summary') summary = item.answer;
