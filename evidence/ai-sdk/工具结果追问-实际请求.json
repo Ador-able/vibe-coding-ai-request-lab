@@ -1,0 +1,68 @@
+{
+  "model": "qwen-flash",
+  "max_tokens": 512,
+  "temperature": 0,
+  "enable_thinking": false,
+  "parallel_tool_calls": false,
+  "stream": false,
+  "messages": [
+    {
+      "role": "system",
+      "content": "你是版本记录查询助手。只根据本次请求中的消息和工具结果回答；不要猜测版本信息。证据不足时，明确说明缺少什么信息。仅回答当前问题要求的字段，用简洁的中文表述。"
+    },
+    {
+      "role": "user",
+      "content": "release-2026-09-28 的发布时间是什么？请只回答发布时间。"
+    },
+    {
+      "role": "assistant",
+      "content": null,
+      "tool_calls": [
+        {
+          "id": "call_d7417cd0e5984d2d91001f",
+          "type": "function",
+          "function": {
+            "name": "get_release_info",
+            "arguments": "{\"release_id\":\"release-2026-09-28\"}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "call_d7417cd0e5984d2d91001f",
+      "content": "{\"release_id\":\"release-2026-09-28\",\"published_at\":\"2026年9月28日 14:30（北京时间）\",\"owner\":\"林晓禾\",\"notes\":\"优化导出页面的提示信息。\"}"
+    },
+    {
+      "role": "assistant",
+      "content": "2026年9月28日 14:30（北京时间）"
+    },
+    {
+      "role": "user",
+      "content": "这个版本的负责人是谁？"
+    }
+  ],
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "get_release_info",
+        "description": "查询指定版本的发布记录。",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "release_id": {
+              "type": "string",
+              "description": "需要查询的版本编号。"
+            }
+          },
+          "required": [
+            "release_id"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  ],
+  "tool_choice": "none"
+}

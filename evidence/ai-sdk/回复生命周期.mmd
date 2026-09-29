@@ -1,0 +1,19 @@
+flowchart TB
+    A([页面提交纪要]) --> B["start · 建立整条回复"]
+    B --> C["data-progress · 更新阶段<br/>start-step → text-start"]
+    C --> D["后台调用模型<br/>text-delta · 向当前段追加文字"]
+    D -->|继续收到增量| D
+    D -->|本次调用正常结束| E["text-end → finish-step<br/>当前文本段与本次调用结束"]
+    E -->|摘要完成：继续生成问题| C
+    E -->|问题完成| F{问题数量检查通过？}
+    F -->|是| G["data-progress = completed<br/>finish · 整条回复完成"]
+    D -.->|用户停止或调用失败| H["data-progress + message-metadata<br/>更新状态，再发 abort 或 error<br/>保留部分内容，整体未完成"]
+    F -->|否：检查失败| H
+    classDef normal fill:#eef5ff,stroke:#4768a3,color:#142d4b,stroke-width:1.5px
+    classDef progress fill:#e5f4f2,stroke:#258477,color:#123f39,stroke-width:1.5px
+    classDef decision fill:#fff5dc,stroke:#ad8025,color:#473710,stroke-width:1.5px
+    classDef failed fill:#fff0ec,stroke:#b65b48,color:#6a2b20,stroke-width:1.5px
+    class A,B,D,E normal
+    class C,G progress
+    class F decision
+    class H failed
