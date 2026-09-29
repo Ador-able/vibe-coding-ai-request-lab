@@ -6,6 +6,8 @@ label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 10px; 
 textarea { width: 100%; resize: vertical; font: inherit; font-size: 15px; line-height: 1.8; padding: 14px; color: #173b46; border: 1px solid #b5cdd1; border-radius: 6px; }
 .actions, .message-heading, .record-tools { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
 .actions { margin-top: 14px; }
+#status:empty { display: none; }
+#assistant { margin-top: 22px; }
 #assistant { border-top: 2px solid #448477; padding: 22px 24px 16px; background: white; }
 .message-heading { justify-content: space-between; }
 .progress { color: #285d6c; font-size: 14px; }
@@ -13,7 +15,6 @@ textarea { width: 100%; resize: vertical; font: inherit; font-size: 15px; line-h
 #message section { margin-top: 22px; min-width: 0; }
 #message h3 { margin-bottom: 7px; }
 .answer { font-size: 16px; line-height: 1.9; }
-.result-note { margin-top: 16px; }
 .record-explanation { padding: 8px 16px; }
 .record-tools label { margin: 0; display: flex; gap: 10px; align-items: center; }
 .table-scroll { max-height: 480px; overflow: auto; }

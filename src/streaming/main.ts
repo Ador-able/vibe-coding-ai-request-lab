@@ -3,11 +3,11 @@ import { MATERIAL } from './material.ts';
 import { DefaultChatTransport, readUIMessageStream } from 'ai';
 import type { AssistantMessage, Chunk, RunRecord, State } from './contract.ts';
 
-document.querySelector<HTMLElement>('#app')!.innerHTML = `<header><span class="eyebrow">文档助手 · 教学虚构</span><h1>先摘要，再提出待确认问题</h1></header>
-  <label for="material">工作纪要</label><textarea id="material" rows="4" maxlength="6000"></textarea>
+document.querySelector<HTMLElement>('#app')!.innerHTML = `<header><h1>纪要整理</h1></header>
+  <label for="material">工作纪要（教学虚构）</label><textarea id="material" rows="4" maxlength="6000"></textarea>
   <div class="actions"><button id="run">生成摘要和问题</button><button id="stop" class="secondary" hidden>停止</button></div>
   <p id="status" role="status" aria-live="polite"></p>
-  <section id="assistant" hidden><div class="message-heading"><h2>助手回复</h2><span id="progress" class="progress"></span></div><div id="message"></div><p class="note result-note">内容仍需对照纪要核查。</p></section>
+  <section id="assistant" hidden><div class="message-heading"><h2>助手回复</h2><span id="progress" class="progress" role="status" aria-live="polite"></span></div><div id="message"></div></section>
   <details id="records" hidden><summary>查看事件与请求记录</summary><div class="inspector-body"><div class="record-tools"><label for="attempt">请求<select id="attempt"></select></label><label for="event-view">事件<select id="event-view"><option value="boundaries">阶段与结束</option><option value="all">全部（含文字增量）</option></select></label><button id="download" class="secondary">下载全部记录</button></div>
     <p id="record-label" class="note"></p><p id="metadata" class="note"></p>
     <div class="table-scroll"><table><thead><tr><th>顺序 / 毫秒</th><th>UI事件</th><th>内容</th></tr></thead><tbody id="events"></tbody></table></div>
@@ -37,12 +37,14 @@ function render() {
   get<HTMLButtonElement>('run').disabled = busy; get<HTMLTextAreaElement>('material').disabled = busy;
   get('stop').hidden = !busy; get<HTMLButtonElement>('stop').disabled = stopping || !attempt?.events.some(({ event }) => event.type === 'start');
   get('stop').textContent = stopping ? '正在停止…' : '停止';
-  get('status').textContent = attempt ? stopping ? '已请求停止，正在结束上游读取…' : attempt.error || stateLabel[attempt.state] : '';
+  get('status').textContent = attempt?.error || '';
   get('status').className = attempt?.state === 'failed' ? 'error' : '';
   get('assistant').hidden = !attempt; get('records').hidden = !attempt;
   if (!attempt) return;
   const progress = attempt.message?.parts.find((part) => part.type === 'data-progress');
-  get('progress').textContent = progress?.type === 'data-progress' ? progress.data.label : '等待消息开始';
+  const stageLabel = { summary: '生成摘要', questions: '生成待确认问题', running: '正在开始', completed: '已完成', stopped: '已停止', failed: '未完成' };
+  get('progress').textContent = stopping ? '正在停止' : attempt.error ? ''
+    : progress?.type === 'data-progress' ? stageLabel[progress.data.stage] : '正在开始';
   const content = get('message'); content.replaceChildren();
   const textParts = attempt.message?.parts.filter((part) => part.type === 'text') ?? [];
   textParts.forEach((part, i) => {
