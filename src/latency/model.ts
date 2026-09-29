@@ -9,6 +9,8 @@ export async function streamModel(
   config: ModelConfig, record: Omit<StreamRecord, 'condition'>, signal: AbortSignal,
   onContent: (text: string, elapsedMs: number) => void,
 ) {
+  const controller = new AbortController();
+  const requestSignal = AbortSignal.any([signal, controller.signal]);
   const input = JSON.parse(record.requestBody) as RequestInput;
   let start = performance.now();
   const elapsed = () => Math.round((performance.now() - start) * 10) / 10;
@@ -38,7 +40,7 @@ export async function streamModel(
   });
   let finished = false; let sdkReason: string | null = null;
   try {
-    const result = streamText({ ...modelOptions(input), model: provider.chatModel(config.model), abortSignal: signal, onError: () => {} });
+    const result = streamText({ ...modelOptions(input), model: provider.chatModel(config.model), abortSignal: requestSignal, onError: () => {} });
     for await (const part of result.fullStream) {
       if (part.type === 'text-delta' && part.text.length > 0) {
         record.answer += part.text; onContent(part.text, elapsed());
@@ -59,9 +61,12 @@ export async function streamModel(
       ? signal.reason?.name === 'TimeoutError'
         ? new ModelError('MODEL_TIMEOUT', '等待超过90秒，已停止；已有片段仍保留。', 504)
         : new ModelError('REQUEST_CANCELLED', '本次请求已取消。', 499)
-      : APICallError.isInstance(error) && error.statusCode
+      : APICallError.isInstance(error) && error.statusCode !== undefined && (error.statusCode < 200 || error.statusCode >= 300)
         ? new ModelError('MODEL_HTTP_ERROR', `模型服务返回 HTTP ${error.statusCode}，本次停止。`, 502, error.statusCode)
-        : new ModelError(record.httpStatus === null ? 'MODEL_NETWORK_ERROR' : 'MODEL_RESPONSE_INVALID', '读取模型流失败；已有片段仍保留，没有自动重试。');
+        : new ModelError(record.httpStatus === null ? 'MODEL_NETWORK_ERROR' : 'MODEL_RESPONSE_INVALID', '读取模型流失败；已有片段仍保留，没有自动重试。', 502, record.httpStatus ?? undefined);
     record.error = { code: failure.code, message: failure.message }; throw failure;
+  } finally {
+    // 退出消费不等于取消SDK内部流；结束时释放同一次上游请求。
+    controller.abort();
   }
 }

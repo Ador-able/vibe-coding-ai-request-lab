@@ -40,11 +40,11 @@ export async function sendRecordedRequest(config: ModelConfig, record: RequestRe
       ? signal.reason?.name === 'TimeoutError'
         ? new ModelError('MODEL_TIMEOUT', '本轮等待超过 90 秒，已停止请求。', 504)
         : new ModelError('REQUEST_CANCELLED', '本次请求已取消。', 499)
-      : APICallError.isInstance(error) && error.statusCode
+      : APICallError.isInstance(error) && error.statusCode !== undefined && (error.statusCode < 200 || error.statusCode >= 300)
         ? new ModelError('MODEL_HTTP_ERROR', `模型服务返回 HTTP ${error.statusCode}，请检查权限、额度与服务状态。`, 502, error.statusCode)
         : record.httpStatus === undefined
           ? new ModelError('MODEL_NETWORK_ERROR', '无法连接模型服务，请检查网络和模型 API 配置。')
-          : new ModelError('MODEL_RESPONSE_INVALID', '模型服务返回了无法处理的结果，已收到的原始消息保留。');
+          : new ModelError('MODEL_RESPONSE_INVALID', '模型服务返回了无法处理的结果，已收到的原始消息保留。', 502, record.httpStatus);
     record.error = failure.message;
     throw failure;
   } finally { record.durationMs = Math.round(performance.now() - start); }

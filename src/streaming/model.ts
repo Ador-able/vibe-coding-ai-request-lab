@@ -7,6 +7,8 @@ export async function streamStage(
   config: ModelConfig, record: StageRecord, material: string, summary: string,
   signal: AbortSignal, onContent: (text: string) => void,
 ) {
+  const controller = new AbortController();
+  const requestSignal = AbortSignal.any([signal, controller.signal]);
   let started = performance.now();
   const elapsed = () => Math.round((performance.now() - started) * 10) / 10;
   const provider = createBailian(config,
@@ -28,7 +30,7 @@ export async function streamStage(
     prompt: isSummary ? material : `工作纪要：\n${material}\n\n刚生成的摘要：\n${summary}`,
     temperature: 0, maxOutputTokens: isSummary ? 256 : 384,
     providerOptions: { bailian: { enable_thinking: false } },
-    abortSignal: signal, maxRetries: 0, includeRawChunks: true,
+    abortSignal: requestSignal, maxRetries: 0, includeRawChunks: true,
     // 错误由下面的消费路径处理，避免SDK默认日志打印供应商错误中的账户信息。
     onError: () => {},
   });
@@ -74,10 +76,13 @@ export async function streamStage(
         ? new ModelError('MODEL_TIMEOUT', '等待超过90秒，已停止；已有片段仍保留。', 504)
         : new ModelError('REQUEST_CANCELLED', '本次请求已取消。', 499)
       : error instanceof ModelError ? error
-      : APICallError.isInstance(error) && error.statusCode
+      : APICallError.isInstance(error) && error.statusCode !== undefined && (error.statusCode < 200 || error.statusCode >= 300)
         ? new ModelError('MODEL_HTTP_ERROR', `模型服务返回HTTP ${error.statusCode}，本次停止；请核对权限、额度与服务状态。`, 502, error.statusCode)
-        : new ModelError('MODEL_RESPONSE_INVALID', '模型连接或响应流异常；已有片段保留，没有自动重试。');
+        : new ModelError('MODEL_RESPONSE_INVALID', '模型连接或响应流异常；已有片段保留，没有自动重试。', 502, record.httpStatus ?? undefined);
     record.error = { code: failure.code, message: failure.message };
     throw failure;
-  } finally { record.streamEndMs = elapsed(); }
+  } finally {
+    // 关闭SDK持有的上游流，保留上面已确定的正常、失败或取消状态。
+    controller.abort(); record.streamEndMs = elapsed();
+  }
 }
