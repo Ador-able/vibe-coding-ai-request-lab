@@ -14,7 +14,7 @@ header p { margin: 0; color: #456672; font-size: 15px; }
 .setup, #follow-section { background: white; border: 1px solid #d1e0e2; border-radius: 12px; padding: 24px; }
 .section-heading { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
 .badge { font-size: 12px; color: #3e6962; background: #e8f2ed; padding: 5px 9px; border-radius: 4px; }
-.question { font-size: 17px; font-weight: 600; margin: 20px 0 12px; }
+.question { font-size: 15px; font-weight: 400; margin: 0 0 16px; }
 .setup-actions, .follow-actions { display: flex; justify-content: space-between; align-items: center; gap: 18px; }
 .setup-actions p, .follow-actions p { margin: 0; font-size: 13px; color: #456672; }
 button { border: none; border-radius: 6px; font: inherit; font-size: 14px; font-weight: 600; background: #1e6f7a; color: white; padding: 11px 18px; cursor: pointer; flex-shrink: 0; }
@@ -70,7 +70,13 @@ dt { font-weight: 600; } dd { margin: 0; color: #456672; }
 /* 先操作，再对照结果；记录留在折叠内。 */
 .setup, #follow-section { padding: 22px; border-color: #dde3e9; box-shadow: none; border-radius: 8px; }
 .setup-actions, .follow-actions { justify-content: flex-start; gap: 14px; }
-.question { margin: 12px 0 18px; font-size: 18px; line-height: 1.65; }
+.question { line-height: 1.65; }
+.question-label { color: #6b7885; font-size: 13px; margin-right: 12px; }
+main > #setup { margin: 0 0 18px; border: 1px solid #dde3e9; border-radius: 8px; background: white; padding: 0; }
+main > #setup > summary { padding: 13px 20px; font-size: 14px; font-weight: 400; }
+.setup-body { padding: 2px 20px 20px; }
+#conditions legend { padding: 0; margin-bottom: 10px; font-size: 13px; color: #6b7885; }
+#conditions { margin: 16px 0; }
 #status:empty { display: none; }
 #comparison h3 { font-size: 17px; color: #263d50; }
 .answer-cell { width: 60%; font-size: 16px; }

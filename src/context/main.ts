@@ -7,17 +7,16 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <h1>上下文对照</h1>
     <p>同一个追问，比较只带问题、聊天文字和完整工具结果时的回答。</p>
   </header>
-  <section class="setup" aria-labelledby="setup-title">
-    <h2 id="setup-title">先查询一次发布时间</h2>
+  <details id="setup" class="setup" open>
+    <summary id="setup-title">首轮查询</summary><div class="setup-body">
     <p class="question" id="first-question"></p>
     <div class="setup-actions"><button id="start">查询发布时间</button><span class="experiment-note">教学虚构资料 · 首轮调用模型 2 次</span></div>
-    <div id="first-answer-wrap" hidden><span class="small-label">首轮回答 · 原文</span><p id="first-answer" class="answer"></p><p class="note">下方三种条件共享这一次首轮历史，不会重跑查询。</p></div>
-  </section>
+    <div id="first-answer-wrap" hidden><span class="small-label">首轮回答 · 原文</span><p id="first-answer" class="answer"></p><p class="note">三种追问条件共享这一次首轮历史。</p></div>
+  </div></details>
   <p id="status" role="status"></p>
-  <section id="follow-section" hidden aria-labelledby="follow-title">
-    <h2 id="follow-title">选择追问携带的历史</h2>
-    <p id="follow-question" class="question"></p>
-    <fieldset id="conditions"><legend class="sr-only">随追问发送哪些历史</legend>
+  <section id="follow-section" hidden aria-labelledby="follow-question">
+    <p class="question"><span class="question-label">追问</span><span id="follow-question"></span></p>
+    <fieldset id="conditions"><legend>携带的历史</legend>
       ${Object.entries(CONDITIONS).map(([key, value], i) => `<label class="condition"><input type="radio" name="condition" value="${key}" ${i === 0 ? 'checked' : ''}><span><strong>${value.name}</strong><small>${value.description}</small></span></label>`).join('')}
     </fieldset>
     <div class="follow-actions"><button id="follow">发送追问</button><span class="experiment-note">每次调用模型 1 次；不重新查询工具</span></div>
@@ -45,6 +44,7 @@ const status = element<HTMLParagraphElement>('#status');
 const inspector = element<HTMLDetailsElement>('#inspector');
 const runSelector = element<HTMLSelectElement>('#run-selector');
 const records = element<HTMLDivElement>('#records');
+const setup = element<HTMLDetailsElement>('#setup');
 element('#first-question').textContent = FIRST_QUESTION;
 element('#follow-question').textContent = FOLLOW_UP;
 let sessionId: string | undefined;
@@ -141,6 +141,7 @@ async function send(path: string, body: unknown): Promise<ContextResponse> {
 startButton.addEventListener('click', async () => {
   if (busy) return; setBusy(true);
   sessionId = undefined; firstRound = undefined; runs = [];
+  setup.open = true; element('#setup-title').textContent = '首轮查询';
   element('#follow-section').hidden = true; element('#first-answer-wrap').hidden = true;
   inspector.hidden = true; status.className = ''; status.textContent = '正在建立首轮：请求工具、执行查询，再请模型回答……';
   try {
@@ -150,8 +151,9 @@ startButton.addEventListener('click', async () => {
     sessionId = result.sessionId;
     element('#first-answer').textContent = result.run.answer;
     element('#first-answer-wrap').hidden = false; element('#follow-section').hidden = false;
+    setup.open = false; element('#setup-title').textContent = '首轮查询已完成 · 查看回答或重新查询';
     startButton.textContent = '重新查询'; startButton.classList.add('secondary'); renderResults();
-    status.textContent = '首轮历史已保存在本机服务中。请选择一种条件继续。';
+    status.textContent = '';
   } catch { status.textContent = '没有收到本机服务的有效回复，请确认服务仍在运行。'; status.className = 'error'; }
   finally { setBusy(false); }
 });
@@ -164,7 +166,7 @@ followButton.addEventListener('click', async () => {
     const result = await send('/api/context/follow-up', { sessionId, condition });
     // 每次运行都保留，不用预设答案替换模型返回，也不覆盖此前结果。
     runs.push(result.run); renderInspector(result.run.id); renderResults();
-    status.textContent = result.ok ? '已收到真实模型返回。可以切换另一种条件比较。' : result.run.error?.message ?? '本次追问未完成。';
+    status.textContent = result.ok ? '' : result.run.error?.message ?? '本次追问未完成。';
     status.className = result.ok ? '' : 'error';
   } catch { status.textContent = '没有收到本机服务的有效回复；本轮结果未知，请确认服务状态。'; status.className = 'error'; }
   finally { setBusy(false); }
