@@ -28,7 +28,7 @@ export async function callContextModel(
   config: ModelConfig, messages: Message[], toolChoice: ToolChoice,
   records: RequestRecord[], step: string, signal: AbortSignal,
 ): Promise<AssistantMessage> {
-  // 这一个字符串既是 fetch 的 body，也是检查器保存的原始请求；不另拼展示对象。
+  // 请求材料交给AI SDK；recorded-model在provider边界记录最终实发正文。
   const requestBody = JSON.stringify({
     model: config.model, messages, tools: TOOLS, tool_choice: toolChoice,
     stream: false, enable_thinking: false, parallel_tool_calls: false, max_tokens: 512, temperature: 0,

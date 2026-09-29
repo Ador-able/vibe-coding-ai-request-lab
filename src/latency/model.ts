@@ -1,66 +1,55 @@
+import { APICallError, streamText } from 'ai';
 import { ModelError, type ModelConfig } from '../model.ts';
 import { isObject } from '../recorded-model.ts';
-import { readEvents } from './sse.ts';
+import { createBailian, modelOptions, type RequestInput } from '../ai-provider.ts';
+import { observeEvents } from './sse.ts';
 import type { StreamRecord } from './contract.ts';
 
 export async function streamModel(
-  config: ModelConfig,
-  record: Omit<StreamRecord, 'condition'>,
-  signal: AbortSignal,
+  config: ModelConfig, record: Omit<StreamRecord, 'condition'>, signal: AbortSignal,
   onContent: (text: string, elapsedMs: number) => void,
 ) {
-  // 计时只涵盖本机后端发起 fetch 到收到数据，不代表 GPU 内部阶段。
-  const start = performance.now();
+  const input = JSON.parse(record.requestBody) as RequestInput;
+  let start = performance.now();
   const elapsed = () => Math.round((performance.now() - start) * 10) / 10;
-  record.startedAt = new Date().toISOString();
-  try {
-    const response = await fetch(`${config.baseUrl}/chat/completions`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${config.apiKey}` },
-      body: record.requestBody,
-      signal,
-    });
-    record.httpStatus = response.status;
-    if (!response.ok) {
-      await response.body?.cancel();
-      throw new ModelError('MODEL_HTTP_ERROR', `模型服务返回 HTTP ${response.status}，本次停止；请核对 API 权限、额度与服务状态。`, 502, response.status);
-    }
-    if (!response.body || !response.headers.get('content-type')?.includes('text/event-stream')) {
-      await response.body?.cancel();
-      throw new ModelError('MODEL_RESPONSE_INVALID', '模型服务没有返回 SSE 事件流。');
-    }
-    for await (const event of readEvents(response.body)) {
+  const provider = createBailian(config, async (url, init) => {
+    start = performance.now(); record.startedAt = new Date().toISOString(); record.requestBody = init?.body as string;
+    const response = await fetch(url, init); record.httpStatus = response.status;
+    if (!response.ok || !response.body) return response;
+    const observed = observeEvents(response.body, (event) => {
+      if (record.endedBy === 'done') return;
       const elapsedMs = elapsed();
       if (event.data === '[DONE]') {
-        record.events.push({ ...event, elapsedMs });
-        record.endedBy = 'done'; record.streamEndMs = elapsedMs;
-        break;
+        record.events.push({ ...event, elapsedMs }); record.endedBy = 'done'; record.streamEndMs = elapsedMs; return;
       }
-      let payload: unknown;
-      try { payload = JSON.parse(event.data); } catch { throw new ModelError('MODEL_RESPONSE_INVALID', '流中有无法读取的 JSON 事件。'); }
-      // 只公开正常响应事件；服务商错误原文可能带账户信息，不回传它。
-      if (!isObject(payload) || Object.hasOwn(payload, 'error') || !Array.isArray(payload.choices)) {
-        throw new ModelError('MODEL_RESPONSE_INVALID', '模型流返回了错误或无法识别的事件，已保留此前记录。');
-      }
+      // 只保存正常响应；原始错误正文可能包含账户信息，不进入公开取证。
+      let value: unknown; try { value = JSON.parse(event.data); } catch { return; }
+      if (!isObject(value) || Object.hasOwn(value, 'error') || !Array.isArray(value.choices)) return;
       record.events.push({ ...event, elapsedMs });
-      if (typeof payload.model === 'string') record.responseModel = payload.model;
-      if (payload.usage !== undefined && payload.usage !== null) record.usage = payload.usage;
-      // include_usage 的末尾块可以只有用量，choices 为空。
-      for (const choice of payload.choices) {
-        if (!isObject(choice) || choice.index !== 0 || !isObject(choice.delta)) {
-          throw new ModelError('MODEL_RESPONSE_INVALID', '模型流的候选结构不正确。');
-        }
+      if (typeof value.model === 'string') record.responseModel = value.model;
+      if (value.usage != null) record.usage = value.usage;
+      for (const choice of value.choices) {
+        if (!isObject(choice) || choice.index !== 0) continue;
         if (typeof choice.finish_reason === 'string') record.finishReason = choice.finish_reason;
-        const content = choice.delta.content;
-        if (typeof content === 'string' && content.length > 0) {
-          record.firstContentMs ??= elapsedMs;
-          record.answer += content;
-          onContent(content, elapsedMs);
-        }
+        if (isObject(choice.delta) && typeof choice.delta.content === 'string' && choice.delta.content.length > 0) record.firstContentMs ??= elapsedMs;
       }
+    }, () => { if (record.endedBy === null) { record.endedBy = 'eof'; record.streamEndMs = elapsed(); } });
+    return new Response(observed, { status: response.status, statusText: response.statusText, headers: response.headers });
+  });
+  let finished = false; let sdkReason: string | null = null;
+  try {
+    const result = streamText({ ...modelOptions(input), model: provider.chatModel(config.model), abortSignal: signal, onError: () => {} });
+    for await (const part of result.fullStream) {
+      if (part.type === 'text-delta' && part.text.length > 0) {
+        record.answer += part.text; onContent(part.text, elapsed());
+      } else if (part.type === 'finish') { finished = true; sdkReason = part.finishReason; }
+      else if (part.type === 'error') {
+        if (record.endedBy !== null && record.finishReason === null && record.answer) throw new ModelError('MODEL_RESPONSE_INCOMPLETE', '流没有完整结束回答；实际片段仍保留。');
+        throw part.error;
+      } else if (part.type === 'abort') { signal.throwIfAborted(); throw new ModelError('REQUEST_CANCELLED', '本次请求已取消。', 499); }
     }
-    if (record.endedBy === null) { record.endedBy = 'eof'; record.streamEndMs = elapsed(); }
-    if (record.finishReason !== 'stop' || !record.answer.length) {
+    signal.throwIfAborted();
+    if (!finished || sdkReason !== 'stop' || record.finishReason !== 'stop' || !record.answer.length) {
       throw new ModelError('MODEL_RESPONSE_INCOMPLETE', record.finishReason === 'length'
         ? '达到输出上限，回答已截断；实际片段和用量仍保留。'
         : '流没有完整结束回答；实际片段仍保留，本次不标为完成。');
@@ -68,10 +57,11 @@ export async function streamModel(
   } catch (error) {
     const failure = error instanceof ModelError ? error : signal.aborted
       ? signal.reason?.name === 'TimeoutError'
-        ? new ModelError('MODEL_TIMEOUT', '等待超过 90 秒，已停止；已有片段仍保留。', 504)
+        ? new ModelError('MODEL_TIMEOUT', '等待超过90秒，已停止；已有片段仍保留。', 504)
         : new ModelError('REQUEST_CANCELLED', '本次请求已取消。', 499)
-      : new ModelError('MODEL_NETWORK_ERROR', '读取模型流失败；已有片段仍保留，没有自动重试。');
-    record.error = { code: failure.code, message: failure.message };
-    throw failure;
+      : APICallError.isInstance(error) && error.statusCode
+        ? new ModelError('MODEL_HTTP_ERROR', `模型服务返回 HTTP ${error.statusCode}，本次停止。`, 502, error.statusCode)
+        : new ModelError(record.httpStatus === null ? 'MODEL_NETWORK_ERROR' : 'MODEL_RESPONSE_INVALID', '读取模型流失败；已有片段仍保留，没有自动重试。');
+    record.error = { code: failure.code, message: failure.message }; throw failure;
   }
 }

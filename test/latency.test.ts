@@ -4,7 +4,7 @@ import { createServer, type Server } from 'node:http';
 import { once } from 'node:events';
 import { setTimeout as wait } from 'node:timers/promises';
 import express from 'express';
-import { readEvents } from '../src/latency/sse.ts';
+import { observeEvents, readEvents } from '../src/latency/sse.ts';
 import { streamModel } from '../src/latency/model.ts';
 import { createLatencyRouter } from '../src/latency/routes.ts';
 import { MANUAL, TARGET, requestBody } from '../src/latency/materials.ts';
@@ -43,18 +43,22 @@ test('受控材料保留同一事实；重复请求逐字一致，前缀条件�
 test('SSE 解析跨字节与 CRLF 边界，合并多行 data，不补造半条事件', async () => {
   const source = ': heartbeat\r\nid: 7\r\nevent: message\r\ndata: 你好\r\ndata: 世界\r\n\r\ndata: [DONE]\r\n\r\ndata: 半条';
   const bytes = new TextEncoder().encode(source);
-  const stream = new ReadableStream<Uint8Array>({ start(controller) {
+  const stream = () => new ReadableStream<Uint8Array>({ start(controller) {
     // 一字节一块，明确覆盖 UTF-8 汉字、\r\n 和事件分隔的断开。
     for (const byte of bytes) controller.enqueue(new Uint8Array([byte])); controller.close();
   } });
-  const received = []; for await (const event of readEvents(stream)) received.push(event);
+  const received = []; for await (const event of readEvents(stream())) received.push(event);
   assert.deepEqual(received, [{ id: '7', event: 'message', data: '你好\n世界' }, { id: undefined, event: undefined, data: '[DONE]' }]);
+  const observed: unknown[] = []; let ended = false;
+  const passed = await new Response(observeEvents(stream(), (event) => observed.push(event), () => { ended = true; })).arrayBuffer();
+  assert.deepEqual(new Uint8Array(passed), bytes); assert.deepEqual(observed, received); assert.equal(ended, true);
 });
 
 test('实际转发串等于检查器；首正文排除空块，接收 choices 空的用量块与 DONE', async () => {
   // 本地 HTTP 桩仅验证流协议与计时位置，不是模型性能实测。
-  let sent = '';
+  let sent = ''; let calls = 0;
   const upstream = createServer(async (req, res) => {
+    calls++;
     for await (const part of req) sent += part;
     res.setHeader('Content-Type', 'text/event-stream');
     res.write(frame({ model: 'qwen-flash-test', choices: [{ index: 0, delta: { role: 'assistant', content: '' }, finish_reason: null }] }));
@@ -73,6 +77,7 @@ test('实际转发串等于检查器；首正文排除空块，接收 choices �
     const last = downstream.at(-1); assert.equal(last?.type, 'complete'); if (last?.type !== 'complete') throw new Error();
     const result = last.record;
     assert.equal(result.requestBody, sent); assert.equal(result.answer, '48小时。'); assert.equal(result.events.length, 5);
+    assert.equal(calls, 1);
     assert.equal(result.firstContentMs, result.events[1].elapsedMs); assert.ok(result.firstContentMs > result.events[0].elapsedMs);
     assert.equal(result.streamEndMs, result.events[4].elapsedMs); assert.equal(result.endedBy, 'done'); assert.equal(result.finishReason, 'stop');
     assert.deepEqual(usageOf(result.usage), { input: 6000, output: 8, cached: 4096 });
@@ -80,6 +85,23 @@ test('实际转发串等于检查器；首正文排除空块，接收 choices �
     assert.equal(JSON.stringify(downstream).includes(baseUrl), false);
     assert.deepEqual(downstream.filter((event) => event.type === 'delta').map((event) => event.text), ['48小时', '。']);
   } finally { await close(backend); await close(upstream); }
+});
+
+test('取消穿过被动观测层中止同一次SDK请求，部分文字保留且不补造DONE', async () => {
+  let calls = 0; let notifyClosed!: () => void;
+  const closed = new Promise<void>((resolve) => { notifyClosed = resolve; });
+  const upstream = createServer(async (req, res) => {
+    for await (const _part of req) {} calls++;
+    res.on('close', notifyClosed); res.setHeader('Content-Type', 'text/event-stream'); res.write(frame(chunk('部分正文')));
+  });
+  const baseUrl = await listen(upstream); const controller = new AbortController(); const partial = record();
+  try {
+    await assert.rejects(streamModel({ baseUrl, model: 'qwen-flash', apiKey: 'test-key' }, partial, controller.signal, () => controller.abort()), { code: 'REQUEST_CANCELLED' });
+    await closed;
+    assert.equal(calls, 1); assert.equal(partial.answer, '部分正文'); assert.notEqual(partial.firstContentMs, null);
+    assert.equal(partial.streamEndMs, null); assert.equal(partial.endedBy, null); assert.equal(partial.usage, null);
+    assert(partial.events.every((event) => event.data !== '[DONE]'));
+  } finally { await close(upstream); }
 });
 
 test('缺用量或缓存保持未知；正常 EOF 可结束，截断与不完整回答不报完成', async () => {

@@ -1,5 +1,5 @@
 import { APICallError, streamText } from 'ai';
-import { createOpenAICompatible } from '@ai-sdk/openai-compatible';
+import { createBailian } from '../ai-provider.ts';
 import { ModelError, type ModelConfig } from '../model.ts';
 import type { StageRecord } from './contract.ts';
 
@@ -9,17 +9,16 @@ export async function streamStage(
 ) {
   let started = performance.now();
   const elapsed = () => Math.round((performance.now() - started) * 10) / 10;
-  const provider = createOpenAICompatible({
-    name: 'bailian', baseURL: config.baseUrl, apiKey: config.apiKey, includeUsage: true,
+  const provider = createBailian(config,
     // 只被动记录SDK实际发送的正文和HTTP状态，不保存地址、密钥或请求头。
-    fetch: async (url, init) => {
+    async (url, init) => {
       started = performance.now(); record.startedAt = new Date().toISOString();
       record.requestBody = init?.body as string;
       const response = await fetch(url, init);
       record.httpStatus = response.status;
       return response;
     },
-  });
+  );
   const isSummary = record.stage === 'summary';
   const result = streamText({
     model: provider.chatModel(config.model),

@@ -1,5 +1,15 @@
 import { createParser, type EventSourceMessage } from 'eventsource-parser';
 
+// 被动观测同一响应：原字节继续交给AI SDK，探针不请求模型、不产生正文。
+export function observeEvents(stream: ReadableStream<Uint8Array>, onEvent: (event: EventSourceMessage) => void, onEnd: () => void) {
+  const decoder = new TextDecoder();
+  const parser = createParser({ onEvent, onError: () => {} });
+  return stream.pipeThrough(new TransformStream<Uint8Array, Uint8Array>({
+    transform(bytes, controller) { parser.feed(decoder.decode(bytes, { stream: true })); controller.enqueue(bytes); },
+    flush() { parser.feed(decoder.decode()); onEnd(); },
+  }));
+}
+
 // 字节可能从汉字中间断开，事件也可能横跨多个网络块。
 export async function* readEvents(stream: ReadableStream<Uint8Array>): AsyncGenerator<EventSourceMessage> {
   const reader = stream.getReader();

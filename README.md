@@ -38,8 +38,14 @@ pnpm dev
 | --- | --- |
 | `src/main.ts` | 收集问题、请求后端、显示回答 |
 | `src/server.ts` | 校验问题、读取配置、组织返回结果 |
-| `src/model.ts` | 带密钥请求模型服务、读取完整文本 |
+| `src/model.ts` | 服务端配置与基础问答，使用AI SDK Core生成文字 |
+| `src/ai-provider.ts` | 统一百炼兼容provider与模型消息/工具消息转换 |
+| `src/recorded-model.ts` | 使用Core生成并记录实际请求、原始消息和用量 |
 | `src/contract.ts` | 约定前后端之间的数据形状 |
+
+模型调用统一使用 `ai@7.0.122`：普通回答用 `generateText`，流式回答用 `streamText`。同生态的 `@ai-sdk/openai-compatible@3.0.59` 连接百炼兼容端点；所有调用关闭自动重试。工具调用、工具结果与ID按SDK消息类型转换，工具是否执行仍由各实验的明确流程决定。
+
+请求记录来自provider边界真正发出的正文。响应记录保留供应商原始消息、结束原因与用量，未提供的用量不补零。结构化输出实验保留原始文字，再进行JSON/Schema/原句检查，不让SDK自动修补失败结果。认证头与私密地址不进入导出。
 
 ## 检查
 
@@ -259,6 +265,8 @@ git switch -c my-memory-lab-retry vcm-03-03-end
 请求固定非思考、温度 0，前四项输出上限 96 token。使用 `stream:true`、`stream_options:{include_usage:true}`，不传工具或显式缓存参数。每次最多等待 90 秒，连接关闭会取消上游请求；错误、截断及实际片段均保留，不把不完整回答显示为成功。
 
 首段正文时间从本机后端发起上游 `fetch` 算起，直到收到第一个非空 `delta.content`。角色块、空文本和用量块不计入。流结束时间采用同一起点，到收到 `[DONE]` 或上游正常 EOF；没有完整结束标记的回答仍报错。一个 SSE 数据事件可含多个 token，时间记录包含网络与服务调度影响，不代表 GPU 预填充耗时或精确的逐 token 间隔。
+
+生成由AI SDK Core的`streamText`负责。为测量原始SSE分隔和`[DONE]`到达时刻，provider的`fetch`钩子使用已有`eventsource-parser`被动观测同一响应；原字节继续交给SDK，不产生第二次请求，也不驱动正文生成。它是这个实验的测量工具，不是另一套模型SDK。界面的文字增量来自Core，计时表与原始SSE记录来自同一响应的观测点。
 
 用量仅读取真实 API 的 `usage`；未返回显示“未提供”，缓存字段缺失也不能当成 0。`prompt_tokens_details.cached_tokens` 是输入 token 的子集，不重复相加。北京地域的 `qwen-flash` 支持隐式前缀缓存，至少 1024 token 的公共前缀具备条件，但不保证命中。不得根据“原样再发”按钮名称直接判断是否命中，需看实际返回。输入、缓存输入与输出采用各自适用的模型、地域价格，这里不伪造统一 token 单价或实时账单。
 

@@ -82,3 +82,30 @@ test('三种方式实际发送体与检查器一致，只改变输出格式参�
     assert(!JSON.stringify(data).includes('test-secret')); assert.equal(received.length, 4);
   } finally { await close(backend); await close(upstream); }
 });
+
+test('经Core调用后仍保留拒绝与不合格原文，应用检查不被SDK替换为成功对象', async () => {
+  const outputs = [
+    { content: '{not-json' },
+    { content: '{"items":[{"task":"准备物料"}]}' },
+    { content: null, refusal: '测试拒绝' },
+  ];
+  let calls = 0;
+  const upstream = createServer(async (req, res) => {
+    for await (const _part of req) {}
+    const responseMessage = outputs[calls++];
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ choices: [{ message: responseMessage, finish_reason: 'stop' }] }));
+  });
+  const base = await listen(upstream);
+  const backend = createServer(createStructuredApp({ API_BASE_URL: base, API_KEY: 'test-secret', STRUCTURED_MODEL: 'structured-test' })); const url = await listen(backend);
+  try {
+    for (const [i, original] of outputs.entries()) {
+      const response = await fetch(`${url}/api/structured/extract`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ material: '准备物料', mode: 'strict' }) });
+      const data = await response.json() as StructuredResponse;
+      assert.deepEqual(data.run.request?.responseMessage, original); assert.equal(data.run.request?.usage, null);
+      assert.equal(data.run.rawAnswer, original.content); assert.equal(data.run.inspection?.data, null);
+      assert.equal(data.run.inspection?.checks[i === 0 ? 1 : i === 1 ? 2 : 0].status, 'fail');
+    }
+    assert.equal(calls, 3);
+  } finally { await close(backend); await close(upstream); }
+});

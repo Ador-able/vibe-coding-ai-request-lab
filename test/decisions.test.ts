@@ -58,7 +58,7 @@ test('实际HTTP请求与记录同串；结构失败保留原始输出且没有�
     const first = await call(); assert.equal(first.status, 200);
     const success = await first.json() as DecisionResponse;
     assert.deepEqual(success.run.options, options); assert.equal(success.run.request?.requestBody, received[0]);
-    assert.equal(received[0], requestBody('qwen-flash')); assert.deepEqual(JSON.parse(received[0]).response_format, { type: 'json_object' });
+    assert.deepEqual(JSON.parse(received[0]), JSON.parse(requestBody('qwen-flash'))); assert.deepEqual(JSON.parse(received[0]).response_format, { type: 'json_object' });
     const second = await call(); assert.equal(second.status, 502);
     const failure = await second.json() as DecisionResponse;
     assert.equal(failure.ok, false); assert.equal(failure.run.options, null); assert.equal(failure.run.error?.code, 'MODEL_RESPONSE_INVALID');
