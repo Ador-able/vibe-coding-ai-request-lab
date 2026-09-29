@@ -27,3 +27,14 @@ textarea { display: block; width: 100%; resize: vertical; font: inherit; font-si
 #counterexample .inspector-body p { font-size: 14px; }
 @media (max-width: 760px) { .checks { grid-template-columns: repeat(2, 1fr); } .comparison { grid-template-columns: 1fr; gap: 18px; } h1 { font-size: 24px; } }
 @media (max-width: 440px) { .input-controls { display: grid; grid-template-columns: 1fr; gap: 4px; } .input-controls select { width: 100%; } .record-tools { width: 100%; } .record-tools select { width: 100%; max-width: 100%; } .action-bar { align-items: flex-start; } }
+
+.checks { gap: 10px; }
+.checks > .check { margin: 0; border: 1px solid #dde3e9; border-left-width: 3px; border-radius: 4px; background: #fff; padding: 0; }
+.checks > .check.pass { border-left-color: #74918a; }
+.checks > .check.fail { border-left-color: #ba6c50; }
+.checks > .check > summary { padding: 10px 12px; font-size: 13px; color: #4d626c; border: 0; }
+.checks > .check > p { padding: 0 12px 12px; margin: 0; font-size: 12px; }
+.comparison pre { border: 0; border-left: 2px solid #ccd7e4; background: #f6f8fb; }
+.task h4 { font-size: 17px; }
+.task .meta { font-size: 14px; color: #405467; }
+#result { border-top: 1px solid #dce3eb; padding-top: 22px; margin-top: 20px; }

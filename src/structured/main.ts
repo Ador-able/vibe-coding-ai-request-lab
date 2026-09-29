@@ -1,21 +1,22 @@
 import './style.css';
+import '../lab.css';
 import { MATERIALS } from './materials.ts';
 import { MODES, type Mode, type StructuredResponse, type StructuredRun } from './contract.ts';
 import { COUNTEREXAMPLE, COUNTEREXAMPLE_CHECK } from './counterexample.ts';
 
 document.querySelector<HTMLElement>('#app')!.innerHTML = `<header><span class="eyebrow">会议纪要 · 教学虚构</span>
-  <h1>结构化输出还需要程序检查</h1><p>同一份纪要，用三种输出方式提取待办。先看响应与字段结构，再回到原文核查任务、负责人和日期。</p></header>
+  <h1>待办提取对照</h1><p>用三种输出方式提取同一份纪要，对照原文核查任务、负责人和日期。</p></header>
   <div class="input-controls"><label for="material">示例材料<select id="material"></select></label><label for="mode">输出方式<select id="mode"></select></label></div>
   <label for="minutes">会议纪要，可直接修改</label><textarea id="minutes" rows="4" maxlength="5000"></textarea>
-  <div class="action-bar"><button id="extract" disabled>提取待办</button><span id="model" class="note">正在读取型号…</span></div>
+  <div class="action-bar"><button id="extract" disabled>提取待办</button><span class="note">每次提取调用模型 1 次</span></div>
   <p id="status" role="status" aria-live="polite"></p>
-  <section id="result" hidden><div class="section-heading"><h2>本次程序检查</h2><div class="record-tools"><label for="record-choice" class="sr-only">查看记录</label><select id="record-choice"></select><button id="download" class="secondary">下载全部记录</button></div></div>
+  <section id="result" hidden><div class="section-heading"><h2>提取结果</h2><div class="record-tools"><label for="record-choice" class="sr-only">查看记录</label><select id="record-choice"></select><button id="download" class="secondary">下载全部记录</button></div></div>
     <div id="checks" class="checks"></div><p class="note">字段合格和原句存在都不能代替语义核查；也不能证明没有漏提。</p>
     <div class="comparison"><section><h3>本次输入原文</h3><pre id="source"></pre></section><section><h3>解析后的待办</h3><div id="items"></div></section></div>
-    <details open><summary>模型原始正文</summary><pre id="raw-answer"></pre></details>
+    <details><summary>模型原始正文</summary><pre id="raw-answer"></pre></details>
     <details><summary>实际请求、原始响应与用量</summary><div id="inspector" class="inspector-body"></div></details>
   </section>
-  <details id="schema-panel"><summary>查看本实验的JSON Schema</summary><div class="inspector-body"><p class="note">由同一个Zod定义生成，程序也用它检查返回值。owner、dueText必须有字段，未知时为null；items允许为空。</p><pre id="schema"></pre></div></details>
+  <details id="schema-panel"><summary>型号与 JSON Schema</summary><div class="inspector-body"><p id="model" class="note">正在读取型号…</p><p class="note">由同一个Zod定义生成，程序也用它检查返回值。owner、dueText必须有字段，未知时为null；items允许为空。</p><pre id="schema"></pre></div></details>
   <details id="counterexample"><summary>人工反例：字段合格，也可能填错负责人</summary><div class="inspector-body"><p class="note">以下由人构造，没有调用模型，不计入实际请求记录。</p>
     <h3>原文</h3><p id="counter-source"></p><h3>人工构造的错误结果</h3><pre id="counter-output"></pre><p id="counter-check"></p><p>原文负责人是陈岚，结果却写成周宇。结构符合约定，引用也确实存在，仍然是错误提取。</p></div></details>`;
 
@@ -49,8 +50,8 @@ function render() {
   get('raw-answer').textContent = run?.rawAnswer ?? (busy ? '等待返回…' : '没有取得模型正文。拒绝信息与其他字段可在原始响应中查看。');
   const checks = get('checks'); checks.replaceChildren();
   for (const check of run?.inspection?.checks ?? []) {
-    const row = document.createElement('div'); row.className = `check ${check.status}`;
-    const title = document.createElement('strong'); title.textContent = `${check.label} · ${check.status === 'pass' ? '已检查' : check.status === 'fail' ? '未通过' : '未执行'}`;
+    const row = document.createElement('details'); row.className = `check ${check.status}`;
+    const title = document.createElement('summary'); title.textContent = `${check.label} · ${check.status === 'pass' ? '已检查' : check.status === 'fail' ? '未通过' : '未执行'}`;
     row.append(title, paragraph(check.detail)); checks.append(row);
   }
   if (!run?.inspection) checks.append(paragraph(error || '尚未取得可检查的响应。', error ? 'error' : 'note'));

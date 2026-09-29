@@ -27,3 +27,11 @@ header { margin-bottom: 22px; }
 .json pre { max-height: 420px; overflow: auto; }
 @media (max-width: 760px) { .reference { grid-template-columns: 1fr; gap: 20px; } }
 @media (max-width: 440px) { .run-controls { display: grid; grid-template-columns: 1fr; gap: 12px; } .run-controls select { width: 100%; } .reference, .rule-body { padding: 16px; } h1 { font-size: 23px; } }
+
+.reference { border: 0; border-bottom: 1px solid #dce3eb; background: transparent; padding: 0 0 20px; }
+.reference td { font-size: 14px; }
+.reference h2 { font-size: 15px; }
+.rule-body { padding: 4px 0 18px; }
+.snapshot { background: #f2f5f9; border-left: 2px solid #cdd8e4; }
+.results-table .selected { background: #f0f5fb; }
+#raw-answer { font-size: 16px; line-height: 1.8; border-color: #dce3eb; }

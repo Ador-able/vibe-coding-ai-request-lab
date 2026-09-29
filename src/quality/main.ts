@@ -1,19 +1,20 @@
 import './style.css';
+import '../lab.css';
 import { QUALITY_CONDITIONS, type Batch, type CaseResult, type QualityCase, type QualityCondition, type QualityResponse } from './contract.ts';
 
 document.querySelector('#app')!.innerHTML = `
   <header><a href="/">请求观察室</a><a href="/context.html">上下文保留实验</a><span class="eyebrow">材料对照实验</span>
-    <h1>上下文装得下，不等于用得好</h1><p>用同一个提取任务，比较长度、位置、相似干扰和矛盾。每种条件两份虚构资料，分别观察事实与引用。</p></header>
-  <section class="run-panel"><div><strong>固定 6 种条件 × 样例 A / B</strong><p>qwen-flash · 非思考 · 温度 0 · 最多输出 512 token · 禁用工具</p></div><button id="run" disabled>运行 12 个样例</button></section>
-  <p class="note">将串行发起 12 次真实模型请求，可能产生费用。不会自动重试，也不会为了出现失败增加材料。</p>
+    <h1>材料对照</h1><p>改变材料长度、位置和干扰，比较提取结果与引用。</p></header>
+  <section class="run-panel"><div><strong>固定 6 种条件 × 样例 A / B</strong><p>每种条件 2 份教学虚构资料</p></div><button id="run" disabled>运行 12 个样例</button></section>
+  <p class="note">调用模型 12 次，按次计费。</p>
   <p id="status" role="status">正在读取合成材料……</p><progress id="progress" max="12" value="0" hidden></progress>
   <section id="observations" hidden><div class="result-toolbar"><label for="batch">查看运行记录</label><select id="batch"></select><button id="download" class="secondary">下载这次运行</button></div>
-    <p class="note">每行最多 2 个样例，不合并为模型准确率。分母只计已返回文本的请求；请求失败单列，格式异常或截断不算通过。</p>
+    <p class="note">每种条件最多 2 例，不代表整体准确率。</p>
     <div class="table-scroll"><table><thead><tr><th>条件</th><th>实际输入 token</th><th>事实完整</th><th>引用正确</th><th>全部通过</th><th>逐例查看</th></tr></thead><tbody id="results"></tbody></table></div>
   </section>
   <details id="case-detail" hidden><summary id="case-title">查看一个样例</summary><div id="case-content" class="inspector-body"></div></details>
   <details class="guide"><summary>预览合成材料（不调用模型）</summary><div class="guide-body"><label for="preview">选择材料</label><select id="preview"></select><div id="preview-content"></div></div></details>
-  <details class="guide"><summary>怎样读这张对照表</summary><div class="guide-body"><dl>
+  <details class="guide"><summary>实验设置与判定口径</summary><div class="guide-body"><p>qwen-flash · 非思考 · 温度 0 · 输出上限 512 token · 禁用工具。串行执行，不自动重试。分母只计已返回文本的请求；失败单列，格式异常或截断不算通过。</p><dl>
     <dt>事实完整</dt><dd>状态、负责人和冻结日期三项都符合资料。冲突条件要求 conflict、负责人为 null、保留一致的冻结日期。</dd>
     <dt>引用正确</dt><dd>记录编号必须完整、准确且没有多余或重复项。冲突条件需要同时引用两条互相矛盾的记录。</dd>
     <dt>全部通过</dt><dd>输出结构完整，事实与引用同时正确。原始回答和期望值都可以展开核对。</dd>
@@ -141,5 +142,5 @@ try {
   const response = await fetch('/api/quality/cases'); if (!response.ok) throw new Error('load-failed');
   cases = await response.json();
   previewSelect.replaceChildren(...cases.map((item) => { const option = document.createElement('option'); option.value = item.id; option.textContent = name(item); return option; }));
-  preview(); button.disabled = false; status.textContent = '材料已就绪，尚未调用模型。';
+  preview(); button.disabled = false; status.textContent = '';
 } catch { status.textContent = '合成材料读取失败，请确认本机服务已启动并刷新页面。'; status.className = 'error'; }

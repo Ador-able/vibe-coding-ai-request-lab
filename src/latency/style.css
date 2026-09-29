@@ -16,3 +16,8 @@ td button { font-size: 13px; padding: 9px 12px; }
 .guide-body > p { font-size: 14px; color: #355864; }
 .badge { font-size: 13px; }
 @media (max-width: 760px) { .experiment { padding: 18px; } .download-bar { align-items: flex-start; flex-direction: column; gap: 8px; } .experiment h2 { font-size: 16px; line-height: 1.6; } }
+
+.experiment { background: white; border-color: #dce3eb; box-shadow: none; border-radius: 8px; }
+.answer-area { background: #f7f9fb; border-color: #dde3eb; }
+#answer { font-size: 16px; line-height: 1.8; }
+#comparison-body small { font-size: 12px; color: #71808d; }

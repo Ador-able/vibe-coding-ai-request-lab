@@ -29,3 +29,10 @@ h1 { font-size: 26px; }
 .json pre { max-height: 440px; overflow: auto; }
 @media (max-width: 760px) { .common, .options { grid-template-columns: 1fr; gap: 20px; } .option + .option { border-left: none; padding-left: 0; border-top: 1px solid #d4e1e3; padding-top: 20px; } .common, #comparison, #editor { padding: 18px; } }
 @media (max-width: 440px) { .generate-bar, .export-bar { align-items: stretch; flex-direction: column; gap: 4px; } .option dl { grid-template-columns: 62px 1fr; gap: 10px; } .option dd { margin-bottom: 0; } }
+
+.common { border: 0; border-left: 2px solid #cfd8e2; background: transparent; padding: 0 18px; }
+.common li, .common p { font-size: 14px; line-height: 1.75; }
+.option { background: white; border-color: #dce3eb; border-radius: 8px; box-shadow: none; }
+.option .copy { font-size: 16px; line-height: 1.8; }
+.option h3 { color: #315f91; }
+#editor { background: white; border-color: #dce3eb; border-radius: 8px; }

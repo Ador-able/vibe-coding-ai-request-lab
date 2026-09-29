@@ -1,4 +1,5 @@
 import './style.css';
+import '../lab.css';
 import { CONDITIONS, QUESTION, type Condition } from './materials.ts';
 import { usageOf, type ClientEvent, type StreamRecord } from './contract.ts';
 import { readEvents } from './sse.ts';
@@ -7,17 +8,17 @@ const app = document.querySelector<HTMLElement>('#app')!;
 const entries = Object.entries(CONDITIONS) as [Condition, (typeof CONDITIONS)[Condition]][];
 app.innerHTML = `
   <header><a href="/">请求观察室</a><span class="eyebrow">流式观察 · 教学虚构手册</span>
-    <h1>长输入为什么影响等待和费用</h1>
-    <p>用同一个事实问题，逐次比较材料长度、重复前缀和回答长度。每次点击调用一次真实模型，不自动重试。</p>
+    <h1>等待与用量</h1>
+    <p>逐次比较输入长度、重复前缀与输出长度。每次运行调用模型 1 次。</p>
   </header>
   <section class="experiment">
-    <div class="section-heading"><h2>${QUESTION}</h2><span class="badge">qwen-flash · 非思考 · 温度 0</span></div>
-    <p class="note">按表中顺序各运行一次。用量来自实际 API；单轮等待同时受网络、服务调度等影响，不是性能排名。</p>
+    <div class="section-heading"><h2>${QUESTION}</h2></div>
+    <p class="note">按顺序各运行一次，比较等待时间与实际用量。</p>
     <div class="table-scroll"><table><thead><tr><th>条件</th><th>操作</th><th>首段正文</th><th>流结束</th><th>输入 token</th><th>其中命中缓存</th><th>输出 token</th></tr></thead><tbody id="comparison-body"></tbody></table></div>
     <p id="status" role="status" aria-live="polite">先运行短材料，观察首段正文何时出现。</p>
     <div class="answer-area"><div class="section-heading"><h3 id="answer-label">实际回答</h3><span id="answer-state" class="note">尚未调用</span></div><p id="answer" class="answer">运行后在这里显示真实流式返回。</p></div>
   </section>
-  <div class="download-bar"><button id="download" class="secondary" disabled>下载全部记录</button><span class="note">表格显示各条件最近一次；明细与下载保留本页全部尝试。刷新前请下载。</span></div>
+  <div class="download-bar"><button id="download" class="secondary" disabled>下载全部记录</button><span class="note">表格显示最近一次，下载保留全部尝试。</span></div>
   <details id="inspector"><summary>查看实际请求、用量和 SSE 事件</summary><div class="inspector-body">
     <label for="record-choice">选择记录 </label><select id="record-choice"><option value="">尚无记录</option></select>
     <div id="record-content"><p class="note">原始请求不包含认证请求头；事件时间从后端发起模型请求时算起。</p></div>
@@ -30,7 +31,7 @@ app.innerHTML = `
     <dt>费用</dt><dd>输入、命中缓存的输入与输出需按当前模型和地域价格分别核算；这里记录实际用量，不按总 token 直接换算费用。</dd>
   </dl></div></details>
   <details id="materials"><summary>查看固定材料与对照条件</summary><div class="guide-body">
-    <p>手册为人工编写的 40 条虚构产品说明，短材料直接取其中 M21。同一问题放在材料之后。第 3 项与第 2 项请求体完全相同；第 4 项只改最前面的实验版本 A→B，不改变产品版本、手册和问题。</p>
+    <p>qwen-flash · 非思考 · 温度 0，不自动重试。单轮等待受网络、服务调度等影响，不是性能排名。</p><p>手册为人工编写的 40 条虚构产品说明，短材料直接取其中 M21。同一问题放在材料之后。第 3 项与第 2 项请求体完全相同；第 4 项只改最前面的实验版本 A→B，不改变产品版本、手册和问题。</p>
     <p>第 5 项保持长资料，末尾改为约 350 字的说明要求，并将输出上限从 96 改为 512。它同时观察输出要求与实际生成长度，不把差异全归因于上限。</p>
     <pre id="materials-content">展开后加载实际材料。</pre>
   </div></details>`;

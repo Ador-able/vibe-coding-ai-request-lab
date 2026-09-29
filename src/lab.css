@@ -1,0 +1,34 @@
+/* 实验页共用阅读层级；各页保留自己的结果布局。 */
+:root { color: #202c36; background: #f7f8fa; --lab-accent: #315f91; }
+body main { max-width: 1120px; padding: 28px 32px 56px; }
+main > header { margin-bottom: 24px; }
+main > header h1 { font-size: 25px; line-height: 1.4; letter-spacing: 0; margin: 10px 0 7px; }
+main > header p { font-size: 14px; line-height: 1.6; color: #63717e; }
+main > header a, main > header .eyebrow { font-size: 12px; color: #677786; font-weight: 400; letter-spacing: 0; }
+main h2 { font-size: 17px; line-height: 1.5; }
+main h3 { font-size: 15px; line-height: 1.5; }
+main button { border-radius: 6px; background: var(--lab-accent); font-size: 14px; padding: 10px 16px; }
+main button:hover { background: #254c75; }
+main button.secondary { background: #edf1f5; color: #4c6073; }
+main button.secondary:hover { background: #e2e8ef; }
+main button.link-button, main button.source-link { background: transparent; color: var(--lab-accent); }
+main button:disabled { cursor: not-allowed; opacity: .5; }
+main :is(button, summary, select, textarea, input):focus-visible { outline: 2px solid #638eba; outline-offset: 3px; }
+main > details { border: 0; border-top: 1px solid #dce2e8; border-radius: 0; background: transparent; margin-top: 18px; }
+main > details > summary { padding: 15px 2px; color: #556777; font-size: 13px; }
+main > details[open] > summary { border-bottom: 0; }
+main :is(.note, .meta, .small-label, .badge) { font-size: 12px; color: #6b7885; line-height: 1.6; }
+main .badge { background: #f1f3f6; padding: 3px 7px; font-weight: 400; }
+main .table-scroll { margin-top: 14px; }
+main th { background: #f5f7f9; font-size: 12px; color: #657280; font-weight: 500; }
+main td { font-size: 15px; }
+main pre { background: #f5f7f9; color: #334756; line-height: 1.7; }
+main :is(.inspector-body, .guide-body) { padding: 8px 2px 20px; }
+main :is(.download-bar, .export-bar, .record-bar) { font-size: 12px; }
+main #status:empty { display: none; }
+main .experiment-note { margin: 0; font-size: 12px; color: #71808d; }
+@media(max-width: 700px) {
+  body main { padding: 20px 16px 40px; }
+  main > header h1 { font-size: 22px; }
+  main > header p { font-size: 13px; }
+}

@@ -44,3 +44,7 @@ dt { color: #7b9198; }
 dd { margin: 0; color: #506d77; font-family: ui-monospace, Consolas, monospace; overflow-wrap: anywhere; }
 @media(max-width: 600px) { main { padding: 32px 16px; } h1 { font-size: 28px; } form, .response { padding: 22px 20px; } .actions { gap: 16px; align-items: flex-start; } }
 @media(max-width: 750px) { .trace-content { grid-template-columns: 1fr; } }
+
+.workspace { border-color: #dce3eb; box-shadow: none; border-radius: 8px; }
+.response { background: #fafbfd; }
+#answer { font-size: 16px; }

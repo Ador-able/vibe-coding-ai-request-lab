@@ -1,25 +1,26 @@
 import './style.css';
+import '../lab.css';
 import { FACTS, GOAL } from './scenario.ts';
 import { chooseOption, clearSelection, editDraft, emptyDecision, type Decision, type DecisionRun, type DecisionResponse, type OptionIndex } from './contract.ts';
 
 const app = document.querySelector<HTMLElement>('#app')!;
 app.innerHTML = `<header><a href="/">请求观察室</a><span class="eyebrow">人的判断 · 文案对比</span>
-  <h1>让人看得懂，才能作出决定</h1><p>对照同一资料与目标，看两份文案各有什么取舍，再决定是否采用和怎样修改。</p></header>
-  <section class="common"><div><h2>独立给定资料 · 教学虚构</h2><ul id="facts"></ul></div><div><h2>共同目标</h2><p id="goal"></p></div></section>
-  <div class="generate-bar"><button id="generate">生成两份候选文案</button><p class="note">一次模型调用；生成后由我们作判断。</p></div>
+  <h1>文案对比与选择</h1><p>对照同一资料与目标，比较文案的取舍，再选择和修改。</p></header>
+  <section class="common"><div><h2>活动资料 · 教学虚构</h2><ul id="facts"></ul></div><div><h2>共同目标</h2><p id="goal"></p></div></section>
+  <div class="generate-bar"><button id="generate">生成两份候选文案</button><p class="note">调用模型 1 次。</p></div>
   <p id="status" role="status" aria-live="polite"></p>
   <div id="run-picker" hidden><label for="run-choice">查看本页记录 </label><select id="run-choice"></select></div>
   <section id="comparison" hidden><div class="section-heading"><h2>两份模型原稿</h2><button id="reject" class="secondary">两份都不采用</button></div>
-    <p class="note">理由和取舍是模型建议，尚未核验；模型列出的待确认项也不一定完整。</p><div id="options" class="options"></div>
+    <p class="note">理由、取舍和待确认项均为模型建议，需自行核对。</p><div id="options" class="options"></div>
     <p id="decision-state" class="decision-state" role="status"></p>
   </section>
   <section id="editor" hidden><div class="section-heading"><h2>本地待编辑稿</h2><button id="clear" class="secondary">放弃当前选择</button></div>
-    <p class="note">直接修改文字，不调用模型。原两份文案保留，当前稿没有对外发布或发送。</p>
+    <p class="note">修改只保存在本页，不调用模型或对外发布。</p>
     <label for="draft-title">标题</label><input id="draft-title" type="text" />
     <label for="draft-text">介绍正文</label><textarea id="draft-text" rows="6"></textarea>
   </section>
-  <div class="export-bar"><button id="download" class="secondary" disabled>导出本次判断记录</button><span class="note">含本页全部生成尝试、选择及当前编辑稿；刷新前请导出。</span></div>
-  <details id="inspector"><summary>查看当前记录的真实请求、响应与用量</summary><div id="request-content" class="inspector-body"><p class="note">尚未调用模型。</p></div></details>`;
+  <div class="export-bar"><button id="download" class="secondary" disabled>导出本次判断记录</button><span class="note">刷新前导出，保留尝试、选择和编辑稿。</span></div>
+  <details id="inspector"><summary>请求明细与用量</summary><div id="request-content" class="inspector-body"><p class="note">尚未调用模型。</p></div></details>`;
 
 const get = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 for (const fact of FACTS) { const item = document.createElement('li'); item.textContent = fact; get('facts').append(item); }

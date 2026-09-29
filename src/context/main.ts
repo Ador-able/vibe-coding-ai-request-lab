@@ -1,35 +1,36 @@
 import './style.css';
+import '../lab.css';
 import { CONDITIONS, FIRST_QUESTION, FOLLOW_UP, type Condition, type ContextResponse, type ExperimentRun, type Message, type RequestRecord } from './contract.ts';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <header><a href="/">请求观察室</a><span class="eyebrow">上下文实验</span>
-    <h1>同一个追问，带上不同的历史</h1>
-    <p>先查发布时间，再问负责人。我们只改变随请求发送的历史范围。</p>
+    <h1>上下文对照</h1>
+    <p>同一个追问，比较只带问题、聊天文字和完整工具结果时的回答。</p>
   </header>
   <section class="setup" aria-labelledby="setup-title">
-    <div class="section-heading"><h2 id="setup-title">1. 建立共同的首轮记录</h2><span class="badge">虚构版本资料 · 真实模型调用</span></div>
+    <h2 id="setup-title">先查询一次发布时间</h2>
     <p class="question" id="first-question"></p>
-    <div class="setup-actions"><p>模型请求本地工具查询记录，再用工具结果回答。</p><button id="start">查询发布时间</button></div>
+    <div class="setup-actions"><button id="start">查询发布时间</button><span class="experiment-note">教学虚构资料 · 首轮调用模型 2 次</span></div>
     <div id="first-answer-wrap" hidden><span class="small-label">首轮回答 · 原文</span><p id="first-answer" class="answer"></p><p class="note">下方三种条件共享这一次首轮历史，不会重跑查询。</p></div>
   </section>
-  <p id="status" role="status">每次操作会请求配置的模型 API；首轮需要两次请求。</p>
+  <p id="status" role="status"></p>
   <section id="follow-section" hidden aria-labelledby="follow-title">
-    <h2 id="follow-title">2. 选择保留范围，发送同一个追问</h2>
+    <h2 id="follow-title">选择追问携带的历史</h2>
     <p id="follow-question" class="question"></p>
     <fieldset id="conditions"><legend class="sr-only">随追问发送哪些历史</legend>
       ${Object.entries(CONDITIONS).map(([key, value], i) => `<label class="condition"><input type="radio" name="condition" value="${key}" ${i === 0 ? 'checked' : ''}><span><strong>${value.name}</strong><small>${value.description}</small></span></label>`).join('')}
     </fieldset>
-    <div class="follow-actions"><p>三种条件均携带系统规则和工具定义；<code>tool_choice: none</code> 禁止重新查询。</p><button id="follow">发送追问</button></div>
-    <section id="comparison" hidden aria-labelledby="comparison-title"><h3 id="comparison-title">实际返回的回答</h3><p class="note">逐次保留原文，包括猜测或答错；后一次追问不会携带前一次追问的回答。</p>
-      <div class="table-scroll"><table><thead><tr><th>保留范围</th><th>消息数</th><th>输入 token</th><th>工具结果</th><th>模型回答</th><th>请求记录</th></tr></thead><tbody id="results"></tbody></table></div>
+    <div class="follow-actions"><button id="follow">发送追问</button><span class="experiment-note">每次调用模型 1 次；不重新查询工具</span></div>
+    <section id="comparison" hidden aria-labelledby="comparison-title"><h3 id="comparison-title">实际返回的回答</h3>
+      <div class="table-scroll"><table><thead><tr><th>保留范围</th><th>模型回答</th><th>输入 token</th><th>请求记录</th></tr></thead><tbody id="results"></tbody></table></div>
     </section>
   </section>
-  <details id="inspector" hidden><summary>查看真正发送的请求和返回记录</summary><div class="inspector-body">
+  <details id="inspector" hidden><summary>请求明细与下载</summary><div class="inspector-body">
     <div class="inspector-tools"><label for="run-selector">选择记录</label><select id="run-selector"></select><button id="download" class="secondary">下载本页记录</button></div>
     <p class="note">JSON 来自实际交给 fetch 的请求体；不含请求头、API 密钥或服务地址。模型返回和本地工具结果分别列出。</p>
     <div id="records"></div>
   </div></details>
-  <details class="guide"><summary>请求中的几类信息各做什么</summary><div class="guide-body"><dl>
+  <details class="guide"><summary>实验条件与信息说明</summary><div class="guide-body"><p>三种条件都附有系统规则和工具定义，以 tool_choice: none 禁止重新查询。每次追问共享同一份首轮记录，不携带上次追问的回答；表格保留模型原文。</p><dl>
     <dt>系统规则</dt><dd>规定回答方式：依据信息、缺少证据就说明，不猜测。</dd>
     <dt>用户消息</dt><dd>提出本轮任务。本实验只有版本问题，没有额外附加材料。</dd>
     <dt>聊天历史</dt><dd>保留之前说过什么；助手文字不一定包含工具查到的全部内容。</dd>
@@ -85,8 +86,8 @@ function requestView(request: RequestRecord, index: number) {
   });
   section.append(sequence, paragraph(`另附 ${body.tools.length} 个工具定义 · tool_choice: ${typeof body.tool_choice === 'string' ? body.tool_choice : '指定 get_release_info'}`, 'meta'));
   // 排版只解析这个已发送字符串；下载文件保留 requestBody 的原始字节序列。
-  section.append(jsonDetail('请求体 · 格式化显示', pretty(body), true));
-  if (request.responseMessage !== undefined) section.append(jsonDetail('模型实际返回的消息', pretty(request.responseMessage), true));
+  section.append(jsonDetail('请求体 · 格式化显示', pretty(body)));
+  if (request.responseMessage !== undefined) section.append(jsonDetail('模型实际返回的消息', pretty(request.responseMessage)));
   section.append(paragraph(`finish_reason: ${request.finishReason ?? '未返回'}${request.responseModel ? ` · 返回型号：${request.responseModel}` : ''}`, 'meta'));
   section.append(jsonDetail('模型实际返回的 usage', pretty(request.usage ?? null)));
   if (request.error) section.append(paragraph(request.error, 'error'));
@@ -120,11 +121,10 @@ function renderResults() {
   element('#results').replaceChildren(...runs.filter((run) => run.condition).map((run) => {
     const row = document.createElement('tr');
     const request = run.requests[0];
-    const body = request ? JSON.parse(request.requestBody) as { messages: Message[] } : undefined;
     const usage = request?.usage;
     const inputTokens = usage && typeof usage === 'object' && 'prompt_tokens' in usage && typeof usage.prompt_tokens === 'number' ? String(usage.prompt_tokens) : '未返回';
-    const values = [run.label, body ? String(body.messages.length) : '—', inputTokens, body ? (body.messages.some((message) => message.role === 'tool') ? '包含' : '不包含') : '—', run.error ? `未完成：${run.error.message}` : run.answer ?? '没有回答'];
-    values.forEach((value, index) => { const cell = document.createElement('td'); cell.textContent = value; if (index === 4) cell.className = 'answer-cell'; row.append(cell); });
+    const values = [run.label, run.error ? `未完成：${run.error.message}` : run.answer ?? '没有回答', inputTokens];
+    values.forEach((value, index) => { const cell = document.createElement('td'); cell.textContent = value; if (index === 1) cell.className = 'answer-cell'; row.append(cell); });
     const cell = document.createElement('td'); const button = document.createElement('button'); button.className = 'link-button'; button.textContent = '查看';
     button.addEventListener('click', () => { runSelector.value = run.id; showRecord(); inspector.open = true; inspector.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
     cell.append(button); row.append(cell); return row;
@@ -150,7 +150,7 @@ startButton.addEventListener('click', async () => {
     sessionId = result.sessionId;
     element('#first-answer').textContent = result.run.answer;
     element('#first-answer-wrap').hidden = false; element('#follow-section').hidden = false;
-    startButton.textContent = '重新建立首轮'; renderResults();
+    startButton.textContent = '重新查询'; startButton.classList.add('secondary'); renderResults();
     status.textContent = '首轮历史已保存在本机服务中。请选择一种条件继续。';
   } catch { status.textContent = '没有收到本机服务的有效回复，请确认服务仍在运行。'; status.className = 'error'; }
   finally { setBusy(false); }

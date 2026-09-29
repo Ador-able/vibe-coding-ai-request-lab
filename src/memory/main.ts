@@ -1,21 +1,22 @@
 import './style.css';
+import '../lab.css';
 import { FLOWS, costOf, type Flow, type FlowResponse, type FlowResult, type SavedNote } from './contract.ts';
 import type { Source, TEACHING_NOTE } from './materials.ts';
 
 document.querySelector('#app')!.innerHTML = `
-  <header><a href="/">请求观察室</a><span class="eyebrow">材料选择实验</span><h1>选原文、用摘要，还是带任务便笺</h1><p>同一项雨天转场任务，观察哪些材料真正进入模型，以及每条流程付出了多少输入和输出。</p></header>
-  <section class="run-panel"><div><strong id="question"></strong><p>10 份教学虚构资料 · qwen-flash · 非思考 · 温度 0</p></div><button id="start" disabled>比较三条流程 · 5 次调用</button></section>
+  <header><a href="/">请求观察室</a><span class="eyebrow">材料选择实验</span><h1>材料与记忆</h1><p>比较全文、选读和摘要；再试着用任务便笺开启新会话。</p></header>
+  <section class="run-panel"><div><strong id="question"></strong><p>10 份教学虚构资料 · 每次比较调用模型 5 次</p></div><button id="start" disabled>比较三条流程</button></section>
   <p id="status" role="status">正在载入资料……</p>
-  <section id="comparison" hidden><h2>三条流程的实际结果</h2><p class="note">这里按完整流程统计 API 返回的 token。最后回答输入更短，不代表整条流程总用量更少；没有自动语义评分。</p><div class="table-scroll"><table><thead><tr><th>流程</th><th>实际调用</th><th>最后回答输入</th><th>整链输入</th><th>整链输出</th><th>输入＋输出</th><th>实际回答</th></tr></thead><tbody id="results"></tbody></table></div></section>
+  <section id="comparison" hidden><h2>三条流程的实际结果</h2><p class="note">对照最后一次输入与完整流程用量；回答需自行核对。</p><div class="table-scroll"><table><thead><tr><th>流程</th><th>实际调用</th><th>最后回答输入</th><th>整链输入</th><th>整链输出</th><th>输入＋输出</th><th>实际回答</th></tr></thead><tbody id="results"></tbody></table></div></section>
   <details id="request-detail" hidden><summary id="request-title">查看完整请求记录</summary><div id="request-content" class="inspector-body"></div></details>
-  <details class="guide"><summary>查看资料目录与原文</summary><div class="guide-body"><p class="note">目录用于导航，完整条款在原文中。这里浏览资料不会调用模型。</p><div id="catalog"></div></div></details>
-  <section class="note-section"><div class="section-heading"><h2>跨会话：保存一份核对过的任务便笺</h2><span class="badge">人工教学记录 · 非模型生成</span></div>
+  <details class="guide"><summary>查看资料目录与原文</summary><div class="guide-body"><p class="note">qwen-flash · 非思考 · 温度 0。目录用于导航，完整条款在原文中；浏览资料不调用模型。</p><div id="catalog"></div></div></details>
+  <details class="note-section"><summary>跨会话：保存并读回任务便笺</summary><div class="note-body"><p class="badge">人工教学记录 · 非模型生成</p>
     <p class="note">便笺来自先前任务状态，由我们核对后保存。新会话会带上便笺和它指向的原文，不带旧聊天；这部分不与上面三条流程作同等总成本比较。</p>
     <div id="teaching-note"></div><label class="confirm"><input id="confirm" type="checkbox">我已核对这份人工教学便笺中的条件、未决事项与来源。</label>
     <div class="note-actions"><button id="save" class="secondary" disabled>确认并保存到本机</button><button id="resume" disabled>用便笺开始新会话 · 1 次调用</button></div><p id="note-status" class="note" role="status">便笺状态读取中……</p><div id="note-results"></div>
-  </section>
+  </div></details>
   <details id="source-view" hidden><summary id="source-title">来源原文</summary><div id="source-content" class="guide-body"></div></details>
-  <div class="download-bar"><button id="download" class="secondary" disabled>下载本页所有真实请求</button><span class="note">重复运行保留本页旧记录；刷新前请下载。保存的便笺留在本机文件中。</span></div>`;
+  <div class="download-bar"><button id="download" class="secondary" disabled>下载本页所有真实请求</button><span class="note">刷新前下载请求记录；已保存的便笺保留在本机。</span></div>`;
 
 const el = <T extends HTMLElement>(selector: string) => document.querySelector<T>(selector)!;
 const start = el<HTMLButtonElement>('#start'), save = el<HTMLButtonElement>('#save'), resume = el<HTMLButtonElement>('#resume');
@@ -141,7 +142,7 @@ try {
   }
   box.append(groups, p(`下一步：${note.next_steps.join(' ')}`));
   box.append(p(`来源日期：${note.sources.map((source) => `${source.id} ${source.date}`).join('；')}`, 'note'));
-  status.textContent = '材料已就绪。比较流程会进行真实模型调用，尚未运行。';
+  status.textContent = '';
   const noteResponse = await fetch('/api/memory/note'); const data = await noteResponse.json();
   if (noteResponse.ok) { saved = data.saved; noteStatus.textContent = saved ? `已从本机文件读取人工便笺，确认时间：${saved.confirmedAt}。` : '尚未保存便笺。请先打开来源核对，再勾选并保存。'; }
   else noteStatus.textContent = '本地便笺无法读取；可核对后重新保存。';

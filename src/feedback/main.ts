@@ -1,13 +1,14 @@
 import './style.css';
+import '../lab.css';
 import { CATALOG, ORDERS, SUGGESTED_RULE } from './scenario.ts';
 import type { FeedbackResponse, FeedbackRun, RuleMode, RuleResponse, SavedRule } from './contract.ts';
 
 document.querySelector<HTMLElement>('#app')!.innerHTML = `<header><a href="/">请求观察室</a><span class="eyebrow">人的反馈 · 订单简称</span>
-  <h1>人的反馈怎样改进 AI 的工作</h1><p>同一份订单，比较不带规则与带上人工确认规则的回答。客户简称有边界，不能推广到其他客户或明确的产品描述。</p></header>
+  <h1>订单规则对照</h1><p>比较同一订单在不带规则与附带已确认规则时的回答。</p></header>
   <section class="reference"><div><h2>产品目录 · 教学虚构</h2><table><thead><tr><th>编号</th><th>名称</th></tr></thead><tbody id="catalog"></tbody></table></div>
     <div><h2>三个新订单</h2><table><thead><tr><th>订单</th><th>客户</th><th>原话</th></tr></thead><tbody id="orders"></tbody></table></div></section>
   <details id="rule-panel"><summary id="rule-summary">业务规则 · 正在读取</summary><div class="rule-body">
-    <label for="rule-text">规则内容与适用范围</label><textarea id="rule-text" rows="3" maxlength="2000"></textarea>
+    <p class="note">客户简称只在约定范围内适用，不能推广到其他客户或明确的产品描述。</p><label for="rule-text">规则内容与适用范围</label><textarea id="rule-text" rows="3" maxlength="2000"></textarea>
     <label class="confirm"><input id="confirmed" type="checkbox" />我已核对规则内容及其客户、描述范围</label>
     <div class="rule-actions"><button id="save-rule" class="secondary" disabled>确认保存并启用</button><button id="disable-rule" class="secondary" disabled>停用已保存规则</button></div>
     <p id="rule-note" class="note"></p><p id="rule-status" class="note" role="status"></p>
@@ -16,10 +17,10 @@ document.querySelector<HTMLElement>('#app')!.innerHTML = `<header><a href="/">�
     <label for="mode">本次输入<select id="mode"><option value="none">不带规则</option><option value="saved">附带当前已保存规则</option></select></label>
     <button id="run">处理所选订单</button></section>
   <p id="run-hint" class="note"></p><p id="status" role="status" aria-live="polite"></p>
-  <section id="results" hidden><div class="section-heading"><h2>本页实际记录</h2><button id="download" class="secondary">下载全部记录</button></div>
+  <section id="results" hidden><div class="section-heading"><h2>订单处理结果</h2><button id="download" class="secondary">下载全部记录</button></div>
     <div class="table-scroll"><table class="results-table"><thead><tr><th>订单</th><th>规则</th><th>模型给出的sku</th><th>输入 / 输出 token</th><th>记录</th></tr></thead><tbody id="rows"></tbody></table></div>
     <section class="selected-result"><h3 id="result-title"></h3><p id="snapshot" class="snapshot"></p><p id="snapshot-time" class="meta"></p><h3>模型原始回答</h3><pre id="raw-answer"></pre>
-      <p class="note">字段解析不代表判断正确；原文不作自动修正。刷新前请下载记录。</p>
+      <p class="note">对照目录与规则核对判断；刷新前下载记录。</p>
       <details><summary>查看本次实际请求、响应与用量</summary><div id="inspector" class="inspector-body"></div></details>
     </section>
   </section>`;

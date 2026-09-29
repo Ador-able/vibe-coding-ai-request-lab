@@ -1,9 +1,9 @@
 import './style.css';
+import './lab.css';
 import type { AskResult, RequestTrace } from './contract.ts';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <header><span class="eyebrow">进阶 vibe coding · 01</span><h1>请求观察室</h1><p>提一个问题，看看回答从哪里来。</p></header>
-  <div class="route" aria-label="请求经过浏览器、本地后端与模型服务"><span>浏览器页面</span><b aria-hidden="true">↔</b><span>本地后端</span><b aria-hidden="true">↔</b><span>模型服务</span></div>
+  <header><span class="eyebrow">AI 实验</span><h1>请求观察室</h1><p>提一个问题，看看回答从哪里来。</p></header>
   <section class="workspace">
     <form id="question-form">
       <label for="question">我们想问什么？</label>

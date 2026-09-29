@@ -1,19 +1,20 @@
 import './style.css';
+import '../lab.css';
 import { FACTS, INITIAL_TASK } from './scenario.ts';
 import { acceptTurn, type Turn, type CollaborationResponse, type CollaborationResult } from './contract.ts';
 
 const app = document.querySelector<HTMLElement>('#app')!;
 app.innerHTML = `<header><a href="/">请求观察室</a><span class="eyebrow">人在环路 · 文字共写</span>
-  <h1>一起写一份图书馆活动介绍</h1><p>先看两种宣传方向，再用自己的判断提出选择、补充或纠正，观察 AI 怎样继续改写。</p></header>
+  <h1>活动共写</h1><p>比较两个方向，提出选择或纠正，再看 AI 怎样改写。</p></header>
   <section class="facts"><h2>已有活动资料 · 教学虚构</h2><p id="facts"></p></section>
   <section id="conversation" hidden><div class="section-heading"><h2>共写记录</h2><button id="copy" class="secondary" type="button">复制最新回答</button></div><div id="turns"></div></section>
   <form id="compose"><label id="input-label" for="input">先告诉 AI 我们想比较什么</label>
     <textarea id="input" rows="5" maxlength="6000" required></textarea>
-    <div class="compose-actions"><p class="note">每次提交调用一次模型。方案由我们判断，本练习只生成文字。</p><button id="send" type="submit">生成两个方向</button></div>
+    <div class="compose-actions"><p class="note">每次提交调用模型 1 次。</p><button id="send" type="submit">生成两个方向</button></div>
   </form>
   <p id="status" role="status" aria-live="polite"></p>
-  <div class="record-bar"><button id="download" class="secondary" disabled>下载共写记录</button><span class="note">保留本页全部尝试；刷新会清空页面对话，请先下载。</span></div>
-  <details id="inspector"><summary>查看各轮实际请求与用量</summary><div class="inspector-body">
+  <div class="record-bar"><button id="download" class="secondary" disabled>下载共写记录</button><span class="note">刷新前下载，保留全部尝试。</span></div>
+  <details id="inspector"><summary>请求明细与用量</summary><div class="inspector-body">
     <label for="record-choice">选择尝试 </label><select id="record-choice"><option value="">尚无记录</option></select><div id="record-content"></div>
   </div></details>`;
 

@@ -66,3 +66,14 @@ dt { font-weight: 600; } dd { margin: 0; color: #456672; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
 @media (max-width: 760px) { main { padding: 24px 16px 48px; } h1 { font-size: 24px; } .setup, #follow-section { padding: 18px; } fieldset { grid-template-columns: 1fr; gap: 8px; } .condition { padding: 12px; } .condition small { margin-top: 4px; } .setup-actions, .follow-actions { align-items: flex-start; } }
 @media (max-width: 440px) { .setup-actions, .follow-actions { flex-direction: column; align-items: stretch; gap: 12px; } .badge { font-size: 11px; } dl { grid-template-columns: 1fr; gap: 4px; } dd { margin-bottom: 12px; } }
+
+/* 先操作，再对照结果；记录留在折叠内。 */
+.setup, #follow-section { padding: 22px; border-color: #dde3e9; box-shadow: none; border-radius: 8px; }
+.setup-actions, .follow-actions { justify-content: flex-start; gap: 14px; }
+.question { margin: 12px 0 18px; font-size: 18px; line-height: 1.65; }
+#status:empty { display: none; }
+#comparison h3 { font-size: 17px; color: #263d50; }
+.answer-cell { width: 60%; font-size: 16px; }
+.condition { padding: 13px; border-color: #dce3eb; }
+.condition:has(input:checked) { background: #f2f6fb; border-color: #638eba; box-shadow: none; }
+input[type=radio] { accent-color: #315f91; }
