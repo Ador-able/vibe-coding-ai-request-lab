@@ -83,6 +83,7 @@ function observation(playback: Playback) {
 function statusText(playback: Playback) {
   if (playback.state === 'reading') return '正在读取历史事件…';
   if (playback.state === 'interrupted') return '本次回放已中止，已读片段保留；历史记录未改。';
+  if (playback.state === 'failed' && !playback.historical) return '历史原件未能载入，请检查连接后重新回放。';
   if (playback.state === 'failed') return playback.error || '本次读取失败，已读片段保留。';
   if (playback.message?.metadata?.state === 'stopped') return '回放结束；历史任务未完成。';
   if (playback.message?.metadata?.state === 'completed') return '回放结束；历史生成流程已结束，内容仍需核对。';
@@ -186,7 +187,7 @@ get('run').addEventListener('click', async () => {
     playback.error = error instanceof Error ? error.message : String(error);
     if (!playback.historical && previous >= 0) {
       current = previous;
-      notice = playback.state === 'interrupted' ? '本次载入已中止，上一份回放仍可查看。' : `${playback.error} 上一份回放仍可查看。`;
+      notice = playback.state === 'interrupted' ? '本次载入已中止，上一份回放仍可查看。' : '历史原件未能载入，上一份回放仍可查看。';
       noticeIsError = playback.state === 'failed';
     } else current = index;
   } finally {
