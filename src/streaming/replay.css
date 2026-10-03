@@ -1,0 +1,78 @@
+.heading-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.direction-label { display: flex; gap: 10px; align-items: center; font-size: 13px; margin: 0; font-weight: 400; }
+.replay-note { font-size: 14px; color: #456672; }
+.source-controls { display: flex; gap: 16px; margin-top: 14px; }
+.source-controls label { display: flex; align-items: center; gap: 10px; margin: 0; }
+.text-state { margin-left: 12px; font-size: 13px; color: #647883; font-weight: 400; }
+#identity, #metadata { overflow-wrap: anywhere; }
+#raw-playback { max-height: 520px; overflow: auto; }
+#stop:disabled { cursor: default; }
+
+/* 原版保留上方材料、下方双列回复与底部记录的关系。 */
+body[data-direction='original'] .workspace { display: block; }
+
+/* 台面的来源侧区与浅色回复面共同组织当前工作对象。 */
+body[data-direction='studio'] { background: #192a37; color: #e0e9ee; }
+body[data-direction='studio'] main { max-width: 1280px; padding: 30px 28px 56px; }
+body[data-direction='studio'] header { margin-bottom: 24px; }
+body[data-direction='studio'] h1 { font-size: 27px; letter-spacing: 0; }
+body[data-direction='studio'] header p { color: #bbcad3; }
+body[data-direction='studio'] .workspace { display: grid; grid-template-columns: 310px minmax(0, 1fr); gap: 22px; align-items: start; }
+body[data-direction='studio'] #source { background: #243b4a; padding: 22px; min-width: 0; }
+body[data-direction='studio'] textarea { min-height: 246px; background: #192e3c; border-color: #527180; color: #e1ebef; font-size: 15px; line-height: 1.85; }
+body[data-direction='studio'] select { background: #223c4b; color: #e2edf3; border-color: #63808d; }
+body[data-direction='studio'] .source-controls label { align-items: flex-start; flex-direction: column; gap: 8px; width: 100%; }
+body[data-direction='studio'] .source-controls select { width: 100%; }
+body[data-direction='studio'] button { background: #347893; }
+body[data-direction='studio'] button:hover { background: #29647d; }
+body[data-direction='studio'] button.secondary { color: #264b5b; background: #dce6e9; }
+body[data-direction='studio'] #source button.secondary { color: #d8e5eb; background: #385564; }
+body[data-direction='studio'] #status { color: #d2dfe7; line-height: 1.75; margin: 16px 0 0; }
+body[data-direction='studio'] #status.error { color: #ffd1b8; }
+body[data-direction='studio'] #assistant { grid-column: 2; margin: 0; background: #fcfdfd; color: #213d4a; padding: 28px 32px; border-top: 3px solid #4a91a6; }
+body[data-direction='studio'] #message { grid-template-columns: 1fr; gap: 0; }
+body[data-direction='studio'] #message section + section { padding-top: 20px; border-top: 1px solid #dce5e8; }
+body[data-direction='studio'] .answer { font-size: 17px; line-height: 1.85; }
+body[data-direction='studio'] #records { grid-column: 2; margin-top: 0; border: none; border-radius: 0; color: #243f4d; background: #eff4f5; }
+body[data-direction='studio'] #records select { background: white; color: #294b5c; border-color: #b7cbd3; }
+body[data-direction='studio'] #records details { border-radius: 0; }
+body[data-direction='studio'] #records summary { color: #315b6c; }
+body[data-direction='studio'] #records .note { color: #4a6775; }
+body[data-direction='studio'] #records th { background: #e5edef; }
+
+/* 笔记页让原文与观察连续阅读，用分节承担边界。 */
+body[data-direction='notebook'] { background: #f8f7f2; color: #2b424b; }
+body[data-direction='notebook'] main { max-width: 900px; padding: 34px 32px 64px; }
+body[data-direction='notebook'] header { border-bottom: 1px solid #b9c7cc; padding-bottom: 18px; }
+body[data-direction='notebook'] h1 { font-family: 'Songti SC', SimSun, serif; font-size: 28px; font-weight: 600; letter-spacing: .04em; }
+body[data-direction='notebook'] .workspace { display: block; }
+body[data-direction='notebook'] textarea { background: #fffefa; color: #2b424b; border: 1px solid #c5cfcc; border-radius: 0; min-height: 160px; font-size: 16px; line-height: 1.95; }
+body[data-direction='notebook'] select { background: #fffefa; border-radius: 0; border-color: #bdccc9; }
+body[data-direction='notebook'] button { border-radius: 3px; background: #356c7d; }
+body[data-direction='notebook'] button.secondary { color: #355b63; background: #e7ece8; }
+body[data-direction='notebook'] #assistant { background: transparent; border-top: 1px solid #a6bfc3; margin-top: 30px; padding: 24px 0 8px; }
+body[data-direction='notebook'] #message { grid-template-columns: 1fr; gap: 0; }
+body[data-direction='notebook'] h2, body[data-direction='notebook'] h3 { font-family: 'Songti SC', SimSun, serif; color: #315c70; }
+body[data-direction='notebook'] .answer { font-size: 17px; line-height: 2; }
+body[data-direction='notebook'] #message section + section { margin-top: 28px; padding-top: 18px; border-top: 1px solid #d2dcd8; }
+body[data-direction='notebook'] #records { background: transparent; border: none; border-top: 1px solid #c5d2cc; border-radius: 0; margin-top: 26px; }
+body[data-direction='notebook'] #records > summary { padding-left: 0; }
+body[data-direction='notebook'] #records > .inspector-body { padding: 16px 0 0; }
+body[data-direction='notebook'] #records details { border-color: #cbd6d0; border-radius: 0; background: #fffefa; }
+body[data-direction='notebook'] th { background: #eef2ec; }
+
+@media (max-width: 760px) {
+  .direction-label { font-size: 12px; }
+  .direction-label select { padding: 6px; }
+  .heading-top { gap: 12px; }
+  body[data-direction='studio'] main { padding: 22px 16px 40px; }
+  body[data-direction='studio'] .workspace { display: block; }
+  body[data-direction='studio'] #source { padding: 18px; }
+  body[data-direction='studio'] textarea { min-height: 196px; }
+  body[data-direction='studio'] #assistant { margin-top: 18px; padding: 22px 20px; }
+  body[data-direction='studio'] #records { margin-top: 18px; }
+  body[data-direction='notebook'] main { padding: 26px 18px 42px; }
+  .message-heading { align-items: flex-start; }
+  .progress { line-height: 1.7; }
+  .source-controls label { flex-wrap: wrap; }
+}

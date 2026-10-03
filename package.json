@@ -14,6 +14,7 @@
     "structured:start": "node --env-file-if-exists=.env --import tsx src/structured/server.ts --production",
     "streaming:dev": "node --env-file-if-exists=.env --import tsx src/streaming/server.ts",
     "streaming:start": "node --env-file-if-exists=.env --import tsx src/streaming/server.ts --production",
+    "streaming:replay": "vite --host 127.0.0.1 --port 4332 --strictPort",
     "build": "vite build",
     "check": "tsc --noEmit",
     "test": "node --import tsx --test test/*.test.ts"
