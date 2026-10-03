@@ -1,3 +1,4 @@
+body { min-height: 100vh; }
 .heading-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .direction-label { display: flex; gap: 10px; align-items: center; font-size: 13px; margin: 0; font-weight: 400; }
 .replay-note { font-size: 14px; color: #456672; }
