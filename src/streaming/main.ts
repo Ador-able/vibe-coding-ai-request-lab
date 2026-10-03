@@ -189,7 +189,7 @@ get('run').addEventListener('click', async () => {
       current = previous;
       notice = playback.state === 'interrupted' ? '本次载入已中止，上一份回放仍可查看。' : '历史原件未能载入，上一份回放仍可查看。';
       noticeIsError = playback.state === 'failed';
-    } else current = index;
+    } else { current = index; notice = ''; noticeIsError = false; }
   } finally {
     playback.endedAt = new Date().toISOString(); busy = false; controller = null; render();
   }
