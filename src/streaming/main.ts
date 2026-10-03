@@ -24,7 +24,7 @@ document.querySelector<HTMLElement>('#app')!.innerHTML = `
   <header><div class="heading-top"><h1>纪要整理</h1><label class="direction-label" for="direction">页面方向<select id="direction"><option value="original">原版</option><option value="studio">台面</option><option value="notebook">笔记页</option></select></label></div><p class="replay-note">历史事件回放，不调用模型</p></header>
   <div class="workspace"><section id="source">
     <label for="material">工作纪要（教学虚构）</label><textarea id="material" rows="4" readonly></textarea>
-    <div class="source-controls"><label for="fixture">历史记录<select id="fixture"></select></label></div>
+    <div class="source-controls"><label for="fixture">下次回放<select id="fixture"></select></label></div>
     <div class="actions"><button id="run">回放选中记录</button><button id="stop" class="secondary" hidden>停止回放</button></div>
     <p id="status" role="status" aria-live="polite"></p>
   </section>
