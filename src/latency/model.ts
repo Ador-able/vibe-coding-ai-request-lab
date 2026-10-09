@@ -1,7 +1,7 @@
 import { APICallError, streamText } from 'ai';
 import { ModelError, type ModelConfig } from '../model.ts';
 import { isObject } from '../recorded-model.ts';
-import { createBailian, modelOptions, type RequestInput } from '../ai-provider.ts';
+import { createCompatibleProvider, modelOptions, type RequestInput } from '../ai-provider.ts';
 import { observeEvents } from './sse.ts';
 import type { StreamRecord } from './contract.ts';
 
@@ -14,7 +14,7 @@ export async function streamModel(
   const input = JSON.parse(record.requestBody) as RequestInput;
   let start = performance.now();
   const elapsed = () => Math.round((performance.now() - start) * 10) / 10;
-  const provider = createBailian(config, async (url, init) => {
+  const provider = createCompatibleProvider(config, async (url, init) => {
     start = performance.now(); record.startedAt = new Date().toISOString(); record.requestBody = init?.body as string;
     const response = await fetch(url, init); record.httpStatus = response.status;
     if (!response.ok || !response.body) return response;

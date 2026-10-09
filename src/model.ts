@@ -1,5 +1,5 @@
 import { APICallError, generateText } from 'ai';
-import { createBailian } from './ai-provider.ts';
+import { createCompatibleProvider } from './ai-provider.ts';
 import type { ErrorCode } from './contract.ts';
 
 export type ModelConfig = { baseUrl: string; model: string; apiKey: string };
@@ -34,13 +34,13 @@ export function readConfig(env: NodeJS.ProcessEnv): ModelConfig {
 
 export async function askModel(question: string, config: ModelConfig, signal: AbortSignal) {
   let httpStatus: number | undefined;
-  const provider = createBailian(config, async (url, init) => {
+  const provider = createCompatibleProvider(config, async (url, init) => {
     const response = await fetch(url, init); httpStatus = response.status; return response;
   });
   try {
     const result = await generateText({
       model: provider.chatModel(config.model), instructions: '请用简洁的中文回答问题。', prompt: question,
-      providerOptions: { bailian: { enable_thinking: false, stream: false } },
+      providerOptions: { compatible: { stream: false } },
       maxOutputTokens: 1024, maxRetries: 0, abortSignal: signal,
     });
     if (result.rawFinishReason !== 'stop') throw new ModelError('MODEL_RESPONSE_INCOMPLETE', '模型没有完整结束回答，请缩短问题后重试。', 502, httpStatus);

@@ -1,5 +1,5 @@
 import { APICallError, streamText } from 'ai';
-import { createBailian } from '../ai-provider.ts';
+import { createCompatibleProvider } from '../ai-provider.ts';
 import { ModelError, type ModelConfig } from '../model.ts';
 import type { StageRecord } from './contract.ts';
 
@@ -11,7 +11,7 @@ export async function streamStage(
   const requestSignal = AbortSignal.any([signal, controller.signal]);
   let started = performance.now();
   const elapsed = () => Math.round((performance.now() - started) * 10) / 10;
-  const provider = createBailian(config,
+  const provider = createCompatibleProvider(config,
     // 只被动记录SDK实际发送的正文和HTTP状态，不保存地址、密钥或请求头。
     async (url, init) => {
       started = performance.now(); record.startedAt = new Date().toISOString();
@@ -29,7 +29,6 @@ export async function streamStage(
       : '只依据工作纪要及摘要，提出2至3个需要负责人进一步确认的问题。只写编号问题，每个问题单独一行，以1.、2.、3.依次开始；不加标题、开场或答案，不把已经确定的安排当作未决事项。',
     prompt: isSummary ? material : `工作纪要：\n${material}\n\n刚生成的摘要：\n${summary}`,
     temperature: 0, maxOutputTokens: isSummary ? 256 : 384,
-    providerOptions: { bailian: { enable_thinking: false } },
     abortSignal: requestSignal, maxRetries: 0, includeRawChunks: true,
     // 错误由下面的消费路径处理，避免SDK默认日志打印供应商错误中的账户信息。
     onError: () => {},

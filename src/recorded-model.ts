@@ -1,7 +1,7 @@
 import { ModelError, type ModelConfig } from './model.ts';
 import type { RequestRecord } from './context/contract.ts';
 import { APICallError, generateText } from 'ai';
-import { createBailian, modelOptions, type RequestInput } from './ai-provider.ts';
+import { createCompatibleProvider, modelOptions, type RequestInput } from './ai-provider.ts';
 
 export function isObject(value: unknown): value is Record<string, unknown> {
   return !!value && typeof value === 'object' && !Array.isArray(value);
@@ -12,7 +12,7 @@ export async function sendRecordedRequest(config: ModelConfig, record: RequestRe
   const start = performance.now();
   try {
     const input = JSON.parse(record.requestBody) as RequestInput;
-    const provider = createBailian(config, async (url, init) => {
+    const provider = createCompatibleProvider(config, async (url, init) => {
       record.requestBody = init?.body as string;
       const response = await fetch(url, init);
       record.httpStatus = response.status;
@@ -31,7 +31,7 @@ export async function sendRecordedRequest(config: ModelConfig, record: RequestRe
     });
     const options = modelOptions(input);
     await generateText({ ...options, model: provider.chatModel(config.model), abortSignal: signal,
-      providerOptions: { bailian: { ...options.providerOptions.bailian, stream: false } },
+      providerOptions: { compatible: { ...options.providerOptions.compatible, stream: false } },
       include: { requestBody: true, responseBody: true },
     });
     return record.responseMessage;

@@ -20,7 +20,7 @@ export function noteMessages(saved: SavedNote) {
 
 export async function runFlow(config: ModelConfig, result: FlowResult, signal: AbortSignal, saved?: SavedNote) {
   async function call(messages: { role: string; content: string }[], step: string, json = false) {
-    const requestBody = JSON.stringify({ model: config.model, messages, stream: false, enable_thinking: false,
+    const requestBody = JSON.stringify({ model: config.model, messages, stream: false,
       temperature: 0, max_tokens: json ? 256 : 1024, ...(json ? { response_format: { type: 'json_object' } } : {}) });
     const record = { step, startedAt: new Date().toISOString(), requestBody };
     result.requests.push(record);

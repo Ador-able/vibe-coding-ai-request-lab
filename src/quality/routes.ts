@@ -19,7 +19,7 @@ export function createQualityRouter(env: NodeJS.ProcessEnv) {
     try {
       const config = readConfig(env);
       const requestBody = JSON.stringify({ model: config.model, messages: caseMessages(item), stream: false,
-        enable_thinking: false, temperature: 0, max_tokens: 512, response_format: { type: 'json_object' } });
+        temperature: 0, max_tokens: 512, response_format: { type: 'json_object' } });
       result.request = { step: '固定样例提取', startedAt: new Date().toISOString(), requestBody };
       const message = await sendRecordedRequest(config, result.request, AbortSignal.any([controller.signal, AbortSignal.timeout(90_000)]));
       if (!isObject(message) || typeof message.content !== 'string') {

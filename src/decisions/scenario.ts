@@ -11,5 +11,5 @@ title为简洁标题；text为约100字的活动介绍；reason为采用该方�
 export function requestBody(model: string) {
   return JSON.stringify({ model, messages: [{ role: 'system', content: SYSTEM },
     { role: 'user', content: `独立给定资料（教学虚构）：\n${FACTS.join('\n')}\n\n目标：${GOAL}` }],
-    stream: false, enable_thinking: false, temperature: 0, max_tokens: 1536, response_format: { type: 'json_object' } });
+    stream: false, temperature: 0, max_tokens: 1536, response_format: { type: 'json_object' } });
 }

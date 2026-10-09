@@ -17,5 +17,5 @@ export function buildRequestBody(model: string, order: Order, rule: SavedRule | 
   const input = `产品目录：\n${JSON.stringify(CATALOG)}\n\n订单：\n${JSON.stringify(order)}`
     + (rule ? `\n\n经人确认的业务规则：\n${rule.text}` : '');
   return JSON.stringify({ model, messages: [{ role: 'system', content: SYSTEM }, { role: 'user', content: input }],
-    stream: false, enable_thinking: false, temperature: 0, max_tokens: 384, response_format: { type: 'json_object' } });
+    stream: false, temperature: 0, max_tokens: 384, response_format: { type: 'json_object' } });
 }

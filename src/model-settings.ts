@@ -4,17 +4,16 @@ import { dirname, join } from 'node:path';
 import { Router } from 'express';
 import { z } from 'zod';
 import { ModelError, readConfig } from './model.ts';
-import { DEFAULT_MODEL as STRUCTURED_MODEL } from './structured/request.ts';
 
 export const MODEL_SETTINGS_PATH = join(homedir(), '.vibe-coding-labs', 'model.json');
 const settingsSchema = z.object({
   baseUrl: z.string().trim().min(1), model: z.string().trim().min(1),
-  apiKey: z.string().trim(), structuredModel: z.string().trim().min(1),
+  apiKey: z.string().trim(), structuredModel: z.string().trim().default(''),
+  embeddingModel: z.string().trim().default(''),
 });
 type Settings = z.infer<typeof settingsSchema>;
 const defaults: Settings = {
-  baseUrl: 'https://dashscope.aliyuncs.com/compatible-mode/v1', model: 'qwen-flash',
-  apiKey: '', structuredModel: STRUCTURED_MODEL,
+  baseUrl: '', model: '', apiKey: '', structuredModel: '', embeddingModel: '',
 };
 
 export function createModelSettings(path = MODEL_SETTINGS_PATH) {
@@ -24,12 +23,12 @@ export function createModelSettings(path = MODEL_SETTINGS_PATH) {
   const env: NodeJS.ProcessEnv = {};
   function apply() {
     Object.assign(env, { API_BASE_URL: settings.baseUrl, MODEL: settings.model,
-      API_KEY: settings.apiKey, STRUCTURED_MODEL: settings.structuredModel });
+      API_KEY: settings.apiKey, STRUCTURED_MODEL: settings.structuredModel, EMBEDDING_MODEL: settings.embeddingModel });
   }
   apply();
   // 页面只获知密钥是否已保存，明文留在本机配置与模型认证头中。
   const publicSettings = () => ({ baseUrl: settings.baseUrl, model: settings.model,
-    structuredModel: settings.structuredModel, hasKey: !!settings.apiKey });
+    structuredModel: settings.structuredModel, embeddingModel: settings.embeddingModel, hasKey: !!settings.apiKey });
   const router = Router();
   router.get('/', (_req, res) => res.json(publicSettings()));
   router.put('/', (req, res) => {

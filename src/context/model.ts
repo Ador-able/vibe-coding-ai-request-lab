@@ -31,7 +31,7 @@ export async function callContextModel(
   // 请求材料交给AI SDK；recorded-model在provider边界记录最终实发正文。
   const requestBody = JSON.stringify({
     model: config.model, messages, tools: TOOLS, tool_choice: toolChoice,
-    stream: false, enable_thinking: false, parallel_tool_calls: false, max_tokens: 512, temperature: 0,
+    stream: false, parallel_tool_calls: false, max_tokens: 512, temperature: 0,
   });
   const record: RequestRecord = { step, startedAt: new Date().toISOString(), requestBody };
   records.push(record);

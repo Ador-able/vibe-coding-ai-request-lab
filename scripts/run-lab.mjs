@@ -19,7 +19,7 @@ try {
 const cwd = resolve(project);
 // 直接启动 Node.js，参数保持原样，不经由 shell 拼接。
 const child = spawn(process.execPath, [...(extname(entry) === '.ts' ? ['--import', 'tsx'] : []), resolve(cwd, entry), ...args], {
-  cwd, stdio: 'inherit', env: { ...process.env, API_BASE_URL: settings.baseUrl, API_KEY: settings.apiKey, MODEL: settings.model },
+  cwd, stdio: 'inherit', env: { ...process.env, API_BASE_URL: settings.baseUrl, API_KEY: settings.apiKey, MODEL: settings.model, STRUCTURED_MODEL: settings.structuredModel || settings.model, EMBEDDING_MODEL: settings.embeddingModel || '' },
 });
 child.on('error', () => { console.error('实验启动失败，请核对目录和入口文件。'); process.exitCode = 1; });
 child.on('exit', (code) => { process.exitCode = code ?? 1; });

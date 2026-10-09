@@ -72,7 +72,6 @@ export function requestBody(condition: Condition, model: string): string {
     ],
     stream: true,
     stream_options: { include_usage: true },
-    enable_thinking: false,
     temperature: 0,
     max_tokens: condition === 'detailed' ? 512 : 96,
   });

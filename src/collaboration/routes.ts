@@ -30,7 +30,7 @@ export function createCollaborationRouter(env: NodeJS.ProcessEnv) {
       ];
       result.request = {
         step: `第${result.round}轮共写`, startedAt: new Date().toISOString(),
-        requestBody: JSON.stringify({ model: config.model, messages, stream: false, enable_thinking: false, temperature: 0, max_tokens: 1536 }),
+        requestBody: JSON.stringify({ model: config.model, messages, stream: false, temperature: 0, max_tokens: 1536 }),
       };
       const message = await sendRecordedRequest(config, result.request, AbortSignal.any([controller.signal, AbortSignal.timeout(90_000)]));
       if (result.request.finishReason !== 'stop') throw new ModelError('MODEL_RESPONSE_INCOMPLETE', '本轮回答没有完整结束；原始片段保留在记录中，不加入成功对话。');
