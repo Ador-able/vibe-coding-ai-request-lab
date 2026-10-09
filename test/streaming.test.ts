@@ -60,7 +60,7 @@ test('两个真实HTTP子流合成一条消息，同ID进度更新；空增量�
       assert.equal(stage.providerChunks.length, 4);
       const request = JSON.parse(stage.requestBody);
       assert.equal(request.model, 'stream-test');
-      assert.equal(request.enable_thinking, false); assert.equal(request.temperature, 0);
+      assert(!('enable_thinking' in request)); assert.equal(request.temperature, 0);
       assert.deepEqual(request.stream_options, { include_usage: true });
       assert.equal(request.max_tokens, i === 0 ? 256 : 384);
     });

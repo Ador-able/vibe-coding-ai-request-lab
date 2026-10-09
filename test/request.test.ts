@@ -50,7 +50,7 @@ test('问题按协议转发，回答和实际阶段返回，密钥与 Base URL �
     assert.equal(received.authorization, `Bearer ${secret}`);
     assert.deepEqual(received.body, {
       model: 'test-model', messages: [{ role: 'system', content: '请用简洁的中文回答问题。' }, { role: 'user', content: '解释一下 API' }],
-      stream: false, enable_thinking: false, max_tokens: 1024,
+      stream: false, max_tokens: 1024,
     });
     assert.deepEqual(body.trace.stages.map((stage) => stage.name), ['收到请求', '请求模型', '收到模型回复', '返回页面']);
     assert.equal(body.trace.modelHttpStatus, 200);

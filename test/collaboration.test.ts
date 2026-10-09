@@ -40,7 +40,7 @@ test('自由反馈与之前原始回答完整进入下一轮，实际请求与�
     assert.deepEqual(history, [{ input: INITIAL_TASK, answer: answers[0] }, { input: feedback, answer: answers[1] }]);
     const request = JSON.parse(received[1]);
     assert.deepEqual(request.messages, [{ role: 'system', content: SYSTEM }, { role: 'user', content: INITIAL_TASK }, { role: 'assistant', content: answers[0] }, { role: 'user', content: feedback }]);
-    assert.equal(request.enable_thinking, false); assert.equal(request.temperature, 0); assert.equal(request.max_tokens, 1536);
+    assert(!('enable_thinking' in request)); assert.equal(request.temperature, 0); assert.equal(request.max_tokens, 1536);
     assert.equal(first.data.result.request?.requestBody, received[0]); assert.equal(second.data.result.request?.requestBody, received[1]);
     assert.equal(JSON.stringify([first, second]).includes('test-only-private-key'), false);
     assert.equal(JSON.stringify([first, second]).includes(baseUrl), false);

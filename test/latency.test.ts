@@ -34,7 +34,7 @@ test('受控材料保留同一事实；重复请求逐字一致，前缀条件�
   assert.deepEqual(short.messages[0], long.messages[0]);
   assert.equal(short.messages[1].content.replace(TARGET, MANUAL), long.messages[1].content);
   assert.equal(long.stream, true); assert.deepEqual(long.stream_options, { include_usage: true });
-  assert.equal(long.max_tokens, 96); assert.equal(long.temperature, 0); assert.equal(long.enable_thinking, false);
+  assert.equal(long.max_tokens, 96); assert.equal(long.temperature, 0); assert(!('enable_thinking' in long));
   assert.equal('cache_control' in long, false); assert.equal('tools' in long, false);
   const detailed = JSON.parse(requestBody('detailed', 'qwen-flash'));
   assert.ok(detailed.messages[1].content.includes(MANUAL)); assert.equal(detailed.max_tokens, 512);
