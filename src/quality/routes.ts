@@ -18,7 +18,6 @@ export function createQualityRouter(env: NodeJS.ProcessEnv) {
     res.on('close', cancel);
     try {
       const config = readConfig(env);
-      if (config.model !== 'qwen-flash') throw new ModelError('CONFIG_INVALID', '本实验固定使用 qwen-flash，请将 MODEL 配置为 qwen-flash 后重启服务。', 503);
       const requestBody = JSON.stringify({ model: config.model, messages: caseMessages(item), stream: false,
         enable_thinking: false, temperature: 0, max_tokens: 512, response_format: { type: 'json_object' } });
       result.request = { step: '固定样例提取', startedAt: new Date().toISOString(), requestBody };

@@ -3,7 +3,7 @@ import '../lab.css';
 import { CATALOG, ORDERS, SUGGESTED_RULE } from './scenario.ts';
 import type { FeedbackResponse, FeedbackRun, RuleMode, RuleResponse, SavedRule } from './contract.ts';
 
-document.querySelector<HTMLElement>('#app')!.innerHTML = `<header><a href="/">请求观察室</a><span class="eyebrow">人的反馈 · 订单简称</span>
+document.querySelector<HTMLElement>('#app')!.innerHTML = `<header><span class="eyebrow">人的反馈 · 订单简称</span>
   <h1>订单规则对照</h1><p>比较同一订单在不带规则与附带已确认规则时的回答。</p></header>
   <section class="reference"><div><h2>产品目录 · 教学虚构</h2><table><thead><tr><th>编号</th><th>名称</th></tr></thead><tbody id="catalog"></tbody></table></div>
     <div><h2>三个新订单</h2><table><thead><tr><th>订单</th><th>客户</th><th>原话</th></tr></thead><tbody id="orders"></tbody></table></div></section>

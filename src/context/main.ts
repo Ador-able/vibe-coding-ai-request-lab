@@ -3,7 +3,7 @@ import '../lab.css';
 import { CONDITIONS, FIRST_QUESTION, FOLLOW_UP, type Condition, type ContextResponse, type ExperimentRun, type Message, type RequestRecord } from './contract.ts';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <header><a href="/">请求观察室</a><span class="eyebrow">上下文实验</span>
+  <header><span class="eyebrow">上下文实验</span>
     <h1>上下文对照</h1>
     <p>同一个追问，比较只带问题、聊天文字和完整工具结果时的回答。</p>
   </header>

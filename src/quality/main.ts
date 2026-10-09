@@ -3,7 +3,7 @@ import '../lab.css';
 import { QUALITY_CONDITIONS, type Batch, type CaseResult, type QualityCase, type QualityCondition, type QualityResponse } from './contract.ts';
 
 document.querySelector('#app')!.innerHTML = `
-  <header><a href="/">请求观察室</a><a href="/context.html">上下文保留实验</a><span class="eyebrow">材料对照实验</span>
+  <header><span class="eyebrow">材料对照实验</span>
     <h1>材料对照</h1><p>改变材料长度、位置和干扰，比较提取结果与引用。</p></header>
   <section class="run-panel"><div><p class="run-description">6 种材料条件，每种比较样例 A / B</p><p>教学虚构资料 · 本次调用模型 12 次，按次计费</p></div><button id="run" disabled>运行 12 个样例</button></section>
   <p id="status" role="status">正在读取合成材料……</p><progress id="progress" max="12" value="0" hidden></progress>
@@ -13,7 +13,7 @@ document.querySelector('#app')!.innerHTML = `
   </section>
   <details id="case-detail" hidden><summary id="case-title">查看一个样例</summary><div id="case-content" class="inspector-body"></div></details>
   <details class="guide"><summary>预览合成材料（不调用模型）</summary><div class="guide-body"><label for="preview">选择材料</label><select id="preview"></select><div id="preview-content"></div></div></details>
-  <details class="guide"><summary>实验设置与判定口径</summary><div class="guide-body"><p>qwen-flash · 非思考 · 温度 0 · 输出上限 512 token · 禁用工具。串行执行，不自动重试。分母只计已返回文本的请求；失败单列，格式异常或截断不算通过。</p><dl>
+  <details class="guide"><summary>实验设置与判定口径</summary><div class="guide-body"><p>非思考 · 温度 0 · 输出上限 512 token · 禁用工具。串行执行，不自动重试。分母只计已返回文本的请求；失败单列，格式异常或截断不算通过。</p><dl>
     <dt>事实完整</dt><dd>状态、负责人和冻结日期三项都符合资料。冲突条件要求 conflict、负责人为 null、保留一致的冻结日期。</dd>
     <dt>引用正确</dt><dd>记录编号必须完整、准确且没有多余或重复项。冲突条件需要同时引用两条互相矛盾的记录。</dd>
     <dt>全部通过</dt><dd>输出结构完整，事实与引用同时正确。原始回答和期望值都可以展开核对。</dd>

@@ -34,7 +34,6 @@ export function createMemoryRouter(env: NodeJS.ProcessEnv, notePath = resolve('a
     res.on('close', cancel);
     try {
       const config = readConfig(env);
-      if (config.model !== 'qwen-flash') throw new ModelError('CONFIG_INVALID', '本实验使用 qwen-flash，请核对 MODEL 配置后重启。', 503);
       const saved = flow === 'note' ? await store.load() : undefined;
       // 每次流程独立构造输入，没有跨流程聊天消息；总等待时间涵盖整条流程。
       await runFlow(config, result, AbortSignal.any([controller.signal, AbortSignal.timeout(90_000)]), saved ?? undefined);

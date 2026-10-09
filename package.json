@@ -8,13 +8,9 @@
     "node": ">=24.12.0 <25"
   },
   "scripts": {
-    "dev": "node --env-file-if-exists=.env --import tsx src/server.ts",
-    "start": "node --env-file-if-exists=.env --import tsx src/server.ts --production",
-    "structured:dev": "node --env-file-if-exists=.env --import tsx src/structured/server.ts",
-    "structured:start": "node --env-file-if-exists=.env --import tsx src/structured/server.ts --production",
-    "streaming:dev": "node --env-file-if-exists=.env --import tsx src/streaming/server.ts",
-    "streaming:start": "node --env-file-if-exists=.env --import tsx src/streaming/server.ts --production",
-    "build": "vite build",
+    "dev": "node --import tsx src/server.ts",
+    "start": "node runtime/server.mjs --production",
+    "build": "node scripts/build.mjs",
     "check": "tsc --noEmit",
     "test": "node --import tsx --test test/*.test.ts"
   },
@@ -28,6 +24,7 @@
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/node": "^24.13.6",
+    "esbuild": "0.28.2",
     "tsx": "^4.23.15",
     "typescript": "^5.9.3",
     "vite": "^8.3.1"

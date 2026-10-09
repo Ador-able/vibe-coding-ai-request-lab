@@ -14,7 +14,6 @@ export function createLatencyRouter(env: NodeJS.ProcessEnv) {
     let config;
     try {
       config = readConfig(env);
-      if (config.model !== 'qwen-flash') throw new ModelError('CONFIG_INVALID', '本实验使用 qwen-flash，请核对 MODEL 配置后重启。', 503);
     } catch (error) {
       const failure = error as ModelError;
       res.status(failure.httpStatus).json({ error: failure.message }); return;

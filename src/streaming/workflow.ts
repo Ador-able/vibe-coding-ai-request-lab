@@ -14,8 +14,9 @@ export function checkQuestions(text: string) {
 
 export function createWorkflow(record: RunRecord, env: NodeJS.ProcessEnv, signal: AbortSignal) {
   const start = performance.now();
+  const model = env.MODEL?.trim() || '未配置';
   const elapsed = () => Math.round((performance.now() - start) * 10) / 10;
-  const metadata = (): Metadata => ({ model: env.MODEL?.trim() || '未配置', state: record.state,
+  const metadata = (): Metadata => ({ model, state: record.state,
     stages: record.stages.map((stage) => ({ stage: stage.stage, model: stage.responseModel, finishReason: stage.finishReason, usage: stage.usage })) });
   return createUIMessageStream<AssistantMessage>({
     execute: async ({ writer }) => {

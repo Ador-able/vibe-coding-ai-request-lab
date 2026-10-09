@@ -7,7 +7,7 @@ import { readEvents } from './sse.ts';
 const app = document.querySelector<HTMLElement>('#app')!;
 const entries = Object.entries(CONDITIONS) as [Condition, (typeof CONDITIONS)[Condition]][];
 app.innerHTML = `
-  <header><a href="/">请求观察室</a><span class="eyebrow">流式观察 · 教学虚构手册</span>
+  <header><span class="eyebrow">流式观察 · 教学虚构手册</span>
     <h1>等待与用量</h1>
     <p>逐次比较输入长度、重复前缀与输出长度。每次运行调用模型 1 次。</p>
   </header>
@@ -31,7 +31,7 @@ app.innerHTML = `
     <dt>费用</dt><dd>输入、命中缓存的输入与输出需按当前模型和地域价格分别核算；这里记录实际用量，不按总 token 直接换算费用。</dd>
   </dl></div></details>
   <details id="materials"><summary>查看固定材料与对照条件</summary><div class="guide-body">
-    <p>qwen-flash · 非思考 · 温度 0，不自动重试。单轮等待受网络、服务调度等影响，不是性能排名。</p><p>手册为人工编写的 40 条虚构产品说明，短材料直接取其中 M21。同一问题放在材料之后。第 3 项与第 2 项请求体完全相同；第 4 项只改最前面的实验版本 A→B，不改变产品版本、手册和问题。</p>
+    <p>非思考 · 温度 0，不自动重试。单轮等待受网络、服务调度等影响，不是性能排名。</p><p>手册为人工编写的 40 条虚构产品说明，短材料直接取其中 M21。同一问题放在材料之后。第 3 项与第 2 项请求体完全相同；第 4 项只改最前面的实验版本 A→B，不改变产品版本、手册和问题。</p>
     <p>第 5 项保持长资料，末尾改为约 350 字的说明要求，并将输出上限从 96 改为 512。它同时观察输出要求与实际生成长度，不把差异全归因于上限。</p>
     <pre id="materials-content">展开后加载实际材料。</pre>
   </div></details>`;

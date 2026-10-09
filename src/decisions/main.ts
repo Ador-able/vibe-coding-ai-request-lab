@@ -4,7 +4,7 @@ import { FACTS, GOAL } from './scenario.ts';
 import { chooseOption, clearSelection, editDraft, emptyDecision, type Decision, type DecisionRun, type DecisionResponse, type OptionIndex } from './contract.ts';
 
 const app = document.querySelector<HTMLElement>('#app')!;
-app.innerHTML = `<header><a href="/">请求观察室</a><span class="eyebrow">人的判断 · 文案对比</span>
+app.innerHTML = `<header><span class="eyebrow">人的判断 · 文案对比</span>
   <h1>文案对比与选择</h1><p>对照同一资料与目标，比较文案的取舍，再选择和修改。</p></header>
   <section class="common"><div><h2>活动资料 · 教学虚构</h2><ul id="facts"></ul></div><div><h2>共同目标</h2><p id="goal"></p></div></section>
   <div class="generate-bar"><button id="generate">生成两份候选文案</button><p class="note">调用模型 1 次。</p></div>

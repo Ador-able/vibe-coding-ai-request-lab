@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer, type Server } from 'node:http';
 import { once } from 'node:events';
-import { createStructuredApp } from '../src/structured/server.ts';
+import { createApp } from '../src/server.ts';
 import { JSON_SCHEMA } from '../src/structured/schema.ts';
 import { inspectResponse } from '../src/structured/inspect.ts';
 import { COUNTEREXAMPLE, COUNTEREXAMPLE_CHECK } from '../src/structured/counterexample.ts';
@@ -60,7 +60,7 @@ test('三种方式实际发送体与检查器一致，只改变输出格式参�
     res.end(JSON.stringify({ model: 'structured-test', choices: [{ message: message({ items: [] }), finish_reason: 'stop' }], usage: { prompt_tokens: 20, completion_tokens: 4 } }));
   });
   const base = await listen(upstream);
-  const backend = createServer(createStructuredApp({ API_BASE_URL: base, API_KEY: 'test-secret', MODEL: 'do-not-use', STRUCTURED_MODEL: 'structured-test' }));
+  const backend = createServer(createApp({ API_BASE_URL: base, API_KEY: 'test-secret', MODEL: 'do-not-use', STRUCTURED_MODEL: 'structured-test' }));
   const url = await listen(backend);
   const request = (mode: string) => fetch(`${url}/api/structured/extract`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ material: MATERIALS[0].text, mode }) });
   try {
@@ -97,7 +97,7 @@ test('经Core调用后仍保留拒绝与不合格原文，应用检查不被SDK�
     res.end(JSON.stringify({ choices: [{ message: responseMessage, finish_reason: 'stop' }] }));
   });
   const base = await listen(upstream);
-  const backend = createServer(createStructuredApp({ API_BASE_URL: base, API_KEY: 'test-secret', STRUCTURED_MODEL: 'structured-test' })); const url = await listen(backend);
+  const backend = createServer(createApp({ API_BASE_URL: base, API_KEY: 'test-secret', STRUCTURED_MODEL: 'structured-test' })); const url = await listen(backend);
   try {
     for (const [i, original] of outputs.entries()) {
       const response = await fetch(`${url}/api/structured/extract`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ material: '准备物料', mode: 'strict' }) });

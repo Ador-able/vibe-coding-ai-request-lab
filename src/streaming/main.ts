@@ -11,7 +11,7 @@ document.querySelector<HTMLElement>('#app')!.innerHTML = `<header><h1>纪要整�
   <details id="records" hidden><summary>查看事件与请求记录</summary><div class="inspector-body"><div class="record-tools"><label for="attempt">请求<select id="attempt"></select></label><label for="event-view">事件<select id="event-view"><option value="boundaries">阶段与结束</option><option value="all">全部（含文字增量）</option></select></label><button id="download" class="secondary">下载全部记录</button></div>
     <p id="record-label" class="note"></p><p id="metadata" class="note"></p>
     <div class="table-scroll"><table><thead><tr><th>顺序 / 毫秒</th><th>UI事件</th><th>内容</th></tr></thead><tbody id="events"></tbody></table></div>
-    <details><summary>原始数据与记录口径</summary><div class="record-explanation"><p id="model" class="note"></p><p class="note">表中是实际已收到的UI事件，不是回放。原始顺序编号保留；切换视图不会改变完整记录。</p><p class="note">UI计时始于浏览器请求；供应商片段计时始于后台各阶段请求。JSON保存SDK实发请求体与透传的供应商JSON片段，不含SSE分隔符或[DONE]。未报告用量记为null，片段数不等于token数。</p></div><pre id="raw-record"></pre></details></div></details>`;
+    <details><summary>原始数据与记录口径</summary><div class="record-explanation"><p id="model" class="note"></p><p class="note">表中是实际已收到的UI事件，不是回放。原始顺序编号保留；切换视图不会改变完整记录。</p><p class="note">UI计时始于浏览器请求，供应商片段计时始于后台各阶段请求。导出保留实际请求和收到的JSON片段，不含SSE分隔符或[DONE]。未报告用量记为null，片段数不等于token数。</p></div><pre id="raw-record"></pre></details></div></details>`;
 const get = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 get<HTMLTextAreaElement>('material').value = MATERIAL;
 type Attempt = { id: string; material: string; state: State; message: AssistantMessage | null; events: { elapsedMs: number; event: Chunk }[]; serverRecord: RunRecord | null; error: string | null };
@@ -112,4 +112,8 @@ get('download').addEventListener('click', () => {
   const url = URL.createObjectURL(new Blob([JSON.stringify({ attempts }, null, 2)], { type: 'application/json' }));
   const a = document.createElement('a'); a.href = url; a.download = '流式消息-实际事件记录.json'; a.click(); URL.revokeObjectURL(url);
 });
-void fetch('/api/streaming/info').then((r) => r.json()).then((info) => { get('model').textContent = `${info.model} · 完整任务调用两次`; }).catch(() => { get('model').textContent = '未读取到模型配置'; });
+function loadInfo() {
+  void fetch('/api/streaming/info').then((r) => r.json()).then((info) => { get('model').textContent = `${info.model} · 完整任务调用两次`; }).catch(() => { get('model').textContent = '未读取到模型配置'; });
+}
+loadInfo();
+window.addEventListener('model-settings-changed', loadInfo);

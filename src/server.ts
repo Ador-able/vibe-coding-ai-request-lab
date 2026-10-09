@@ -10,13 +10,21 @@ import { createLatencyRouter } from './latency/routes.ts';
 import { createCollaborationRouter } from './collaboration/routes.ts';
 import { createDecisionsRouter } from './decisions/routes.ts';
 import { createFeedbackRouter } from './feedback/routes.ts';
+import { createStructuredRouter } from './structured/routes.ts';
+import { createStreamingRouter } from './streaming/routes.ts';
+import { createModelSettings } from './model-settings.ts';
 import type { AskPayload, AskResult, RequestTrace, Stage } from './contract.ts';
 
-export function createApp(env: NodeJS.ProcessEnv = process.env, log = console.log) {
+export function createApp(env?: NodeJS.ProcessEnv, log = console.log, configPath?: string) {
   const app = express();
+  const settings = env ? undefined : createModelSettings(configPath);
+  env ??= settings!.env;
   app.disable('x-powered-by');
   app.use('/api/collaboration', createCollaborationRouter(env));
+  app.use('/api/structured', createStructuredRouter(env));
+  app.use('/api/streaming', createStreamingRouter(env));
   app.use(express.json({ limit: '16kb' }));
+  if (settings) app.use('/api/config', settings.router);
   app.use('/api/context', createContextRouter(env));
   app.use('/api/quality', createQualityRouter(env));
   app.use('/api/memory', createMemoryRouter(env));
@@ -99,5 +107,5 @@ async function start() {
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  start().catch(() => { console.error('启动失败，请确认依赖已安装。'); process.exit(1); });
+  start().catch(() => { console.error('启动失败，请检查依赖和本机模型配置文件。'); process.exit(1); });
 }

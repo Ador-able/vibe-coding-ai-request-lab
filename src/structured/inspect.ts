@@ -25,7 +25,7 @@ export function inspectResponse(message: unknown, finishReason: string | null | 
     return fail(2, details.join('；'));
   }
   result.data = parsed.data;
-  result.checks[2] = { label: '字段结构', status: 'pass', detail: '同一Zod定义的safeParse通过；未核验语义。' };
+  result.checks[2] = { label: '字段结构', status: 'pass', detail: '字段符合约定；尚未核验语义。' };
   // 字符串包含只证明引文可定位，不证明它支持这项任务、负责人或日期。
   result.evidence = parsed.data.items.map((item, index) => {
     const start = item.evidence.trim() ? material.indexOf(item.evidence) : -1;

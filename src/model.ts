@@ -18,7 +18,7 @@ export class ModelError extends Error {
 export function readConfig(env: NodeJS.ProcessEnv): ModelConfig {
   const missing = ['API_BASE_URL', 'MODEL', 'API_KEY'].filter((key) => !env[key]?.trim());
   if (missing.length) {
-    throw new ModelError('CONFIG_MISSING', `尚未配置 ${missing.join('、')}。请在项目 .env 中填写后重启服务。`, 503);
+    throw new ModelError('CONFIG_MISSING', '请先打开页面顶部的“模型设置”，填写并保存模型密钥。', 503);
   }
   const baseUrl = env.API_BASE_URL!.trim().replace(/\/+$/, '');
   try {

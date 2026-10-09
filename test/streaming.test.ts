@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createServer, type Server, type ServerResponse } from 'node:http';
 import { once } from 'node:events';
 import { DefaultChatTransport, readUIMessageStream } from 'ai';
-import { createStreamingApp } from '../src/streaming/server.ts';
+import { createApp } from '../src/server.ts';
 import type { AssistantMessage, Chunk, RunRecord } from '../src/streaming/contract.ts';
 
 async function listen(server: Server) {
@@ -35,9 +35,11 @@ async function client(url: string, id: string, onEvent?: (event: Chunk) => Promi
 test('两个真实HTTP子流合成一条消息，同ID进度更新；空增量不变正文，第一阶段不结束整条任务', async () => {
   const bodies: string[] = [];
   const upstream = createServer(async (req, res) => { let body = ''; for await (const part of req) body += part; bodies.push(body); await send(res, bodies.length === 1 ? '计划已明确，开放时间和值班仍待确认。' : '1. 开放时段何时确定？\n2. 谁来安排值班？'); });
-  const base = await listen(upstream); const backend = createServer(createStreamingApp({ API_BASE_URL: base, API_KEY: 'test-private-key', MODEL: 'stream-test' })); const url = await listen(backend);
+  const base = await listen(upstream); const env = { API_BASE_URL: base, API_KEY: 'test-private-key', MODEL: 'stream-test' };
+  const backend = createServer(createApp(env)); const url = await listen(backend);
   try {
-    const result = await client(url, 'completed-run');
+    // 共享设置改变后，在途任务仍使用开始时的型号与记录口径。
+    const result = await client(url, 'completed-run', async (event) => { if (event.type === 'text-delta') env.MODEL = 'next-run-model'; });
     assert.equal(result.record.state, 'completed'); assert.equal(bodies.length, 2);
     assert.equal(result.events.filter((event) => event.type === 'start').length, 1); assert.equal(result.events.filter((event) => event.type === 'finish').length, 1);
     assert.equal(result.events.filter((event) => event.type === 'finish-step').length, 2); assert.equal(result.events.at(-1)?.type, 'finish');
@@ -49,6 +51,7 @@ test('两个真实HTTP子流合成一条消息，同ID进度更新；空增量�
     assert.deepEqual(result.record.finalMessage?.parts.filter((part) => part.type === 'data-progress').map((part) => part.data.stage), ['completed']);
     assert.deepEqual(result.message.parts.filter((part) => part.type === 'text').map((part) => part.text), result.record.stages.map((stage) => stage.answer));
     assert.equal(result.message.metadata?.state, 'completed'); assert.equal(result.message.metadata?.stages.length, 2);
+    assert.equal(result.message.metadata?.model, 'stream-test');
     assert(result.events.filter((event) => event.type === 'text-delta').every((event) => event.delta.length > 0));
     assert.deepEqual(result.events, result.record.uiEvents.map((item) => item.event));
     result.record.stages.forEach((stage, i) => {
@@ -56,6 +59,7 @@ test('两个真实HTTP子流合成一条消息，同ID进度更新；空增量�
       assert.deepEqual(stage.usage, { prompt_tokens: 30, completion_tokens: 12 });
       assert.equal(stage.providerChunks.length, 4);
       const request = JSON.parse(stage.requestBody);
+      assert.equal(request.model, 'stream-test');
       assert.equal(request.enable_thinking, false); assert.equal(request.temperature, 0);
       assert.deepEqual(request.stream_options, { include_usage: true });
       assert.equal(request.max_tokens, i === 0 ? 256 : 384);
@@ -74,7 +78,7 @@ test('HTTP错误不重试，截断、问题数量不符和流中异常不产生�
       else if (scenario === 'broken') { res.setHeader('Content-Type', 'text/event-stream'); res.write(delta('已收到部分摘要')); res.end('data: {"error":{"message":"test-secret-provider-error"}}\r\n\r\n'); }
       else await send(res, calls === 1 ? '计划尚待确认。' : '1. 只有一个问题？', scenario === 'length' ? 'length' : 'stop');
     });
-    const base = await listen(upstream); const backend = createServer(createStreamingApp({ API_BASE_URL: base, API_KEY: 'test-key', MODEL: 'stream-test' })); const url = await listen(backend);
+    const base = await listen(upstream); const backend = createServer(createApp({ API_BASE_URL: base, API_KEY: 'test-key', MODEL: 'stream-test' })); const url = await listen(backend);
     try {
       const result = await client(url, `${scenario}-run`);
       assert.equal(result.record.state, 'failed');
@@ -92,7 +96,7 @@ test('按请求ID停止会中止上游，旧请求的停止操作不影响新请
     for await (const _part of req) {} const id = String(++calls); res.on('close', () => closed.push(id));
     res.setHeader('Content-Type', 'text/event-stream'); res.write(delta('已收到的文字保留'));
   });
-  const base = await listen(upstream); const backend = createServer(createStreamingApp({ API_BASE_URL: base, API_KEY: 'test-key', MODEL: 'stream-test' })); const url = await listen(backend);
+  const base = await listen(upstream); const backend = createServer(createApp({ API_BASE_URL: base, API_KEY: 'test-key', MODEL: 'stream-test' })); const url = await listen(backend);
   const stop = (id: string) => fetch(`${url}/api/streaming/${id}/stop`, { method: 'POST' });
   try {
     const first = await client(url, 'first-run', async (event) => { if (event.type === 'text-delta') await stop('first-run'); });
@@ -116,7 +120,7 @@ test('供应商未报告用量时保持未知，不能用SDK默认值冒充零�
     res.setHeader('Content-Type', 'text/event-stream');
     res.end(delta(calls === 1 ? '仍有事项待定。' : '1. 何时确定开放时间？\n2. 谁负责安排？') + delta('', 'stop') + 'data: [DONE]\r\n\r\n');
   });
-  const base = await listen(upstream); const backend = createServer(createStreamingApp({ API_BASE_URL: base, API_KEY: 'test-key', MODEL: 'stream-test' })); const url = await listen(backend);
+  const base = await listen(upstream); const backend = createServer(createApp({ API_BASE_URL: base, API_KEY: 'test-key', MODEL: 'stream-test' })); const url = await listen(backend);
   try {
     const result = await client(url, 'unknown-usage');
     assert.equal(result.record.state, 'completed'); assert.equal(calls, 2);
@@ -129,7 +133,7 @@ test('浏览器断开会取消当前上游，不继续第二阶段', async () =>
   let calls = 0; let reportClosed!: () => void;
   const upstreamClosed = new Promise<void>((resolve) => { reportClosed = resolve; });
   const upstream = createServer(async (req, res) => { for await (const _part of req) {} calls++; res.on('close', reportClosed); res.setHeader('Content-Type', 'text/event-stream'); res.write(delta('摘要片段')); });
-  const base = await listen(upstream); const backend = createServer(createStreamingApp({ API_BASE_URL: base, API_KEY: 'test-key', MODEL: 'stream-test' })); const url = await listen(backend);
+  const base = await listen(upstream); const backend = createServer(createApp({ API_BASE_URL: base, API_KEY: 'test-key', MODEL: 'stream-test' })); const url = await listen(backend);
   try {
     const controller = new AbortController();
     const response = await fetch(`${url}/api/streaming/run`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ runId: 'disconnect-run', material: '阅读材料' }), signal: controller.signal });

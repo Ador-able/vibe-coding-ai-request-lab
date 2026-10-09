@@ -16,7 +16,7 @@ document.querySelector<HTMLElement>('#app')!.innerHTML = `<header><span class="e
     <details><summary>模型原始正文</summary><pre id="raw-answer"></pre></details>
     <details><summary>实际请求、原始响应与用量</summary><div id="inspector" class="inspector-body"></div></details>
   </section>
-  <details id="schema-panel"><summary>型号与 JSON Schema</summary><div class="inspector-body"><p id="model" class="note">正在读取型号…</p><p class="note">由同一个Zod定义生成，程序也用它检查返回值。owner、dueText必须有字段，未知时为null；items允许为空。</p><pre id="schema"></pre></div></details>
+  <details id="schema-panel"><summary>型号与 JSON Schema</summary><div class="inspector-body"><p id="model" class="note">正在读取型号…</p><p class="note">JSON Schema 描述字段结构，程序据此检查返回值。owner、dueText必须有字段，未知时为null；items允许为空。</p><pre id="schema"></pre></div></details>
   <details id="counterexample"><summary>人工反例：字段合格，也可能填错负责人</summary><div class="inspector-body"><p class="note">以下由人构造，没有调用模型，不计入实际请求记录。</p>
     <h3>原文</h3><p id="counter-source"></p><h3>人工构造的错误结果</h3><pre id="counter-output"></pre><p id="counter-check"></p><p>原文负责人是陈岚，结果却写成周宇。结构符合约定，引用也确实存在，仍然是错误提取。</p></div></details>`;
 
@@ -106,3 +106,4 @@ async function loadInfo() {
   } catch (error) { get('status').className = 'error'; get('status').textContent = error instanceof Error ? error.message : '实验配置未能读取。'; }
 }
 void loadInfo();
+window.addEventListener('model-settings-changed', () => { void loadInfo(); });

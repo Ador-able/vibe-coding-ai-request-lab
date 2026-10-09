@@ -23,7 +23,6 @@ export function createCollaborationRouter(env: NodeJS.ProcessEnv) {
     res.on('close', cancel);
     try {
       const config = readConfig(env);
-      if (config.model !== 'qwen-flash') throw new ModelError('CONFIG_INVALID', '本练习使用 qwen-flash，请核对 MODEL 配置后重启。', 503);
       const messages = [
         { role: 'system', content: SYSTEM },
         ...turns.flatMap((turn) => [{ role: 'user', content: turn.input }, { role: 'assistant', content: turn.answer }]),

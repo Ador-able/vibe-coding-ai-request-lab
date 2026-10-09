@@ -51,7 +51,6 @@ export function createFeedbackRouter(env: NodeJS.ProcessEnv, storePath = resolve
     res.on('close', cancel);
     try {
       const config = readConfig(env);
-      if (config.model !== 'qwen-flash') throw new ModelError('CONFIG_INVALID', '本练习使用 qwen-flash，请核对 MODEL 配置后重启。', 503);
       run.request = { step: `订单${order.id} · ${ruleMode === 'saved' ? '附带已保存规则' : '不带规则'}`,
         startedAt: new Date().toISOString(), requestBody: buildRequestBody(config.model, order, run.ruleSnapshot) };
       const message = await sendRecordedRequest(config, run.request, AbortSignal.any([controller.signal, AbortSignal.timeout(90_000)]));

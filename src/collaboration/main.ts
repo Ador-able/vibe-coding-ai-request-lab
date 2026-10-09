@@ -4,7 +4,7 @@ import { FACTS, INITIAL_TASK } from './scenario.ts';
 import { acceptTurn, type Turn, type CollaborationResponse, type CollaborationResult } from './contract.ts';
 
 const app = document.querySelector<HTMLElement>('#app')!;
-app.innerHTML = `<header><a href="/">请求观察室</a><span class="eyebrow">人在环路 · 文字共写</span>
+app.innerHTML = `<header><span class="eyebrow">人在环路 · 文字共写</span>
   <h1>活动共写</h1><p>比较两个方向，提出选择或纠正，再看 AI 怎样改写。</p></header>
   <section class="facts"><h2>已有活动资料 · 教学虚构</h2><p id="facts"></p></section>
   <section id="conversation" hidden><div class="section-heading"><h2>共写记录</h2><button id="copy" class="secondary" type="button">复制最新回答</button></div><div id="turns"></div></section>
