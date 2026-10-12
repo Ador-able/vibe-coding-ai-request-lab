@@ -53,10 +53,6 @@ details[open] > summary { border-bottom: 1px solid #dbe6e8; }
 select { border: 1px solid #b5cdd1; border-radius: 6px; font: inherit; color: inherit; padding: 8px; max-width: 100%; background: white; }
 .request-record { margin-top: 24px; padding-top: 20px; border-top: 1px solid #dbe6e8; }
 .meta { font-size: 13px; color: #456672; overflow-wrap: anywhere; margin: 10px 0; }
-.message-sequence { display: flex; flex-wrap: wrap; gap: 7px; margin: 16px 0 10px; }
-.message { padding: 7px 10px; background: #edf2f3; border: 1px solid #d1dfe2; border-radius: 5px; font-size: 13px; }
-.message.tool { color: #6e4e1f; background: #fff1da; border-color: #e2c58c; }
-.message.assistant { color: #2e6657; background: #eaf4ed; border-color: #bdd9c5; }
 .json { border-color: #d9e4e6; margin-top: 12px; }
 .json summary { padding: 12px 14px; }
 pre { font: 13px/1.7 ui-monospace, Consolas, monospace; white-space: pre-wrap; overflow-wrap: anywhere; background: #f5f8f8; color: #234b59; padding: 16px; margin: 0; }

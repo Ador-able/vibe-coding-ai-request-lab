@@ -72,21 +72,27 @@ function jsonDetail(title: string, value: string, open = false) {
   detail.append(summary, pre); return detail;
 }
 
+function parsedContent(value: string) {
+  try { return JSON.parse(value); } catch { return value; }
+}
+
 function requestView(request: RequestRecord, index: number) {
   const section = document.createElement('section'); section.className = 'request-record';
   const heading = document.createElement('h3'); heading.textContent = `请求 ${index + 1} · ${request.step}`;
   const body = JSON.parse(request.requestBody) as { model: string; messages: Message[]; tools: unknown[]; tool_choice: unknown };
   section.append(heading, paragraph(`请求型号 ${body.model} · ${request.httpStatus ? `HTTP ${request.httpStatus}` : '未收到 HTTP 响应'} · ${request.durationMs ?? '—'} ms`, 'meta'));
-  const sequence = document.createElement('div'); sequence.className = 'message-sequence'; sequence.setAttribute('aria-label', '本次请求的消息顺序');
   const names = { system: '系统规则', user: '用户消息', assistant: '助手文字', tool: '工具结果' };
+  section.append(paragraph(`另附 ${body.tools.length} 个工具定义 · tool_choice: ${typeof body.tool_choice === 'string' ? body.tool_choice : '指定 get_release_info'}`, 'meta'));
+  // 从实际请求体逐条展示；工具内容解析后易读，完整JSON保留原始结构。
   body.messages.forEach((message, i) => {
-    const chip = document.createElement('span'); chip.className = `message ${message.role}`;
-    chip.textContent = `${i + 1} ${message.role === 'assistant' && message.tool_calls?.length ? '助手工具调用' : names[message.role]}`;
-    sequence.append(chip);
+    const calls = message.role === 'assistant' && message.tool_calls?.length ? message.tool_calls : undefined;
+    const value = calls ? (message.content ? `${message.content}\n\n` : '') + pretty(calls.map(call => ({ name: call.function.name, id: call.id, arguments: parsedContent(call.function.arguments) })))
+      : message.role === 'tool' ? pretty({ tool_call_id: message.tool_call_id, content: parsedContent(message.content) })
+      : message.content ?? '';
+    section.append(jsonDetail(`${i + 1} ${calls ? '助手工具调用' : names[message.role]}`, value, !!calls || message.role === 'tool'));
   });
-  section.append(sequence, paragraph(`另附 ${body.tools.length} 个工具定义 · tool_choice: ${typeof body.tool_choice === 'string' ? body.tool_choice : '指定 get_release_info'}`, 'meta'));
   // 排版只解析这个已发送字符串；下载文件保留 requestBody 的原始字节序列。
-  section.append(jsonDetail('请求体 · 格式化显示', pretty(body)));
+  section.append(jsonDetail('完整请求 JSON', pretty(body)));
   if (request.responseMessage !== undefined) section.append(jsonDetail('模型实际返回的消息', pretty(request.responseMessage)));
   section.append(paragraph(`finish_reason: ${request.finishReason ?? '未返回'}${request.responseModel ? ` · 返回型号：${request.responseModel}` : ''}`, 'meta'));
   section.append(jsonDetail('模型实际返回的 usage', pretty(request.usage ?? null)));
