@@ -59,7 +59,7 @@ test('按需流程只读选中原文，摘要回答只带实际摘要；完整�
   } finally { await close(upstream); }
 });
 
-test('便笺需人确认，重启路由后从文件读取；来源可回查，新输入没有旧聊天', async () => {
+test('摘要需人确认，重启路由后从文件读取；来源可回查，新输入没有旧聊天', async () => {
   const dir = await mkdtemp(join(tmpdir(), 'memory-lab-test-'));
   const notePath = join(dir, 'task-note.json');
   const makeServer = () => { const app = express(); app.use(express.json()); app.use('/api/memory', createMemoryRouter({}, notePath)); return createServer(app); };

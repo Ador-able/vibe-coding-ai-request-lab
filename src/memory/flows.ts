@@ -15,7 +15,7 @@ export function parseSelectedIds(raw: string): string[] {
 }
 
 export function noteMessages(saved: SavedNote) {
-  return answerMessages(`人工核对并保存的任务便笺（并非本轮模型生成；确认时间${saved.confirmedAt}）：\n${JSON.stringify(saved.note)}\n\n便笺所指原文（请回到原文核对条件）：\n${sourceText(saved.note.sources.map((source) => source.id))}`);
+  return answerMessages(`人工核对并保存的任务摘要（并非本轮模型生成；确认时间${saved.confirmedAt}）：\n${JSON.stringify(saved.note)}\n\n摘要所指原文（请回到原文核对条件）：\n${sourceText(saved.note.sources.map((source) => source.id))}`);
 }
 
 export async function runFlow(config: ModelConfig, result: FlowResult, signal: AbortSignal, saved?: SavedNote) {
@@ -53,7 +53,7 @@ export async function runFlow(config: ModelConfig, result: FlowResult, signal: A
       break;
     }
     case 'note':
-      if (!saved) throw new ModelError('CONFIG_MISSING', '请先核对并保存教学便笺。', 409);
+      if (!saved) throw new ModelError('CONFIG_MISSING', '请先核对并保存教学摘要。', 409);
       result.note = saved;
       result.answer = await call(noteMessages(saved), '回答问题');
       return;

@@ -18,12 +18,12 @@ export function createMemoryRouter(env: NodeJS.ProcessEnv, notePath = resolve('a
   });
   router.get('/note', async (_req, res) => {
     try { res.json({ saved: await store.load() }); }
-    catch { res.status(500).json({ error: '本地便笺无法读取，请核对后重新保存。' }); }
+    catch { res.status(500).json({ error: '本地摘要无法读取，请核对后重新保存。' }); }
   });
   router.post('/note', async (req, res) => {
     if (req.body?.confirmed !== true) { res.status(400).json({ error: '请先勾选已核对这份人工教学记录。' }); return; }
     try { res.json({ saved: await store.save() }); }
-    catch { res.status(500).json({ error: '便笺未能写入本机文件，请检查目录是否可写。' }); }
+    catch { res.status(500).json({ error: '摘要未能写入本机文件，请检查目录是否可写。' }); }
   });
   router.post('/flow', async (req, res) => {
     const flow = req.body?.flow;
@@ -39,7 +39,7 @@ export function createMemoryRouter(env: NodeJS.ProcessEnv, notePath = resolve('a
       await runFlow(config, result, AbortSignal.any([controller.signal, AbortSignal.timeout(90_000)]), saved ?? undefined);
       if (!res.destroyed) res.json({ ok: true, result } satisfies FlowResponse);
     } catch (error) {
-      const failure = error instanceof ModelError ? error : new ModelError('MODEL_NETWORK_ERROR', '本流程未能完成，请检查本机服务与便笺文件。');
+      const failure = error instanceof ModelError ? error : new ModelError('MODEL_NETWORK_ERROR', '本流程未能完成，请检查本机服务与摘要文件。');
       result.error = { code: failure.code, message: failure.message };
       if (!res.destroyed) res.status(failure.httpStatus).json({ ok: false, result } satisfies FlowResponse);
     } finally { res.off('close', cancel); }

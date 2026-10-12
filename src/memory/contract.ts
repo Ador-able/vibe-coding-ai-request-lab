@@ -1,7 +1,7 @@
 import type { RequestRecord } from '../context/contract.ts';
 import type { TEACHING_NOTE } from './materials.ts';
 export type Flow = 'full' | 'retrieve' | 'summary' | 'note';
-export const FLOWS: Record<Flow, string> = { full: '全文回答', retrieve: '按需读取后回答', summary: '压缩后回答', note: '新会话读取便笺与原文' };
+export const FLOWS: Record<Flow, string> = { full: '全文回答', retrieve: '按需读取后回答', summary: '压缩后回答', note: '新会话读取摘要与原文' };
 export type SavedNote = { origin: 'reader-confirmed-teaching-note'; confirmedAt: string; note: typeof TEACHING_NOTE };
 export type FlowResult = {
   id: string; flow: Flow; startedAt: string; requests: RequestRecord[]; answer: string | null;

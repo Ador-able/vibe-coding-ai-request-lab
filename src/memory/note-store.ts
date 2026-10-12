@@ -20,7 +20,7 @@ export function createNoteStore(path: string) {
       const record = JSON.parse(text);
       if (record?.origin !== 'reader-confirmed-teaching-note' || typeof record.confirmedAt !== 'string'
           || !Number.isFinite(Date.parse(record.confirmedAt)) || JSON.stringify(record.note) !== JSON.stringify(TEACHING_NOTE)) {
-        throw new Error('本地便笺内容不符合当前教学记录');
+        throw new Error('本地摘要内容不符合当前教学记录');
       }
       return record;
     },

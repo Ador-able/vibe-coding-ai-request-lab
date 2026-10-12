@@ -5,19 +5,19 @@ import { FLOWS, costOf, type Flow, type FlowResponse, type FlowResult, type Save
 import type { Source, TEACHING_NOTE } from './materials.ts';
 
 document.querySelector('#app')!.innerHTML = `
-  <header><span class="eyebrow">材料选择实验</span><h1>材料与记忆</h1><p>比较全文、选读和摘要；再试着用任务便笺开启新会话。</p></header>
+  <header><span class="eyebrow">材料选择实验</span><h1>材料与记忆</h1><p>比较全文、选读和摘要；再试着用任务摘要开启新会话。</p></header>
   <section class="run-panel"><div><p class="run-description" id="question"></p><p>10 份教学虚构资料 · 每次比较调用模型 5 次</p></div><button id="start" disabled>比较三条流程</button></section>
   <p id="status" role="status">正在载入资料……</p>
   <section id="comparison" hidden><h2>三条流程的实际结果</h2><p class="note">对照最后一次输入与完整流程用量；回答需自行核对。</p><div class="table-scroll"><table><thead><tr><th>流程</th><th>实际调用</th><th>最后回答输入</th><th>整链输入</th><th>整链输出</th><th>输入＋输出</th><th>实际回答</th></tr></thead><tbody id="results"></tbody></table></div></section>
   <details id="request-detail" hidden><summary id="request-title">查看完整请求记录</summary><div id="request-content" class="inspector-body"></div></details>
   <details class="guide"><summary>查看资料目录与原文</summary><div class="guide-body"><p class="note">非思考 · 温度 0。目录用于导航，完整条款在原文中；浏览资料不调用模型。</p><div id="catalog"></div></div></details>
-  <details class="note-section"><summary>跨会话：保存并读回任务便笺</summary><div class="note-body"><p class="badge">人工教学记录 · 非模型生成</p>
-    <p class="note">任务便笺是留给下次任务的简短记录，写清已确认的信息、未决事项和出处。下面是同一场活动的人工便笺；先核对再保存，新会话会读入它和关联原文。</p>
-    <div id="teaching-note"></div><label class="confirm"><input id="confirm" type="checkbox">我已核对这份人工教学便笺中的条件、未决事项与来源。</label>
-    <div class="note-actions"><button id="save" class="secondary" disabled>确认并保存到本机</button><button id="resume" disabled>用便笺开始新会话 · 1 次调用</button></div><p id="note-status" class="note" role="status">便笺状态读取中……</p><div id="note-results"></div>
+  <details class="note-section"><summary>跨会话：保存并读回任务摘要</summary><div class="note-body"><p class="badge">人工教学记录 · 非模型生成</p>
+    <p class="note">下面是同一场活动的人工任务摘要，保留已确认的信息、未决事项和出处。先核对再保存，新会话会读入摘要和关联原文。</p>
+    <div id="teaching-note"></div><label class="confirm"><input id="confirm" type="checkbox">我已核对这份人工任务摘要中的条件、未决事项与来源。</label>
+    <div class="note-actions"><button id="save" class="secondary" disabled>确认并保存到本机</button><button id="resume" disabled>用摘要开始新会话 · 1 次调用</button></div><p id="note-status" class="note" role="status">摘要状态读取中……</p><div id="note-results"></div>
   </div></details>
   <details id="source-view" hidden><summary id="source-title">来源原文</summary><div id="source-content" class="guide-body"></div></details>
-  <div class="download-bar"><button id="download" class="secondary" disabled>下载本页所有真实请求</button><span class="note">刷新前下载请求记录；已保存的便笺保留在本机。</span></div>`;
+  <div class="download-bar"><button id="download" class="secondary" disabled>下载本页所有真实请求</button><span class="note">刷新前下载请求记录；已保存的摘要保留在本机。</span></div>`;
 
 const el = <T extends HTMLElement>(selector: string) => document.querySelector<T>(selector)!;
 const start = el<HTMLButtonElement>('#start'), save = el<HTMLButtonElement>('#save'), resume = el<HTMLButtonElement>('#resume');
@@ -69,7 +69,7 @@ function showRun(result: FlowResult) {
   if (result.answer) content.append(documentDetail('模型实际回答 · 未自动判定语义正确性', result.answer), citations(result.answer));
   if (result.selectedIds) { content.append(p(`实际选中编号：${result.selectedIds.join('、')}`, 'note')); result.selectedIds.forEach((id) => content.append(sourceButton(id))); }
   if (result.summary !== undefined) content.append(documentDetail('模型实际生成的任务摘要', result.summary), citations(result.summary));
-  if (result.note) content.append(detail('从本机读取的人工便笺', pretty(result.note)));
+  if (result.note) content.append(detail('从本机读取的人工摘要', pretty(result.note)));
   const costs = costOf(result);
   content.append(p(`最后回答输入 ${n(costs.finalInput)} · 整链输入 ${n(costs.totalInput)} · 整链输出 ${n(costs.totalOutput)} · 输入＋输出 ${n(costs.total)} token`, 'note'));
   result.requests.forEach((request, index) => {
@@ -120,12 +120,12 @@ save.addEventListener('click', async () => {
   try {
     const response = await fetch('/api/memory/note', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ confirmed: true }) });
     const data = await response.json(); if (!response.ok) throw new Error(data.error);
-    saved = data.saved; noteStatus.textContent = `人工便笺已写入本机文件，确认时间：${saved!.confirmedAt}。重新启动服务后仍可读取。`;
-  } catch { noteStatus.textContent = '便笺保存失败，请检查本机服务。'; }
+    saved = data.saved; noteStatus.textContent = `人工摘要已写入本机文件，确认时间：${saved!.confirmedAt}。重新启动服务后仍可读取。`;
+  } catch { noteStatus.textContent = '摘要保存失败，请检查本机服务。'; }
   finally { setBusy(false); }
 });
 resume.addEventListener('click', async () => {
-  if (busy || !saved) return; setBusy(true); noteStatus.textContent = '正在以空白会话读取便笺和来源原文……';
+  if (busy || !saved) return; setBusy(true); noteStatus.textContent = '正在以空白会话读取摘要和来源原文……';
   try {
     const data = await requestFlow('note'); noteStatus.textContent = data.ok ? '新会话已回答；输入没有携带旧聊天消息，也没有修改模型权重。' : `新会话未完成：${data.result.error?.message}`;
   } catch { noteStatus.textContent = '未收到本机服务的有效结果，本次模型执行状态未知。'; }
@@ -133,7 +133,7 @@ resume.addEventListener('click', async () => {
 });
 el('#download').addEventListener('click', () => {
   const url = URL.createObjectURL(new Blob([pretty({ question: materials.question, runs })], { type: 'application/json' }));
-  const link = document.createElement('a'); link.href = url; link.download = '材料选择与便笺-真实请求记录.json'; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+  const link = document.createElement('a'); link.href = url; link.download = '材料选择与摘要-真实请求记录.json'; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
 
 try {
@@ -150,7 +150,7 @@ try {
   box.append(p(`来源日期：${note.sources.map((source) => `${source.id} ${source.date}`).join('；')}`, 'note'));
   status.textContent = '';
   const noteResponse = await fetch('/api/memory/note'); const data = await noteResponse.json();
-  if (noteResponse.ok) { saved = data.saved; noteStatus.textContent = saved ? `已从本机文件读取人工便笺，确认时间：${saved.confirmedAt}。` : '尚未保存便笺。请先打开来源核对，再勾选并保存。'; }
-  else noteStatus.textContent = '本地便笺无法读取；可核对后重新保存。';
+  if (noteResponse.ok) { saved = data.saved; noteStatus.textContent = saved ? `已从本机文件读取人工摘要，确认时间：${saved.confirmedAt}。` : '尚未保存摘要。请先打开来源核对，再勾选并保存。'; }
+  else noteStatus.textContent = '本地摘要无法读取；可核对后重新保存。';
   setBusy(false);
 } catch { status.textContent = '资料读取失败，请确认本机服务后刷新。'; status.className = 'error'; }

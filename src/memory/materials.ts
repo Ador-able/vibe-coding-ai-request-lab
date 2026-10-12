@@ -24,7 +24,7 @@ export function answerMessages(material: string) {
   return [{ role: 'system', content: ANSWER_RULE }, { role: 'user', content: `${QUESTION}\n\n本次可用资料：\n${material}` }];
 }
 
-// 固定的人工教学便笺；不是任何模型调用的产物，须经读者核对后保存。
+// 固定的人工教学摘要；不是任何模型调用的产物，须经读者核对后保存。
 export const TEACHING_NOTE = {
   goal: '准备亲子阅读活动的雨天室内预案，确认是否具备通知参与者转场的条件。',
   confirmed: [
