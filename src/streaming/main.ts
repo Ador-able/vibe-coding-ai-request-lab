@@ -1,4 +1,5 @@
 import './style.css';
+import { markdown } from '../markdown.ts';
 import { MATERIAL } from './material.ts';
 import { DefaultChatTransport, readUIMessageStream } from 'ai';
 import type { AssistantMessage, Chunk, RunRecord, State } from './contract.ts';
@@ -49,7 +50,7 @@ function render() {
   const textParts = attempt.message?.parts.filter((part) => part.type === 'text') ?? [];
   textParts.forEach((part, i) => {
     const section = document.createElement('section'); const heading = document.createElement('h3'); heading.textContent = i === 0 ? '摘要' : '待确认问题';
-    const text = document.createElement('p'); text.className = 'answer'; text.textContent = part.text || (attempt.state === 'running' ? '等待正文片段…' : '未收到正文。'); section.append(heading, text); content.append(section);
+    section.append(heading, markdown(part.text || (attempt.state === 'running' ? '等待正文片段…' : '未收到正文。'), 'answer')); content.append(section);
   });
   const metadata = attempt.message?.metadata;
   get('metadata').textContent = metadata ? `消息状态：${stateLabel[metadata.state]} · ${metadata.model} · ${metadata.stages.map((s) => `${s.stage === 'summary' ? '摘要' : '问题'}结束原因 ${s.finishReason ?? '未收到'}`).join('；')}` : '';

@@ -1,0 +1,17 @@
+import"./lab-shell-Dhrs_Dar.js";/* empty css            */import{n as e}from"./markdown-BbqrBr9c.js";document.querySelector(`#app`).innerHTML=`
+  <header><span class="eyebrow">AI 实验</span><h1>请求观察室</h1><p>提一个问题，看看回答从哪里来。</p></header>
+  <section class="workspace">
+    <form id="question-form">
+      <label for="question">问题</label>
+      <textarea id="question" rows="4" maxlength="2000" required placeholder="例如：用两句话解释，为什么浏览器页面里不应该放 API 密钥？"></textarea>
+      <div class="actions"><span id="status" role="status">每次发送都是一次独立提问。</span><button type="submit">发送问题 <span aria-hidden="true">↗</span></button></div>
+    </form>
+    <section class="response" aria-labelledby="answer-heading"><h2 id="answer-heading">模型的回答</h2><div id="answer" class="empty">发送后，回答会显示在这里。</div></section>
+  </section>
+  <details id="request-details" hidden>
+    <summary>查看这次请求</summary>
+    <div class="trace-content">
+      <div class="request-payload"><h2>页面实际发送的数据</h2><p class="endpoint">POST /api/ask</p><pre id="request-body"></pre></div>
+      <div class="server-trace"><h2>后端实际经过的步骤</h2><p id="trace-description" class="trace-description"></p><ol id="stages"></ol><dl id="trace-meta"></dl></div>
+    </div>
+  </details>`;var t=document.querySelector(`#question-form`),n=document.querySelector(`#question`),r=t.querySelector(`button`),i=document.querySelector(`#status`),a=document.querySelector(`#answer`),o=document.querySelector(`#request-details`),s=document.querySelector(`#request-body`),c=document.querySelector(`#stages`),l=document.querySelector(`#trace-meta`),u=document.querySelector(`#trace-description`);function d(e,t,n){u.textContent=`时间从后端收到请求起累计；只列出实际发生的步骤。`,c.replaceChildren(...e.stages.map(e=>{let t=document.createElement(`li`),n=document.createElement(`strong`);n.textContent=e.name;let r=document.createElement(`span`);r.className=`stage-time`,r.textContent=`${e.elapsedMs} ms`;let i=document.createElement(`p`);return i.textContent=e.detail,t.append(n,r,i),t}));let r=[[`请求编号`,e.requestId],[`请求的模型`,e.model??`尚未调用`],[`后端返回`,`HTTP ${t}`],[`页面等待`,`${n} ms`]];e.modelDurationMs!==void 0&&r.push([`模型调用耗时`,`${e.modelDurationMs} ms`]),l.replaceChildren(...r.flatMap(([e,t])=>{let n=document.createElement(`dt`);n.textContent=e;let r=document.createElement(`dd`);return r.textContent=t,[n,r]}))}t.addEventListener(`submit`,async t=>{t.preventDefault();let f=n.value.trim();if(!f||r.disabled)return;r.disabled=!0,n.disabled=!0,a.textContent=``,a.className=``,i.textContent=`正在等待模型回复……`,i.className=``;let p=JSON.stringify({question:f});o.hidden=!1,s.textContent=JSON.stringify(JSON.parse(p),null,2),u.textContent=`等待后端返回记录……`,c.replaceChildren(),l.replaceChildren();let m=performance.now();try{let t=await fetch(`/api/ask`,{method:`POST`,headers:{"Content-Type":`application/json`},body:p}),n=await t.json();if(d(n.trace,t.status,Math.round(performance.now()-m)),!n.ok){i.textContent=n.error.message,i.className=`error`,a.textContent=`本次没有生成回答。`,a.className=`empty`;return}e(a,n.answer),i.textContent=`已收到模型回答。`}catch{i.textContent=`未收到后端的有效回复，请确认本地服务正在运行。`,i.className=`error`,a.textContent=`本次没有生成回答。`,a.className=`empty`,u.textContent=`没有收到有效的后端记录，无法判断模型是否完成调用。`}finally{r.disabled=!1,n.disabled=!1}});

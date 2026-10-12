@@ -1,5 +1,6 @@
 import './style.css';
 import '../lab.css';
+import { markdown, renderMarkdown } from '../markdown.ts';
 import { FACTS, GOAL } from './scenario.ts';
 import { chooseOption, clearSelection, editDraft, emptyDecision, type Decision, type DecisionRun, type DecisionResponse, type OptionIndex } from './contract.ts';
 
@@ -62,11 +63,11 @@ function render() {
       const section = document.createElement('section'); section.className = 'option';
       const heading = document.createElement('h3'); heading.textContent = option.direction;
       const title = document.createElement('h4'); title.textContent = option.title;
-      section.append(heading, title, paragraph(option.text, 'copy'));
+      section.append(heading, title, markdown(option.text, 'copy'));
       const list = document.createElement('dl');
       for (const [label, text] of [['采用理由', option.reason], ['取舍', option.tradeoff], ['待确认', option.unknowns]]) {
         const term = document.createElement('dt'); term.textContent = label;
-        const description = document.createElement('dd'); description.textContent = text; list.append(term, description);
+        const description = document.createElement('dd'); renderMarkdown(description, text); list.append(term, description);
       }
       const button = document.createElement('button'); button.textContent = '以这版为基础'; button.dataset.option = String(index);
       section.append(list, button); options.append(section);

@@ -17,8 +17,10 @@
   "dependencies": {
     "@ai-sdk/openai-compatible": "3.0.59",
     "ai": "7.0.122",
+    "dompurify": "^3.4.16",
     "eventsource-parser": "4.1.1",
     "express": "^5.2.1",
+    "marked": "18.0.13",
     "zod": "4.6.5"
   },
   "devDependencies": {

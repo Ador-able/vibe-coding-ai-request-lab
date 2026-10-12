@@ -1,5 +1,6 @@
 import './style.css';
 import '../lab.css';
+import { markdown, renderMarkdown } from '../markdown.ts';
 import { CONDITIONS, QUESTION, type Condition } from './materials.ts';
 import { usageOf, type ClientEvent, type StreamRecord } from './contract.ts';
 import { readEvents } from './sse.ts';
@@ -16,7 +17,7 @@ app.innerHTML = `
     <p class="note">按顺序各运行一次，比较等待时间与实际用量。</p>
     <div class="table-scroll"><table><thead><tr><th>条件</th><th>操作</th><th>首段正文</th><th>流结束</th><th>输入 token</th><th>其中命中缓存</th><th>输出 token</th></tr></thead><tbody id="comparison-body"></tbody></table></div>
     <p id="status" role="status" aria-live="polite">先运行短材料，观察首段正文何时出现。</p>
-    <div class="answer-area"><div class="section-heading"><h3 id="answer-label">实际回答</h3><span id="answer-state" class="note">尚未调用</span></div><p id="answer" class="answer">运行后在这里显示真实流式返回。</p></div>
+    <div class="answer-area"><div class="section-heading"><h3 id="answer-label">实际回答</h3><span id="answer-state" class="note">尚未调用</span></div><div id="answer" class="answer">运行后在这里显示真实流式返回。</div></div>
   </section>
   <div class="download-bar"><button id="download" class="secondary" disabled>下载全部记录</button><span class="note">表格显示最近一次，下载保留全部尝试。</span></div>
   <details id="inspector"><summary>查看实际请求、用量和 SSE 事件</summary><div class="inspector-body">
@@ -61,7 +62,7 @@ function renderTable() {
 
 function renderAnswer(attempt: Attempt) {
   get('answer-label').textContent = CONDITIONS[attempt.condition].label;
-  get('answer').textContent = attempt.record?.answer || (attempt.settled ? '没有收到正文。' : '等待第一段正文…');
+  renderMarkdown(get('answer'), attempt.record?.answer || (attempt.settled ? '没有收到正文。' : '等待第一段正文…'));
   get('answer-state').textContent = attempt.transportError ? '连接中断' : attempt.record?.error ? '未完整结束' : attempt.settled ? '已完成' : '接收中';
 }
 
@@ -88,7 +89,7 @@ function renderInspector() {
     const detail = document.createElement('details'); detail.className = 'json';
     const summary = document.createElement('summary'); summary.textContent = title;
     const pre = document.createElement('pre'); pre.textContent = text;
-    detail.append(summary, pre); container.append(detail);
+    detail.append(summary, title === '实际回答' ? markdown(text!) : pre); container.append(detail);
   }
 }
 

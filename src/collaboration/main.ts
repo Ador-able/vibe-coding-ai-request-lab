@@ -1,5 +1,6 @@
 import './style.css';
 import '../lab.css';
+import { markdown } from '../markdown.ts';
 import { FACTS, INITIAL_TASK } from './scenario.ts';
 import { acceptTurn, type Turn, type CollaborationResponse, type CollaborationResult } from './contract.ts';
 
@@ -40,7 +41,7 @@ function renderHistory() {
     block.className = latest ? 'latest-turn' : 'previous-turn';
     const label = document.createElement(latest ? 'h3' : 'summary'); label.textContent = `第 ${index + 1} 轮${latest ? ' · 最新回答' : ''}`;
     const content = document.createElement('div'); content.className = 'turn-body';
-    content.append(paragraph('我们的任务或反馈', 'small-label'), paragraph(turn.input, 'human-input'), paragraph('AI 原始回答', 'small-label'), paragraph(turn.answer, 'answer'));
+    content.append(paragraph('我们的任务或反馈', 'small-label'), paragraph(turn.input, 'human-input'), paragraph('AI 原始回答', 'small-label'), markdown(turn.answer, 'answer'));
     block.append(label, content); container.append(block);
   }
 }

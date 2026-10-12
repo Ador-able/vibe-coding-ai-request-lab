@@ -1,5 +1,6 @@
 import './style.css';
 import '../lab.css';
+import { markdown } from '../markdown.ts';
 import { FLOWS, costOf, type Flow, type FlowResponse, type FlowResult, type SavedNote } from './contract.ts';
 import type { Source, TEACHING_NOTE } from './materials.ts';
 
@@ -11,7 +12,7 @@ document.querySelector('#app')!.innerHTML = `
   <details id="request-detail" hidden><summary id="request-title">查看完整请求记录</summary><div id="request-content" class="inspector-body"></div></details>
   <details class="guide"><summary>查看资料目录与原文</summary><div class="guide-body"><p class="note">非思考 · 温度 0。目录用于导航，完整条款在原文中；浏览资料不调用模型。</p><div id="catalog"></div></div></details>
   <details class="note-section"><summary>跨会话：保存并读回任务便笺</summary><div class="note-body"><p class="badge">人工教学记录 · 非模型生成</p>
-    <p class="note">便笺来自先前任务状态，由我们核对后保存。新会话会带上便笺和它指向的原文，不带旧聊天；这部分不与上面三条流程作同等总成本比较。</p>
+    <p class="note">任务便笺是留给下次任务的简短记录，写清已确认的信息、未决事项和出处。下面是同一场活动的人工便笺；先核对再保存，新会话会读入它和关联原文。</p>
     <div id="teaching-note"></div><label class="confirm"><input id="confirm" type="checkbox">我已核对这份人工教学便笺中的条件、未决事项与来源。</label>
     <div class="note-actions"><button id="save" class="secondary" disabled>确认并保存到本机</button><button id="resume" disabled>用便笺开始新会话 · 1 次调用</button></div><p id="note-status" class="note" role="status">便笺状态读取中……</p><div id="note-results"></div>
   </div></details>
@@ -31,6 +32,11 @@ function detail(title: string, value: string, open = false) {
   const box = document.createElement('details'); box.className = 'json'; box.open = open;
   const heading = document.createElement('summary'); heading.textContent = title;
   const pre = document.createElement('pre'); pre.textContent = value; box.append(heading, pre); return box;
+}
+function documentDetail(title: string, value: string) {
+  const box = document.createElement('details'); box.className = 'json'; box.open = true;
+  const heading = document.createElement('summary'); heading.textContent = title;
+  box.append(heading, markdown(value)); return box;
 }
 function setBusy(value: boolean) {
   busy = value; start.disabled = value || !materials; save.disabled = value || !confirm.checked; resume.disabled = value || !saved;
@@ -60,9 +66,9 @@ function showRun(result: FlowResult) {
   el('#request-title').textContent = `${FLOWS[result.flow]} · ${new Date(result.startedAt).toLocaleTimeString('zh-CN')}`;
   const content = el('#request-content'); content.replaceChildren();
   if (result.error) content.append(p(result.error.message, 'error'));
-  if (result.answer) content.append(detail('模型实际回答 · 未自动判定语义正确性', result.answer, true), citations(result.answer));
+  if (result.answer) content.append(documentDetail('模型实际回答 · 未自动判定语义正确性', result.answer), citations(result.answer));
   if (result.selectedIds) { content.append(p(`实际选中编号：${result.selectedIds.join('、')}`, 'note')); result.selectedIds.forEach((id) => content.append(sourceButton(id))); }
-  if (result.summary !== undefined) content.append(detail('模型实际生成的任务摘要', result.summary, true), citations(result.summary));
+  if (result.summary !== undefined) content.append(documentDetail('模型实际生成的任务摘要', result.summary), citations(result.summary));
   if (result.note) content.append(detail('从本机读取的人工便笺', pretty(result.note)));
   const costs = costOf(result);
   content.append(p(`最后回答输入 ${n(costs.finalInput)} · 整链输入 ${n(costs.totalInput)} · 整链输出 ${n(costs.totalOutput)} · 输入＋输出 ${n(costs.total)} token`, 'note'));
@@ -83,7 +89,7 @@ function renderResults() {
   }));
   el('#note-results').replaceChildren(...runs.filter((run) => run.flow === 'note').map((result) => {
     const block = document.createElement('div'); block.className = 'note-result';
-    if (result.answer) block.append(p(result.answer, 'answer'), citations(result.answer));
+    if (result.answer) block.append(markdown(result.answer, 'answer'), citations(result.answer));
     else block.append(p(result.error?.message ?? '本次没有完整回答。', 'error'));
     const cost = costOf(result); block.append(p(`本次新会话：输入 ${n(cost.totalInput)}、输出 ${n(cost.totalOutput)} token；未计入先前任务及人工核对成本。`, 'note'));
     const button = document.createElement('button'); button.className = 'link-button'; button.textContent = '查看新会话实际输入'; button.addEventListener('click', () => showRun(result)); block.append(button); return block;

@@ -1,5 +1,6 @@
 import './style.css';
 import './lab.css';
+import { renderMarkdown } from './markdown.ts';
 import type { AskResult, RequestTrace } from './contract.ts';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
@@ -10,7 +11,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <textarea id="question" rows="4" maxlength="2000" required placeholder="例如：用两句话解释，为什么浏览器页面里不应该放 API 密钥？"></textarea>
       <div class="actions"><span id="status" role="status">每次发送都是一次独立提问。</span><button type="submit">发送问题 <span aria-hidden="true">↗</span></button></div>
     </form>
-    <section class="response" aria-labelledby="answer-heading"><h2 id="answer-heading">模型的回答</h2><p id="answer" class="empty">发送后，回答会显示在这里。</p></section>
+    <section class="response" aria-labelledby="answer-heading"><h2 id="answer-heading">模型的回答</h2><div id="answer" class="empty">发送后，回答会显示在这里。</div></section>
   </section>
   <details id="request-details" hidden>
     <summary>查看这次请求</summary>
@@ -89,7 +90,7 @@ form.addEventListener('submit', async (event) => {
       answer.className = 'empty';
       return;
     }
-    answer.textContent = result.answer;
+    renderMarkdown(answer, result.answer);
     status.textContent = '已收到模型回答。';
   } catch {
     status.textContent = '未收到后端的有效回复，请确认本地服务正在运行。';
