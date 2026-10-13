@@ -56,5 +56,5 @@ export const CONDITIONS: Record<Condition, { name: string; description: string }
   full: { name: '保留完整历史', description: '聊天文字、助手工具调用、工具结果全部保留。' },
 };
 
-export const FIRST_QUESTION = 'release-2026-09-28 的发布时间是什么？请只回答发布时间。';
-export const FOLLOW_UP = '这个版本的负责人是谁？';
+export const FIRST_QUESTION = '《青岚修仙录》中，炼丹房的收药记录记了多少株灵草（凝露草）？请只回答登记数量。';
+export const FOLLOW_UP = '现场实际有多少株这种灵草？';

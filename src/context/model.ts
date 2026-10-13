@@ -3,7 +3,7 @@ import type { Message, RequestRecord, ToolCall } from './contract.ts';
 import { TOOLS } from './scenario.ts';
 import { isObject as object, sendRecordedRequest } from '../recorded-model.ts';
 
-type ToolChoice = 'none' | { type: 'function'; function: { name: 'get_release_info' } };
+type ToolChoice = 'none' | { type: 'function'; function: { name: 'get_herb_record' } };
 type AssistantMessage = Message & { role: 'assistant' };
 
 function parseMessage(value: unknown): AssistantMessage {
@@ -30,8 +30,9 @@ export async function callContextModel(
 ): Promise<AssistantMessage> {
   // 请求材料交给AI SDK；recorded-model在provider边界记录最终实发正文。
   const requestBody = JSON.stringify({
-    model: config.model, messages, tools: TOOLS, tool_choice: toolChoice,
-    stream: false, parallel_tool_calls: false, max_tokens: 512, temperature: 0,
+    model: config.model, messages,
+    ...(toolChoice === 'none' ? {} : { tools: TOOLS, tool_choice: toolChoice, parallel_tool_calls: false }),
+    stream: false, max_tokens: 4096, temperature: 0,
   });
   const record: RequestRecord = { step, startedAt: new Date().toISOString(), requestBody };
   records.push(record);

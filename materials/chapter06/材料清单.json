@@ -1,0 +1,72 @@
+{
+  "baseline": {
+    "file": "../chapter05/04-当前采用r5.json",
+    "revision": 5,
+    "bodySha256": "5e314dc512cdbe0007018c7fa28ced39ffaa3b27595e7221b231e5b0f24d9ec5",
+    "title": "阁前问路",
+    "workRevision": 2
+  },
+  "createdAs": "编者冻结的教学输入；未执行模型",
+  "files": [
+    {
+      "name": "第一章.md",
+      "sha256": "91c1a557b9ebb1389ac27c9987c2cb0c58d244c4247154fc2a14f0702c967098"
+    },
+    {
+      "name": "共同背景.md",
+      "sha256": "7890c7be591f5c47af6462743cb42fdfc02607b8d6e512f9c385fbe4e2c16d9b"
+    },
+    {
+      "name": "117/任务-a-可查事实.md",
+      "sha256": "92c7c24321aae121a65f0e53f4d02d6a0d9ef7c0ddea490a89402f95a738a0a0"
+    },
+    {
+      "name": "117/任务-b-目标未知.md",
+      "sha256": "1026f997ef506bf6458b86b50423a2222c0807908577bd963cc3cf604e040339"
+    },
+    {
+      "name": "117/任务-c-偏好未知.md",
+      "sha256": "974be9c353278aaf419723fcabe2286ed67684861755ebb1a58008f01c273011"
+    },
+    {
+      "name": "117/任务-d-要求冲突.md",
+      "sha256": "8330897671d475105b1c05f4ad84daed0616688eea10eb15bb111faf858ce60b"
+    },
+    {
+      "name": "两份人工方案.md",
+      "sha256": "22d3fa2c1f41ad250b4e9ede301b6de9bd203c6b8008fefd5e70fa17f7633e60"
+    },
+    {
+      "name": "119/待选轮提示.md",
+      "sha256": "f47c8c96302246c8fae10b9548fb16ba61b2c39925c5c4b98718d114b64c2b36"
+    },
+    {
+      "name": "119/当前任务-待选.md",
+      "sha256": "9a8ebcafa9b5d0b8961abd740b91006b8c8834fbfbcf3fbb7a3de63af3c3c61c"
+    },
+    {
+      "name": "119/人工追加段落.txt",
+      "sha256": "c16df21b409de8b29860e5e82d1352f321ee087ea2d62bb6080e47c594e45a39"
+    },
+    {
+      "name": "119/当前任务-决定B.md",
+      "sha256": "0b9fe4465a3ef5e9f84d83518e0bddc75ed6f6200d54dec2ede2530d86f120bd"
+    },
+    {
+      "name": "119/人的决定.md",
+      "sha256": "b5940bec995e2b8e72a85d0d79ce16154dd3e642365f0ae6c855c91ff8835a5e"
+    },
+    {
+      "name": "119/交还提示.md",
+      "sha256": "8c8825473af0f31cbf12f660b323e1b6b895100602b4e7f1176c11c1f264d272"
+    },
+    {
+      "name": "118-119页面材料.json",
+      "sha256": "68d6b94dfb8c99e87ef7355210401d1caea8efcf87d744488b5d398f9e9c3e93"
+    },
+    {
+      "name": "120人物规则.json",
+      "sha256": "ea4cb3c310a60e621d4018be7e9ba79715c09b7806f2a46e468a7e7e65c8a12a"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+* text=auto
+*.md text eol=lf
+*.ts text eol=lf
+*.json text eol=lf
+records/** -text
+fixtures/** -text
+public/records/** -text
+public/requests-fixtures/** -text
+materials/** -text

@@ -31,39 +31,39 @@ test('长度仅增加无关资料，三种位置使用严格相同的文档集�
   }
 });
 
-test('相似干扰只替换四项且保留目标；冲突仅替换一项、同等时效并保留一致日期', () => {
+test('相似干扰只替换四项且保留目标；冲突仅替换一项、同等效力并保留一致登记数量', () => {
   for (const sample of ['A', 'B'] as const) {
     const middle = get('middle', sample), similar = get('similar', sample), conflict = get('conflict', sample);
     assert.equal(similar.documents.length, 160); assert.equal(conflict.documents.length, 160);
     const changed = (item: QualityCase) => item.documents.filter((doc, index) => doc.id !== middle.documents[index].id || doc.text !== middle.documents[index].text);
     assert.equal(changed(similar).length, 4); assert.equal(changed(conflict).length, 1);
     assert.deepEqual(similar.documents[79], middle.documents[79]); assert.deepEqual(conflict.documents[79], middle.documents[79]);
-    const targetPrefix = `项目：${middle.project}；版本：${middle.version}；`;
+    const targetPrefix = `地点：${middle.location}；药材：${middle.herb}；`;
     assert.equal(similar.documents.filter((doc) => doc.text.startsWith(targetPrefix)).length, 1);
     const conflicts = conflict.documents.filter((doc) => doc.text.startsWith(targetPrefix));
     assert.equal(conflicts.length, 2);
     assert.deepEqual(conflict.expected.source_ids, conflicts.map((doc) => doc.id));
-    assert.deepEqual(conflicts.map((doc) => doc.text.replace(/负责人：[^；]+；/, '负责人：已隐藏；')), [conflicts[0].text.replace(/负责人：[^；]+；/, '负责人：已隐藏；'), conflicts[0].text.replace(/负责人：[^；]+；/, '负责人：已隐藏；')]);
-    assert.equal(conflict.expected.status, 'conflict'); assert.equal(conflict.expected.owner, null);
-    assert.equal(conflict.expected.freeze_date, middle.expected.freeze_date);
+    assert.deepEqual(conflicts.map((doc) => doc.text.replace(/实物数量：[^。]+。/, '实物数量：已隐藏。')), [conflicts[0].text.replace(/实物数量：[^。]+。/, '实物数量：已隐藏。'), conflicts[0].text.replace(/实物数量：[^。]+。/, '实物数量：已隐藏。')]);
+    assert.equal(conflict.expected.status, 'conflict'); assert.equal(conflict.expected.actual_count, null);
+    assert.equal(conflict.expected.registered_count, middle.expected.registered_count);
     assert.notEqual(conflicts[0].text, conflicts[1].text);
   }
 });
 
-test('缺字段、错误或不完整引用、截断不判通过；冲突允许空负责人且要求双方引用', () => {
+test('缺字段、错误或不完整引用、截断不判通过；冲突允许空实物数量且要求双方引用', () => {
   const expected = get('short', 'A').expected;
   const grade = (value: unknown) => assessAnswer(JSON.stringify(value), 'stop', expected);
   assert.equal(grade(expected).allCorrect, true);
   const { source_ids: _ids, ...missing } = expected;
   assert.equal(grade(missing).valid, false);
   assert.equal(grade({ ...expected, source_ids: ['A-D001'] }).allCorrect, false);
-  assert.equal(grade({ ...expected, owner: '另一人' }).ownerCorrect, false);
+  assert.equal(grade({ ...expected, actual_count: 99 }).actualCorrect, false);
   assert.equal(assessAnswer(JSON.stringify(expected), 'length', expected).allCorrect, false);
   const conflict = get('conflict', 'B').expected;
   assert.equal(assessAnswer(JSON.stringify(conflict), 'stop', conflict).allCorrect, true);
   assert.equal(assessAnswer(JSON.stringify({ ...conflict, source_ids: [conflict.source_ids[0]] }), 'stop', conflict).sourcesCorrect, false);
   assert.equal(assessAnswer(JSON.stringify({ ...conflict, source_ids: [conflict.source_ids[0], conflict.source_ids[0]] }), 'stop', conflict).sourcesCorrect, false);
-  assert.equal(assessAnswer(JSON.stringify({ ...conflict, owner: '随意选择' }), 'stop', conflict).factsComplete, false);
+  assert.equal(assessAnswer(JSON.stringify({ ...conflict, actual_count: 99 }), 'stop', conflict).factsComplete, false);
 });
 
 async function listen(server: Server) {
@@ -100,7 +100,7 @@ test('HTTP 边界收到的原串就是检查器请求，失败保留记录且不
     assert.deepEqual(body.messages, caseMessages(get('short', 'A')));
     assert.deepEqual(body.response_format, { type: 'json_object' });
     assert.equal(Object.hasOwn(body, 'tools'), false); assert.equal(Object.hasOwn(body, 'tool_choice'), false);
-    assert.equal(body.temperature, 0); assert.equal(body.max_tokens, 512); assert(!('enable_thinking' in body));
+    assert.equal(body.temperature, 0); assert.equal(body.max_tokens, 4096); assert(!('enable_thinking' in body));
     assert.equal(success.data.result.assessment?.allCorrect, true);
     const failed = await send();
     assert.equal(failed.status, 502); assert.equal(failed.data.ok, false);

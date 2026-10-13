@@ -2,14 +2,14 @@ import type { RequestRecord } from '../context/contract.ts';
 
 export type QualityCondition = 'short' | 'middle' | 'first' | 'last' | 'similar' | 'conflict';
 export type Document = { id: string; text: string };
-export type Answer = { status: 'resolved' | 'conflict' | 'insufficient'; owner: string | null; freeze_date: string | null; source_ids: string[] };
+export type Answer = { status: 'resolved' | 'conflict' | 'insufficient'; actual_count: number | null; registered_count: number | null; source_ids: string[] };
 export type QualityCase = {
-  id: string; sample: 'A' | 'B'; condition: QualityCondition; project: string; version: string;
+  id: string; sample: 'A' | 'B'; condition: QualityCondition; location: string; herb: string;
   question: string; documents: Document[]; expected: Answer;
 };
 export type Assessment = {
   parsed: Answer | null; valid: boolean; issue?: string;
-  statusCorrect: boolean; ownerCorrect: boolean; dateCorrect: boolean; sourcesCorrect: boolean;
+  statusCorrect: boolean; actualCorrect: boolean; registeredCorrect: boolean; sourcesCorrect: boolean;
   factsComplete: boolean; allCorrect: boolean;
 };
 export type CaseResult = {

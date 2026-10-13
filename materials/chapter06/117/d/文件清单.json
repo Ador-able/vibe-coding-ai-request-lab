@@ -1,0 +1,16 @@
+{
+  "files": [
+    {
+      "path": "chapter-one.md",
+      "sha256": "91c1a557b9ebb1389ac27c9987c2cb0c58d244c4247154fc2a14f0702c967098"
+    },
+    {
+      "path": "background.md",
+      "sha256": "ea704aa1de403d4e32e766df91364fa5f21f41316ae9f89862ccd50b1ed66d9c"
+    },
+    {
+      "path": "current-task.md",
+      "sha256": "3616091009c43ca195426cf5a825ac6448d878293d7c7bbee7fec23487be6b25"
+    }
+  ]
+}

@@ -19,7 +19,7 @@ export function createQualityRouter(env: NodeJS.ProcessEnv) {
     try {
       const config = readConfig(env);
       const requestBody = JSON.stringify({ model: config.model, messages: caseMessages(item), stream: false,
-        temperature: 0, max_tokens: 512, response_format: { type: 'json_object' } });
+        temperature: 0, max_tokens: 4096, response_format: { type: 'json_object' } });
       result.request = { step: '固定样例提取', startedAt: new Date().toISOString(), requestBody };
       const message = await sendRecordedRequest(config, result.request, AbortSignal.any([controller.signal, AbortSignal.timeout(90_000)]));
       if (!isObject(message) || typeof message.content !== 'string') {
@@ -28,7 +28,7 @@ export function createQualityRouter(env: NodeJS.ProcessEnv) {
       result.answer = message.content;
       result.assessment = assessAnswer(message.content, result.request.finishReason, item.expected);
       if (Array.isArray(message.tool_calls) && message.tool_calls.length) {
-        result.assessment = { parsed: null, valid: false, issue: '禁止工具调用时返回了工具指令，未执行。', statusCorrect: false, ownerCorrect: false, dateCorrect: false, sourcesCorrect: false, factsComplete: false, allCorrect: false };
+        result.assessment = { parsed: null, valid: false, issue: '禁止工具调用时返回了工具指令，未执行。', statusCorrect: false, actualCorrect: false, registeredCorrect: false, sourcesCorrect: false, factsComplete: false, allCorrect: false };
       }
       if (!res.destroyed) res.json({ ok: true, result } satisfies QualityResponse);
     } catch (error) {

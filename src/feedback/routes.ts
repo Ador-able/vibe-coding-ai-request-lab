@@ -4,14 +4,14 @@ import { resolve } from 'node:path';
 import { ModelError, readConfig } from '../model.ts';
 import { isObject, sendRecordedRequest } from '../recorded-model.ts';
 import { createRuleStore } from './rule-store.ts';
-import { buildRequestBody, ORDERS } from './scenario.ts';
+import { buildRequestBody, RECORDS } from './scenario.ts';
 import { parseAnswer } from './parse.ts';
 import type { FeedbackRun, FeedbackResponse, RuleResponse } from './contract.ts';
 
-export function createFeedbackRouter(env: NodeJS.ProcessEnv, storePath = resolve('.local-data/feedback-rule.json')) {
+export function createFeedbackRouter(env: NodeJS.ProcessEnv, storePath = resolve('.local-data/novel-feedback-rule.json')) {
   const router = Router();
   const store = createRuleStore(storePath);
-  const storageError = '本地规则无法读取或保存，请检查 .local-data/feedback-rule.json。没有调用模型。';
+  const storageError = '本地规则无法读取或保存，请检查 .local-data/novel-feedback-rule.json。没有调用模型。';
   router.get('/rule', async (_req, res) => {
     try { res.json({ rule: await store.load() } satisfies RuleResponse); }
     catch { res.status(503).json({ rule: null, error: storageError } satisfies RuleResponse); }
@@ -29,12 +29,12 @@ export function createFeedbackRouter(env: NodeJS.ProcessEnv, storePath = resolve
     catch { res.status(503).json({ rule: null, error: storageError } satisfies RuleResponse); }
   });
   router.post('/run', async (req, res) => {
-    const order = ORDERS.find((item) => item.id === req.body?.orderId);
+    const record = RECORDS.find((item) => item.id === req.body?.recordId);
     const ruleMode = req.body?.ruleMode;
-    if (!order || !['none', 'saved'].includes(ruleMode)) {
-      res.status(400).json({ error: '请选择本实验的订单和规则方式。' }); return;
+    if (!record || !['none', 'saved'].includes(ruleMode)) {
+      res.status(400).json({ error: '请选择本实验的笔记和规则方式。' }); return;
     }
-    const run: FeedbackRun = { id: randomUUID(), order, ruleMode, ruleSnapshot: null, request: null, rawAnswer: null, answer: null };
+    const run: FeedbackRun = { id: randomUUID(), record, ruleMode, ruleSnapshot: null, request: null, rawAnswer: null, answer: null };
     if (ruleMode === 'saved') {
       try { run.ruleSnapshot = await store.load(); }
       catch {
@@ -51,8 +51,8 @@ export function createFeedbackRouter(env: NodeJS.ProcessEnv, storePath = resolve
     res.on('close', cancel);
     try {
       const config = readConfig(env);
-      run.request = { step: `订单${order.id} · ${ruleMode === 'saved' ? '附带已保存规则' : '不带规则'}`,
-        startedAt: new Date().toISOString(), requestBody: buildRequestBody(config.model, order, run.ruleSnapshot) };
+      run.request = { step: `笔记${record.id} · ${ruleMode === 'saved' ? '附带已保存规则' : '不带规则'}`,
+        startedAt: new Date().toISOString(), requestBody: buildRequestBody(config.model, record, run.ruleSnapshot) };
       const message = await sendRecordedRequest(config, run.request, AbortSignal.any([controller.signal, AbortSignal.timeout(90_000)]));
       if (!isObject(message) || typeof message.content !== 'string') throw new ModelError('MODEL_RESPONSE_INVALID', '没有收到可显示的回答，实际响应已保留。');
       run.rawAnswer = message.content;

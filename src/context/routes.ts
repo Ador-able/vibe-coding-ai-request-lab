@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { ModelError, readConfig } from '../model.ts';
 import { CONDITIONS, FIRST_QUESTION, type Condition, type ContextResponse, type ExperimentRun, type Message } from './contract.ts';
 import { callContextModel } from './model.ts';
-import { executeReleaseTool, LabError, projectHistory, SYSTEM_RULE } from './scenario.ts';
+import { executeHerbTool, LabError, projectHistory, SYSTEM_RULE } from './scenario.ts';
 
 type Session = { firstRound: ExperimentRun; history: Message[]; runs: ExperimentRun[] };
 
@@ -29,13 +29,13 @@ export function createContextRouter(env: NodeJS.ProcessEnv) {
   }
 
   router.post('/start', async (_req, res) => {
-    await run(res, '首轮：查询发布时间', async (record, signal) => {
+    await run(res, '首轮：查询登记数量', async (record, signal) => {
       const config = readConfig(env);
       const history: Message[] = [{ role: 'system', content: SYSTEM_RULE }, { role: 'user', content: FIRST_QUESTION }];
-      const instruction = await callContextModel(config, history, { type: 'function', function: { name: 'get_release_info' } }, record.requests, '请求工具调用', signal);
+      const instruction = await callContextModel(config, history, { type: 'function', function: { name: 'get_herb_record' } }, record.requests, '请求工具调用', signal);
       history.push(instruction);
       const call = instruction.tool_calls![0];
-      const result = executeReleaseTool(call);
+      const result = executeHerbTool(call);
       record.tools.push({ callId: call.id, name: call.function.name, arguments: call.function.arguments, result: result.content });
       history.push(result);
       const answer = await callContextModel(config, history, 'none', record.requests, '根据工具结果回答', signal);
@@ -48,7 +48,7 @@ export function createContextRouter(env: NodeJS.ProcessEnv) {
   });
 
   router.post('/follow-up', async (req, res) => {
-    await run(res, '追问：版本负责人', async (record, signal) => {
+    await run(res, '追问：实物数量', async (record, signal) => {
       const { sessionId, condition } = req.body ?? {};
       if (typeof sessionId !== 'string' || typeof condition !== 'string'
           || !Object.hasOwn(CONDITIONS, condition)) {

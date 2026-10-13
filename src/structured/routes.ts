@@ -10,7 +10,7 @@ export function createStructuredRouter(env: NodeJS.ProcessEnv) {
   app.post('/extract', async (req, res) => {
     const { material, mode } = req.body ?? {};
     if (typeof material !== 'string' || !material.trim() || material.length > 5000 || typeof mode !== 'string' || !Object.hasOwn(MODES, mode)) {
-      res.status(400).json({ error: '请选择输出方式，并输入1至5000字的会议纪要。' }); return;
+      res.status(400).json({ error: '请选择输出方式，并输入1至5000字的小说资料。' }); return;
     }
     const controller = new AbortController();
     const cancel = () => { if (!res.writableEnded) controller.abort(); };

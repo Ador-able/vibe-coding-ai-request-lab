@@ -1,0 +1,406 @@
+{
+  "sourceVersion": "sha256:6d31c9439ccb946d76875bf06f79ccb8eb079f97bcb817e21025ea46dd0eefe4",
+  "chapters": [
+    {
+      "chapter": 3,
+      "directory": "records/chapter03",
+      "origin": "真实模型请求与实际摘要保存记录",
+      "scopes": [
+        "炼丹房工具与三种追问历史",
+        "12次材料对照",
+        "全文、选读、摘要及新会话",
+        "5次等待与用量"
+      ]
+    },
+    {
+      "chapter": 6,
+      "directory": "records/chapter06",
+      "origin": "真实模型请求、页面导出与人工改稿记录",
+      "scopes": [
+        "方案生成中的失败与完整方案",
+        "共写两轮",
+        "人物规则保存前、启用与停用"
+      ]
+    },
+    {
+      "chapter": 11,
+      "directory": "records/chapter11",
+      "origin": "真实云模型、教师接收条件与官方Mock演练分别记录",
+      "cloudModelRequests": 7,
+      "controlledTasks": 8,
+      "internalMockCalls": 9,
+      "supplementalScreenshotTasks": 2,
+      "supplementalMockCalls": 2,
+      "teacherReceptionKind": "teacher-controlled-reception",
+      "streamingClassroom": "public/records/output/streaming.json",
+      "structuredClassroom": "public/records/output/structured.json"
+    }
+  ],
+  "files": [
+    {
+      "file": "records/chapter03/021-memory-flow.json",
+      "bytes": 8379,
+      "sha256": "5815a6f46793c15ca899a0e1f97673fd998cd3c392702593e335c0070d6292a6"
+    },
+    {
+      "file": "records/chapter03/024-memory-flow.json",
+      "bytes": 15560,
+      "sha256": "fe68564e3b6be5848004b6e954bdfd2e6141379c0f1c136e4251c7f7afd4e907"
+    },
+    {
+      "file": "records/chapter03/030-memory-flow.json",
+      "bytes": 14103,
+      "sha256": "c4bee1fa9884663ec6050222fab944b05f79f931b2c3361e837f3b0c9accf28d"
+    },
+    {
+      "file": "records/chapter03/037-memory-note.json",
+      "bytes": 1415,
+      "sha256": "eec30fa34c290a09fb0da2b7dac4b1c6d319825fbd34b1f0c1c8dbea55e80c46"
+    },
+    {
+      "file": "records/chapter03/038-memory-flow.json",
+      "bytes": 23605,
+      "sha256": "e49d00cfa4c35a04b98cb15a4435d5bedfa8eeff09d14e1f902813dda7b3eee8"
+    },
+    {
+      "file": "records/chapter03/040-context-start.json",
+      "bytes": 8494,
+      "sha256": "751f9d478e828d43489765ee1ce693d8c3bac87b02d93d3a10e1fce92e8c855d"
+    },
+    {
+      "file": "records/chapter03/041-quality-case.json",
+      "bytes": 8711,
+      "sha256": "d12278fc34ecdb2a3005a4a62310252180ddf5a3eb3a119f16a098eed4d6f4c1"
+    },
+    {
+      "file": "records/chapter03/042-quality-case.json",
+      "bytes": 9439,
+      "sha256": "89d1da1c110bd2ac8b89f376e61408af29e68d886d399464fab3a290e77fe7e3"
+    },
+    {
+      "file": "records/chapter03/043-quality-case.json",
+      "bytes": 57165,
+      "sha256": "cd92ac75ec7d0fc7dc6777d65d275b9e07e6586062136664230f7f044c4581e2"
+    },
+    {
+      "file": "records/chapter03/044-quality-case.json",
+      "bytes": 57363,
+      "sha256": "6b08b5808bbb4b732e447c600251b4c8825e01e94c16e2d00176e842c713d3a4"
+    },
+    {
+      "file": "records/chapter03/045-quality-case.json",
+      "bytes": 57217,
+      "sha256": "e28900c5132265b6b33065a51ac70f3a604b3fe67f41923c08f15ff83cc29ed6"
+    },
+    {
+      "file": "records/chapter03/046-quality-case.json",
+      "bytes": 56132,
+      "sha256": "2daf6abdd6786f77be5f8e7ddb808ac65235169217af08e4aacff4e3bd35f205"
+    },
+    {
+      "file": "records/chapter03/047-quality-case.json",
+      "bytes": 56541,
+      "sha256": "6716a44a23fa69a3bbc6ca66773cb6ebf6d76886bf45487795b402300d134901"
+    },
+    {
+      "file": "records/chapter03/048-quality-case.json",
+      "bytes": 59023,
+      "sha256": "b7553860b08988870e2a9ae6a91c8b773ef26f47126d1f83b109c68d849ae485"
+    },
+    {
+      "file": "records/chapter03/049-quality-case.json",
+      "bytes": 56872,
+      "sha256": "ea388bf48028be01bbed07c4e11c7b575d27ebd0781a58206427f25ebffdb1b4"
+    },
+    {
+      "file": "records/chapter03/050-quality-case.json",
+      "bytes": 57773,
+      "sha256": "0caabf2f016a82a8c776b20b171fde743c088a8264e1ca30deb72064062794e9"
+    },
+    {
+      "file": "records/chapter03/051-quality-case.json",
+      "bytes": 56724,
+      "sha256": "377fc6e3a56b0006ed3ab5d02d9970fef8bda50a897874752c29c2464f3e64a1"
+    },
+    {
+      "file": "records/chapter03/052-quality-case.json",
+      "bytes": 61831,
+      "sha256": "52a3dd315e84aa0701c3a291e3904577befdb0979316cf758fb7065c77b425db"
+    },
+    {
+      "file": "records/chapter03/053-context-follow-up.json",
+      "bytes": 8461,
+      "sha256": "ea782f654197fc51119543517701d46af102d5e3c210663454f1bbed331915da"
+    },
+    {
+      "file": "records/chapter03/054-context-follow-up.json",
+      "bytes": 13649,
+      "sha256": "65d4fd55fce6303ed3ad062cbe4742b0e1e1555a5ba633081bea8fcb8a651483"
+    },
+    {
+      "file": "records/chapter03/055-context-follow-up.json",
+      "bytes": 14294,
+      "sha256": "f2c5691869dd4bdf19c4d76cfc0bd4a789f5c582dca4b168a1bc3561a839375a"
+    },
+    {
+      "file": "records/chapter03/056-latency-run.json",
+      "bytes": 20822,
+      "sha256": "b8ef9757586d1db0fd1593c20f7ecda8baf84f0d695278f7876fb33babd4c8cb"
+    },
+    {
+      "file": "records/chapter03/057-latency-run.json",
+      "bytes": 46260,
+      "sha256": "c1e6737427045ddb4d9db4580a8b4ef3c0a3f729f394192b1511b66b2e23aad9"
+    },
+    {
+      "file": "records/chapter03/058-latency-run.json",
+      "bytes": 51700,
+      "sha256": "0c902826209198d52d48736d7053b0f0775f20fd6e05e39efdf3b4ecbd9061ee"
+    },
+    {
+      "file": "records/chapter03/059-latency-run.json",
+      "bytes": 47383,
+      "sha256": "2d1b917f44e03ff1bea530fc8da83f9515fef8a182c347e2824b732092dc99e8"
+    },
+    {
+      "file": "records/chapter03/060-latency-run.json",
+      "bytes": 147541,
+      "sha256": "fa093bd4f2cb596c5105501c87d459e0bda3a563cdd4617d724146678a3d04a4"
+    },
+    {
+      "file": "records/chapter06/001-decisions-generate.json",
+      "bytes": 25232,
+      "sha256": "3172cc2ece43ba3f66756c92ba1c56b6369510bdfaf5b673241b40bfa90348f5"
+    },
+    {
+      "file": "records/chapter06/002-feedback-run.json",
+      "bytes": 3443,
+      "sha256": "0a90e8c04165785397f7907c9bbca5947fd2c31dea2c3830bd09e182ef27f657"
+    },
+    {
+      "file": "records/chapter06/003-feedback-run.json",
+      "bytes": 2868,
+      "sha256": "870480d9b96eb59e0deb07bb5180df1da0ec573f1dee6dea5c6b6053ddfa4037"
+    },
+    {
+      "file": "records/chapter06/004-feedback-run.json",
+      "bytes": 2455,
+      "sha256": "b8652e0d2746bfb5f6f6bc6c3ac84f5daa14b77350d4ac82c87e137288eb7340"
+    },
+    {
+      "file": "records/chapter06/005-feedback-rule.json",
+      "bytes": 576,
+      "sha256": "8f1ad454f27ddb9ab89fdc49ae937fde01cf1653f1f30a67ba7f167b76060669"
+    },
+    {
+      "file": "records/chapter06/006-decisions-generate.json",
+      "bytes": 20269,
+      "sha256": "0eefd9cbf63a9e84e063027b36dd25fc718f34f1b7dd8bc8510c6df8fd80d0d8"
+    },
+    {
+      "file": "records/chapter06/007-feedback-run.json",
+      "bytes": 3177,
+      "sha256": "9b02302c40cf3700d7f2942f4a82ee6c8a4ea8109597c7b7476ca7f6e2a71d95"
+    },
+    {
+      "file": "records/chapter06/008-feedback-run.json",
+      "bytes": 3495,
+      "sha256": "899d8e9ed94958ba32fc09c75e4149c894889989dddd56fd8861bf0276882495"
+    },
+    {
+      "file": "records/chapter06/009-feedback-run.json",
+      "bytes": 3682,
+      "sha256": "04f8023c71b498a7f22cd4aafe254169b439403c05d5804676835b4a49d9098f"
+    },
+    {
+      "file": "records/chapter06/010-feedback-rule-disable.json",
+      "bytes": 585,
+      "sha256": "8441990d416d38cedff5d1d0f673ec6345a5f9cb6d3b993298a00e0c1dd3ec1f"
+    },
+    {
+      "file": "records/chapter06/011-feedback-run.json",
+      "bytes": 2751,
+      "sha256": "08c8c42513257afe1252cf5a2d4f4457848f617d20ecfaa1aa63d8410ce69719"
+    },
+    {
+      "file": "records/chapter06/012-decisions-generate.json",
+      "bytes": 8297,
+      "sha256": "fcee2282944c01249cae3e5fba5a2afe50c082eae7406dba20c539810c7d3500"
+    },
+    {
+      "file": "records/chapter06/013-decisions-generate.json",
+      "bytes": 78307,
+      "sha256": "6e18a8cef733e4a5d51dbe8405fd3de6e1f31663de11ea2e9b2d5e0516a609ab"
+    },
+    {
+      "file": "records/chapter06/014-collaboration-turn.json",
+      "bytes": 40322,
+      "sha256": "dcc55053c942e42e7b00d43b9172456b4fc6875ec833437c1cfb5268e9491f24"
+    },
+    {
+      "file": "records/chapter06/015-collaboration-turn.json",
+      "bytes": 61468,
+      "sha256": "e0a9b2a2df4faec8fefddb38be900fa08bcc0217d392b6959d6d445e8752a081"
+    },
+    {
+      "file": "records/chapter06/118-人工编辑B方案.txt",
+      "bytes": 1274,
+      "sha256": "00673f0e79b3221817fc032800a1c092478c6db2a9b7ba8c6cb5bf1cb10c0543"
+    },
+    {
+      "file": "records/chapter06/118-方案页面导出.json",
+      "bytes": 140936,
+      "sha256": "7c156d0e99f35c116940dcaaf7606bac30ad1e7645887ea371f9fa5a9d1c20ce"
+    },
+    {
+      "file": "records/chapter06/119-人的改稿与决定.json",
+      "bytes": 20563,
+      "sha256": "943d6888f723d112e6a1997de570b3b41541ceacf86258653acbbc5ce366d76f"
+    },
+    {
+      "file": "records/chapter06/119-共写页面导出.json",
+      "bytes": 120839,
+      "sha256": "fcb247519ac9981ec4be890b99de373230205f63af131f82ac61ed73de3b765f"
+    },
+    {
+      "file": "records/chapter06/119-页面人工当前稿.txt",
+      "bytes": 1786,
+      "sha256": "7c30af84bdeffbaa22bd7f97f9f4c19c7553d45fd4d12130c1164e887f4bfa12"
+    },
+    {
+      "file": "records/chapter06/119-页面第二轮输入.txt",
+      "bytes": 3115,
+      "sha256": "41e27707c80de5fb9c44c560bfebede955a0c3d9b304a4af16dcebc7db4c49cb"
+    },
+    {
+      "file": "records/chapter06/120-七次页面导出.json",
+      "bytes": 25096,
+      "sha256": "7406197b9111c566b20493448a61ee6deb471a52a71edaf9757e44620b8dffcb"
+    },
+    {
+      "file": "records/chapter11/122-三种输出方式.json",
+      "bytes": 42683,
+      "sha256": "cd9a4561611a457895c94103806b0c17505bca6fb7f493d935100862baa194ec"
+    },
+    {
+      "file": "records/chapter11/122-教师边界检查.json",
+      "bytes": 24443,
+      "sha256": "3c8fa5bce9108acb39a57a184209151c17976429a8051f75f8335afa41a317c3"
+    },
+    {
+      "file": "records/chapter11/123-两轮实际事件.json",
+      "bytes": 1236773,
+      "sha256": "6858713af0ba3e20cbca9454c3ece67b8abb2b9dab446075f512babf0362925d"
+    },
+    {
+      "file": "records/chapter11/168-保存后独立读回.json",
+      "bytes": 17739,
+      "sha256": "c97385271e36489751ab3cc8cf15f5d0bc7368ec6508ff2e913331d832181972"
+    },
+    {
+      "file": "records/chapter11/168-写锁.jsonl",
+      "bytes": 356,
+      "sha256": "f9fc844e323c1dc4dbc8a7c2da3b2139292b32740f4cfb4b20e9ee47a610e6b3"
+    },
+    {
+      "file": "records/chapter11/168-受控接收来源.json",
+      "bytes": 119249,
+      "sha256": "96082a1cb3b543d56d89ed578003220af7ff99fdeba2d08be71839d07317443d"
+    },
+    {
+      "file": "records/chapter11/168-失败前独立读回.json",
+      "bytes": 16162,
+      "sha256": "c88c6d4e4541203c27a80c3885865d24b0be2584c32ef29defca4c8eb1471707"
+    },
+    {
+      "file": "records/chapter11/168-失败后独立读回.json",
+      "bytes": 16162,
+      "sha256": "85e5aee6036dd882b7be0444cafa2b930e8c5c0d82dd24011b3c682e443ee58c"
+    },
+    {
+      "file": "records/chapter11/168-浏览器保存与转换.json",
+      "bytes": 222279,
+      "sha256": "c67a6f5f56e1284b374f91332d8be65baa119c2eb5417ffdb51de787b0f3fba3"
+    },
+    {
+      "file": "records/chapter11/168-重启后完整GET.json",
+      "bytes": 17863,
+      "sha256": "3bb22ca611c9cb161df35717a318f864ef320f1fbccea7aa5efa2d0a62070285"
+    },
+    {
+      "file": "records/chapter11/174-1a985427-651a-44e0-817e-ddfe844d8320.json",
+      "bytes": 58870,
+      "sha256": "563070e9b6b382518c4fca00c307bcf396576e2c24ebfc246b8b19f42187e0af"
+    },
+    {
+      "file": "records/chapter11/174-28c51100-376e-44f7-9da8-269904f238dd.json",
+      "bytes": 53435,
+      "sha256": "c7f78985b28ddea41242e5f7965c4309d51e38285989c38ed4c2a045157f7be2"
+    },
+    {
+      "file": "records/chapter11/174-511cfdb6-7798-481d-8bb9-d6252e18d288.json",
+      "bytes": 28886,
+      "sha256": "3bf224308bafcb360937bd36fb02da1e0dd3e11abfc9acdf31735d715fedffa8"
+    },
+    {
+      "file": "records/chapter11/174-67c3184a-c5b1-4e64-91fa-2cb50830220c.json",
+      "bytes": 53446,
+      "sha256": "4510e6774d7e0a524f7e3d16169fcfeb6b18914c7228c4cd815f41780754473c"
+    },
+    {
+      "file": "records/chapter11/174-8e5e933b-9df9-4253-9944-4f548cd32fee.json",
+      "bytes": 35027,
+      "sha256": "29f95c3258fc4d17bd42cd1c7ea68bec816dcee871a862fbbabd9f73c6359dd5"
+    },
+    {
+      "file": "records/chapter11/174-9db7809e-b16c-4b8f-89bc-c985ce53d8b1.json",
+      "bytes": 29691,
+      "sha256": "a79d0b51a277b90e4282fd8f88306f7e9d8bb2e489925660d47b0082ca1f1da6"
+    },
+    {
+      "file": "records/chapter11/174-a60e2ad9-7115-41ef-9827-217fb3f1caec.json",
+      "bytes": 54775,
+      "sha256": "c974ff89bd94831b27c05f75dfde552a79584740d91b1c1c9bf40a2d95d745cf"
+    },
+    {
+      "file": "records/chapter11/174-f1c27438-b2ac-4d7a-a4d0-1f8024997913.json",
+      "bytes": 32270,
+      "sha256": "6513a4affa82961be90135fdbc4ecfb78bcf1758171c397badc0088747369e71"
+    },
+    {
+      "file": "records/chapter11/174-服务来源.json",
+      "bytes": 1734,
+      "sha256": "9f9acd649d5ed2b84c646213024928086e68cb5a7820b357760ec7ff1d149062"
+    },
+    {
+      "file": "records/chapter11/174-生产构建浏览器演练.json",
+      "bytes": 955078,
+      "sha256": "b9c56a1e0352313222ef06033d982df93317126acaa3ee22fbd12d47bcc71477"
+    },
+    {
+      "file": "records/chapter11/174-补充截图演练.json",
+      "bytes": 225323,
+      "sha256": "bdc4ec23152a4f49c987bc52d08d2c39b1f43e6d71a08507db7f12358b9753b9"
+    },
+    {
+      "file": "records/chapter11/final-source-version.json",
+      "bytes": 23603,
+      "sha256": "ebd059c6eec6c511b4f9f5c6149bcf761304b31f506ab969b6980ade25a8297f"
+    },
+    {
+      "file": "records/chapter11/source-snapshot.json",
+      "bytes": 23601,
+      "sha256": "6f0b805fb9fdd3f3e293712ee87eaf35718694550da1f4bb38ea98021875afa3"
+    },
+    {
+      "file": "records/chapter11/截图来源说明.md",
+      "bytes": 792,
+      "sha256": "92549b0d7d7c93ebe6f9c9ed5cf4fc0f83837de758c3fe4c4dae21ef14b48415"
+    },
+    {
+      "file": "records/chapter11/第十一章-来源记录.md",
+      "bytes": 7655,
+      "sha256": "4927e0292426b511c49a4a30685f0d4429d0bbc3da68ea8b9759ba2be1cf41ac"
+    }
+  ]
+}

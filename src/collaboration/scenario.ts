@@ -1,3 +1,6 @@
-export const FACTS = '周六下午14:00—16:00，在社区图书馆一层举行亲子共读活动。共有30个家庭名额。家长与孩子共同阅读，每个家庭带一本愿意分享的书。活动免费。报名方式尚未提供。';
-export const INITIAL_TASK = '为社区亲子共读活动提供两种明显不同的宣传方向。每种给一个标题、约60字的开头和适用理由。先只比较方向，不补造报名链接、名人或往期数据。';
-export const SYSTEM = `我们正在共同撰写社区图书馆活动的文字宣传方案。以下资料均为教学虚构：\n${FACTS}\n\n读者会提出目标、经验、取舍、补充或纠正。根据明确的反馈继续共写；新增事实只有在读者明确提供时才采用，不自行补造未提供的事实。不要预设哪种方向更好，也不要声称内容已对外发布。这是文字共写，不生成图片或剪辑视频。`;
+import materials from '../scene-materials.json';
+
+export const BACKGROUND = materials.background;
+export const PREVIOUS_CHAPTER = materials.previousChapter;
+export const INITIAL_TASK = materials.collaborationTask;
+export const SYSTEM = `我们正在共同撰写原创小说《青岚修仙录》。下面是本轮完整背景与前文：\n\n${BACKGROUND}\n\n${PREVIOUS_CHAPTER}\n\n作者会提供自己的选择、编辑稿、经验和具体纠正。依据最新明确要求继续，保留仍然有效的事实与边界；人提出的修改不是模型已经完成的动作。若提供完整当前稿，以该稿作为本轮修改基线，不擅自恢复被人删改的旧稿。未确认的窗户状态、气流原因和同版书存在不能写成前章事实。信息不足时说明缺口，不代替作者作关键决定。输出须符合本轮任务，任务改为核对问题时不要继续写场景。未经明确决定，不声称作品已经采用、发送或发布。`;

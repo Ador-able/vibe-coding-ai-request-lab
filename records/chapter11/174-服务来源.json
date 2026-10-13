@@ -1,0 +1,52 @@
+{
+  "serviceId": "8d28dd3b-8382-47dd-8d0f-03fd290537eb",
+  "pid": 92412,
+  "startedAt": "2026-10-13T01:36:11.883Z",
+  "sourceVersion": "sha256:6d31c9439ccb946d76875bf06f79ccb8eb079f97bcb817e21025ea46dd0eefe4",
+  "sdkVersion": "7.0.122",
+  "fixtureFiles": [
+    {
+      "file": "01-完整小说资料A.txt",
+      "bytes": 1194,
+      "sha256": "60ab678f65f719c8ad50efe2870ebdca5dc309d8d5fc2f8ca83b8037c09b9496"
+    },
+    {
+      "file": "02-完整小说资料B.txt",
+      "bytes": 945,
+      "sha256": "8caec94c44285ca729257866b67e41230cc5612bdecf0eb9755b9dfe7d2f37c9"
+    },
+    {
+      "file": "03-两份完整任务输入.json",
+      "bytes": 2524,
+      "sha256": "2538318ff77c15cd66a742eb606e1e6a6a7f833ecde03242349aafdb30fe185a"
+    },
+    {
+      "file": "04-受控输出全文与来源.json",
+      "bytes": 1047,
+      "sha256": "bf07b41c24580d6db87692f497b3398de6d14934dccace5c8eef8301fab3a80c"
+    },
+    {
+      "file": "05-七种条件与共同操作.json",
+      "bytes": 182,
+      "sha256": "3e8b372d2a108269c27193747dc3b5d4c5368bbf4b431e075b450a1b7ede76a6"
+    },
+    {
+      "file": "06-原完整成功记录.json",
+      "bytes": 361588,
+      "sha256": "214c2f26396f05b45e8cc159d72cf5524f331981996b5d309939582b4f88e38d"
+    },
+    {
+      "file": "07-完整迁移检查Prompt.md",
+      "bytes": 204,
+      "sha256": "8de0b4466bc7951de90e76439a828d5e1bd0e4d101e16684c354118ee5538940"
+    },
+    {
+      "file": "08-完整文本分段.json",
+      "bytes": 1434,
+      "sha256": "e5fc40d331c75c510daf359429b6e2654bc7e38f476050b522facd3cfeec7c6c"
+    }
+  ],
+  "cloudModelRequests": 0,
+  "businessDatabaseWrites": 0,
+  "origin": "官方Mock提供方的受控SDK执行，来源实录及其usage不是本轮输出"
+}

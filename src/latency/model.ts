@@ -53,7 +53,7 @@ export async function streamModel(
     signal.throwIfAborted();
     if (!finished || sdkReason !== 'stop' || record.finishReason !== 'stop' || !record.answer.length) {
       throw new ModelError('MODEL_RESPONSE_INCOMPLETE', record.finishReason === 'length'
-        ? '达到输出上限，回答已截断；实际片段和用量仍保留。'
+        ? '达到输出上限（含推理与正文），回答未完整生成；实际片段和用量仍保留。'
         : '流没有完整结束回答；实际片段仍保留，本次不标为完成。');
     }
   } catch (error) {

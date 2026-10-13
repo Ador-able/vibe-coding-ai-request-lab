@@ -3,14 +3,15 @@ import '../lab.css';
 import { CONDITIONS, FIRST_QUESTION, FOLLOW_UP, type Condition, type ContextResponse, type ExperimentRun, type Message, type RequestRecord } from './contract.ts';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <header><span class="eyebrow">上下文实验</span>
+  <header>
     <h1>上下文对照</h1>
-    <p>同一个追问，比较只带问题、聊天文字和完整工具结果时的回答。</p>
+    <p>先查小说资料，再用同一个追问比较三种历史范围。</p>
   </header>
-  <details id="setup" class="setup" open>
-    <summary id="setup-title">首轮查询</summary><div class="setup-body">
+  <p class="note">默认查看第三章已保存的真实记录，本页尚未发起模型请求。</p><button id="load-record" class="secondary">读取现成实录</button>
+  <details id="setup" class="setup">
+    <summary id="setup-title">选做：重新运行首轮查询</summary><div class="setup-body">
     <p class="question" id="first-question"></p>
-    <div class="setup-actions"><button id="start">查询发布时间</button><span class="experiment-note">教学虚构资料 · 首轮调用模型 2 次</span></div>
+    <div class="setup-actions"><button id="start">查询登记数量</button><span class="experiment-note">本实验教学资料 · 首轮调用模型 2 次</span></div>
     <div id="first-answer-wrap" hidden><span class="small-label">首轮回答 · 原文</span><p id="first-answer" class="answer"></p><p class="note">三种追问条件共享这一次首轮历史。</p></div>
   </div></details>
   <p id="status" role="status"></p>
@@ -29,9 +30,9 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <p class="note">JSON 来自实际交给 fetch 的请求体；不含请求头、API 密钥或服务地址。模型返回和本地工具结果分别列出。</p>
     <div id="records"></div>
   </div></details>
-  <details class="guide"><summary>实验条件与信息说明</summary><div class="guide-body"><p>三种条件都附有系统规则和工具定义，以 tool_choice: none 禁止重新查询。每次追问共享同一份首轮记录，不携带上次追问的回答；表格保留模型原文。</p><dl>
+  <details class="guide"><summary>实验条件与信息说明</summary><div class="guide-body"><p>三种追问使用同一系统规则，不提供可调用工具，只比较保留的历史范围。每次追问共享同一份首轮记录，不携带上次追问的回答；表格保留模型原文。</p><dl>
     <dt>系统规则</dt><dd>规定回答方式：依据信息、缺少证据就说明，不猜测。</dd>
-    <dt>用户消息</dt><dd>提出本轮任务。本实验只有版本问题，没有额外附加材料。</dd>
+    <dt>用户消息</dt><dd>提出本轮任务。本实验只有小说资料问题，没有额外附加材料。</dd>
     <dt>聊天历史</dt><dd>保留之前说过什么；助手文字不一定包含工具查到的全部内容。</dd>
     <dt>工具定义</dt><dd>描述能查询什么、需要什么参数，本身不包含查询结果。</dd>
     <dt>工具调用与结果</dt><dd>助手发出调用，程序执行后返回资料，两条消息用调用编号配对。</dd>
@@ -79,17 +80,19 @@ function parsedContent(value: string) {
 function requestView(request: RequestRecord, index: number) {
   const section = document.createElement('section'); section.className = 'request-record';
   const heading = document.createElement('h3'); heading.textContent = `请求 ${index + 1} · ${request.step}`;
-  const body = JSON.parse(request.requestBody) as { model: string; messages: Message[]; tools: unknown[]; tool_choice: unknown };
+  const body = JSON.parse(request.requestBody) as { model: string; messages: Message[]; tools?: unknown[]; tool_choice?: unknown };
   section.append(heading, paragraph(`请求型号 ${body.model} · ${request.httpStatus ? `HTTP ${request.httpStatus}` : '未收到 HTTP 响应'} · ${request.durationMs ?? '—'} ms`, 'meta'));
   const names = { system: '系统规则', user: '用户消息', assistant: '助手文字', tool: '工具结果' };
-  section.append(paragraph(`另附 ${body.tools.length} 个工具定义 · tool_choice: ${typeof body.tool_choice === 'string' ? body.tool_choice : '指定 get_release_info'}`, 'meta'));
+  section.append(paragraph(body.tools?.length
+    ? `另附 ${body.tools.length} 个工具定义 · 指定 get_herb_record`
+    : '本次不提供可调用工具；历史中的工具消息只作为已有资料。', 'meta'));
   // 从实际请求体逐条展示；工具内容解析后易读，完整JSON保留原始结构。
   body.messages.forEach((message, i) => {
     const calls = message.role === 'assistant' && message.tool_calls?.length ? message.tool_calls : undefined;
     const value = calls ? (message.content ? `${message.content}\n\n` : '') + pretty(calls.map(call => ({ name: call.function.name, id: call.id, arguments: parsedContent(call.function.arguments) })))
       : message.role === 'tool' ? pretty({ tool_call_id: message.tool_call_id, content: parsedContent(message.content) })
       : message.content ?? '';
-    section.append(jsonDetail(`${i + 1} ${calls ? '助手工具调用' : names[message.role]}`, value, !!calls || message.role === 'tool'));
+    section.append(jsonDetail(`${i + 1} ${calls ? '助手工具调用' : names[message.role]}`, value));
   });
   // 排版只解析这个已发送字符串；下载文件保留 requestBody 的原始字节序列。
   section.append(jsonDetail('完整请求 JSON', pretty(body)));
@@ -184,3 +187,24 @@ element('#download').addEventListener('click', () => {
   const link = document.createElement('a'); link.href = url; link.download = '上下文实验-实际请求记录.json'; link.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
+
+async function loadRecordedContext() {
+  if (busy) return;
+  try {
+    const filenames = ['040-context-start.json', '053-context-follow-up.json', '054-context-follow-up.json', '055-context-follow-up.json'];
+    const results = await Promise.all(filenames.map(async name => {
+      const response = await fetch('/records/context/' + name);
+      if (!response.ok) throw new Error();
+      const archive = await response.json() as { body: string };
+      return JSON.parse(archive.body) as ContextResponse;
+    }));
+    sessionId = undefined; firstRound = results[0].run; runs = results.slice(1).map(item => item.run);
+    element('#first-answer').textContent = firstRound.answer;
+    element('#first-answer-wrap').hidden = false; element('#follow-section').hidden = false;
+    followButton.disabled = true;
+    renderInspector(firstRound.id); renderResults();
+    status.className = ''; status.textContent = '已读取第三章实录；没有发起新模型请求。';
+  } catch { status.className = 'error'; status.textContent = '未能读取实录文件，请检查交付包是否完整。'; }
+}
+element('#load-record').addEventListener('click', () => { void loadRecordedContext(); });
+void loadRecordedContext();

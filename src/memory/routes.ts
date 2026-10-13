@@ -18,7 +18,7 @@ export function createMemoryRouter(env: NodeJS.ProcessEnv, notePath = resolve('a
   });
   router.get('/note', async (_req, res) => {
     try { res.json({ saved: await store.load() }); }
-    catch { res.status(500).json({ error: '本地摘要无法读取，请核对后重新保存。' }); }
+    catch { res.status(500).json({ error: '本地摘要无法读取或与本次小说资料不符，请核对后重新保存。' }); }
   });
   router.post('/note', async (req, res) => {
     if (req.body?.confirmed !== true) { res.status(400).json({ error: '请先勾选已核对这份人工教学记录。' }); return; }

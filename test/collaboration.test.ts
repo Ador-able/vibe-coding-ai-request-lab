@@ -22,7 +22,7 @@ async function turn(url: string, input: string, history: Turn[]) {
 test('自由反馈与之前原始回答完整进入下一轮，实际请求与检查器同串', async () => {
   // 只以本地 HTTP 桩核对对话传输，不把桩文字当作模型共写效果。
   const received: string[] = [];
-  const answers = ['方向甲：一起读。\n方向乙：分享一本书。', '按读者的取舍整理的新文字。'];
+  const answers = ['测试场景：林青请执事确认是否存有同版书。', '按读者纠正整理的待核对问题。'];
   const upstream = createServer(async (req, res) => {
     let body = ''; for await (const part of req) body += part; received.push(body);
     res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify(message(answers[received.length - 1])));
@@ -34,13 +34,13 @@ test('自由反馈与之前原始回答完整进入下一轮，实际请求与�
     let history: Turn[] = [];
     const first = await turn(url, INITIAL_TASK, history); assert.equal(first.status, 200);
     assert.equal(first.data.result.answer, answers[0]); history = acceptTurn(history, first.data.result);
-    const feedback = '我选择第二种方向。\n我们服务的家庭更在意共同参与，请写得温和，不制造稀缺感。';
+    const feedback = '先不继续写场景。\n同版书仍待执事确认，请改为待核对问题清单。';
     const second = await turn(url, feedback, history); assert.equal(second.status, 200);
     history = acceptTurn(history, second.data.result);
     assert.deepEqual(history, [{ input: INITIAL_TASK, answer: answers[0] }, { input: feedback, answer: answers[1] }]);
     const request = JSON.parse(received[1]);
     assert.deepEqual(request.messages, [{ role: 'system', content: SYSTEM }, { role: 'user', content: INITIAL_TASK }, { role: 'assistant', content: answers[0] }, { role: 'user', content: feedback }]);
-    assert(!('enable_thinking' in request)); assert.equal(request.temperature, 0); assert.equal(request.max_tokens, 1536);
+    assert(!('enable_thinking' in request)); assert.equal(request.temperature, 0); assert.equal(request.max_tokens, 16384);
     assert.equal(first.data.result.request?.requestBody, received[0]); assert.equal(second.data.result.request?.requestBody, received[1]);
     assert.equal(JSON.stringify([first, second]).includes('test-only-private-key'), false);
     assert.equal(JSON.stringify([first, second]).includes(baseUrl), false);
@@ -71,7 +71,7 @@ test('失败和截断保留实际记录，不进入成功历史，也不丢弃�
     assert.equal(incomplete.data.result.answer, null);
     history = acceptTurn(history, incomplete.data.result);
     assert.deepEqual(history, [{ input: INITIAL_TASK, answer: '完整初稿' }]);
-    const next = await turn(url, '保留共读主题，用更朴素的语言。', history);
+    const next = await turn(url, '保留修炼目标，用更朴素的语言。', history);
     const messages = JSON.parse(next.data.result.request!.requestBody).messages;
     assert.equal(messages.length, 4); assert.equal(messages[1].content, INITIAL_TASK); assert.equal(messages[2].content, '完整初稿');
     assert(!next.data.result.request!.requestBody.includes('未完成片段')); assert(!next.data.result.request!.requestBody.includes('请换一种语气。'));

@@ -12,7 +12,7 @@ export function createStreamingRouter(env: NodeJS.ProcessEnv) {
   app.post('/run', async (req, res) => {
     const { runId, material } = req.body ?? {};
     if (typeof runId !== 'string' || !/^[a-zA-Z0-9-]{1,80}$/.test(runId) || typeof material !== 'string' || !material.trim() || material.length > 6000) {
-      res.status(400).json({ error: '请提供本次编号和1至6000字的工作纪要。' }); return;
+      res.status(400).json({ error: '请提供本次编号和1至6000字的小说资料。' }); return;
     }
     if (runs.has(runId)) { res.status(409).json({ error: '此编号已有请求，请开始新的一次。' }); return; }
     const controller = new AbortController();

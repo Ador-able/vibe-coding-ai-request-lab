@@ -1,0 +1,284 @@
+{
+  "readAt": "2026-10-13T01:43:32.438Z",
+  "connection": "本次新建只读SQLite连接",
+  "conversations": [
+    {
+      "id": "802c41d9-315f-431f-8b28-771b8ee42172",
+      "source_record_id": "250aa94b-3d55-4cce-a34c-df8b99c1b007",
+      "created_at": "2026-10-13T01:33:16.978Z"
+    },
+    {
+      "id": "c457d335-2563-462e-9e73-92b24a28b376",
+      "source_record_id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "created_at": "2026-10-13T01:33:47.668Z"
+    }
+  ],
+  "rawRows": [
+    {
+      "conversation_id": "802c41d9-315f-431f-8b28-771b8ee42172",
+      "message_id": "250aa94b-3d55-4cce-a34c-df8b99c1b007-user",
+      "position": 1,
+      "role": "user",
+      "parts_json": "[{\"type\":\"text\",\"text\":\"只依据小说资料生成摘要，再提出2至3个待确认问题。\\n\\n《青岚修仙录》：药圃早巡\\n\\n林青到药圃时，东畦的叶尖还垂着。他是青岚宗外门弟子，修为停在炼气三层。日后筑基是长远的愿望，眼前这份照看药圃的差事却得先做明白。\\n\\n他已经清走东畦渠口的落叶，又在同一块石头旁量了一次水深，仍比昨日留下的刻线浅。叶师姐蹲下看了看，没有让他在“缺水原因”一栏落笔。\\n\\n“先别写木闸坏了。我们还没看过上游。”\\n\\n林青把纸上刚写的“木闸”二字划去，只留下两次量水的位置与所见。渠口是通的，为什么水浅，两人还不知道。\\n\\n叶师姐让林青明日辰时前带着量水记录到值房，和她一起核对昨日的开闸簿。林青把这句话记在纸背，说明日一早就去。\\n\\n“上游两处渠口也要逐处查看。”叶师姐望向山道，“这项查看由谁去、什么时候完成，还得安排。”\\n\\n墙边放着原本为今夜冲畦准备的长柄木耙。叶师姐收起木耙，取消了今夜放水冲畦的安排；在弄清来水情况前，不再加水。林青在清渠口一项旁画了个小勾，将量水纸折好，夹进自己的值日册里。\\n\"}]",
+      "metadata_json": null,
+      "completion_state": "submitted"
+    },
+    {
+      "conversation_id": "802c41d9-315f-431f-8b28-771b8ee42172",
+      "message_id": "250aa94b-3d55-4cce-a34c-df8b99c1b007",
+      "position": 2,
+      "role": "assistant",
+      "parts_json": "[{\"type\":\"data-progress\",\"id\":\"workflow-progress\",\"data\":{\"stage\":\"completed\",\"label\":\"摘要和待确认问题均已完整结束\"}},{\"type\":\"step-start\"},{\"type\":\"text\",\"text\":\"林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。\",\"state\":\"done\"},{\"type\":\"step-start\"},{\"type\":\"text\",\"text\":\"1. 上游两处渠口的查看将由谁负责？\\n2. 上游两处渠口的查看计划在什么时间完成？\\n3. 水量变浅的具体原因是什么？\",\"state\":\"done\"}]",
+      "metadata_json": "{\"model\":\"ep-ymk08qa8\",\"state\":\"completed\",\"stages\":[{\"stage\":\"summary\",\"model\":\"deepseek-v4-flash-0731\",\"finishReason\":\"stop\",\"usage\":{\"prompt_tokens\":410,\"completion_tokens\":205,\"total_tokens\":615,\"prompt_tokens_details\":{\"cached_tokens\":0},\"completion_tokens_details\":{\"reasoning_tokens\":111}}},{\"stage\":\"questions\",\"model\":\"deepseek-v4-flash-0731\",\"finishReason\":\"stop\",\"usage\":{\"prompt_tokens\":534,\"completion_tokens\":461,\"total_tokens\":995,\"prompt_tokens_details\":{\"cached_tokens\":0},\"completion_tokens_details\":{\"reasoning_tokens\":422}}}]}",
+      "completion_state": "completed"
+    },
+    {
+      "conversation_id": "802c41d9-315f-431f-8b28-771b8ee42172",
+      "message_id": "250aa94b-3d55-4cce-a34c-df8b99c1b007-review",
+      "position": 3,
+      "role": "user",
+      "parts_json": "[{\"type\":\"text\",\"text\":\"请根据我的校正，重新整理摘要和待确认问题。保留未决事项，不新增承诺。\"},{\"type\":\"data-review-note\",\"data\":{\"targetMessageId\":\"250aa94b-3d55-4cce-a34c-df8b99c1b007\",\"text\":\"摘要中的“明日辰时”应保留原文的“明日辰时前”。继续保留来水原因未明、上游查看人选和时间未定，不补造木闸损坏。\"}}]",
+      "metadata_json": null,
+      "completion_state": "submitted"
+    },
+    {
+      "conversation_id": "c457d335-2563-462e-9e73-92b24a28b376",
+      "message_id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52-user",
+      "position": 1,
+      "role": "user",
+      "parts_json": "[{\"type\":\"text\",\"text\":\"只依据小说资料生成摘要，再提出2至3个待确认问题。\\n\\n《青岚修仙录》：药圃早巡\\n\\n林青到药圃时，东畦的叶尖还垂着。他是青岚宗外门弟子，修为停在炼气三层。日后筑基是长远的愿望，眼前这份照看药圃的差事却得先做明白。\\n\\n他已经清走东畦渠口的落叶，又在同一块石头旁量了一次水深，仍比昨日留下的刻线浅。叶师姐蹲下看了看，没有让他在“缺水原因”一栏落笔。\\n\\n“先别写木闸坏了。我们还没看过上游。”\\n\\n林青把纸上刚写的“木闸”二字划去，只留下两次量水的位置与所见。渠口是通的，为什么水浅，两人还不知道。\\n\\n叶师姐让林青明日辰时前带着量水记录到值房，和她一起核对昨日的开闸簿。林青把这句话记在纸背，说明日一早就去。\\n\\n“上游两处渠口也要逐处查看。”叶师姐望向山道，“这项查看由谁去、什么时候完成，还得安排。”\\n\\n墙边放着原本为今夜冲畦准备的长柄木耙。叶师姐收起木耙，取消了今夜放水冲畦的安排；在弄清来水情况前，不再加水。林青在清渠口一项旁画了个小勾，将量水纸折好，夹进自己的值日册里。\\n\"}]",
+      "metadata_json": null,
+      "completion_state": "submitted"
+    },
+    {
+      "conversation_id": "c457d335-2563-462e-9e73-92b24a28b376",
+      "message_id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "position": 2,
+      "role": "assistant",
+      "parts_json": "[{\"type\":\"data-progress\",\"id\":\"workflow-progress\",\"data\":{\"stage\":\"stopped\",\"label\":\"教师接收条件：停止，未完成\"}},{\"type\":\"step-start\"},{\"type\":\"text\",\"text\":\"林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。\",\"state\":\"done\"},{\"type\":\"step-start\"},{\"type\":\"text\",\"text\":\"1. 上游两处渠口的查看将由谁负责\",\"state\":\"streaming\"}]",
+      "metadata_json": "{\"model\":\"ep-ymk08qa8\",\"state\":\"stopped\",\"stages\":[{\"stage\":\"summary\",\"model\":\"deepseek-v4-flash-0731\",\"finishReason\":\"stop\",\"usage\":{\"prompt_tokens\":410,\"completion_tokens\":205,\"total_tokens\":615,\"prompt_tokens_details\":{\"cached_tokens\":0},\"completion_tokens_details\":{\"reasoning_tokens\":111}}},{\"stage\":\"questions\",\"model\":null,\"finishReason\":null,\"usage\":null}]}",
+      "completion_state": "stopped"
+    },
+    {
+      "conversation_id": "c457d335-2563-462e-9e73-92b24a28b376",
+      "message_id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52-review",
+      "position": 3,
+      "role": "user",
+      "parts_json": "[{\"type\":\"text\",\"text\":\"请根据我的校正，重新整理摘要和待确认问题。保留未决事项，不新增承诺。\"},{\"type\":\"data-review-note\",\"data\":{\"targetMessageId\":\"04ba3ac4-4b2e-4ea3-bebf-76622fff4a52\",\"text\":\"这份问题正文没有接收完整，请重新整理摘要和待确认问题。明日辰时前带记录到值房是已确定安排；上游查看的人选、时间和来水原因仍未确定。\"}}]",
+      "metadata_json": null,
+      "completion_state": "submitted"
+    }
+  ],
+  "messages": [
+    {
+      "conversationId": "802c41d9-315f-431f-8b28-771b8ee42172",
+      "position": 1,
+      "completionState": "submitted",
+      "message": {
+        "id": "250aa94b-3d55-4cce-a34c-df8b99c1b007-user",
+        "role": "user",
+        "parts": [
+          {
+            "type": "text",
+            "text": "只依据小说资料生成摘要，再提出2至3个待确认问题。\n\n《青岚修仙录》：药圃早巡\n\n林青到药圃时，东畦的叶尖还垂着。他是青岚宗外门弟子，修为停在炼气三层。日后筑基是长远的愿望，眼前这份照看药圃的差事却得先做明白。\n\n他已经清走东畦渠口的落叶，又在同一块石头旁量了一次水深，仍比昨日留下的刻线浅。叶师姐蹲下看了看，没有让他在“缺水原因”一栏落笔。\n\n“先别写木闸坏了。我们还没看过上游。”\n\n林青把纸上刚写的“木闸”二字划去，只留下两次量水的位置与所见。渠口是通的，为什么水浅，两人还不知道。\n\n叶师姐让林青明日辰时前带着量水记录到值房，和她一起核对昨日的开闸簿。林青把这句话记在纸背，说明日一早就去。\n\n“上游两处渠口也要逐处查看。”叶师姐望向山道，“这项查看由谁去、什么时候完成，还得安排。”\n\n墙边放着原本为今夜冲畦准备的长柄木耙。叶师姐收起木耙，取消了今夜放水冲畦的安排；在弄清来水情况前，不再加水。林青在清渠口一项旁画了个小勾，将量水纸折好，夹进自己的值日册里。\n"
+          }
+        ]
+      }
+    },
+    {
+      "conversationId": "802c41d9-315f-431f-8b28-771b8ee42172",
+      "position": 2,
+      "completionState": "completed",
+      "message": {
+        "id": "250aa94b-3d55-4cce-a34c-df8b99c1b007",
+        "role": "assistant",
+        "parts": [
+          {
+            "type": "data-progress",
+            "id": "workflow-progress",
+            "data": {
+              "stage": "completed",
+              "label": "摘要和待确认问题均已完整结束"
+            }
+          },
+          {
+            "type": "step-start"
+          },
+          {
+            "type": "text",
+            "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+            "state": "done"
+          },
+          {
+            "type": "step-start"
+          },
+          {
+            "type": "text",
+            "text": "1. 上游两处渠口的查看将由谁负责？\n2. 上游两处渠口的查看计划在什么时间完成？\n3. 水量变浅的具体原因是什么？",
+            "state": "done"
+          }
+        ],
+        "metadata": {
+          "model": "ep-ymk08qa8",
+          "state": "completed",
+          "stages": [
+            {
+              "stage": "summary",
+              "model": "deepseek-v4-flash-0731",
+              "finishReason": "stop",
+              "usage": {
+                "prompt_tokens": 410,
+                "completion_tokens": 205,
+                "total_tokens": 615,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 111
+                }
+              }
+            },
+            {
+              "stage": "questions",
+              "model": "deepseek-v4-flash-0731",
+              "finishReason": "stop",
+              "usage": {
+                "prompt_tokens": 534,
+                "completion_tokens": 461,
+                "total_tokens": 995,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 422
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "conversationId": "802c41d9-315f-431f-8b28-771b8ee42172",
+      "position": 3,
+      "completionState": "submitted",
+      "message": {
+        "id": "250aa94b-3d55-4cce-a34c-df8b99c1b007-review",
+        "role": "user",
+        "parts": [
+          {
+            "type": "text",
+            "text": "请根据我的校正，重新整理摘要和待确认问题。保留未决事项，不新增承诺。"
+          },
+          {
+            "type": "data-review-note",
+            "data": {
+              "targetMessageId": "250aa94b-3d55-4cce-a34c-df8b99c1b007",
+              "text": "摘要中的“明日辰时”应保留原文的“明日辰时前”。继续保留来水原因未明、上游查看人选和时间未定，不补造木闸损坏。"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "conversationId": "c457d335-2563-462e-9e73-92b24a28b376",
+      "position": 1,
+      "completionState": "submitted",
+      "message": {
+        "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52-user",
+        "role": "user",
+        "parts": [
+          {
+            "type": "text",
+            "text": "只依据小说资料生成摘要，再提出2至3个待确认问题。\n\n《青岚修仙录》：药圃早巡\n\n林青到药圃时，东畦的叶尖还垂着。他是青岚宗外门弟子，修为停在炼气三层。日后筑基是长远的愿望，眼前这份照看药圃的差事却得先做明白。\n\n他已经清走东畦渠口的落叶，又在同一块石头旁量了一次水深，仍比昨日留下的刻线浅。叶师姐蹲下看了看，没有让他在“缺水原因”一栏落笔。\n\n“先别写木闸坏了。我们还没看过上游。”\n\n林青把纸上刚写的“木闸”二字划去，只留下两次量水的位置与所见。渠口是通的，为什么水浅，两人还不知道。\n\n叶师姐让林青明日辰时前带着量水记录到值房，和她一起核对昨日的开闸簿。林青把这句话记在纸背，说明日一早就去。\n\n“上游两处渠口也要逐处查看。”叶师姐望向山道，“这项查看由谁去、什么时候完成，还得安排。”\n\n墙边放着原本为今夜冲畦准备的长柄木耙。叶师姐收起木耙，取消了今夜放水冲畦的安排；在弄清来水情况前，不再加水。林青在清渠口一项旁画了个小勾，将量水纸折好，夹进自己的值日册里。\n"
+          }
+        ]
+      }
+    },
+    {
+      "conversationId": "c457d335-2563-462e-9e73-92b24a28b376",
+      "position": 2,
+      "completionState": "stopped",
+      "message": {
+        "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+        "role": "assistant",
+        "parts": [
+          {
+            "type": "data-progress",
+            "id": "workflow-progress",
+            "data": {
+              "stage": "stopped",
+              "label": "教师接收条件：停止，未完成"
+            }
+          },
+          {
+            "type": "step-start"
+          },
+          {
+            "type": "text",
+            "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+            "state": "done"
+          },
+          {
+            "type": "step-start"
+          },
+          {
+            "type": "text",
+            "text": "1. 上游两处渠口的查看将由谁负责",
+            "state": "streaming"
+          }
+        ],
+        "metadata": {
+          "model": "ep-ymk08qa8",
+          "state": "stopped",
+          "stages": [
+            {
+              "stage": "summary",
+              "model": "deepseek-v4-flash-0731",
+              "finishReason": "stop",
+              "usage": {
+                "prompt_tokens": 410,
+                "completion_tokens": 205,
+                "total_tokens": 615,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 111
+                }
+              }
+            },
+            {
+              "stage": "questions",
+              "model": null,
+              "finishReason": null,
+              "usage": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "conversationId": "c457d335-2563-462e-9e73-92b24a28b376",
+      "position": 3,
+      "completionState": "submitted",
+      "message": {
+        "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52-review",
+        "role": "user",
+        "parts": [
+          {
+            "type": "text",
+            "text": "请根据我的校正，重新整理摘要和待确认问题。保留未决事项，不新增承诺。"
+          },
+          {
+            "type": "data-review-note",
+            "data": {
+              "targetMessageId": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+              "text": "这份问题正文没有接收完整，请重新整理摘要和待确认问题。明日辰时前带记录到值房是已确定安排；上游查看的人选、时间和来水原因仍未确定。"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

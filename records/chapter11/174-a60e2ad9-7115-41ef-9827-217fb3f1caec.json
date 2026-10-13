@@ -1,0 +1,1279 @@
+{
+  "requestId": "a60e2ad9-7115-41ef-9827-217fb3f1caec",
+  "serviceId": "8d28dd3b-8382-47dd-8d0f-03fd290537eb",
+  "fixtureKey": "B",
+  "scenario": "error-during-stream",
+  "input": "《青岚修仙录》：夜雨后的练功场\n\n林青推开练功场的侧门，东边的蒲团已经湿了半边。他仍是青岚宗外门弟子，只有炼气三层，盼着有一日能筑基；今日轮到他收拾场地，不能因为惦记吐纳便放着漏水不管。\n\n他把受潮的蒲团移到廊下干处，擦去地上的积水。赵师兄随后来看，摸过西边的地板，决定今日只用练功场西半边，东半边暂不安排弟子练习。\n\n两人用从杂物房借来的三块木板挡住东侧入口。赵师兄让林青明日午后把这三块木板还回杂物房；若那时屋顶仍未修好，东侧改用现有绳栏围住。\n\n林青抬头望着椽子，分不清是哪一片瓦松了。补漏由谁负责、何时动工，还没有定下来。他在值日纸上记下东侧停用，把补漏人选和日期两栏留空。临走前，他从西侧重新走了一遍，确认今日练习的地方没有积水。\n",
+  "instructions": "只依据小说资料写一段简明摘要，区分已确定安排和未决事项，不补造事实。",
+  "answerOrigin": "教师完整回答，本次经Mock发送",
+  "source": {
+    "kind": "teacher-authored"
+  },
+  "sdkOptions": {
+    "maxRetries": 1,
+    "streamRetries": "omitted",
+    "totalTimeoutMs": 15000
+  },
+  "startedAt": "2026-10-13T01:42:55.833Z",
+  "state": "failed",
+  "cause": "provider-error",
+  "finishedAt": "2026-10-13T01:42:56.352Z",
+  "manualStopRequestedAt": null,
+  "connectionClosedAt": null,
+  "providerCalls": [
+    {
+      "index": 1,
+      "beganAt": "2026-10-13T01:42:55.836Z",
+      "elapsedMs": 3.3,
+      "input": {
+        "maxOutputTokens": {
+          "kind": "undefined"
+        },
+        "temperature": {
+          "kind": "undefined"
+        },
+        "topP": {
+          "kind": "undefined"
+        },
+        "topK": {
+          "kind": "undefined"
+        },
+        "presencePenalty": {
+          "kind": "undefined"
+        },
+        "frequencyPenalty": {
+          "kind": "undefined"
+        },
+        "stopSequences": {
+          "kind": "undefined"
+        },
+        "seed": {
+          "kind": "undefined"
+        },
+        "reasoning": {
+          "kind": "undefined"
+        },
+        "tools": {
+          "kind": "undefined"
+        },
+        "toolChoice": {
+          "type": "auto"
+        },
+        "responseFormat": {
+          "kind": "undefined"
+        },
+        "prompt": [
+          {
+            "role": "system",
+            "content": "只依据小说资料写一段简明摘要，区分已确定安排和未决事项，不补造事实。"
+          },
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "《青岚修仙录》：夜雨后的练功场\n\n林青推开练功场的侧门，东边的蒲团已经湿了半边。他仍是青岚宗外门弟子，只有炼气三层，盼着有一日能筑基；今日轮到他收拾场地，不能因为惦记吐纳便放着漏水不管。\n\n他把受潮的蒲团移到廊下干处，擦去地上的积水。赵师兄随后来看，摸过西边的地板，决定今日只用练功场西半边，东半边暂不安排弟子练习。\n\n两人用从杂物房借来的三块木板挡住东侧入口。赵师兄让林青明日午后把这三块木板还回杂物房；若那时屋顶仍未修好，东侧改用现有绳栏围住。\n\n林青抬头望着椽子，分不清是哪一片瓦松了。补漏由谁负责、何时动工，还没有定下来。他在值日纸上记下东侧停用，把补漏人选和日期两栏留空。临走前，他从西侧重新走了一遍，确认今日练习的地方没有积水。\n"
+              }
+            ],
+            "providerOptions": {
+              "kind": "undefined"
+            }
+          }
+        ],
+        "providerOptions": {
+          "kind": "undefined"
+        },
+        "abortSignal": {
+          "kind": "AbortSignal",
+          "aborted": false,
+          "reason": {
+            "kind": "undefined"
+          }
+        },
+        "headers": {
+          "kind": "undefined"
+        },
+        "includeRawChunks": false
+      },
+      "result": "stream",
+      "assignedParts": [
+        {
+          "type": "stream-start",
+          "warnings": []
+        },
+        {
+          "type": "response-metadata",
+          "id": "mock-a60e2ad9-7115-41ef-9827-217fb3f1caec-1",
+          "modelId": "controlled-summary"
+        },
+        {
+          "type": "text-start",
+          "id": "a60e2ad9-7115-41ef-9827-217fb3f1caec:text:1"
+        },
+        {
+          "type": "text-delta",
+          "id": "a60e2ad9-7115-41ef-9827-217fb3f1caec:text:1",
+          "delta": "夜雨使练功场东侧受潮，林"
+        },
+        {
+          "type": "text-delta",
+          "id": "a60e2ad9-7115-41ef-9827-217fb3f1caec:text:1",
+          "delta": "青已移走湿蒲团并清理积水"
+        },
+        {
+          "type": "text-delta",
+          "id": "a60e2ad9-7115-41ef-9827-217fb3f1caec:text:1",
+          "delta": "。今日只用西半边，东侧以"
+        },
+        {
+          "type": "error",
+          "error": {
+            "kind": "Error",
+            "name": "AI_APICallError",
+            "message": "教学模拟提供方返回503，不是实际云服务HTTP响应。",
+            "cause": {
+              "kind": "undefined"
+            },
+            "url": "https://controlled.invalid/model",
+            "requestBodyValues": {
+              "instructions": "只依据小说资料写一段简明摘要，区分已确定安排和未决事项，不补造事实。",
+              "prompt": "《青岚修仙录》：夜雨后的练功场\n\n林青推开练功场的侧门，东边的蒲团已经湿了半边。他仍是青岚宗外门弟子，只有炼气三层，盼着有一日能筑基；今日轮到他收拾场地，不能因为惦记吐纳便放着漏水不管。\n\n他把受潮的蒲团移到廊下干处，擦去地上的积水。赵师兄随后来看，摸过西边的地板，决定今日只用练功场西半边，东半边暂不安排弟子练习。\n\n两人用从杂物房借来的三块木板挡住东侧入口。赵师兄让林青明日午后把这三块木板还回杂物房；若那时屋顶仍未修好，东侧改用现有绳栏围住。\n\n林青抬头望着椽子，分不清是哪一片瓦松了。补漏由谁负责、何时动工，还没有定下来。他在值日纸上记下东侧停用，把补漏人选和日期两栏留空。临走前，他从西侧重新走了一遍，确认今日练习的地方没有积水。\n"
+            },
+            "statusCode": 503,
+            "responseHeaders": {
+              "kind": "undefined"
+            },
+            "responseBody": "{\"error\":{\"type\":\"controlled-exercise\",\"statusCode\":503}}",
+            "isRetryable": true,
+            "data": {
+              "kind": "undefined"
+            },
+            "stack": "AI_APICallError: 教学模拟提供方返回503，不是实际云服务HTTP响应。\n    at l (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:362:1419)\n    at doStream (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:362:2803)\n    at ez.doStream (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:362:781)\n    at execute (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:170:32912)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async uN (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:160:28215)\n    at async executeLanguageModelCall (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:160:31578)\n    at async Yre (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:170:32872)\n    at async zM (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:129:14163)\n    at async Ne (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:170:56939)"
+          }
+        }
+      ],
+      "emittedParts": [
+        {
+          "at": "2026-10-13T01:42:55.837Z",
+          "elapsedMs": 4,
+          "value": {
+            "type": "stream-start",
+            "warnings": []
+          }
+        },
+        {
+          "at": "2026-10-13T01:42:55.837Z",
+          "elapsedMs": 4.3,
+          "value": {
+            "type": "response-metadata",
+            "id": "mock-a60e2ad9-7115-41ef-9827-217fb3f1caec-1",
+            "modelId": "controlled-summary"
+          }
+        },
+        {
+          "at": "2026-10-13T01:42:55.837Z",
+          "elapsedMs": 4.7,
+          "value": {
+            "type": "text-start",
+            "id": "a60e2ad9-7115-41ef-9827-217fb3f1caec:text:1"
+          }
+        },
+        {
+          "at": "2026-10-13T01:42:56.003Z",
+          "elapsedMs": 170.3,
+          "value": {
+            "type": "text-delta",
+            "id": "a60e2ad9-7115-41ef-9827-217fb3f1caec:text:1",
+            "delta": "夜雨使练功场东侧受潮，林"
+          }
+        },
+        {
+          "at": "2026-10-13T01:42:56.173Z",
+          "elapsedMs": 340.5,
+          "value": {
+            "type": "text-delta",
+            "id": "a60e2ad9-7115-41ef-9827-217fb3f1caec:text:1",
+            "delta": "青已移走湿蒲团并清理积水"
+          }
+        },
+        {
+          "at": "2026-10-13T01:42:56.343Z",
+          "elapsedMs": 510.5,
+          "value": {
+            "type": "text-delta",
+            "id": "a60e2ad9-7115-41ef-9827-217fb3f1caec:text:1",
+            "delta": "。今日只用西半边，东侧以"
+          }
+        },
+        {
+          "at": "2026-10-13T01:42:56.344Z",
+          "elapsedMs": 511.3,
+          "value": {
+            "type": "error",
+            "error": {
+              "kind": "Error",
+              "name": "AI_APICallError",
+              "message": "教学模拟提供方返回503，不是实际云服务HTTP响应。",
+              "cause": {
+                "kind": "undefined"
+              },
+              "url": "https://controlled.invalid/model",
+              "requestBodyValues": {
+                "instructions": "只依据小说资料写一段简明摘要，区分已确定安排和未决事项，不补造事实。",
+                "prompt": "《青岚修仙录》：夜雨后的练功场\n\n林青推开练功场的侧门，东边的蒲团已经湿了半边。他仍是青岚宗外门弟子，只有炼气三层，盼着有一日能筑基；今日轮到他收拾场地，不能因为惦记吐纳便放着漏水不管。\n\n他把受潮的蒲团移到廊下干处，擦去地上的积水。赵师兄随后来看，摸过西边的地板，决定今日只用练功场西半边，东半边暂不安排弟子练习。\n\n两人用从杂物房借来的三块木板挡住东侧入口。赵师兄让林青明日午后把这三块木板还回杂物房；若那时屋顶仍未修好，东侧改用现有绳栏围住。\n\n林青抬头望着椽子，分不清是哪一片瓦松了。补漏由谁负责、何时动工，还没有定下来。他在值日纸上记下东侧停用，把补漏人选和日期两栏留空。临走前，他从西侧重新走了一遍，确认今日练习的地方没有积水。\n"
+              },
+              "statusCode": 503,
+              "responseHeaders": {
+                "kind": "undefined"
+              },
+              "responseBody": "{\"error\":{\"type\":\"controlled-exercise\",\"statusCode\":503}}",
+              "isRetryable": true,
+              "data": {
+                "kind": "undefined"
+              },
+              "stack": "AI_APICallError: 教学模拟提供方返回503，不是实际云服务HTTP响应。\n    at l (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:362:1419)\n    at doStream (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:362:2803)\n    at ez.doStream (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:362:781)\n    at execute (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:170:32912)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async uN (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:160:28215)\n    at async executeLanguageModelCall (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:160:31578)\n    at async Yre (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:170:32872)\n    at async zM (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:129:14163)\n    at async Ne (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:170:56939)"
+            }
+          }
+        }
+      ],
+      "signalChanges": []
+    }
+  ],
+  "sdkParts": [
+    {
+      "at": "2026-10-13T01:42:55.834Z",
+      "elapsedMs": 1.7,
+      "value": {
+        "type": "start"
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:55.838Z",
+      "elapsedMs": 5.1,
+      "value": {
+        "type": "start-step",
+        "request": {
+          "body": {
+            "kind": "undefined"
+          },
+          "messages": {
+            "kind": "undefined"
+          }
+        },
+        "warnings": []
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:55.839Z",
+      "elapsedMs": 6.4,
+      "value": {
+        "type": "text-start",
+        "id": "a60e2ad9-7115-41ef-9827-217fb3f1caec:text:1"
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:56.004Z",
+      "elapsedMs": 170.9,
+      "value": {
+        "type": "text-delta",
+        "id": "a60e2ad9-7115-41ef-9827-217fb3f1caec:text:1",
+        "text": "夜雨使练功场东侧受潮，林",
+        "providerMetadata": {
+          "kind": "undefined"
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:56.174Z",
+      "elapsedMs": 341.5,
+      "value": {
+        "type": "text-delta",
+        "id": "a60e2ad9-7115-41ef-9827-217fb3f1caec:text:1",
+        "text": "青已移走湿蒲团并清理积水",
+        "providerMetadata": {
+          "kind": "undefined"
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:56.345Z",
+      "elapsedMs": 511.9,
+      "value": {
+        "type": "text-delta",
+        "id": "a60e2ad9-7115-41ef-9827-217fb3f1caec:text:1",
+        "text": "。今日只用西半边，东侧以",
+        "providerMetadata": {
+          "kind": "undefined"
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:56.347Z",
+      "elapsedMs": 514,
+      "value": {
+        "type": "error",
+        "error": {
+          "kind": "Error",
+          "name": "AI_APICallError",
+          "message": "教学模拟提供方返回503，不是实际云服务HTTP响应。",
+          "cause": {
+            "kind": "undefined"
+          },
+          "url": "https://controlled.invalid/model",
+          "requestBodyValues": {
+            "instructions": "只依据小说资料写一段简明摘要，区分已确定安排和未决事项，不补造事实。",
+            "prompt": "《青岚修仙录》：夜雨后的练功场\n\n林青推开练功场的侧门，东边的蒲团已经湿了半边。他仍是青岚宗外门弟子，只有炼气三层，盼着有一日能筑基；今日轮到他收拾场地，不能因为惦记吐纳便放着漏水不管。\n\n他把受潮的蒲团移到廊下干处，擦去地上的积水。赵师兄随后来看，摸过西边的地板，决定今日只用练功场西半边，东半边暂不安排弟子练习。\n\n两人用从杂物房借来的三块木板挡住东侧入口。赵师兄让林青明日午后把这三块木板还回杂物房；若那时屋顶仍未修好，东侧改用现有绳栏围住。\n\n林青抬头望着椽子，分不清是哪一片瓦松了。补漏由谁负责、何时动工，还没有定下来。他在值日纸上记下东侧停用，把补漏人选和日期两栏留空。临走前，他从西侧重新走了一遍，确认今日练习的地方没有积水。\n"
+          },
+          "statusCode": 503,
+          "responseHeaders": {
+            "kind": "undefined"
+          },
+          "responseBody": "{\"error\":{\"type\":\"controlled-exercise\",\"statusCode\":503}}",
+          "isRetryable": true,
+          "data": {
+            "kind": "undefined"
+          },
+          "stack": "AI_APICallError: 教学模拟提供方返回503，不是实际云服务HTTP响应。\n    at l (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:362:1419)\n    at doStream (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:362:2803)\n    at ez.doStream (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:362:781)\n    at execute (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:170:32912)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async uN (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:160:28215)\n    at async executeLanguageModelCall (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:160:31578)\n    at async Yre (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:170:32872)\n    at async zM (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:129:14163)\n    at async Ne (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:170:56939)"
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:56.348Z",
+      "elapsedMs": 515.8,
+      "value": {
+        "type": "finish-step",
+        "finishReason": "error",
+        "rawFinishReason": {
+          "kind": "undefined"
+        },
+        "usage": {
+          "inputTokens": {
+            "kind": "undefined"
+          },
+          "inputTokenDetails": {
+            "noCacheTokens": {
+              "kind": "undefined"
+            },
+            "cacheReadTokens": {
+              "kind": "undefined"
+            },
+            "cacheWriteTokens": {
+              "kind": "undefined"
+            }
+          },
+          "outputTokens": {
+            "kind": "undefined"
+          },
+          "outputTokenDetails": {
+            "textTokens": {
+              "kind": "undefined"
+            },
+            "reasoningTokens": {
+              "kind": "undefined"
+            }
+          },
+          "totalTokens": {
+            "kind": "undefined"
+          },
+          "raw": {
+            "kind": "undefined"
+          }
+        },
+        "performance": {
+          "stepTimeMs": 513.0366999999969,
+          "toolExecutionMs": {},
+          "responseTimeMs": 0,
+          "effectiveOutputTokensPerSecond": 0,
+          "outputTokensPerSecond": {
+            "kind": "undefined"
+          },
+          "inputTokensPerSecond": {
+            "kind": "undefined"
+          },
+          "effectiveTotalTokensPerSecond": 0,
+          "timeToFirstOutputMs": {
+            "kind": "undefined"
+          },
+          "timeBetweenOutputChunksMs": {
+            "kind": "undefined"
+          }
+        },
+        "providerMetadata": {
+          "kind": "undefined"
+        },
+        "response": {
+          "id": "mock-a60e2ad9-7115-41ef-9827-217fb3f1caec-1",
+          "timestamp": {
+            "kind": "Date",
+            "value": "2026-10-13T01:42:55.837Z"
+          },
+          "modelId": "controlled-summary",
+          "headers": {
+            "kind": "undefined"
+          }
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:56.350Z",
+      "elapsedMs": 517.2,
+      "value": {
+        "type": "finish",
+        "finishReason": "error",
+        "rawFinishReason": {
+          "kind": "undefined"
+        },
+        "totalUsage": {
+          "inputTokens": {
+            "kind": "undefined"
+          },
+          "inputTokenDetails": {
+            "noCacheTokens": {
+              "kind": "undefined"
+            },
+            "cacheReadTokens": {
+              "kind": "undefined"
+            },
+            "cacheWriteTokens": {
+              "kind": "undefined"
+            }
+          },
+          "outputTokens": {
+            "kind": "undefined"
+          },
+          "outputTokenDetails": {
+            "textTokens": {
+              "kind": "undefined"
+            },
+            "reasoningTokens": {
+              "kind": "undefined"
+            }
+          },
+          "totalTokens": {
+            "kind": "undefined"
+          }
+        }
+      }
+    }
+  ],
+  "callbacks": [
+    {
+      "at": "2026-10-13T01:42:55.834Z",
+      "elapsedMs": 1.4,
+      "value": {
+        "kind": "core.onStart",
+        "event": {
+          "callId": "call-cb1AfjlElQ2F29JFF3dcEPYA",
+          "operationId": "ai.streamText",
+          "provider": "official-mock",
+          "modelId": "controlled-summary",
+          "instructions": "只依据小说资料写一段简明摘要，区分已确定安排和未决事项，不补造事实。",
+          "messages": [
+            {
+              "role": "user",
+              "content": "《青岚修仙录》：夜雨后的练功场\n\n林青推开练功场的侧门，东边的蒲团已经湿了半边。他仍是青岚宗外门弟子，只有炼气三层，盼着有一日能筑基；今日轮到他收拾场地，不能因为惦记吐纳便放着漏水不管。\n\n他把受潮的蒲团移到廊下干处，擦去地上的积水。赵师兄随后来看，摸过西边的地板，决定今日只用练功场西半边，东半边暂不安排弟子练习。\n\n两人用从杂物房借来的三块木板挡住东侧入口。赵师兄让林青明日午后把这三块木板还回杂物房；若那时屋顶仍未修好，东侧改用现有绳栏围住。\n\n林青抬头望着椽子，分不清是哪一片瓦松了。补漏由谁负责、何时动工，还没有定下来。他在值日纸上记下东侧停用，把补漏人选和日期两栏留空。临走前，他从西侧重新走了一遍，确认今日练习的地方没有积水。\n"
+            }
+          ],
+          "tools": {
+            "kind": "undefined"
+          },
+          "toolChoice": {
+            "kind": "undefined"
+          },
+          "activeTools": {
+            "kind": "undefined"
+          },
+          "toolOrder": {
+            "kind": "undefined"
+          },
+          "maxOutputTokens": {
+            "kind": "undefined"
+          },
+          "temperature": {
+            "kind": "undefined"
+          },
+          "topP": {
+            "kind": "undefined"
+          },
+          "topK": {
+            "kind": "undefined"
+          },
+          "presencePenalty": {
+            "kind": "undefined"
+          },
+          "frequencyPenalty": {
+            "kind": "undefined"
+          },
+          "stopSequences": {
+            "kind": "undefined"
+          },
+          "seed": {
+            "kind": "undefined"
+          },
+          "reasoning": {
+            "kind": "undefined"
+          },
+          "maxRetries": 1,
+          "timeout": {
+            "totalMs": 15000
+          },
+          "headers": {
+            "kind": "undefined"
+          },
+          "providerOptions": {
+            "kind": "undefined"
+          },
+          "output": {
+            "kind": "undefined"
+          },
+          "runtimeContext": {},
+          "toolsContext": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:55.836Z",
+      "elapsedMs": 2.9,
+      "value": {
+        "kind": "core.onLanguageModelCallStart",
+        "event": {
+          "callId": "call-cb1AfjlElQ2F29JFF3dcEPYA",
+          "provider": "official-mock",
+          "modelId": "controlled-summary",
+          "instructions": "只依据小说资料写一段简明摘要，区分已确定安排和未决事项，不补造事实。",
+          "messages": [
+            {
+              "role": "user",
+              "content": "《青岚修仙录》：夜雨后的练功场\n\n林青推开练功场的侧门，东边的蒲团已经湿了半边。他仍是青岚宗外门弟子，只有炼气三层，盼着有一日能筑基；今日轮到他收拾场地，不能因为惦记吐纳便放着漏水不管。\n\n他把受潮的蒲团移到廊下干处，擦去地上的积水。赵师兄随后来看，摸过西边的地板，决定今日只用练功场西半边，东半边暂不安排弟子练习。\n\n两人用从杂物房借来的三块木板挡住东侧入口。赵师兄让林青明日午后把这三块木板还回杂物房；若那时屋顶仍未修好，东侧改用现有绳栏围住。\n\n林青抬头望着椽子，分不清是哪一片瓦松了。补漏由谁负责、何时动工，还没有定下来。他在值日纸上记下东侧停用，把补漏人选和日期两栏留空。临走前，他从西侧重新走了一遍，确认今日练习的地方没有积水。\n"
+            }
+          ],
+          "tools": {
+            "kind": "undefined"
+          },
+          "maxOutputTokens": {
+            "kind": "undefined"
+          },
+          "temperature": {
+            "kind": "undefined"
+          },
+          "topP": {
+            "kind": "undefined"
+          },
+          "topK": {
+            "kind": "undefined"
+          },
+          "presencePenalty": {
+            "kind": "undefined"
+          },
+          "frequencyPenalty": {
+            "kind": "undefined"
+          },
+          "stopSequences": {
+            "kind": "undefined"
+          },
+          "seed": {
+            "kind": "undefined"
+          },
+          "reasoning": {
+            "kind": "undefined"
+          }
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:56.345Z",
+      "elapsedMs": 512.8,
+      "value": {
+        "kind": "core.onError",
+        "event": {
+          "error": {
+            "kind": "Error",
+            "name": "AI_APICallError",
+            "message": "教学模拟提供方返回503，不是实际云服务HTTP响应。",
+            "cause": {
+              "kind": "undefined"
+            },
+            "url": "https://controlled.invalid/model",
+            "requestBodyValues": {
+              "instructions": "只依据小说资料写一段简明摘要，区分已确定安排和未决事项，不补造事实。",
+              "prompt": "《青岚修仙录》：夜雨后的练功场\n\n林青推开练功场的侧门，东边的蒲团已经湿了半边。他仍是青岚宗外门弟子，只有炼气三层，盼着有一日能筑基；今日轮到他收拾场地，不能因为惦记吐纳便放着漏水不管。\n\n他把受潮的蒲团移到廊下干处，擦去地上的积水。赵师兄随后来看，摸过西边的地板，决定今日只用练功场西半边，东半边暂不安排弟子练习。\n\n两人用从杂物房借来的三块木板挡住东侧入口。赵师兄让林青明日午后把这三块木板还回杂物房；若那时屋顶仍未修好，东侧改用现有绳栏围住。\n\n林青抬头望着椽子，分不清是哪一片瓦松了。补漏由谁负责、何时动工，还没有定下来。他在值日纸上记下东侧停用，把补漏人选和日期两栏留空。临走前，他从西侧重新走了一遍，确认今日练习的地方没有积水。\n"
+            },
+            "statusCode": 503,
+            "responseHeaders": {
+              "kind": "undefined"
+            },
+            "responseBody": "{\"error\":{\"type\":\"controlled-exercise\",\"statusCode\":503}}",
+            "isRetryable": true,
+            "data": {
+              "kind": "undefined"
+            },
+            "stack": "AI_APICallError: 教学模拟提供方返回503，不是实际云服务HTTP响应。\n    at l (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:362:1419)\n    at doStream (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:362:2803)\n    at ez.doStream (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:362:781)\n    at execute (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:170:32912)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async uN (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:160:28215)\n    at async executeLanguageModelCall (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:160:31578)\n    at async Yre (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:170:32872)\n    at async zM (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:129:14163)\n    at async Ne (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:170:56939)"
+          }
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:56.351Z",
+      "elapsedMs": 518.4,
+      "value": {
+        "kind": "core.onEnd",
+        "event": {
+          "callId": "call-cb1AfjlElQ2F29JFF3dcEPYA",
+          "toolsContext": {},
+          "stepNumber": 0,
+          "model": {
+            "provider": "official-mock",
+            "modelId": "controlled-summary"
+          },
+          "runtimeContext": {},
+          "finishReason": "error",
+          "rawFinishReason": {
+            "kind": "undefined"
+          },
+          "usage": {
+            "inputTokens": {
+              "kind": "undefined"
+            },
+            "inputTokenDetails": {
+              "noCacheTokens": {
+                "kind": "undefined"
+              },
+              "cacheReadTokens": {
+                "kind": "undefined"
+              },
+              "cacheWriteTokens": {
+                "kind": "undefined"
+              }
+            },
+            "outputTokens": {
+              "kind": "undefined"
+            },
+            "outputTokenDetails": {
+              "textTokens": {
+                "kind": "undefined"
+              },
+              "reasoningTokens": {
+                "kind": "undefined"
+              }
+            },
+            "totalTokens": {
+              "kind": "undefined"
+            }
+          },
+          "totalUsage": {
+            "inputTokens": {
+              "kind": "undefined"
+            },
+            "inputTokenDetails": {
+              "noCacheTokens": {
+                "kind": "undefined"
+              },
+              "cacheReadTokens": {
+                "kind": "undefined"
+              },
+              "cacheWriteTokens": {
+                "kind": "undefined"
+              }
+            },
+            "outputTokens": {
+              "kind": "undefined"
+            },
+            "outputTokenDetails": {
+              "textTokens": {
+                "kind": "undefined"
+              },
+              "reasoningTokens": {
+                "kind": "undefined"
+              }
+            },
+            "totalTokens": {
+              "kind": "undefined"
+            }
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "夜雨使练功场东侧受潮，林青已移走湿蒲团并清理积水。今日只用西半边，东侧以",
+              "providerMetadata": {
+                "kind": "undefined"
+              }
+            }
+          ],
+          "text": "夜雨使练功场东侧受潮，林青已移走湿蒲团并清理积水。今日只用西半边，东侧以",
+          "reasoning": [],
+          "reasoningText": {
+            "kind": "undefined"
+          },
+          "files": [],
+          "sources": [],
+          "toolCalls": [],
+          "staticToolCalls": [],
+          "dynamicToolCalls": [],
+          "toolResults": [],
+          "staticToolResults": [],
+          "dynamicToolResults": [],
+          "responseMessages": [
+            {
+              "role": "assistant",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "夜雨使练功场东侧受潮，林青已移走湿蒲团并清理积水。今日只用西半边，东侧以",
+                  "providerOptions": {
+                    "kind": "undefined"
+                  }
+                }
+              ]
+            }
+          ],
+          "warnings": [],
+          "request": {
+            "body": {
+              "kind": "undefined"
+            },
+            "messages": {
+              "kind": "undefined"
+            }
+          },
+          "response": {
+            "id": "mock-a60e2ad9-7115-41ef-9827-217fb3f1caec-1",
+            "timestamp": {
+              "kind": "Date",
+              "value": "2026-10-13T01:42:55.837Z"
+            },
+            "modelId": "controlled-summary",
+            "headers": {
+              "kind": "undefined"
+            },
+            "messages": [
+              {
+                "role": "assistant",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "夜雨使练功场东侧受潮，林青已移走湿蒲团并清理积水。今日只用西半边，东侧以",
+                    "providerOptions": {
+                      "kind": "undefined"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "providerMetadata": {
+            "kind": "undefined"
+          },
+          "steps": [
+            {
+              "callId": "call-cb1AfjlElQ2F29JFF3dcEPYA",
+              "stepNumber": 0,
+              "model": {
+                "provider": "official-mock",
+                "modelId": "controlled-summary"
+              },
+              "runtimeContext": {},
+              "toolsContext": {},
+              "content": [
+                {
+                  "type": "text",
+                  "text": "夜雨使练功场东侧受潮，林青已移走湿蒲团并清理积水。今日只用西半边，东侧以",
+                  "providerMetadata": {
+                    "kind": "undefined"
+                  }
+                }
+              ],
+              "finishReason": "error",
+              "rawFinishReason": {
+                "kind": "undefined"
+              },
+              "usage": {
+                "inputTokens": {
+                  "kind": "undefined"
+                },
+                "inputTokenDetails": {
+                  "noCacheTokens": {
+                    "kind": "undefined"
+                  },
+                  "cacheReadTokens": {
+                    "kind": "undefined"
+                  },
+                  "cacheWriteTokens": {
+                    "kind": "undefined"
+                  }
+                },
+                "outputTokens": {
+                  "kind": "undefined"
+                },
+                "outputTokenDetails": {
+                  "textTokens": {
+                    "kind": "undefined"
+                  },
+                  "reasoningTokens": {
+                    "kind": "undefined"
+                  }
+                },
+                "totalTokens": {
+                  "kind": "undefined"
+                },
+                "raw": {
+                  "kind": "undefined"
+                }
+              },
+              "performance": {
+                "stepTimeMs": 513.0366999999969,
+                "toolExecutionMs": {},
+                "responseTimeMs": 0,
+                "effectiveOutputTokensPerSecond": 0,
+                "outputTokensPerSecond": {
+                  "kind": "undefined"
+                },
+                "inputTokensPerSecond": {
+                  "kind": "undefined"
+                },
+                "effectiveTotalTokensPerSecond": 0,
+                "timeToFirstOutputMs": {
+                  "kind": "undefined"
+                },
+                "timeBetweenOutputChunksMs": {
+                  "kind": "undefined"
+                }
+              },
+              "warnings": [],
+              "request": {
+                "body": {
+                  "kind": "undefined"
+                },
+                "messages": {
+                  "kind": "undefined"
+                }
+              },
+              "response": {
+                "id": "mock-a60e2ad9-7115-41ef-9827-217fb3f1caec-1",
+                "timestamp": {
+                  "kind": "Date",
+                  "value": "2026-10-13T01:42:55.837Z"
+                },
+                "modelId": "controlled-summary",
+                "headers": {
+                  "kind": "undefined"
+                },
+                "messages": [
+                  {
+                    "role": "assistant",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "夜雨使练功场东侧受潮，林青已移走湿蒲团并清理积水。今日只用西半边，东侧以",
+                        "providerOptions": {
+                          "kind": "undefined"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "providerMetadata": {
+                "kind": "undefined"
+              }
+            }
+          ],
+          "finalStep": {
+            "callId": "call-cb1AfjlElQ2F29JFF3dcEPYA",
+            "stepNumber": 0,
+            "model": {
+              "provider": "official-mock",
+              "modelId": "controlled-summary"
+            },
+            "runtimeContext": {},
+            "toolsContext": {},
+            "content": [
+              {
+                "type": "text",
+                "text": "夜雨使练功场东侧受潮，林青已移走湿蒲团并清理积水。今日只用西半边，东侧以",
+                "providerMetadata": {
+                  "kind": "undefined"
+                }
+              }
+            ],
+            "finishReason": "error",
+            "rawFinishReason": {
+              "kind": "undefined"
+            },
+            "usage": {
+              "inputTokens": {
+                "kind": "undefined"
+              },
+              "inputTokenDetails": {
+                "noCacheTokens": {
+                  "kind": "undefined"
+                },
+                "cacheReadTokens": {
+                  "kind": "undefined"
+                },
+                "cacheWriteTokens": {
+                  "kind": "undefined"
+                }
+              },
+              "outputTokens": {
+                "kind": "undefined"
+              },
+              "outputTokenDetails": {
+                "textTokens": {
+                  "kind": "undefined"
+                },
+                "reasoningTokens": {
+                  "kind": "undefined"
+                }
+              },
+              "totalTokens": {
+                "kind": "undefined"
+              },
+              "raw": {
+                "kind": "undefined"
+              }
+            },
+            "performance": {
+              "stepTimeMs": 513.0366999999969,
+              "toolExecutionMs": {},
+              "responseTimeMs": 0,
+              "effectiveOutputTokensPerSecond": 0,
+              "outputTokensPerSecond": {
+                "kind": "undefined"
+              },
+              "inputTokensPerSecond": {
+                "kind": "undefined"
+              },
+              "effectiveTotalTokensPerSecond": 0,
+              "timeToFirstOutputMs": {
+                "kind": "undefined"
+              },
+              "timeBetweenOutputChunksMs": {
+                "kind": "undefined"
+              }
+            },
+            "warnings": [],
+            "request": {
+              "body": {
+                "kind": "undefined"
+              },
+              "messages": {
+                "kind": "undefined"
+              }
+            },
+            "response": {
+              "id": "mock-a60e2ad9-7115-41ef-9827-217fb3f1caec-1",
+              "timestamp": {
+                "kind": "Date",
+                "value": "2026-10-13T01:42:55.837Z"
+              },
+              "modelId": "controlled-summary",
+              "headers": {
+                "kind": "undefined"
+              },
+              "messages": [
+                {
+                  "role": "assistant",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "夜雨使练功场东侧受潮，林青已移走湿蒲团并清理积水。今日只用西半边，东侧以",
+                      "providerOptions": {
+                        "kind": "undefined"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "providerMetadata": {
+              "kind": "undefined"
+            }
+          }
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:56.352Z",
+      "elapsedMs": 519,
+      "value": {
+        "kind": "ui.onEnd",
+        "event": {
+          "isAborted": false,
+          "isContinuation": false,
+          "outcome": {
+            "status": "completed"
+          },
+          "responseMessage": {
+            "id": "a60e2ad9-7115-41ef-9827-217fb3f1caec:assistant",
+            "metadata": {
+              "requestId": "a60e2ad9-7115-41ef-9827-217fb3f1caec",
+              "fixtureKey": "B",
+              "state": "failed",
+              "cause": "provider-error",
+              "origin": "controlled-exercise"
+            },
+            "role": "assistant",
+            "parts": [
+              {
+                "type": "step-start"
+              },
+              {
+                "type": "text",
+                "text": "夜雨使练功场东侧受潮，林青已移走湿蒲团并清理积水。今日只用西半边，东侧以",
+                "providerMetadata": {
+                  "kind": "undefined"
+                },
+                "state": "streaming"
+              }
+            ]
+          },
+          "messages": [
+            {
+              "id": "a60e2ad9-7115-41ef-9827-217fb3f1caec:assistant",
+              "metadata": {
+                "requestId": "a60e2ad9-7115-41ef-9827-217fb3f1caec",
+                "fixtureKey": "B",
+                "state": "failed",
+                "cause": "provider-error",
+                "origin": "controlled-exercise"
+              },
+              "role": "assistant",
+              "parts": [
+                {
+                  "type": "step-start"
+                },
+                {
+                  "type": "text",
+                  "text": "夜雨使练功场东侧受潮，林青已移走湿蒲团并清理积水。今日只用西半边，东侧以",
+                  "providerMetadata": {
+                    "kind": "undefined"
+                  },
+                  "state": "streaming"
+                }
+              ]
+            }
+          ],
+          "finishReason": "error"
+        }
+      }
+    }
+  ],
+  "uiEvents": [
+    {
+      "at": "2026-10-13T01:42:55.835Z",
+      "elapsedMs": 2,
+      "value": {
+        "type": "start",
+        "messageMetadata": {
+          "requestId": "a60e2ad9-7115-41ef-9827-217fb3f1caec",
+          "fixtureKey": "B",
+          "state": "running",
+          "cause": null,
+          "origin": "controlled-exercise"
+        },
+        "messageId": "a60e2ad9-7115-41ef-9827-217fb3f1caec:assistant"
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:55.838Z",
+      "elapsedMs": 5.4,
+      "value": {
+        "type": "start-step"
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:55.839Z",
+      "elapsedMs": 6.7,
+      "value": {
+        "type": "text-start",
+        "id": "a60e2ad9-7115-41ef-9827-217fb3f1caec:text:1"
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:56.004Z",
+      "elapsedMs": 171.5,
+      "value": {
+        "type": "text-delta",
+        "id": "a60e2ad9-7115-41ef-9827-217fb3f1caec:text:1",
+        "delta": "夜雨使练功场东侧受潮，林"
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:56.175Z",
+      "elapsedMs": 341.9,
+      "value": {
+        "type": "text-delta",
+        "id": "a60e2ad9-7115-41ef-9827-217fb3f1caec:text:1",
+        "delta": "青已移走湿蒲团并清理积水"
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:56.345Z",
+      "elapsedMs": 512.3,
+      "value": {
+        "type": "text-delta",
+        "id": "a60e2ad9-7115-41ef-9827-217fb3f1caec:text:1",
+        "delta": "。今日只用西半边，东侧以"
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:56.347Z",
+      "elapsedMs": 514.4,
+      "value": {
+        "type": "error",
+        "errorText": "模拟请求未能完成，输入和片段保留。"
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:56.348Z",
+      "elapsedMs": 515.1,
+      "value": {
+        "type": "message-metadata",
+        "messageMetadata": {
+          "requestId": "a60e2ad9-7115-41ef-9827-217fb3f1caec",
+          "fixtureKey": "B",
+          "state": "failed",
+          "cause": "provider-error",
+          "origin": "controlled-exercise"
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:56.349Z",
+      "elapsedMs": 516.3,
+      "value": {
+        "type": "finish-step"
+      }
+    },
+    {
+      "at": "2026-10-13T01:42:56.350Z",
+      "elapsedMs": 517.6,
+      "value": {
+        "type": "finish",
+        "finishReason": "error",
+        "messageMetadata": {
+          "requestId": "a60e2ad9-7115-41ef-9827-217fb3f1caec",
+          "fixtureKey": "B",
+          "state": "failed",
+          "cause": "provider-error",
+          "origin": "controlled-exercise"
+        }
+      }
+    }
+  ],
+  "transport": [
+    {
+      "at": "2026-10-13T01:42:56.354Z",
+      "elapsedMs": 520.9,
+      "value": {
+        "kind": "response-close",
+        "writableEnded": true,
+        "state": "failed"
+      }
+    }
+  ],
+  "serverSseProduced": [
+    {
+      "at": "2026-10-13T01:42:55.835Z",
+      "elapsedMs": 2.3,
+      "value": "data: {\"type\":\"start\",\"messageMetadata\":{\"requestId\":\"a60e2ad9-7115-41ef-9827-217fb3f1caec\",\"fixtureKey\":\"B\",\"state\":\"running\",\"cause\":null,\"origin\":\"controlled-exercise\"},\"messageId\":\"a60e2ad9-7115-41ef-9827-217fb3f1caec:assistant\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:42:55.838Z",
+      "elapsedMs": 5.7,
+      "value": "data: {\"type\":\"start-step\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:42:55.840Z",
+      "elapsedMs": 7,
+      "value": "data: {\"type\":\"text-start\",\"id\":\"a60e2ad9-7115-41ef-9827-217fb3f1caec:text:1\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:42:56.004Z",
+      "elapsedMs": 171.8,
+      "value": "data: {\"type\":\"text-delta\",\"id\":\"a60e2ad9-7115-41ef-9827-217fb3f1caec:text:1\",\"delta\":\"夜雨使练功场东侧受潮，林\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:42:56.175Z",
+      "elapsedMs": 342.4,
+      "value": "data: {\"type\":\"text-delta\",\"id\":\"a60e2ad9-7115-41ef-9827-217fb3f1caec:text:1\",\"delta\":\"青已移走湿蒲团并清理积水\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:42:56.346Z",
+      "elapsedMs": 513.4,
+      "value": "data: {\"type\":\"text-delta\",\"id\":\"a60e2ad9-7115-41ef-9827-217fb3f1caec:text:1\",\"delta\":\"。今日只用西半边，东侧以\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:42:56.347Z",
+      "elapsedMs": 514.7,
+      "value": "data: {\"type\":\"error\",\"errorText\":\"模拟请求未能完成，输入和片段保留。\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:42:56.348Z",
+      "elapsedMs": 515.5,
+      "value": "data: {\"type\":\"message-metadata\",\"messageMetadata\":{\"requestId\":\"a60e2ad9-7115-41ef-9827-217fb3f1caec\",\"fixtureKey\":\"B\",\"state\":\"failed\",\"cause\":\"provider-error\",\"origin\":\"controlled-exercise\"}}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:42:56.349Z",
+      "elapsedMs": 516.7,
+      "value": "data: {\"type\":\"finish-step\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:42:56.351Z",
+      "elapsedMs": 517.9,
+      "value": "data: {\"type\":\"finish\",\"finishReason\":\"error\",\"messageMetadata\":{\"requestId\":\"a60e2ad9-7115-41ef-9827-217fb3f1caec\",\"fixtureKey\":\"B\",\"state\":\"failed\",\"cause\":\"provider-error\",\"origin\":\"controlled-exercise\"}}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:42:56.352Z",
+      "elapsedMs": 519.5,
+      "value": "data: [DONE]\n\n"
+    }
+  ],
+  "uiMessage": {
+    "id": "a60e2ad9-7115-41ef-9827-217fb3f1caec:assistant",
+    "metadata": {
+      "requestId": "a60e2ad9-7115-41ef-9827-217fb3f1caec",
+      "fixtureKey": "B",
+      "state": "failed",
+      "cause": "provider-error",
+      "origin": "controlled-exercise"
+    },
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "step-start"
+      },
+      {
+        "type": "text",
+        "text": "夜雨使练功场东侧受潮，林青已移走湿蒲团并清理积水。今日只用西半边，东侧以",
+        "state": "streaming"
+      }
+    ]
+  },
+  "uiOutcome": {
+    "status": "completed"
+  },
+  "error": {
+    "kind": "Error",
+    "name": "AI_APICallError",
+    "message": "教学模拟提供方返回503，不是实际云服务HTTP响应。",
+    "cause": {
+      "kind": "undefined"
+    },
+    "url": "https://controlled.invalid/model",
+    "requestBodyValues": {
+      "instructions": "只依据小说资料写一段简明摘要，区分已确定安排和未决事项，不补造事实。",
+      "prompt": "《青岚修仙录》：夜雨后的练功场\n\n林青推开练功场的侧门，东边的蒲团已经湿了半边。他仍是青岚宗外门弟子，只有炼气三层，盼着有一日能筑基；今日轮到他收拾场地，不能因为惦记吐纳便放着漏水不管。\n\n他把受潮的蒲团移到廊下干处，擦去地上的积水。赵师兄随后来看，摸过西边的地板，决定今日只用练功场西半边，东半边暂不安排弟子练习。\n\n两人用从杂物房借来的三块木板挡住东侧入口。赵师兄让林青明日午后把这三块木板还回杂物房；若那时屋顶仍未修好，东侧改用现有绳栏围住。\n\n林青抬头望着椽子，分不清是哪一片瓦松了。补漏由谁负责、何时动工，还没有定下来。他在值日纸上记下东侧停用，把补漏人选和日期两栏留空。临走前，他从西侧重新走了一遍，确认今日练习的地方没有积水。\n"
+    },
+    "statusCode": 503,
+    "responseHeaders": {
+      "kind": "undefined"
+    },
+    "responseBody": "{\"error\":{\"type\":\"controlled-exercise\",\"statusCode\":503}}",
+    "isRetryable": true,
+    "data": {
+      "kind": "undefined"
+    },
+    "stack": "AI_APICallError: 教学模拟提供方返回503，不是实际云服务HTTP响应。\n    at l (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:362:1419)\n    at doStream (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:362:2803)\n    at ez.doStream (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:362:781)\n    at execute (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:170:32912)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async uN (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:160:28215)\n    at async executeLanguageModelCall (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:160:31578)\n    at async Yre (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:170:32872)\n    at async zM (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:129:14163)\n    at async Ne (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:170:56939)"
+  }
+}

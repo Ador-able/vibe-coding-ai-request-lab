@@ -62,7 +62,7 @@ test('两个真实HTTP子流合成一条消息，同ID进度更新；空增量�
       assert.equal(request.model, 'stream-test');
       assert(!('enable_thinking' in request)); assert.equal(request.temperature, 0);
       assert.deepEqual(request.stream_options, { include_usage: true });
-      assert.equal(request.max_tokens, i === 0 ? 256 : 384);
+      assert.equal(request.max_tokens, 4096);
     });
     assert(JSON.parse(bodies[1]).messages[1].content.includes(result.record.stages[0].answer));
     assert(!JSON.stringify(result).includes('test-private-key')); assert(!JSON.stringify(result).includes(base));

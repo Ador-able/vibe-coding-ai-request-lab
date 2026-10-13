@@ -1,17 +1,17 @@
 import './style.css';
 import '../lab.css';
 import { markdown } from '../markdown.ts';
-import { FACTS, INITIAL_TASK } from './scenario.ts';
+import { BACKGROUND, PREVIOUS_CHAPTER, INITIAL_TASK } from './scenario.ts';
 import { acceptTurn, type Turn, type CollaborationResponse, type CollaborationResult } from './contract.ts';
 
 const app = document.querySelector<HTMLElement>('#app')!;
-app.innerHTML = `<header><span class="eyebrow">人在环路 · 文字共写</span>
-  <h1>活动共写</h1><p>比较两个方向，提出选择或纠正，再看 AI 怎样改写。</p></header>
-  <section class="facts"><h2>已有活动资料 · 教学虚构</h2><p id="facts"></p></section>
+app.innerHTML = `<header><span class="eyebrow">青岚修仙录 · 人的反馈</span>
+  <h1>场景共写</h1><p>粘贴你选择并编辑的完整方案，生成后再根据实际草稿提出修改。</p></header>
+  <details><summary>完整前文与首轮任务</summary><section class="facts"><div id="background"></div><div id="previous-chapter"></div><h2>首轮任务</h2><p id="initial-task"></p></section></details>
   <section id="conversation" hidden><div class="section-heading"><h2>共写记录</h2><button id="copy" class="secondary" type="button">复制最新回答</button></div><div id="turns"></div></section>
-  <form id="compose"><label id="input-label" for="input">本轮要求</label>
-    <textarea id="input" rows="5" maxlength="6000" required></textarea>
-    <div class="compose-actions"><p class="note">每次提交调用模型 1 次。</p><button id="send" type="submit">生成两个方向</button></div>
+  <form id="compose"><label id="input-label" for="input">已选择并编辑的完整方案</label>
+    <textarea id="input" rows="7" maxlength="6000" placeholder="粘贴完整方案；你补充的条件与修改也一并写在这里。" required></textarea>
+    <div class="compose-actions"><p class="note">每次提交调用模型 1 次。</p><button id="send" type="submit">生成场景草稿</button></div>
   </form>
   <p id="status" role="status" aria-live="polite"></p>
   <div class="record-bar"><button id="download" class="secondary" disabled>下载共写记录</button><span class="note">刷新前下载，保留全部尝试。</span></div>
@@ -20,8 +20,11 @@ app.innerHTML = `<header><span class="eyebrow">人在环路 · 文字共写</spa
   </div></details>`;
 
 const element = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
-element('facts').textContent = FACTS;
-element<HTMLTextAreaElement>('input').value = INITIAL_TASK;
+element('background').append(markdown(BACKGROUND));
+element('previous-chapter').append(markdown(PREVIOUS_CHAPTER));
+element('initial-task').textContent = INITIAL_TASK;
+const initialPrefix = `${INITIAL_TASK}\n\n人选择并编辑的完整方案：\n`;
+element<HTMLTextAreaElement>('input').maxLength = 6000 - initialPrefix.length;
 type Attempt = { input: string; priorSuccessfulTurns: number; startedAt: string; result: CollaborationResult | null; transportError: string | null };
 const attempts: Attempt[] = [];
 let history: Turn[] = [];
@@ -73,7 +76,8 @@ function renderInspector() {
 element<HTMLFormElement>('compose').addEventListener('submit', async (event) => {
   event.preventDefault(); if (busy) return;
   const input = element<HTMLTextAreaElement>('input'); if (!input.value.trim()) return;
-  const attempt: Attempt = { input: input.value, priorSuccessfulTurns: history.length, startedAt: new Date().toISOString(), result: null, transportError: null };
+  const requestInput = history.length ? input.value : initialPrefix + input.value;
+  const attempt: Attempt = { input: requestInput, priorSuccessfulTurns: history.length, startedAt: new Date().toISOString(), result: null, transportError: null };
   attempts.push(attempt); selected = attempts.length - 1; busy = true;
   element<HTMLButtonElement>('send').disabled = true; input.disabled = true;
   const status = element('status'); status.className = ''; status.textContent = 'AI 正在根据我们的任务与完整对话继续共写…'; renderInspector();
@@ -88,7 +92,7 @@ element<HTMLFormElement>('compose').addEventListener('submit', async (event) => 
       status.textContent = data.result.error?.message || '本轮没有完成；输入保留，未加入成功对话。'; status.className = 'error';
     } else {
       history = acceptTurn(history, data.result);
-      input.value = ''; input.placeholder = '写下我们选择什么、为什么这样选，以及需要补充或纠正的地方。';
+      input.value = ''; input.maxLength = 6000; input.placeholder = '指出需要修正的原句、具体改法和本轮要交付的内容。需要替换整稿时，粘贴完整当前稿。';
       element('input-label').textContent = '下一轮反馈'; element('send').textContent = '发送反馈';
       status.textContent = '回答已保留。我们可以继续提出选择、补充或纠正。'; renderHistory();
     }
@@ -107,7 +111,7 @@ element('copy').addEventListener('click', async () => {
   catch { element('status').textContent = '浏览器未允许复制，请直接选择回答文字复制。'; }
 });
 element('download').addEventListener('click', () => {
-  const data = { activityFacts: FACTS, successfulHistory: history, attempts };
+  const data = { background: BACKGROUND, previousChapter: PREVIOUS_CHAPTER, successfulHistory: history, attempts };
   const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
-  const link = document.createElement('a'); link.href = url; link.download = '活动共写-实际请求记录.json'; link.click(); URL.revokeObjectURL(url);
+  const link = document.createElement('a'); link.href = url; link.download = '场景共写-实际请求记录.json'; link.click(); URL.revokeObjectURL(url);
 });

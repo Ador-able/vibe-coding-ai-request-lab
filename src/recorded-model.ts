@@ -38,7 +38,7 @@ export async function sendRecordedRequest(config: ModelConfig, record: RequestRe
   } catch (error) {
     const failure = error instanceof ModelError ? error : signal.aborted
       ? signal.reason?.name === 'TimeoutError'
-        ? new ModelError('MODEL_TIMEOUT', '本轮等待超过 90 秒，已停止请求。', 504)
+        ? new ModelError('MODEL_TIMEOUT', '本轮等待超时，已停止请求。', 504)
         : new ModelError('REQUEST_CANCELLED', '本次请求已取消。', 499)
       : APICallError.isInstance(error) && error.statusCode !== undefined && (error.statusCode < 200 || error.statusCode >= 300)
         ? new ModelError('MODEL_HTTP_ERROR', `模型服务返回 HTTP ${error.statusCode}，请检查权限、额度与服务状态。`, 502, error.statusCode)

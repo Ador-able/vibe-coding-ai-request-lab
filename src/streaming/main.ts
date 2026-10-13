@@ -4,19 +4,21 @@ import { MATERIAL } from './material.ts';
 import { DefaultChatTransport, readUIMessageStream } from 'ai';
 import type { AssistantMessage, Chunk, RunRecord, State } from './contract.ts';
 
-document.querySelector<HTMLElement>('#app')!.innerHTML = `<header><h1>纪要整理</h1></header>
-  <label for="material">工作纪要（教学虚构）</label><textarea id="material" rows="4" maxlength="6000"></textarea>
-  <div class="actions"><button id="run">生成摘要和问题</button><button id="stop" class="secondary" hidden>停止</button></div>
+document.querySelector<HTMLElement>('#app')!.innerHTML = `<header><h1>小说资料整理</h1></header>
+  <details id="material-panel"><summary>查看或修改小说资料</summary><label for="material" class="sr-only">小说资料（教学虚构）</label><textarea id="material" rows="7" maxlength="6000"></textarea></details>
+  <div class="actions"><button id="run">生成摘要和问题</button><button id="classroom" class="secondary">查看课堂实录</button><button id="stop" class="secondary" hidden>停止</button></div>
   <p id="status" role="status" aria-live="polite"></p>
   <section id="assistant" hidden><div class="message-heading"><h2>助手回复</h2><span id="progress" class="progress" role="status" aria-live="polite"></span></div><div id="message"></div></section>
   <details id="records" hidden><summary>查看事件与请求记录</summary><div class="inspector-body"><div class="record-tools"><label for="attempt">请求<select id="attempt"></select></label><label for="event-view">事件<select id="event-view"><option value="boundaries">阶段与结束</option><option value="all">全部（含文字增量）</option></select></label><button id="download" class="secondary">下载全部记录</button></div>
     <p id="record-label" class="note"></p><p id="metadata" class="note"></p>
     <div class="table-scroll"><table><thead><tr><th>顺序 / 毫秒</th><th>UI事件</th><th>内容</th></tr></thead><tbody id="events"></tbody></table></div>
-    <details><summary>原始数据与记录口径</summary><div class="record-explanation"><p id="model" class="note"></p><p class="note">表中是实际已收到的UI事件，不是回放。原始顺序编号保留；切换视图不会改变完整记录。</p><p class="note">UI计时始于浏览器请求，供应商片段计时始于后台各阶段请求。导出保留实际请求和收到的JSON片段，不含SSE分隔符或[DONE]。未报告用量记为null，片段数不等于token数。</p></div><pre id="raw-record"></pre></details></div></details>`;
+    <details><summary>原始数据与记录口径</summary><div class="record-explanation"><p id="model" class="note"></p><p class="note">事件保留原始编号与计时。课堂实录读取已有记录，不重新请求模型。</p><p class="note">UI计时始于浏览器请求，供应商片段计时始于后台各阶段请求。导出保留实际请求和收到的JSON片段，不含SSE分隔符或[DONE]。未报告用量记为null，片段数不等于token数。</p></div><pre id="raw-record"></pre></details></div></details>`;
 const get = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 get<HTMLTextAreaElement>('material').value = MATERIAL;
-type Attempt = { id: string; material: string; state: State; message: AssistantMessage | null; events: { elapsedMs: number; event: Chunk }[]; serverRecord: RunRecord | null; error: string | null };
+type Attempt = { id: string; material: string; state: State; message: AssistantMessage | null; events: { elapsedMs: number; event: Chunk }[]; serverRecord: RunRecord | null; error: string | null; snapshots: { eventCount: number; elapsedMs: number; message: AssistantMessage }[]; stopRequests: { beganAt: string; status: number | null; response: unknown }[]; origin?: 'classroom' };
 const attempts: Attempt[] = [];
+declare global { interface Window { streamingObservation: () => { attempts: Attempt[] }; } }
+window.streamingObservation = () => structuredClone({ attempts });
 let current = -1; let busy = false; let stopping = false;
 const stateLabel = { running: '进行中', completed: '已完成', stopped: '已停止，未完成', failed: '未完成' };
 
@@ -36,9 +38,10 @@ function eventDescription(event: Chunk) {
 function render() {
   const attempt = attempts[current];
   get<HTMLButtonElement>('run').disabled = busy; get<HTMLTextAreaElement>('material').disabled = busy;
+  get<HTMLButtonElement>('classroom').disabled = busy;
   get('stop').hidden = !busy; get<HTMLButtonElement>('stop').disabled = stopping || !attempt?.events.some(({ event }) => event.type === 'start');
   get('stop').textContent = stopping ? '正在停止…' : '停止';
-  get('status').textContent = attempt?.error || '';
+  get('status').textContent = attempt?.error || (attempt?.origin === 'classroom' ? '课堂实录 · 未新增模型请求' : '');
   get('status').className = attempt?.state === 'failed' ? 'error' : '';
   get('assistant').hidden = !attempt; get('records').hidden = !attempt;
   if (!attempt) return;
@@ -50,6 +53,8 @@ function render() {
   const textParts = attempt.message?.parts.filter((part) => part.type === 'text') ?? [];
   textParts.forEach((part, i) => {
     const section = document.createElement('section'); const heading = document.createElement('h3'); heading.textContent = i === 0 ? '摘要' : '待确认问题';
+    section.setAttribute('aria-label', i === 0 ? '摘要正文' : '待确认问题正文');
+    section.dataset.hasText = String(part.text.length > 0);
     section.append(heading, markdown(part.text || (attempt.state === 'running' ? '等待正文片段…' : '未收到正文。'), 'answer')); content.append(section);
   });
   const metadata = attempt.message?.metadata;
@@ -68,11 +73,21 @@ function render() {
   get('raw-record').textContent = JSON.stringify(attempt, null, 2);
 }
 
+get('classroom').addEventListener('click', async () => {
+  if (busy) return;
+  try {
+    const response = await fetch('/records/output/streaming.json');
+    if (!response.ok) throw new Error('课堂实录未能读取，请确认实验包完整。');
+    const record = await response.json() as { attempts: Attempt[] };
+    attempts.splice(0, attempts.length, ...record.attempts.map(item => ({ ...item, origin: 'classroom' as const })));
+    current = attempts.length - 1; render();
+  } catch (error) { get('status').textContent = error instanceof Error ? error.message : '课堂实录未能读取。'; }
+});
 get('run').addEventListener('click', async () => {
   if (busy) return;
   const material = get<HTMLTextAreaElement>('material').value;
-  if (!material.trim()) { get('status').textContent = '请先输入工作纪要。'; return; }
-  const attempt: Attempt = { id: crypto.randomUUID(), material, state: 'running', message: null, events: [], serverRecord: null, error: null };
+  if (!material.trim()) { get('status').textContent = '请先输入小说资料。'; return; }
+  const attempt: Attempt = { id: crypto.randomUUID(), material, state: 'running', message: null, events: [], serverRecord: null, error: null, snapshots: [], stopRequests: [] };
   attempts.push(attempt); current = attempts.length - 1; busy = true; stopping = false; render();
   const start = performance.now();
   let finished = false;
@@ -90,6 +105,7 @@ get('run').addEventListener('click', async () => {
     } }));
     // SDK负责按ID合并文字和进度；页面只渲染消息快照，不自行模拟增量。
     for await (const message of readUIMessageStream<AssistantMessage>({ stream: recorded, onError: () => { attempt.state = 'failed'; attempt.error ||= '消息流处理失败，已有文字保留。'; } })) {
+      attempt.snapshots.push({ eventCount: attempt.events.length, elapsedMs: Math.round((performance.now() - start) * 10) / 10, message: structuredClone(message) });
       attempt.message = message; render();
     }
     if (attempt.state === 'running') { attempt.state = finished ? 'completed' : 'failed'; if (!finished) attempt.error = '连接结束，但没有收到整条消息完成事件。'; }
@@ -102,8 +118,11 @@ get('run').addEventListener('click', async () => {
 get('stop').addEventListener('click', async () => {
   const attempt = attempts[current]; if (!busy || !attempt || stopping) return;
   stopping = true; render();
+  const receipt = { beganAt: new Date().toISOString(), status: null as number | null, response: null as unknown };
+  attempt.stopRequests.push(receipt);
   try {
     const response = await fetch(`/api/streaming/${attempt.id}/stop`, { method: 'POST' });
+    receipt.status = response.status; receipt.response = await response.json();
     if (!response.ok) throw new Error();
   } catch { stopping = false; attempt.error = '未能确认停止，请重试停止操作。'; render(); }
 });

@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer, type Server } from 'node:http';
 import { once } from 'node:events';
-import { mkdtemp, rm } from 'node:fs/promises';
+import { mkdtemp, rm, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join, resolve } from 'node:path';
 import express from 'express';
@@ -31,7 +31,7 @@ test('按需流程只读选中原文，摘要回答只带实际摘要；完整�
   // 本地 HTTP 测试桩检查输入边界，不代表实际模型选择和摘要能力。
   const received: string[] = [];
   const selected = ['C02', 'C03', 'C04', 'C05'];
-  const summaryText = '测试桩摘要：申请尚待书面确认[C04]，清场条件见[C05]。';
+  const summaryText = '测试桩摘要：林青自己核对[C04]，灵草去向仍待核查[C05]。';
   const outputs = ['全文测试回答', JSON.stringify({ source_ids: selected }), '选后测试回答', summaryText, '摘要后测试回答'];
   const upstream = createServer(async (req, res) => {
     let body = ''; for await (const chunk of req) body += chunk;
@@ -45,6 +45,7 @@ test('按需流程只读选中原文，摘要回答只带实际摘要；完整�
     const records = [record('full'), record('retrieve'), record('summary')];
     for (const result of records) await runFlow(config, result, AbortSignal.timeout(5000));
     assert.equal(received.length, 5);
+    assert.deepEqual(received.map((body) => JSON.parse(body).max_tokens), [4096, 2048, 4096, 2048, 4096]);
     assert.deepEqual(records.flatMap((result) => result.requests.map((request) => request.requestBody)), received);
     assert.deepEqual(JSON.parse(received[0]).messages, answerMessages(sourceText(SOURCES.map((source) => source.id))));
     assert.deepEqual(records[1].selectedIds, selected);
@@ -68,6 +69,13 @@ test('摘要需人确认，重启路由后从文件读取；来源可回查，�
     const notConfirmed = await fetch(`${url}/api/memory/note`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{"confirmed":false}' });
     assert.equal(notConfirmed.status, 400);
     assert.equal((await (await fetch(`${url}/api/memory/note`)).json()).saved, null);
+    // 资料不匹配时保留原文件，只有明确确认保存才写入本次摘要。
+    const previous = JSON.stringify({ origin: 'reader-confirmed-teaching-note', confirmedAt: '2026-10-10T00:00:00Z', note: { goal: '其他任务的已保存摘要' } });
+    await writeFile(notePath, previous, 'utf8');
+    const mismatched = await fetch(`${url}/api/memory/note`);
+    assert.equal(mismatched.status, 500);
+    assert.match((await mismatched.json()).error, /重新保存/);
+    assert.equal(await readFile(notePath, 'utf8'), previous);
     const response = await fetch(`${url}/api/memory/note`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{"confirmed":true,"note":"不能由客户端替换"}' });
     const { saved }: { saved: SavedNote } = await response.json();
     assert.equal(saved.origin, 'reader-confirmed-teaching-note'); assert.deepEqual(saved.note, TEACHING_NOTE);
@@ -103,5 +111,23 @@ test('后续调用失败保留前一步和真实部分用量，不补零冒称�
     assert.equal(result.requests[1].httpStatus, 429);
     assert.deepEqual(costOf(result), { finalInput: null, totalInput: null, totalOutput: null, total: null });
     assert.equal(JSON.stringify(result).includes('test-secret-service-path'), false);
+  } finally { await close(upstream); }
+});
+
+test('推理耗尽输出预算且正文为空时报告截断，保留用量并停止后续调用', async () => {
+  let count = 0;
+  const usage = { prompt_tokens: 120, completion_tokens: 2048, completion_tokens_details: { reasoning_tokens: 2048 } };
+  const upstream = createServer((_req, res) => {
+    count++; res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ choices: [{ message: { role: 'assistant', content: '', reasoning_content: '测试桩推理片段' }, finish_reason: 'length' }], usage }));
+  });
+  const baseUrl = await listen(upstream); const result = record('summary');
+  try {
+    await assert.rejects(runFlow({ baseUrl, model: 'test', apiKey: 'test-only-key' }, result, AbortSignal.timeout(5000)),
+      { code: 'MODEL_RESPONSE_INCOMPLETE', message: '本步达到 2048 token 输出上限（含推理与正文），尚未完整结束。已保留原始响应与用量，不继续后续步骤。' });
+    assert.equal(count, 1); assert.equal(result.summary, undefined); assert.equal(result.answer, null);
+    assert.equal(result.requests[0].finishReason, 'length');
+    assert.deepEqual(result.requests[0].usage, usage);
+    assert.equal((result.requests[0].responseMessage as { content: string }).content, '');
   } finally { await close(upstream); }
 });

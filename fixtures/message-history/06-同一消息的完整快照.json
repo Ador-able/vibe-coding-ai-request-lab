@@ -1,0 +1,75 @@
+{
+  "sourceRunId": "250aa94b-3d55-4cce-a34c-df8b99c1b007",
+  "snapshots": [
+    {
+      "originalOneBasedIndex": 4,
+      "inputCompletionState": "incomplete",
+      "message": {
+        "id": "250aa94b-3d55-4cce-a34c-df8b99c1b007",
+        "metadata": {
+          "model": "ep-ymk08qa8",
+          "state": "running",
+          "stages": []
+        },
+        "role": "assistant",
+        "parts": [
+          {
+            "type": "data-progress",
+            "id": "workflow-progress",
+            "data": {
+              "stage": "summary",
+              "label": "应用正在生成摘要"
+            }
+          },
+          {
+            "type": "step-start"
+          },
+          {
+            "type": "text",
+            "text": "林",
+            "state": "streaming"
+          }
+        ]
+      }
+    },
+    {
+      "originalOneBasedIndex": 137,
+      "inputCompletionState": "incomplete",
+      "message": {
+        "id": "250aa94b-3d55-4cce-a34c-df8b99c1b007",
+        "metadata": {
+          "model": "ep-ymk08qa8",
+          "state": "running",
+          "stages": []
+        },
+        "role": "assistant",
+        "parts": [
+          {
+            "type": "data-progress",
+            "id": "workflow-progress",
+            "data": {
+              "stage": "completed",
+              "label": "摘要和待确认问题均已完整结束"
+            }
+          },
+          {
+            "type": "step-start"
+          },
+          {
+            "type": "text",
+            "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+            "state": "done"
+          },
+          {
+            "type": "step-start"
+          },
+          {
+            "type": "text",
+            "text": "1. 上游两处渠口的查看将由谁负责？\n2. 上游两处渠口的查看计划在什么时间完成？\n3. 水量变浅的具体原因是什么？",
+            "state": "done"
+          }
+        ]
+      }
+    }
+  ]
+}

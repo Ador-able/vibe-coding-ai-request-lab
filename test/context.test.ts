@@ -4,15 +4,15 @@ import { createServer, type Server } from 'node:http';
 import { once } from 'node:events';
 import { createApp } from '../src/server.ts';
 import { CONDITIONS, FIRST_QUESTION, FOLLOW_UP, type Condition, type ContextResponse, type Message } from '../src/context/contract.ts';
-import { executeReleaseTool, projectHistory, RELEASE, SYSTEM_RULE, TOOLS } from '../src/context/scenario.ts';
+import { executeHerbTool, projectHistory, INVENTORY, SYSTEM_RULE, TOOLS } from '../src/context/scenario.ts';
 
 const instruction: Message & { role: 'assistant' } = {
   role: 'assistant', content: null,
-  tool_calls: [{ id: 'test-call-1', type: 'function', function: { name: 'get_release_info', arguments: JSON.stringify({ release_id: RELEASE.release_id }) } }],
+  tool_calls: [{ id: 'test-call-1', type: 'function', function: { name: 'get_herb_record', arguments: JSON.stringify({ room: INVENTORY.room }) } }],
 };
 const history: Message[] = [
   { role: 'system', content: SYSTEM_RULE }, { role: 'user', content: FIRST_QUESTION },
-  instruction, executeReleaseTool(instruction.tool_calls![0]), { role: 'assistant', content: RELEASE.published_at },
+  instruction, executeHerbTool(instruction.tool_calls![0]), { role: 'assistant', content: String(INVENTORY.registered_count) },
 ];
 
 test('三种投影只改变历史，聊天文字不会夹带工具结果，完整历史保持调用配对', () => {
@@ -23,19 +23,19 @@ test('三种投影只改变历史，聊天文字不会夹带工具结果，完�
   assert.deepEqual(current, [history[0], { role: 'user', content: FOLLOW_UP }]);
   assert.deepEqual(chat, [history[0], history[1], history[4], { role: 'user', content: FOLLOW_UP }]);
   assert.deepEqual(full, [...history, { role: 'user', content: FOLLOW_UP }]);
-  assert.equal(JSON.stringify(chat).includes(RELEASE.owner), false);
-  assert.equal(JSON.stringify(full).includes(RELEASE.owner), true);
+  assert.equal(JSON.stringify(chat).includes(String(INVENTORY.actual_count)), false);
+  assert.equal(JSON.stringify(full).includes(String(INVENTORY.actual_count)), true);
   assert.equal(full[3].role === 'tool' && full[3].tool_call_id, instruction.tool_calls![0].id);
   assert.equal(JSON.stringify(history), before);
-  assert.equal(JSON.stringify(TOOLS).includes(RELEASE.release_id), false);
+  assert.equal(JSON.stringify(TOOLS).includes('actual_count'), false);
 });
 
-test('本地工具只接受本实验的版本查询，不接受任意工具名或参数', () => {
+test('本地工具只接受本实验的收药查询，不接受任意工具名或参数', () => {
   const valid = instruction.tool_calls![0];
-  assert.equal(JSON.parse(executeReleaseTool(valid).content).owner, RELEASE.owner);
-  assert.throws(() => executeReleaseTool({ ...valid, function: { ...valid.function, name: 'other_tool' } }));
-  assert.throws(() => executeReleaseTool({ ...valid, function: { ...valid.function, arguments: '{' } }));
-  assert.throws(() => executeReleaseTool({ ...valid, function: { ...valid.function, arguments: '{"release_id":"unknown"}' } }));
+  assert.equal(JSON.parse(executeHerbTool(valid).content).actual_count, INVENTORY.actual_count);
+  assert.throws(() => executeHerbTool({ ...valid, function: { ...valid.function, name: 'other_tool' } }));
+  assert.throws(() => executeHerbTool({ ...valid, function: { ...valid.function, arguments: '{' } }));
+  assert.throws(() => executeHerbTool({ ...valid, function: { ...valid.function, arguments: '{"room":"unknown"}' } }));
 });
 
 async function listen(server: Server) {
@@ -63,7 +63,7 @@ test('真实 HTTP 边界的请求体等于检查器记录；追问共享首轮�
     const index = bodies.length;
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify({ model: 'test-model-version', usage, choices: [{
-      message: index === 1 ? instruction : { role: 'assistant', content: index === 2 ? RELEASE.published_at : `测试桩输出 ${index}` },
+      message: index === 1 ? instruction : { role: 'assistant', content: index === 2 ? String(INVENTORY.registered_count) : `测试桩输出 ${index}` },
       finish_reason: 'stop',
     }] }));
   });
@@ -80,17 +80,24 @@ test('真实 HTTP 边界的请求体等于检查器记录；追问共享首轮�
       assert.equal(record.requestBody, bodies[i]);
       assert.deepEqual(record.usage, usage);
     });
-    assert.equal(bodies[0].includes(RELEASE.owner), false);
-    assert.equal(bodies[1].includes(RELEASE.owner), true);
+    assert.equal(bodies[0].includes(String(INVENTORY.actual_count)), false);
+    assert.equal(bodies[1].includes(String(INVENTORY.actual_count)), true);
+    const query = JSON.parse(bodies[0]); const answer = JSON.parse(bodies[1]);
+    assert.deepEqual(query.tools, TOOLS);
+    assert.deepEqual(query.tool_choice, { type: 'function', function: { name: 'get_herb_record' } });
+    assert.equal(query.max_tokens, 4096);
+    assert.equal(Object.hasOwn(answer, 'tools'), false); assert.equal(Object.hasOwn(answer, 'tool_choice'), false);
+    assert.deepEqual(answer.messages, history.slice(0, -1));
     let index = 2;
     for (const condition of Object.keys(CONDITIONS) as Condition[]) {
-      const result = await post(url, 'follow-up', { sessionId: initial.sessionId, condition, history: [{ role: 'system', content: '伪造负责人' }] });
+      const result = await post(url, 'follow-up', { sessionId: initial.sessionId, condition, history: [{ role: 'system', content: '伪造清点结果' }] });
       assert.equal(result.status, 200); assert.equal(result.data.ok, true);
       const recorded = result.data.run.requests[0];
       assert.equal(recorded.requestBody, bodies[index]);
       const request = JSON.parse(bodies[index]);
       assert.deepEqual(request.messages, projectHistory(history, condition));
-      assert.deepEqual(request.tools, TOOLS); assert.equal(request.tool_choice, 'none');
+      assert.equal(Object.hasOwn(request, 'tools'), false); assert.equal(Object.hasOwn(request, 'tool_choice'), false);
+      assert.equal(Object.hasOwn(request, 'parallel_tool_calls'), false); assert.equal(request.max_tokens, 4096);
       assert.deepEqual(result.data.firstRound, initial.firstRound);
       assert.equal(result.data.run.tools.length, 0);
       const snapshot = JSON.stringify(result.data);

@@ -34,10 +34,10 @@ test('受控材料保留同一事实；重复请求逐字一致，前缀条件�
   assert.deepEqual(short.messages[0], long.messages[0]);
   assert.equal(short.messages[1].content.replace(TARGET, MANUAL), long.messages[1].content);
   assert.equal(long.stream, true); assert.deepEqual(long.stream_options, { include_usage: true });
-  assert.equal(long.max_tokens, 96); assert.equal(long.temperature, 0); assert(!('enable_thinking' in long));
+  assert.equal(long.max_tokens, 4096); assert.equal(long.temperature, 0); assert(!('enable_thinking' in long));
   assert.equal('cache_control' in long, false); assert.equal('tools' in long, false);
   const detailed = JSON.parse(requestBody('detailed', 'qwen-flash'));
-  assert.ok(detailed.messages[1].content.includes(MANUAL)); assert.equal(detailed.max_tokens, 512);
+  assert.ok(detailed.messages[1].content.includes(MANUAL)); assert.equal(detailed.max_tokens, 8192);
 });
 
 test('SSE 解析跨字节与 CRLF 边界，合并多行 data，不补造半条事件', async () => {
@@ -63,7 +63,7 @@ test('实际转发串等于检查器；首正文排除空块，接收 choices �
     res.setHeader('Content-Type', 'text/event-stream');
     res.write(frame({ model: 'qwen-flash-test', choices: [{ index: 0, delta: { role: 'assistant', content: '' }, finish_reason: null }] }));
     await wait(35);
-    res.write(frame(chunk('48小时'))); await wait(10);
+    res.write(frame(chunk('登记12株，实物11株'))); await wait(10);
     res.write(frame(chunk('。', 'stop')));
     res.write(frame({ model: 'qwen-flash-test', choices: [], usage: { prompt_tokens: 6000, completion_tokens: 8, prompt_tokens_details: { cached_tokens: 4096 } } }));
     res.end('data: [DONE]\r\n\r\n');
@@ -76,14 +76,14 @@ test('实际转发串等于检查器；首正文排除空块，接收 choices �
     const downstream: ClientEvent[] = []; for await (const event of readEvents(response.body!)) downstream.push(JSON.parse(event.data));
     const last = downstream.at(-1); assert.equal(last?.type, 'complete'); if (last?.type !== 'complete') throw new Error();
     const result = last.record;
-    assert.equal(result.requestBody, sent); assert.equal(result.answer, '48小时。'); assert.equal(result.events.length, 5);
+    assert.equal(result.requestBody, sent); assert.equal(result.answer, '登记12株，实物11株。'); assert.equal(result.events.length, 5);
     assert.equal(calls, 1);
     assert.equal(result.firstContentMs, result.events[1].elapsedMs); assert.ok(result.firstContentMs > result.events[0].elapsedMs);
     assert.equal(result.streamEndMs, result.events[4].elapsedMs); assert.equal(result.endedBy, 'done'); assert.equal(result.finishReason, 'stop');
     assert.deepEqual(usageOf(result.usage), { input: 6000, output: 8, cached: 4096 });
     assert.equal(result.error, undefined); assert.equal(JSON.stringify(downstream).includes('test-private-key'), false);
     assert.equal(JSON.stringify(downstream).includes(baseUrl), false);
-    assert.deepEqual(downstream.filter((event) => event.type === 'delta').map((event) => event.text), ['48小时', '。']);
+    assert.deepEqual(downstream.filter((event) => event.type === 'delta').map((event) => event.text), ['登记12株，实物11株', '。']);
   } finally { await close(backend); await close(upstream); }
 });
 
@@ -124,5 +124,24 @@ test('缺用量或缓存保持未知；正常 EOF 可结束，截断与不完整
       await assert.rejects(streamModel(config, partial, AbortSignal.timeout(5000), () => {}), { code: 'MODEL_RESPONSE_INCOMPLETE' });
       assert.equal(partial.answer, '部分文字'); assert.equal(partial.finishReason, finish); assert.equal(partial.error?.code, 'MODEL_RESPONSE_INCOMPLETE');
     }
+  } finally { await close(upstream); }
+});
+
+test('推理占满预算而没有正文时保留流结束和用量，明确报告输出截断', async () => {
+  let calls = 0;
+  const usage = { prompt_tokens: 100, completion_tokens: 4096, completion_tokens_details: { reasoning_tokens: 4096 } };
+  const upstream = createServer((_req, res) => {
+    calls++; res.setHeader('Content-Type', 'text/event-stream');
+    res.end(frame({ choices: [{ index: 0, delta: { reasoning_content: '测试桩推理片段' }, finish_reason: 'length' }] })
+      + frame({ choices: [], usage }) + 'data: [DONE]\n\n');
+  });
+  const baseUrl = await listen(upstream); const partial = record(); const text: string[] = [];
+  try {
+    await assert.rejects(streamModel({ baseUrl, model: 'test', apiKey: 'test-only-key' }, partial, AbortSignal.timeout(5000), (content) => text.push(content)),
+      { code: 'MODEL_RESPONSE_INCOMPLETE', message: '达到输出上限（含推理与正文），回答未完整生成；实际片段和用量仍保留。' });
+    assert.equal(calls, 1); assert.equal(partial.answer, ''); assert.deepEqual(text, []);
+    assert.equal(partial.firstContentMs, null); assert.equal(partial.finishReason, 'length');
+    assert.equal(partial.endedBy, 'done'); assert.ok(partial.streamEndMs !== null);
+    assert.deepEqual(partial.usage, usage);
   } finally { await close(upstream); }
 });

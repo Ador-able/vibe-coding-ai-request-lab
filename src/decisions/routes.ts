@@ -15,8 +15,8 @@ export function createDecisionsRouter(env: NodeJS.ProcessEnv) {
     res.on('close', cancel);
     try {
       const config = readConfig(env);
-      run.request = { step: '生成两份候选文案', startedAt: new Date().toISOString(), requestBody: requestBody(config.model) };
-      const message = await sendRecordedRequest(config, run.request, AbortSignal.any([controller.signal, AbortSignal.timeout(90_000)]));
+      run.request = { step: '生成两份场景方案', startedAt: new Date().toISOString(), requestBody: requestBody(config.model) };
+      const message = await sendRecordedRequest(config, run.request, AbortSignal.any([controller.signal, AbortSignal.timeout(240_000)]));
       if (!isObject(message) || typeof message.content !== 'string') throw new ModelError('MODEL_RESPONSE_INVALID', '没有收到可解析的文字消息；实际响应保留在记录中。');
       run.options = parseOptions(message.content, run.request.finishReason);
       if (!res.destroyed) res.json({ ok: true, run } satisfies DecisionResponse);

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>保存消息，再准备输入</title>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="heading-top">
+        <span class="eyebrow">消息记录练习</span>
+      </div>
+      <h1>保存消息，再准备输入</h1>
+      <p>小说资料与已有消息 · 不调用模型</p>
+    </header>
+    <div class="workspace">
+      <section id="source" aria-labelledby="source-heading">
+        <h2 id="source-heading">导入用材料（未保存）</h2>
+        <details><summary>查看完整用户材料</summary><p id="user-task" class="prose"></p></details>
+        <div class="source-controls">
+          <label>下次装入<select id="fixture"><option value="normal">完整模型记录</option><option value="stopped">受控停止接收（教师条件）</option></select></label>
+          <label>保存哪一步<select id="phase"><option value="user">用户材料</option></select></label>
+        </div>
+        <div class="actions"><button id="import">装入并保存</button></div>
+      </section>
+      <section id="history" aria-labelledby="history-heading">
+        <div class="message-heading"><h2 id="history-heading">当前记录</h2><span id="completion" class="state-label">尚未保存</span></div>
+        <p id="historical-progress" class="progress"></p>
+        <div id="assistant"><p class="empty">先保存用户材料，再导入同一助手消息的快照或完整原件。</p></div>
+        <div id="record-identity" class="record-identity"></div>
+        <button id="reload" class="secondary" disabled>重新读取</button>
+      </section>
+      <section id="review" aria-labelledby="review-heading">
+        <div class="message-heading"><h2 id="review-heading">人的校正</h2><span id="review-state" class="state-label">未保存</span></div>
+        <label for="note">核对原资料后，说明要改变什么</label>
+        <textarea id="note" rows="5" disabled></textarea>
+        <div class="actions"><button id="save-feedback" disabled>保存校正</button><button id="prepare" class="secondary" disabled>准备下一轮输入</button></div>
+      </section>
+      <section id="prepared" aria-labelledby="prepared-heading" hidden>
+        <h2 id="prepared-heading">准备的输入 P2</h2>
+        <p class="quiet">规则和完整模型消息列在下面。尚未发出模型请求。</p>
+        <div id="input-readable"></div>
+      </section>
+      <p id="status" role="status" aria-live="polite">正在读取导入材料。</p>
+      <details id="records">
+        <summary>查看身份、完整对象与转换比较</summary>
+        <div class="inspector">
+          <details><summary>完整数据库读回与原始 SQL 行</summary><pre id="raw-view">尚未保存记录。</pre></details>
+          <details><summary>P0 / P1 / P2 的完整材料与下一轮规则</summary><pre id="raw-prepared">尚未准备输入。</pre></details>
+          <details><summary>本标签的完整请求与返回</summary><pre id="raw-requests">[]</pre></details>
+          <details><summary>固定输入字节及 SDK 版本</summary><pre id="raw-catalog"></pre></details>
+          <div class="record-tools"><button id="download" class="secondary">下载当前观察</button>
+            <label>重开已有记录<select id="saved-conversation"><option value="">选择记录</option></select></label><button id="open-record" class="secondary" disabled>读取选中记录</button>
+          </div>
+        </div>
+      </details>
+    </div>
+  </main>
+  <script type="module" src="/src/message-history/main.ts"></script>
+  <script type="module" src="/src/lab-shell.ts"></script>
+</body>
+</html>

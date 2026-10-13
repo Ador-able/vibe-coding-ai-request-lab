@@ -37,7 +37,7 @@ test('拒绝、截断和无正文先停止，JSON解析失败不替换为合法�
 
 test('原句存在不等于负责人正确，引用未找到时仍保留原始提取内容', () => {
   assert.equal(COUNTEREXAMPLE_CHECK.checks[2].status, 'pass'); assert.equal(COUNTEREXAMPLE_CHECK.checks[3].status, 'pass');
-  assert.equal(COUNTEREXAMPLE_CHECK.data?.items[0].owner, '周宇'); assert(COUNTEREXAMPLE.material.includes('陈岚负责'));
+  assert.equal(COUNTEREXAMPLE_CHECK.data?.items[0].owner, '叶师姐'); assert(COUNTEREXAMPLE.material.includes('叶师姐让林青'));
   const missing = inspectResponse(message({ items: [unknownTask] }), 'stop', '本次没有待办');
   assert.equal(missing.checks[3].status, 'fail'); assert.deepEqual(missing.data, { items: [unknownTask] }); assert.equal(missing.evidence?.[0].start, null);
 });
@@ -75,7 +75,7 @@ test('三种方式实际发送体与检查器一致，只改变输出格式参�
     }
     assert.equal(bodies[0].model, 'structured-test'); assert(!('response_format' in bodies[0]));
     assert.deepEqual(bodies[1].response_format, { type: 'json_object' });
-    assert.deepEqual(bodies[2].response_format, { type: 'json_schema', json_schema: { name: 'meeting_tasks', strict: true, schema: JSON_SCHEMA } });
+    assert.deepEqual(bodies[2].response_format, { type: 'json_schema', json_schema: { name: 'story_tasks', strict: true, schema: JSON_SCHEMA } });
     for (const body of bodies.slice(1)) { delete body.response_format; assert.deepEqual(body, bodies[0]); }
     const failed = await request('prompt'); const data = await failed.json() as StructuredResponse;
     assert.equal(failed.status, 502); assert.equal(data.run.request?.httpStatus, 401); assert.equal(data.run.inspection, null); assert.equal(data.run.rawAnswer, null);

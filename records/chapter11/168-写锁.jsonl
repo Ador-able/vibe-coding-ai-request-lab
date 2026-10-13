@@ -1,0 +1,2 @@
+{"event":"lock-acquired","sql":"BEGIN IMMEDIATE","instruction":"独立连接持锁。页面尝试保存后，按 Enter 释放；不会自动重试页面。","at":"2026-10-13T01:33:58.226Z","processId":102340}
+{"event":"lock-released","sql":"ROLLBACK","instruction":"请回到页面亲自再次保存。","at":"2026-10-13T01:34:39.852Z","processId":102340}

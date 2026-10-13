@@ -8,9 +8,13 @@ import { chooseOption, clearSelection, editDraft, emptyDecision, type Options, t
 import { requestBody } from '../src/decisions/scenario.ts';
 
 const options: Options = [
-  { direction: '信息优先', title: '测试标题甲', text: '测试桩文案甲', reason: '便于查安排', tradeoff: '情境描写较少', unknowns: '报名方式待确认' },
-  { direction: '参与感优先', title: '测试标题乙', text: '测试桩文案乙', reason: '先描写参与体验', tradeoff: '需要留意信息是否清晰', unknowns: '报名方式待确认' },
+  { direction: 'A 先查气流', title: 'A 先查气流', text: '测试桩方案甲', reason: '便于观察', tradeoff: '暂不比较同版书', unknowns: '窗户状态待确认' },
+  { direction: 'B 先寻同版', title: 'B 先寻同版', text: '测试桩方案乙', reason: '有机会对照页码', tradeoff: '需要先取得许可', unknowns: '同版书是否存在待确认' },
 ];
+const payload = {
+  方案A: { 情节方案: options[0].text, 理由: options[0].reason, 取舍: options[0].tradeoff, 待问: options[0].unknowns },
+  方案B: { 情节方案: options[1].text, 理由: options[1].reason, 取舍: options[1].tradeoff, 待问: options[1].unknowns },
+};
 async function listen(server: Server) {
   server.listen(0, '127.0.0.1'); await once(server, 'listening');
   const address = server.address(); assert.ok(address && typeof address !== 'string'); return `http://127.0.0.1:${address.port}`;
@@ -19,14 +23,14 @@ async function close(server: Server) {
   server.closeAllConnections(); await new Promise<void>((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
 }
 
-test('只接收完整的两项JSON契约，不修复围栏、缺字段或额外方案', () => {
-  const raw = JSON.stringify({ options }); assert.deepEqual(parseOptions(raw, 'stop'), options);
+test('接收完整方案的必需字段，不修复围栏或缺字段，额外字段不妨碍查看', () => {
+  const raw = JSON.stringify(payload); assert.deepEqual(parseOptions(raw, 'stop'), options);
+  assert.deepEqual(parseOptions(JSON.stringify({ ...payload, 提示: '顶层补充', 方案B: { ...payload.方案B, 提示: '方案补充' } }), 'stop'), options);
   assert.throws(() => parseOptions(raw, 'length'), { code: 'MODEL_RESPONSE_INCOMPLETE' });
   for (const invalid of [
     `\`\`\`json\n${raw}\n\`\`\``,
-    JSON.stringify({ options: [...options, options[0]] }),
-    JSON.stringify({ options: [options[0], { ...options[1], tradeoff: null }] }),
-    JSON.stringify({ options: [options[0], { ...options[1], unknowns: '' }] }),
+    JSON.stringify({ ...payload, 方案B: { ...payload.方案B, 取舍: null } }),
+    JSON.stringify({ ...payload, 方案B: { ...payload.方案B, 待问: '' } }),
   ]) assert.throws(() => parseOptions(invalid, 'stop'), { code: 'MODEL_RESPONSE_INVALID' });
 });
 
@@ -43,9 +47,9 @@ test('人工编辑不修改模型原稿；换选和不采用后仍保留本页�
 });
 
 test('实际HTTP请求与记录同串；结构失败保留原始输出且没有假方案或自动重试', async () => {
-  // HTTP桩只验证协议，不提供真实文案供课程采用。
+  // HTTP桩只验证协议，不提供真实方案供课程采用。
   const received: string[] = [];
-  const outputs = [JSON.stringify({ options }), '{"options":[]}'];
+  const outputs = [JSON.stringify(payload), '{}'];
   const upstream = createServer(async (req, res) => {
     let body = ''; for await (const part of req) body += part; received.push(body);
     res.setHeader('Content-Type', 'application/json');

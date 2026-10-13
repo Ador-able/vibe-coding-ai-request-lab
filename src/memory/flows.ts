@@ -20,11 +20,16 @@ export function noteMessages(saved: SavedNote) {
 
 export async function runFlow(config: ModelConfig, result: FlowResult, signal: AbortSignal, saved?: SavedNote) {
   async function call(messages: { role: string; content: string }[], step: string, json = false) {
+    // 输出预算同时容纳推理与正文；各条续写流程使用相同上限。
+    const maxTokens = step === '回答问题' ? 4096 : 2048;
     const requestBody = JSON.stringify({ model: config.model, messages, stream: false,
-      temperature: 0, max_tokens: json ? 256 : 1024, ...(json ? { response_format: { type: 'json_object' } } : {}) });
+      temperature: 0, max_tokens: maxTokens, ...(json ? { response_format: { type: 'json_object' } } : {}) });
     const record = { step, startedAt: new Date().toISOString(), requestBody };
     result.requests.push(record);
     const message = await sendRecordedRequest(config, record, signal);
+    if (result.requests.at(-1)!.finishReason === 'length') {
+      throw new ModelError('MODEL_RESPONSE_INCOMPLETE', `本步达到 ${maxTokens} token 输出上限（含推理与正文），尚未完整结束。已保留原始响应与用量，不继续后续步骤。`);
+    }
     if (!isObject(message) || typeof message.content !== 'string' || !message.content.trim()) {
       throw new ModelError('MODEL_RESPONSE_INVALID', '模型没有返回可识别的文字，已有响应保留在记录中。');
     }
@@ -37,7 +42,7 @@ export async function runFlow(config: ModelConfig, result: FlowResult, signal: A
     case 'full': material = sourceText(SOURCES.map((source) => source.id)); break;
     case 'retrieve': {
       const selection = await call([
-        { role: 'system', content: '根据当前任务和资料目录，选择需要读取原文的记录编号。返回且只返回 JSON 对象 {"source_ids":["编号"]}。只使用目录中存在的编号，不重复；选择应覆盖做决定所需的条件、时间和最新进度。此步不回答任务。' },
+        { role: 'system', content: '根据当前任务和资料目录，选择需要读取原文的记录编号。返回且只返回 JSON 对象 {"source_ids":["编号"]}。只使用目录中存在的编号，不重复；选择应覆盖续写所需的前章接点、人物限制、已知事实和未决问题。此步不写正文。' },
         { role: 'user', content: `${QUESTION}\n\n资料目录（标题、日期、主题与片段，不是原文）：\n${JSON.stringify(CATALOG)}` },
       ], '选择资料编号', true);
       result.selectedIds = parseSelectedIds(selection);
@@ -46,7 +51,7 @@ export async function runFlow(config: ModelConfig, result: FlowResult, signal: A
     }
     case 'summary': {
       result.summary = await call([
-        { role: 'system', content: '为指定任务整理一份不超过500字的任务摘要。保留影响决定的具体日期、时段、数字、批准条件、未决事项和来源编号，不把待确认写成已确认。无关内容可省略，不补造信息。此步只整理摘要，不替用户作决定。' },
+        { role: 'system', content: '为指定任务整理一份不超过500字的任务摘要。保留前章接点、人物行动限制、具体数量、已知线索、未决问题和来源编号，不把猜测写成事实。无关内容可省略，不补造信息。此步只整理摘要，不续写正文。' },
         { role: 'user', content: `${QUESTION}\n\n原文：\n${sourceText(SOURCES.map((source) => source.id))}` },
       ], '生成任务摘要');
       material = `以下是模型整理的任务摘要，本轮未附原文：\n${result.summary}`;

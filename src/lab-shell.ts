@@ -3,9 +3,10 @@ import './lab-shell.css';
 type Settings = { baseUrl: string; model: string; structuredModel: string; embeddingModel: string; hasKey: boolean };
 const experiments = [
   ['/', '独立提问'], ['/context.html', '上下文对照'], ['/quality.html', '材料对照'],
-  ['/memory.html', '按需读取与记忆'], ['/latency.html', '等待与费用'],
+  ['/latency.html', '等待与用量'], ['/memory.html', '按需读取与记忆'],
   ['/structured.html', '结构化输出'], ['/streaming.html', '流式消息'],
-  ['/collaboration.html', '活动文字共写'], ['/decisions.html', '方案与取舍'], ['/feedback.html', '人工反馈'],
+  ['/message-history.html', '消息记录'], ['/requests.html', '请求状态'],
+  ['/decisions.html', '场景方案'], ['/collaboration.html', '场景共写'], ['/feedback.html', '人物指代'],
 ];
 const bar = document.createElement('nav'); bar.className = 'lab-nav'; bar.setAttribute('aria-label', '实验导航');
 bar.innerHTML = `<div><label for="lab-page">实验</label><select id="lab-page"></select></div><button id="model-settings-open" type="button">模型设置</button>`;
@@ -31,7 +32,7 @@ let current: Settings | undefined;
 function display(settings: Settings) {
   current = settings;
   get<HTMLButtonElement>('model-settings-open').textContent = settings.hasKey
-    ? `模型设置 · ${location.pathname === '/structured.html' ? (settings.structuredModel || settings.model) : settings.model}` : '设置模型';
+    ? '模型设置' : '设置模型';
   get<HTMLInputElement>('model-base-url').value = settings.baseUrl;
   get<HTMLInputElement>('model-name').value = settings.model;
   get<HTMLInputElement>('structured-model-name').value = settings.structuredModel;
@@ -65,5 +66,5 @@ get<HTMLFormElement>('model-settings-form').addEventListener('submit', async (ev
 void fetch('/api/config').then(async (response) => {
   if (!response.ok) throw new Error();
   const settings = await response.json() as Settings; display(settings);
-  if (!settings.hasKey) dialog.showModal();
+
 }).catch(() => { status.textContent = '模型设置不可用，请确认本机服务仍在运行。'; });

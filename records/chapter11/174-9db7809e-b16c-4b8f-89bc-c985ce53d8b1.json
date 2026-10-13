@@ -1,0 +1,674 @@
+{
+  "requestId": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1",
+  "serviceId": "8d28dd3b-8382-47dd-8d0f-03fd290537eb",
+  "fixtureKey": "B",
+  "scenario": "normal",
+  "input": "《青岚修仙录》：夜雨后的练功场\n\n林青推开练功场的侧门，东边的蒲团已经湿了半边。他仍是青岚宗外门弟子，只有炼气三层，盼着有一日能筑基；今日轮到他收拾场地，不能因为惦记吐纳便放着漏水不管。\n\n他把受潮的蒲团移到廊下干处，擦去地上的积水。赵师兄随后来看，摸过西边的地板，决定今日只用练功场西半边，东半边暂不安排弟子练习。\n\n两人用从杂物房借来的三块木板挡住东侧入口。赵师兄让林青明日午后把这三块木板还回杂物房；若那时屋顶仍未修好，东侧改用现有绳栏围住。\n\n林青抬头望着椽子，分不清是哪一片瓦松了。补漏由谁负责、何时动工，还没有定下来。他在值日纸上记下东侧停用，把补漏人选和日期两栏留空。临走前，他从西侧重新走了一遍，确认今日练习的地方没有积水。\n",
+  "instructions": "只依据小说资料写一段简明摘要，区分已确定安排和未决事项，不补造事实。",
+  "answerOrigin": "教师完整回答，本次经Mock发送",
+  "source": {
+    "kind": "teacher-authored"
+  },
+  "sdkOptions": {
+    "maxRetries": 1,
+    "streamRetries": "omitted",
+    "totalTimeoutMs": 15000
+  },
+  "startedAt": "2026-10-13T01:37:08.869Z",
+  "state": "cancelled",
+  "cause": "manual-stop",
+  "finishedAt": "2026-10-13T01:37:09.156Z",
+  "manualStopRequestedAt": "2026-10-13T01:37:09.149Z",
+  "connectionClosedAt": null,
+  "providerCalls": [
+    {
+      "index": 1,
+      "beganAt": "2026-10-13T01:37:08.873Z",
+      "elapsedMs": 4,
+      "input": {
+        "maxOutputTokens": {
+          "kind": "undefined"
+        },
+        "temperature": {
+          "kind": "undefined"
+        },
+        "topP": {
+          "kind": "undefined"
+        },
+        "topK": {
+          "kind": "undefined"
+        },
+        "presencePenalty": {
+          "kind": "undefined"
+        },
+        "frequencyPenalty": {
+          "kind": "undefined"
+        },
+        "stopSequences": {
+          "kind": "undefined"
+        },
+        "seed": {
+          "kind": "undefined"
+        },
+        "reasoning": {
+          "kind": "undefined"
+        },
+        "tools": {
+          "kind": "undefined"
+        },
+        "toolChoice": {
+          "type": "auto"
+        },
+        "responseFormat": {
+          "kind": "undefined"
+        },
+        "prompt": [
+          {
+            "role": "system",
+            "content": "只依据小说资料写一段简明摘要，区分已确定安排和未决事项，不补造事实。"
+          },
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "《青岚修仙录》：夜雨后的练功场\n\n林青推开练功场的侧门，东边的蒲团已经湿了半边。他仍是青岚宗外门弟子，只有炼气三层，盼着有一日能筑基；今日轮到他收拾场地，不能因为惦记吐纳便放着漏水不管。\n\n他把受潮的蒲团移到廊下干处，擦去地上的积水。赵师兄随后来看，摸过西边的地板，决定今日只用练功场西半边，东半边暂不安排弟子练习。\n\n两人用从杂物房借来的三块木板挡住东侧入口。赵师兄让林青明日午后把这三块木板还回杂物房；若那时屋顶仍未修好，东侧改用现有绳栏围住。\n\n林青抬头望着椽子，分不清是哪一片瓦松了。补漏由谁负责、何时动工，还没有定下来。他在值日纸上记下东侧停用，把补漏人选和日期两栏留空。临走前，他从西侧重新走了一遍，确认今日练习的地方没有积水。\n"
+              }
+            ],
+            "providerOptions": {
+              "kind": "undefined"
+            }
+          }
+        ],
+        "providerOptions": {
+          "kind": "undefined"
+        },
+        "abortSignal": {
+          "kind": "AbortSignal",
+          "aborted": false,
+          "reason": {
+            "kind": "undefined"
+          }
+        },
+        "headers": {
+          "kind": "undefined"
+        },
+        "includeRawChunks": false
+      },
+      "result": "stream",
+      "assignedParts": [
+        {
+          "type": "stream-start",
+          "warnings": []
+        },
+        {
+          "type": "response-metadata",
+          "id": "mock-9db7809e-b16c-4b8f-89bc-c985ce53d8b1-1",
+          "modelId": "controlled-summary"
+        },
+        {
+          "type": "text-start",
+          "id": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:text:1"
+        },
+        {
+          "type": "text-delta",
+          "id": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:text:1",
+          "delta": "夜雨使练功场东侧受潮，林"
+        },
+        {
+          "type": "text-delta",
+          "id": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:text:1",
+          "delta": "青已移走湿蒲团并清理积水"
+        },
+        {
+          "type": "text-delta",
+          "id": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:text:1",
+          "delta": "。今日只用西半边，东侧以"
+        },
+        {
+          "type": "text-delta",
+          "id": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:text:1",
+          "delta": "借来的三块木板拦住。林青"
+        },
+        {
+          "type": "text-delta",
+          "id": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:text:1",
+          "delta": "明日午后归还木板，若屋顶"
+        },
+        {
+          "type": "text-delta",
+          "id": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:text:1",
+          "delta": "未修好便改用绳栏。漏点、"
+        },
+        {
+          "type": "text-delta",
+          "id": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:text:1",
+          "delta": "补漏人选和开工时间仍未确"
+        },
+        {
+          "type": "text-delta",
+          "id": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:text:1",
+          "delta": "定，不能据场地清理完毕认"
+        },
+        {
+          "type": "text-delta",
+          "id": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:text:1",
+          "delta": "定修缮完成。\n"
+        },
+        {
+          "type": "text-end",
+          "id": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:text:1"
+        },
+        {
+          "type": "finish",
+          "finishReason": {
+            "unified": "stop",
+            "raw": "controlled-stop"
+          },
+          "usage": {
+            "inputTokens": {
+              "total": {
+                "kind": "undefined"
+              },
+              "noCache": {
+                "kind": "undefined"
+              },
+              "cacheRead": {
+                "kind": "undefined"
+              },
+              "cacheWrite": {
+                "kind": "undefined"
+              }
+            },
+            "outputTokens": {
+              "total": {
+                "kind": "undefined"
+              },
+              "text": {
+                "kind": "undefined"
+              },
+              "reasoning": {
+                "kind": "undefined"
+              }
+            }
+          }
+        }
+      ],
+      "emittedParts": [
+        {
+          "at": "2026-10-13T01:37:08.874Z",
+          "elapsedMs": 4.9,
+          "value": {
+            "type": "stream-start",
+            "warnings": []
+          }
+        },
+        {
+          "at": "2026-10-13T01:37:08.875Z",
+          "elapsedMs": 5.2,
+          "value": {
+            "type": "response-metadata",
+            "id": "mock-9db7809e-b16c-4b8f-89bc-c985ce53d8b1-1",
+            "modelId": "controlled-summary"
+          }
+        },
+        {
+          "at": "2026-10-13T01:37:08.875Z",
+          "elapsedMs": 5.9,
+          "value": {
+            "type": "text-start",
+            "id": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:text:1"
+          }
+        },
+        {
+          "at": "2026-10-13T01:37:09.044Z",
+          "elapsedMs": 174.4,
+          "value": {
+            "type": "text-delta",
+            "id": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:text:1",
+            "delta": "夜雨使练功场东侧受潮，林"
+          }
+        }
+      ],
+      "signalChanges": [
+        {
+          "at": "2026-10-13T01:37:09.150Z",
+          "elapsedMs": 280.2,
+          "value": {
+            "kind": "AbortSignal",
+            "aborted": true,
+            "reason": {
+              "kind": "Error",
+              "name": "AbortError",
+              "message": "用户要求停止本次请求",
+              "stack": "AbortError: 用户要求停止本次请求\n    at new DOMException (node:internal/per_context/domexception:76:18)\n    at file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:363:953\n    at wi.handleRequest (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:28086)\n    at c (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:29995)\n    at _i.dispatch (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:29751)\n    at r (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:33803)\n    at wi.handleRequest (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:28086)\n    at file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:32685\n    at m (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:34774)\n    at m (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:34844)"
+            }
+          }
+        }
+      ],
+      "error": {
+        "kind": "Error",
+        "name": "AbortError",
+        "message": "The operation was aborted",
+        "cause": {
+          "kind": "Error",
+          "name": "AbortError",
+          "message": "用户要求停止本次请求",
+          "stack": "AbortError: 用户要求停止本次请求\n    at new DOMException (node:internal/per_context/domexception:76:18)\n    at file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:363:953\n    at wi.handleRequest (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:28086)\n    at c (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:29995)\n    at _i.dispatch (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:29751)\n    at r (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:33803)\n    at wi.handleRequest (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:28086)\n    at file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:32685\n    at m (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:34774)\n    at m (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:34844)"
+        },
+        "code": "ABORT_ERR",
+        "stack": "AbortError: The operation was aborted\n    at Timeout.cancelListenerHandler (node:timers/promises:49:12)\n    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:845:20)\n    at AbortSignal.dispatchEvent (node:internal/event_target:778:26)\n    at runAbort (node:internal/abort_controller:488:10)\n    at abortSignal (node:internal/abort_controller:465:5)\n    at AbortController.abort (node:internal/abort_controller:507:5)\n    at file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:363:947\n    at wi.handleRequest (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:28086)\n    at c (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:29995)\n    at _i.dispatch (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:29751)"
+      }
+    }
+  ],
+  "sdkParts": [
+    {
+      "at": "2026-10-13T01:37:08.872Z",
+      "elapsedMs": 2.2,
+      "value": {
+        "type": "start"
+      }
+    },
+    {
+      "at": "2026-10-13T01:37:08.876Z",
+      "elapsedMs": 6.6,
+      "value": {
+        "type": "start-step",
+        "request": {
+          "body": {
+            "kind": "undefined"
+          },
+          "messages": {
+            "kind": "undefined"
+          }
+        },
+        "warnings": []
+      }
+    },
+    {
+      "at": "2026-10-13T01:37:08.877Z",
+      "elapsedMs": 7.7,
+      "value": {
+        "type": "text-start",
+        "id": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:text:1"
+      }
+    },
+    {
+      "at": "2026-10-13T01:37:09.045Z",
+      "elapsedMs": 175.5,
+      "value": {
+        "type": "text-delta",
+        "id": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:text:1",
+        "text": "夜雨使练功场东侧受潮，林",
+        "providerMetadata": {
+          "kind": "undefined"
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:37:09.153Z",
+      "elapsedMs": 283.3,
+      "value": {
+        "type": "abort",
+        "reason": "AbortError: 用户要求停止本次请求"
+      }
+    }
+  ],
+  "callbacks": [
+    {
+      "at": "2026-10-13T01:37:08.871Z",
+      "elapsedMs": 1.9,
+      "value": {
+        "kind": "core.onStart",
+        "event": {
+          "callId": "call-ZMU6Wo6MyFRs61LWhCmtl9S3",
+          "operationId": "ai.streamText",
+          "provider": "official-mock",
+          "modelId": "controlled-summary",
+          "instructions": "只依据小说资料写一段简明摘要，区分已确定安排和未决事项，不补造事实。",
+          "messages": [
+            {
+              "role": "user",
+              "content": "《青岚修仙录》：夜雨后的练功场\n\n林青推开练功场的侧门，东边的蒲团已经湿了半边。他仍是青岚宗外门弟子，只有炼气三层，盼着有一日能筑基；今日轮到他收拾场地，不能因为惦记吐纳便放着漏水不管。\n\n他把受潮的蒲团移到廊下干处，擦去地上的积水。赵师兄随后来看，摸过西边的地板，决定今日只用练功场西半边，东半边暂不安排弟子练习。\n\n两人用从杂物房借来的三块木板挡住东侧入口。赵师兄让林青明日午后把这三块木板还回杂物房；若那时屋顶仍未修好，东侧改用现有绳栏围住。\n\n林青抬头望着椽子，分不清是哪一片瓦松了。补漏由谁负责、何时动工，还没有定下来。他在值日纸上记下东侧停用，把补漏人选和日期两栏留空。临走前，他从西侧重新走了一遍，确认今日练习的地方没有积水。\n"
+            }
+          ],
+          "tools": {
+            "kind": "undefined"
+          },
+          "toolChoice": {
+            "kind": "undefined"
+          },
+          "activeTools": {
+            "kind": "undefined"
+          },
+          "toolOrder": {
+            "kind": "undefined"
+          },
+          "maxOutputTokens": {
+            "kind": "undefined"
+          },
+          "temperature": {
+            "kind": "undefined"
+          },
+          "topP": {
+            "kind": "undefined"
+          },
+          "topK": {
+            "kind": "undefined"
+          },
+          "presencePenalty": {
+            "kind": "undefined"
+          },
+          "frequencyPenalty": {
+            "kind": "undefined"
+          },
+          "stopSequences": {
+            "kind": "undefined"
+          },
+          "seed": {
+            "kind": "undefined"
+          },
+          "reasoning": {
+            "kind": "undefined"
+          },
+          "maxRetries": 1,
+          "timeout": {
+            "totalMs": 15000
+          },
+          "headers": {
+            "kind": "undefined"
+          },
+          "providerOptions": {
+            "kind": "undefined"
+          },
+          "output": {
+            "kind": "undefined"
+          },
+          "runtimeContext": {},
+          "toolsContext": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:37:08.873Z",
+      "elapsedMs": 3.7,
+      "value": {
+        "kind": "core.onLanguageModelCallStart",
+        "event": {
+          "callId": "call-ZMU6Wo6MyFRs61LWhCmtl9S3",
+          "provider": "official-mock",
+          "modelId": "controlled-summary",
+          "instructions": "只依据小说资料写一段简明摘要，区分已确定安排和未决事项，不补造事实。",
+          "messages": [
+            {
+              "role": "user",
+              "content": "《青岚修仙录》：夜雨后的练功场\n\n林青推开练功场的侧门，东边的蒲团已经湿了半边。他仍是青岚宗外门弟子，只有炼气三层，盼着有一日能筑基；今日轮到他收拾场地，不能因为惦记吐纳便放着漏水不管。\n\n他把受潮的蒲团移到廊下干处，擦去地上的积水。赵师兄随后来看，摸过西边的地板，决定今日只用练功场西半边，东半边暂不安排弟子练习。\n\n两人用从杂物房借来的三块木板挡住东侧入口。赵师兄让林青明日午后把这三块木板还回杂物房；若那时屋顶仍未修好，东侧改用现有绳栏围住。\n\n林青抬头望着椽子，分不清是哪一片瓦松了。补漏由谁负责、何时动工，还没有定下来。他在值日纸上记下东侧停用，把补漏人选和日期两栏留空。临走前，他从西侧重新走了一遍，确认今日练习的地方没有积水。\n"
+            }
+          ],
+          "tools": {
+            "kind": "undefined"
+          },
+          "maxOutputTokens": {
+            "kind": "undefined"
+          },
+          "temperature": {
+            "kind": "undefined"
+          },
+          "topP": {
+            "kind": "undefined"
+          },
+          "topK": {
+            "kind": "undefined"
+          },
+          "presencePenalty": {
+            "kind": "undefined"
+          },
+          "frequencyPenalty": {
+            "kind": "undefined"
+          },
+          "stopSequences": {
+            "kind": "undefined"
+          },
+          "seed": {
+            "kind": "undefined"
+          },
+          "reasoning": {
+            "kind": "undefined"
+          }
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:37:09.152Z",
+      "elapsedMs": 282.8,
+      "value": {
+        "kind": "core.onAbort",
+        "event": {
+          "callId": "call-ZMU6Wo6MyFRs61LWhCmtl9S3",
+          "steps": [],
+          "reason": {
+            "kind": "Error",
+            "name": "AbortError",
+            "message": "用户要求停止本次请求",
+            "stack": "AbortError: 用户要求停止本次请求\n    at new DOMException (node:internal/per_context/domexception:76:18)\n    at file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:363:953\n    at wi.handleRequest (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:28086)\n    at c (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:29995)\n    at _i.dispatch (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:29751)\n    at r (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:33803)\n    at wi.handleRequest (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:28086)\n    at file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:32685\n    at m (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:34774)\n    at m (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:34844)"
+          }
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:37:09.156Z",
+      "elapsedMs": 286.4,
+      "value": {
+        "kind": "ui.onEnd",
+        "event": {
+          "isAborted": true,
+          "isContinuation": false,
+          "outcome": {
+            "status": "aborted"
+          },
+          "responseMessage": {
+            "id": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:assistant",
+            "metadata": {
+              "requestId": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1",
+              "fixtureKey": "B",
+              "state": "cancelled",
+              "cause": "manual-stop",
+              "origin": "controlled-exercise"
+            },
+            "role": "assistant",
+            "parts": [
+              {
+                "type": "step-start"
+              },
+              {
+                "type": "text",
+                "text": "夜雨使练功场东侧受潮，林",
+                "providerMetadata": {
+                  "kind": "undefined"
+                },
+                "state": "streaming"
+              }
+            ]
+          },
+          "messages": [
+            {
+              "id": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:assistant",
+              "metadata": {
+                "requestId": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1",
+                "fixtureKey": "B",
+                "state": "cancelled",
+                "cause": "manual-stop",
+                "origin": "controlled-exercise"
+              },
+              "role": "assistant",
+              "parts": [
+                {
+                  "type": "step-start"
+                },
+                {
+                  "type": "text",
+                  "text": "夜雨使练功场东侧受潮，林",
+                  "providerMetadata": {
+                    "kind": "undefined"
+                  },
+                  "state": "streaming"
+                }
+              ]
+            }
+          ],
+          "finishReason": {
+            "kind": "undefined"
+          }
+        }
+      }
+    }
+  ],
+  "uiEvents": [
+    {
+      "at": "2026-10-13T01:37:08.872Z",
+      "elapsedMs": 2.6,
+      "value": {
+        "type": "start",
+        "messageMetadata": {
+          "requestId": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1",
+          "fixtureKey": "B",
+          "state": "running",
+          "cause": null,
+          "origin": "controlled-exercise"
+        },
+        "messageId": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:assistant"
+      }
+    },
+    {
+      "at": "2026-10-13T01:37:08.876Z",
+      "elapsedMs": 7,
+      "value": {
+        "type": "start-step"
+      }
+    },
+    {
+      "at": "2026-10-13T01:37:08.878Z",
+      "elapsedMs": 8.1,
+      "value": {
+        "type": "text-start",
+        "id": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:text:1"
+      }
+    },
+    {
+      "at": "2026-10-13T01:37:09.045Z",
+      "elapsedMs": 176,
+      "value": {
+        "type": "text-delta",
+        "id": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:text:1",
+        "delta": "夜雨使练功场东侧受潮，林"
+      }
+    },
+    {
+      "at": "2026-10-13T01:37:09.153Z",
+      "elapsedMs": 283.8,
+      "value": {
+        "type": "abort",
+        "reason": "AbortError: 用户要求停止本次请求"
+      }
+    },
+    {
+      "at": "2026-10-13T01:37:09.155Z",
+      "elapsedMs": 285.2,
+      "value": {
+        "type": "message-metadata",
+        "messageMetadata": {
+          "requestId": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1",
+          "fixtureKey": "B",
+          "state": "cancelled",
+          "cause": "manual-stop",
+          "origin": "controlled-exercise"
+        }
+      }
+    }
+  ],
+  "transport": [
+    {
+      "at": "2026-10-13T01:37:09.149Z",
+      "elapsedMs": 280,
+      "value": {
+        "kind": "manual-cancel-received"
+      }
+    },
+    {
+      "at": "2026-10-13T01:37:09.158Z",
+      "elapsedMs": 288.4,
+      "value": {
+        "kind": "response-close",
+        "writableEnded": true,
+        "state": "cancelled"
+      }
+    }
+  ],
+  "serverSseProduced": [
+    {
+      "at": "2026-10-13T01:37:08.872Z",
+      "elapsedMs": 3,
+      "value": "data: {\"type\":\"start\",\"messageMetadata\":{\"requestId\":\"9db7809e-b16c-4b8f-89bc-c985ce53d8b1\",\"fixtureKey\":\"B\",\"state\":\"running\",\"cause\":null,\"origin\":\"controlled-exercise\"},\"messageId\":\"9db7809e-b16c-4b8f-89bc-c985ce53d8b1:assistant\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:37:08.877Z",
+      "elapsedMs": 7.3,
+      "value": "data: {\"type\":\"start-step\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:37:08.878Z",
+      "elapsedMs": 8.4,
+      "value": "data: {\"type\":\"text-start\",\"id\":\"9db7809e-b16c-4b8f-89bc-c985ce53d8b1:text:1\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:37:09.046Z",
+      "elapsedMs": 176.5,
+      "value": "data: {\"type\":\"text-delta\",\"id\":\"9db7809e-b16c-4b8f-89bc-c985ce53d8b1:text:1\",\"delta\":\"夜雨使练功场东侧受潮，林\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:37:09.154Z",
+      "elapsedMs": 284.2,
+      "value": "data: {\"type\":\"abort\",\"reason\":\"AbortError: 用户要求停止本次请求\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:37:09.155Z",
+      "elapsedMs": 285.6,
+      "value": "data: {\"type\":\"message-metadata\",\"messageMetadata\":{\"requestId\":\"9db7809e-b16c-4b8f-89bc-c985ce53d8b1\",\"fixtureKey\":\"B\",\"state\":\"cancelled\",\"cause\":\"manual-stop\",\"origin\":\"controlled-exercise\"}}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:37:09.156Z",
+      "elapsedMs": 286.9,
+      "value": "data: [DONE]\n\n"
+    }
+  ],
+  "uiMessage": {
+    "id": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1:assistant",
+    "metadata": {
+      "requestId": "9db7809e-b16c-4b8f-89bc-c985ce53d8b1",
+      "fixtureKey": "B",
+      "state": "cancelled",
+      "cause": "manual-stop",
+      "origin": "controlled-exercise"
+    },
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "step-start"
+      },
+      {
+        "type": "text",
+        "text": "夜雨使练功场东侧受潮，林",
+        "state": "streaming"
+      }
+    ]
+  },
+  "uiOutcome": {
+    "status": "aborted"
+  },
+  "error": {
+    "kind": "Error",
+    "name": "AbortError",
+    "message": "用户要求停止本次请求",
+    "stack": "AbortError: 用户要求停止本次请求\n    at new DOMException (node:internal/per_context/domexception:76:18)\n    at file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:363:953\n    at wi.handleRequest (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:28086)\n    at c (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:29995)\n    at _i.dispatch (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:29751)\n    at r (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:33803)\n    at wi.handleRequest (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:28086)\n    at file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:32685\n    at m (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:34774)\n    at m (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:32:34844)"
+  }
+}

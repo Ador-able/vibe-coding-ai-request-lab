@@ -2,6 +2,7 @@ import { APICallError, streamText } from 'ai';
 import { createCompatibleProvider } from '../ai-provider.ts';
 import { ModelError, type ModelConfig } from '../model.ts';
 import type { StageRecord } from './contract.ts';
+import { SUMMARY_RULE, QUESTIONS_RULE } from '../output-material.ts';
 
 export async function streamStage(
   config: ModelConfig, record: StageRecord, material: string, summary: string,
@@ -24,11 +25,9 @@ export async function streamStage(
   const isSummary = record.stage === 'summary';
   const result = streamText({
     model: provider.chatModel(config.model),
-    instructions: isSummary
-      ? '只依据工作纪要写一段约120字的简明摘要，区分已确定安排和未决事项。不补造事实，不提出问题，不加标题。'
-      : '只依据工作纪要及摘要，提出2至3个需要负责人进一步确认的问题。只写编号问题，每个问题单独一行，以1.、2.、3.依次开始；不加标题、开场或答案，不把已经确定的安排当作未决事项。',
-    prompt: isSummary ? material : `工作纪要：\n${material}\n\n刚生成的摘要：\n${summary}`,
-    temperature: 0, maxOutputTokens: isSummary ? 256 : 384,
+    instructions: isSummary ? SUMMARY_RULE : QUESTIONS_RULE,
+    prompt: isSummary ? material : `小说资料：\n${material}\n\n刚生成的摘要：\n${summary}`,
+    temperature: 0, maxOutputTokens: 4096,
     abortSignal: requestSignal, maxRetries: 0, includeRawChunks: true,
     // 错误由下面的消费路径处理，避免SDK默认日志打印供应商错误中的账户信息。
     onError: () => {},

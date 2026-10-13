@@ -1,0 +1,789 @@
+{
+  "requestId": "511cfdb6-7798-481d-8bb9-d6252e18d288",
+  "serviceId": "8d28dd3b-8382-47dd-8d0f-03fd290537eb",
+  "fixtureKey": "B",
+  "scenario": "disconnect",
+  "input": "《青岚修仙录》：夜雨后的练功场\n\n林青推开练功场的侧门，东边的蒲团已经湿了半边。他仍是青岚宗外门弟子，只有炼气三层，盼着有一日能筑基；今日轮到他收拾场地，不能因为惦记吐纳便放着漏水不管。\n\n他把受潮的蒲团移到廊下干处，擦去地上的积水。赵师兄随后来看，摸过西边的地板，决定今日只用练功场西半边，东半边暂不安排弟子练习。\n\n两人用从杂物房借来的三块木板挡住东侧入口。赵师兄让林青明日午后把这三块木板还回杂物房；若那时屋顶仍未修好，东侧改用现有绳栏围住。\n\n林青抬头望着椽子，分不清是哪一片瓦松了。补漏由谁负责、何时动工，还没有定下来。他在值日纸上记下东侧停用，把补漏人选和日期两栏留空。临走前，他从西侧重新走了一遍，确认今日练习的地方没有积水。\n",
+  "instructions": "只依据小说资料写一段简明摘要，区分已确定安排和未决事项，不补造事实。",
+  "answerOrigin": "教师完整回答，本次经Mock发送",
+  "source": {
+    "kind": "teacher-authored"
+  },
+  "sdkOptions": {
+    "maxRetries": 1,
+    "streamRetries": "omitted",
+    "totalTimeoutMs": 15000
+  },
+  "startedAt": "2026-10-13T01:43:01.055Z",
+  "state": "cancelled",
+  "cause": "connection-closed",
+  "finishedAt": "2026-10-13T01:43:01.830Z",
+  "manualStopRequestedAt": null,
+  "connectionClosedAt": "2026-10-13T01:43:01.825Z",
+  "providerCalls": [
+    {
+      "index": 1,
+      "beganAt": "2026-10-13T01:43:01.059Z",
+      "elapsedMs": 4,
+      "input": {
+        "maxOutputTokens": {
+          "kind": "undefined"
+        },
+        "temperature": {
+          "kind": "undefined"
+        },
+        "topP": {
+          "kind": "undefined"
+        },
+        "topK": {
+          "kind": "undefined"
+        },
+        "presencePenalty": {
+          "kind": "undefined"
+        },
+        "frequencyPenalty": {
+          "kind": "undefined"
+        },
+        "stopSequences": {
+          "kind": "undefined"
+        },
+        "seed": {
+          "kind": "undefined"
+        },
+        "reasoning": {
+          "kind": "undefined"
+        },
+        "tools": {
+          "kind": "undefined"
+        },
+        "toolChoice": {
+          "type": "auto"
+        },
+        "responseFormat": {
+          "kind": "undefined"
+        },
+        "prompt": [
+          {
+            "role": "system",
+            "content": "只依据小说资料写一段简明摘要，区分已确定安排和未决事项，不补造事实。"
+          },
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "《青岚修仙录》：夜雨后的练功场\n\n林青推开练功场的侧门，东边的蒲团已经湿了半边。他仍是青岚宗外门弟子，只有炼气三层，盼着有一日能筑基；今日轮到他收拾场地，不能因为惦记吐纳便放着漏水不管。\n\n他把受潮的蒲团移到廊下干处，擦去地上的积水。赵师兄随后来看，摸过西边的地板，决定今日只用练功场西半边，东半边暂不安排弟子练习。\n\n两人用从杂物房借来的三块木板挡住东侧入口。赵师兄让林青明日午后把这三块木板还回杂物房；若那时屋顶仍未修好，东侧改用现有绳栏围住。\n\n林青抬头望着椽子，分不清是哪一片瓦松了。补漏由谁负责、何时动工，还没有定下来。他在值日纸上记下东侧停用，把补漏人选和日期两栏留空。临走前，他从西侧重新走了一遍，确认今日练习的地方没有积水。\n"
+              }
+            ],
+            "providerOptions": {
+              "kind": "undefined"
+            }
+          }
+        ],
+        "providerOptions": {
+          "kind": "undefined"
+        },
+        "abortSignal": {
+          "kind": "AbortSignal",
+          "aborted": false,
+          "reason": {
+            "kind": "undefined"
+          }
+        },
+        "headers": {
+          "kind": "undefined"
+        },
+        "includeRawChunks": false
+      },
+      "result": "stream",
+      "assignedParts": [
+        {
+          "type": "stream-start",
+          "warnings": []
+        },
+        {
+          "type": "response-metadata",
+          "id": "mock-511cfdb6-7798-481d-8bb9-d6252e18d288-1",
+          "modelId": "controlled-summary"
+        },
+        {
+          "type": "text-start",
+          "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1"
+        },
+        {
+          "type": "text-delta",
+          "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+          "delta": "夜雨使练功场东侧受潮，林"
+        },
+        {
+          "type": "text-delta",
+          "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+          "delta": "青已移走湿蒲团并清理积水"
+        },
+        {
+          "type": "text-delta",
+          "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+          "delta": "。今日只用西半边，东侧以"
+        },
+        {
+          "type": "text-delta",
+          "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+          "delta": "借来的三块木板拦住。林青"
+        },
+        {
+          "type": "text-delta",
+          "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+          "delta": "明日午后归还木板，若屋顶"
+        },
+        {
+          "type": "text-delta",
+          "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+          "delta": "未修好便改用绳栏。漏点、"
+        },
+        {
+          "type": "text-delta",
+          "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+          "delta": "补漏人选和开工时间仍未确"
+        },
+        {
+          "type": "text-delta",
+          "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+          "delta": "定，不能据场地清理完毕认"
+        },
+        {
+          "type": "text-delta",
+          "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+          "delta": "定修缮完成。\n"
+        },
+        {
+          "type": "text-end",
+          "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1"
+        },
+        {
+          "type": "finish",
+          "finishReason": {
+            "unified": "stop",
+            "raw": "controlled-stop"
+          },
+          "usage": {
+            "inputTokens": {
+              "total": {
+                "kind": "undefined"
+              },
+              "noCache": {
+                "kind": "undefined"
+              },
+              "cacheRead": {
+                "kind": "undefined"
+              },
+              "cacheWrite": {
+                "kind": "undefined"
+              }
+            },
+            "outputTokens": {
+              "total": {
+                "kind": "undefined"
+              },
+              "text": {
+                "kind": "undefined"
+              },
+              "reasoning": {
+                "kind": "undefined"
+              }
+            }
+          }
+        }
+      ],
+      "emittedParts": [
+        {
+          "at": "2026-10-13T01:43:01.059Z",
+          "elapsedMs": 4.6,
+          "value": {
+            "type": "stream-start",
+            "warnings": []
+          }
+        },
+        {
+          "at": "2026-10-13T01:43:01.060Z",
+          "elapsedMs": 5,
+          "value": {
+            "type": "response-metadata",
+            "id": "mock-511cfdb6-7798-481d-8bb9-d6252e18d288-1",
+            "modelId": "controlled-summary"
+          }
+        },
+        {
+          "at": "2026-10-13T01:43:01.060Z",
+          "elapsedMs": 5.5,
+          "value": {
+            "type": "text-start",
+            "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1"
+          }
+        },
+        {
+          "at": "2026-10-13T01:43:01.220Z",
+          "elapsedMs": 165.3,
+          "value": {
+            "type": "text-delta",
+            "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+            "delta": "夜雨使练功场东侧受潮，林"
+          }
+        },
+        {
+          "at": "2026-10-13T01:43:01.390Z",
+          "elapsedMs": 335.1,
+          "value": {
+            "type": "text-delta",
+            "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+            "delta": "青已移走湿蒲团并清理积水"
+          }
+        },
+        {
+          "at": "2026-10-13T01:43:01.560Z",
+          "elapsedMs": 505.4,
+          "value": {
+            "type": "text-delta",
+            "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+            "delta": "。今日只用西半边，东侧以"
+          }
+        },
+        {
+          "at": "2026-10-13T01:43:01.731Z",
+          "elapsedMs": 676.2,
+          "value": {
+            "type": "text-delta",
+            "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+            "delta": "借来的三块木板拦住。林青"
+          }
+        }
+      ],
+      "signalChanges": [
+        {
+          "at": "2026-10-13T01:43:01.826Z",
+          "elapsedMs": 771,
+          "value": {
+            "kind": "AbortSignal",
+            "aborted": true,
+            "reason": {
+              "kind": "Error",
+              "name": "AbortError",
+              "message": "本次HTTP连接提前关闭",
+              "stack": "AbortError: 本次HTTP连接提前关闭\n    at new DOMException (node:internal/per_context/domexception:76:18)\n    at ServerResponse.E (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:363:3223)\n    at Object.onceWrapper (node:events:622:28)\n    at ServerResponse.emit (node:events:520:35)\n    at emitCloseNT (node:_http_server:1073:10)\n    at Socket.onServerResponseClose (node:_http_server:287:5)\n    at Socket.emit (node:events:520:35)\n    at TCP.<anonymous> (node:net:346:12)"
+            }
+          }
+        }
+      ],
+      "error": {
+        "kind": "Error",
+        "name": "AbortError",
+        "message": "The operation was aborted",
+        "cause": {
+          "kind": "Error",
+          "name": "AbortError",
+          "message": "本次HTTP连接提前关闭",
+          "stack": "AbortError: 本次HTTP连接提前关闭\n    at new DOMException (node:internal/per_context/domexception:76:18)\n    at ServerResponse.E (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:363:3223)\n    at Object.onceWrapper (node:events:622:28)\n    at ServerResponse.emit (node:events:520:35)\n    at emitCloseNT (node:_http_server:1073:10)\n    at Socket.onServerResponseClose (node:_http_server:287:5)\n    at Socket.emit (node:events:520:35)\n    at TCP.<anonymous> (node:net:346:12)"
+        },
+        "code": "ABORT_ERR",
+        "stack": "AbortError: The operation was aborted\n    at Timeout.cancelListenerHandler (node:timers/promises:49:12)\n    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:845:20)\n    at AbortSignal.dispatchEvent (node:internal/event_target:778:26)\n    at runAbort (node:internal/abort_controller:488:10)\n    at abortSignal (node:internal/abort_controller:465:5)\n    at AbortController.abort (node:internal/abort_controller:507:5)\n    at ServerResponse.E (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:363:3217)\n    at Object.onceWrapper (node:events:622:28)\n    at ServerResponse.emit (node:events:520:35)\n    at emitCloseNT (node:_http_server:1073:10)"
+      }
+    }
+  ],
+  "sdkParts": [
+    {
+      "at": "2026-10-13T01:43:01.057Z",
+      "elapsedMs": 2.3,
+      "value": {
+        "type": "start"
+      }
+    },
+    {
+      "at": "2026-10-13T01:43:01.061Z",
+      "elapsedMs": 6.2,
+      "value": {
+        "type": "start-step",
+        "request": {
+          "body": {
+            "kind": "undefined"
+          },
+          "messages": {
+            "kind": "undefined"
+          }
+        },
+        "warnings": []
+      }
+    },
+    {
+      "at": "2026-10-13T01:43:01.062Z",
+      "elapsedMs": 7.1,
+      "value": {
+        "type": "text-start",
+        "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1"
+      }
+    },
+    {
+      "at": "2026-10-13T01:43:01.221Z",
+      "elapsedMs": 166.1,
+      "value": {
+        "type": "text-delta",
+        "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+        "text": "夜雨使练功场东侧受潮，林",
+        "providerMetadata": {
+          "kind": "undefined"
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:43:01.391Z",
+      "elapsedMs": 336,
+      "value": {
+        "type": "text-delta",
+        "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+        "text": "青已移走湿蒲团并清理积水",
+        "providerMetadata": {
+          "kind": "undefined"
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:43:01.561Z",
+      "elapsedMs": 506.5,
+      "value": {
+        "type": "text-delta",
+        "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+        "text": "。今日只用西半边，东侧以",
+        "providerMetadata": {
+          "kind": "undefined"
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:43:01.731Z",
+      "elapsedMs": 676.9,
+      "value": {
+        "type": "text-delta",
+        "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+        "text": "借来的三块木板拦住。林青",
+        "providerMetadata": {
+          "kind": "undefined"
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:43:01.828Z",
+      "elapsedMs": 773.5,
+      "value": {
+        "type": "abort",
+        "reason": "AbortError: 本次HTTP连接提前关闭"
+      }
+    }
+  ],
+  "callbacks": [
+    {
+      "at": "2026-10-13T01:43:01.056Z",
+      "elapsedMs": 1.8,
+      "value": {
+        "kind": "core.onStart",
+        "event": {
+          "callId": "call-3WgOdtlKz9cHJ2uZcc9CCGay",
+          "operationId": "ai.streamText",
+          "provider": "official-mock",
+          "modelId": "controlled-summary",
+          "instructions": "只依据小说资料写一段简明摘要，区分已确定安排和未决事项，不补造事实。",
+          "messages": [
+            {
+              "role": "user",
+              "content": "《青岚修仙录》：夜雨后的练功场\n\n林青推开练功场的侧门，东边的蒲团已经湿了半边。他仍是青岚宗外门弟子，只有炼气三层，盼着有一日能筑基；今日轮到他收拾场地，不能因为惦记吐纳便放着漏水不管。\n\n他把受潮的蒲团移到廊下干处，擦去地上的积水。赵师兄随后来看，摸过西边的地板，决定今日只用练功场西半边，东半边暂不安排弟子练习。\n\n两人用从杂物房借来的三块木板挡住东侧入口。赵师兄让林青明日午后把这三块木板还回杂物房；若那时屋顶仍未修好，东侧改用现有绳栏围住。\n\n林青抬头望着椽子，分不清是哪一片瓦松了。补漏由谁负责、何时动工，还没有定下来。他在值日纸上记下东侧停用，把补漏人选和日期两栏留空。临走前，他从西侧重新走了一遍，确认今日练习的地方没有积水。\n"
+            }
+          ],
+          "tools": {
+            "kind": "undefined"
+          },
+          "toolChoice": {
+            "kind": "undefined"
+          },
+          "activeTools": {
+            "kind": "undefined"
+          },
+          "toolOrder": {
+            "kind": "undefined"
+          },
+          "maxOutputTokens": {
+            "kind": "undefined"
+          },
+          "temperature": {
+            "kind": "undefined"
+          },
+          "topP": {
+            "kind": "undefined"
+          },
+          "topK": {
+            "kind": "undefined"
+          },
+          "presencePenalty": {
+            "kind": "undefined"
+          },
+          "frequencyPenalty": {
+            "kind": "undefined"
+          },
+          "stopSequences": {
+            "kind": "undefined"
+          },
+          "seed": {
+            "kind": "undefined"
+          },
+          "reasoning": {
+            "kind": "undefined"
+          },
+          "maxRetries": 1,
+          "timeout": {
+            "totalMs": 15000
+          },
+          "headers": {
+            "kind": "undefined"
+          },
+          "providerOptions": {
+            "kind": "undefined"
+          },
+          "output": {
+            "kind": "undefined"
+          },
+          "runtimeContext": {},
+          "toolsContext": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:43:01.058Z",
+      "elapsedMs": 3.7,
+      "value": {
+        "kind": "core.onLanguageModelCallStart",
+        "event": {
+          "callId": "call-3WgOdtlKz9cHJ2uZcc9CCGay",
+          "provider": "official-mock",
+          "modelId": "controlled-summary",
+          "instructions": "只依据小说资料写一段简明摘要，区分已确定安排和未决事项，不补造事实。",
+          "messages": [
+            {
+              "role": "user",
+              "content": "《青岚修仙录》：夜雨后的练功场\n\n林青推开练功场的侧门，东边的蒲团已经湿了半边。他仍是青岚宗外门弟子，只有炼气三层，盼着有一日能筑基；今日轮到他收拾场地，不能因为惦记吐纳便放着漏水不管。\n\n他把受潮的蒲团移到廊下干处，擦去地上的积水。赵师兄随后来看，摸过西边的地板，决定今日只用练功场西半边，东半边暂不安排弟子练习。\n\n两人用从杂物房借来的三块木板挡住东侧入口。赵师兄让林青明日午后把这三块木板还回杂物房；若那时屋顶仍未修好，东侧改用现有绳栏围住。\n\n林青抬头望着椽子，分不清是哪一片瓦松了。补漏由谁负责、何时动工，还没有定下来。他在值日纸上记下东侧停用，把补漏人选和日期两栏留空。临走前，他从西侧重新走了一遍，确认今日练习的地方没有积水。\n"
+            }
+          ],
+          "tools": {
+            "kind": "undefined"
+          },
+          "maxOutputTokens": {
+            "kind": "undefined"
+          },
+          "temperature": {
+            "kind": "undefined"
+          },
+          "topP": {
+            "kind": "undefined"
+          },
+          "topK": {
+            "kind": "undefined"
+          },
+          "presencePenalty": {
+            "kind": "undefined"
+          },
+          "frequencyPenalty": {
+            "kind": "undefined"
+          },
+          "stopSequences": {
+            "kind": "undefined"
+          },
+          "seed": {
+            "kind": "undefined"
+          },
+          "reasoning": {
+            "kind": "undefined"
+          }
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:43:01.828Z",
+      "elapsedMs": 773,
+      "value": {
+        "kind": "core.onAbort",
+        "event": {
+          "callId": "call-3WgOdtlKz9cHJ2uZcc9CCGay",
+          "steps": [],
+          "reason": {
+            "kind": "Error",
+            "name": "AbortError",
+            "message": "本次HTTP连接提前关闭",
+            "stack": "AbortError: 本次HTTP连接提前关闭\n    at new DOMException (node:internal/per_context/domexception:76:18)\n    at ServerResponse.E (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:363:3223)\n    at Object.onceWrapper (node:events:622:28)\n    at ServerResponse.emit (node:events:520:35)\n    at emitCloseNT (node:_http_server:1073:10)\n    at Socket.onServerResponseClose (node:_http_server:287:5)\n    at Socket.emit (node:events:520:35)\n    at TCP.<anonymous> (node:net:346:12)"
+          }
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:43:01.830Z",
+      "elapsedMs": 775.8,
+      "value": {
+        "kind": "ui.onEnd",
+        "event": {
+          "isAborted": true,
+          "isContinuation": false,
+          "outcome": {
+            "status": "aborted"
+          },
+          "responseMessage": {
+            "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:assistant",
+            "metadata": {
+              "requestId": "511cfdb6-7798-481d-8bb9-d6252e18d288",
+              "fixtureKey": "B",
+              "state": "cancelled",
+              "cause": "connection-closed",
+              "origin": "controlled-exercise"
+            },
+            "role": "assistant",
+            "parts": [
+              {
+                "type": "step-start"
+              },
+              {
+                "type": "text",
+                "text": "夜雨使练功场东侧受潮，林青已移走湿蒲团并清理积水。今日只用西半边，东侧以借来的三块木板拦住。林青",
+                "providerMetadata": {
+                  "kind": "undefined"
+                },
+                "state": "streaming"
+              }
+            ]
+          },
+          "messages": [
+            {
+              "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:assistant",
+              "metadata": {
+                "requestId": "511cfdb6-7798-481d-8bb9-d6252e18d288",
+                "fixtureKey": "B",
+                "state": "cancelled",
+                "cause": "connection-closed",
+                "origin": "controlled-exercise"
+              },
+              "role": "assistant",
+              "parts": [
+                {
+                  "type": "step-start"
+                },
+                {
+                  "type": "text",
+                  "text": "夜雨使练功场东侧受潮，林青已移走湿蒲团并清理积水。今日只用西半边，东侧以借来的三块木板拦住。林青",
+                  "providerMetadata": {
+                    "kind": "undefined"
+                  },
+                  "state": "streaming"
+                }
+              ]
+            }
+          ],
+          "finishReason": {
+            "kind": "undefined"
+          }
+        }
+      }
+    }
+  ],
+  "uiEvents": [
+    {
+      "at": "2026-10-13T01:43:01.057Z",
+      "elapsedMs": 2.8,
+      "value": {
+        "type": "start",
+        "messageMetadata": {
+          "requestId": "511cfdb6-7798-481d-8bb9-d6252e18d288",
+          "fixtureKey": "B",
+          "state": "running",
+          "cause": null,
+          "origin": "controlled-exercise"
+        },
+        "messageId": "511cfdb6-7798-481d-8bb9-d6252e18d288:assistant"
+      }
+    },
+    {
+      "at": "2026-10-13T01:43:01.061Z",
+      "elapsedMs": 6.4,
+      "value": {
+        "type": "start-step"
+      }
+    },
+    {
+      "at": "2026-10-13T01:43:01.062Z",
+      "elapsedMs": 7.3,
+      "value": {
+        "type": "text-start",
+        "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1"
+      }
+    },
+    {
+      "at": "2026-10-13T01:43:01.221Z",
+      "elapsedMs": 166.4,
+      "value": {
+        "type": "text-delta",
+        "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+        "delta": "夜雨使练功场东侧受潮，林"
+      }
+    },
+    {
+      "at": "2026-10-13T01:43:01.391Z",
+      "elapsedMs": 336.3,
+      "value": {
+        "type": "text-delta",
+        "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+        "delta": "青已移走湿蒲团并清理积水"
+      }
+    },
+    {
+      "at": "2026-10-13T01:43:01.562Z",
+      "elapsedMs": 507,
+      "value": {
+        "type": "text-delta",
+        "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+        "delta": "。今日只用西半边，东侧以"
+      }
+    },
+    {
+      "at": "2026-10-13T01:43:01.732Z",
+      "elapsedMs": 677.4,
+      "value": {
+        "type": "text-delta",
+        "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:text:1",
+        "delta": "借来的三块木板拦住。林青"
+      }
+    },
+    {
+      "at": "2026-10-13T01:43:01.828Z",
+      "elapsedMs": 773.8,
+      "value": {
+        "type": "abort",
+        "reason": "AbortError: 本次HTTP连接提前关闭"
+      }
+    },
+    {
+      "at": "2026-10-13T01:43:01.830Z",
+      "elapsedMs": 775,
+      "value": {
+        "type": "message-metadata",
+        "messageMetadata": {
+          "requestId": "511cfdb6-7798-481d-8bb9-d6252e18d288",
+          "fixtureKey": "B",
+          "state": "cancelled",
+          "cause": "connection-closed",
+          "origin": "controlled-exercise"
+        }
+      }
+    }
+  ],
+  "transport": [
+    {
+      "at": "2026-10-13T01:43:01.561Z",
+      "elapsedMs": 506.1,
+      "value": {
+        "kind": "exercise-disconnect-scheduled",
+        "delayMs": 250
+      }
+    },
+    {
+      "at": "2026-10-13T01:43:01.824Z",
+      "elapsedMs": 769.5,
+      "value": {
+        "kind": "exercise-destroy-http-response",
+        "writableEnded": false,
+        "state": "running"
+      }
+    },
+    {
+      "at": "2026-10-13T01:43:01.825Z",
+      "elapsedMs": 770.8,
+      "value": {
+        "kind": "response-close",
+        "writableEnded": false,
+        "state": "running"
+      }
+    }
+  ],
+  "serverSseProduced": [
+    {
+      "at": "2026-10-13T01:43:01.058Z",
+      "elapsedMs": 3,
+      "value": "data: {\"type\":\"start\",\"messageMetadata\":{\"requestId\":\"511cfdb6-7798-481d-8bb9-d6252e18d288\",\"fixtureKey\":\"B\",\"state\":\"running\",\"cause\":null,\"origin\":\"controlled-exercise\"},\"messageId\":\"511cfdb6-7798-481d-8bb9-d6252e18d288:assistant\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:43:01.061Z",
+      "elapsedMs": 6.7,
+      "value": "data: {\"type\":\"start-step\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:43:01.062Z",
+      "elapsedMs": 7.6,
+      "value": "data: {\"type\":\"text-start\",\"id\":\"511cfdb6-7798-481d-8bb9-d6252e18d288:text:1\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:43:01.221Z",
+      "elapsedMs": 166.8,
+      "value": "data: {\"type\":\"text-delta\",\"id\":\"511cfdb6-7798-481d-8bb9-d6252e18d288:text:1\",\"delta\":\"夜雨使练功场东侧受潮，林\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:43:01.391Z",
+      "elapsedMs": 336.8,
+      "value": "data: {\"type\":\"text-delta\",\"id\":\"511cfdb6-7798-481d-8bb9-d6252e18d288:text:1\",\"delta\":\"青已移走湿蒲团并清理积水\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:43:01.562Z",
+      "elapsedMs": 507.4,
+      "value": "data: {\"type\":\"text-delta\",\"id\":\"511cfdb6-7798-481d-8bb9-d6252e18d288:text:1\",\"delta\":\"。今日只用西半边，东侧以\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:43:01.732Z",
+      "elapsedMs": 677.8,
+      "value": "data: {\"type\":\"text-delta\",\"id\":\"511cfdb6-7798-481d-8bb9-d6252e18d288:text:1\",\"delta\":\"借来的三块木板拦住。林青\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:43:01.829Z",
+      "elapsedMs": 774.4,
+      "value": "data: {\"type\":\"abort\",\"reason\":\"AbortError: 本次HTTP连接提前关闭\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:43:01.830Z",
+      "elapsedMs": 775.3,
+      "value": "data: {\"type\":\"message-metadata\",\"messageMetadata\":{\"requestId\":\"511cfdb6-7798-481d-8bb9-d6252e18d288\",\"fixtureKey\":\"B\",\"state\":\"cancelled\",\"cause\":\"connection-closed\",\"origin\":\"controlled-exercise\"}}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:43:01.831Z",
+      "elapsedMs": 776.3,
+      "value": "data: [DONE]\n\n"
+    }
+  ],
+  "uiMessage": {
+    "id": "511cfdb6-7798-481d-8bb9-d6252e18d288:assistant",
+    "metadata": {
+      "requestId": "511cfdb6-7798-481d-8bb9-d6252e18d288",
+      "fixtureKey": "B",
+      "state": "cancelled",
+      "cause": "connection-closed",
+      "origin": "controlled-exercise"
+    },
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "step-start"
+      },
+      {
+        "type": "text",
+        "text": "夜雨使练功场东侧受潮，林青已移走湿蒲团并清理积水。今日只用西半边，东侧以借来的三块木板拦住。林青",
+        "state": "streaming"
+      }
+    ]
+  },
+  "uiOutcome": {
+    "status": "aborted"
+  },
+  "error": {
+    "kind": "Error",
+    "name": "AbortError",
+    "message": "本次HTTP连接提前关闭",
+    "stack": "AbortError: 本次HTTP连接提前关闭\n    at new DOMException (node:internal/per_context/domexception:76:18)\n    at ServerResponse.E (file:///D:/Projects/Knowledge/.coursebook-work/%E5%B0%8F%E8%AF%B4%E5%AE%9E%E9%AA%8C%E7%BB%9F%E4%B8%80-20261013/chapter11/project/runtime/server.mjs:363:3223)\n    at Object.onceWrapper (node:events:622:28)\n    at ServerResponse.emit (node:events:520:35)\n    at emitCloseNT (node:_http_server:1073:10)\n    at Socket.onServerResponseClose (node:_http_server:287:5)\n    at Socket.emit (node:events:520:35)\n    at TCP.<anonymous> (node:net:346:12)"
+  }
+}

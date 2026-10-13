@@ -8,14 +8,15 @@ import { readEvents } from './sse.ts';
 const app = document.querySelector<HTMLElement>('#app')!;
 const entries = Object.entries(CONDITIONS) as [Condition, (typeof CONDITIONS)[Condition]][];
 app.innerHTML = `
-  <header><span class="eyebrow">流式观察 · 教学虚构手册</span>
+  <header>
     <h1>等待与用量</h1>
-    <p>逐次比较输入长度、重复前缀与输出长度。每次运行调用模型 1 次。</p>
+    <p>用同一份小说资料，比较输入长度、重复前缀和回答长度。</p>
   </header>
   <section class="experiment">
     <p class="question">${QUESTION}</p>
-    <p class="note">按顺序各运行一次，比较等待时间与实际用量。</p>
-    <div class="table-scroll"><table><thead><tr><th>条件</th><th>操作</th><th>首段正文</th><th>流结束</th><th>输入 token</th><th>其中命中缓存</th><th>输出 token</th></tr></thead><tbody id="comparison-body"></tbody></table></div>
+    <div class="run-controls"><label for="condition">对照条件</label><select id="condition">${entries.map(([key, value], index) => `<option value="${key}">${index + 1}. ${value.label}</option>`).join('')}</select><button id="run">运行本条件</button><span class="note">每次调用模型 1 次</span></div>
+    <p id="condition-note" class="note"></p>
+    <div id="comparison" class="table-scroll" hidden><table><thead><tr><th>条件</th><th>首段正文</th><th>流结束</th><th>输入 token</th><th>其中命中缓存</th><th>输出 token</th></tr></thead><tbody id="comparison-body"></tbody></table></div>
     <p id="status" role="status" aria-live="polite">先运行短材料，观察首段正文何时出现。</p>
     <div class="answer-area"><div class="section-heading"><h3 id="answer-label">实际回答</h3><span id="answer-state" class="note">尚未调用</span></div><div id="answer" class="answer">运行后在这里显示真实流式返回。</div></div>
   </section>
@@ -32,8 +33,8 @@ app.innerHTML = `
     <dt>费用</dt><dd>输入、命中缓存的输入与输出需按当前模型和地域价格分别核算；这里记录实际用量，不按总 token 直接换算费用。</dd>
   </dl></div></details>
   <details id="materials"><summary>查看固定材料与对照条件</summary><div class="guide-body">
-    <p>非思考 · 温度 0，不自动重试。单轮等待受网络、服务调度等影响，不是性能排名。</p><p>手册为人工编写的 40 条虚构产品说明，短材料直接取其中 M21。同一问题放在材料之后。第 3 项与第 2 项请求体完全相同；第 4 项只改最前面的实验版本 A→B，不改变产品版本、手册和问题。</p>
-    <p>第 5 项保持长资料，末尾改为约 350 字的说明要求，并将输出上限从 96 改为 512。它同时观察输出要求与实际生成长度，不把差异全归因于上限。</p>
+    <p>温度 0，不自动重试。单轮等待受网络、服务调度等影响，不是性能排名。</p><p>本实验有 40 条小说教学资料，短材料直接取其中 M21。同一问题放在材料之后。第 3 项与第 2 项请求体完全相同；第 4 项只改最前面的实验版本 A→B，不改变小说资料和问题。</p>
+    <p>第 5 项保持长资料，末尾改为约 350 字的说明要求，并将输出上限从 4096 改为 8192 token。上限同时容纳推理与正文；本项同时改变回答长度要求和输出预算，不能把时间差异只归因于其中一个因素。</p>
     <pre id="materials-content">展开后加载实际材料。</pre>
   </div></details>`;
 
@@ -47,14 +48,16 @@ const time = (value: number | null) => value === null ? '—' : `${(value / 1000
 const count = (value: number | null, ended: boolean) => value === null ? ended ? '未提供' : '—' : value.toLocaleString('zh-CN');
 
 function renderTable() {
-  const next = entries.find(([key]) => !attempts.some((attempt) => attempt.condition === key));
+  get('comparison').hidden = !attempts.length;
+  get<HTMLButtonElement>('run').disabled = running;
+  get<HTMLSelectElement>('condition').disabled = running;
+  get('run').textContent = running ? '接收中…' : '运行本条件';
   get('comparison-body').innerHTML = entries.map(([condition, info], index) => {
     const attempt = attempts.findLast((item) => item.condition === condition);
     const record = attempt?.record;
     const usage = usageOf(record?.usage);
     const note = attempt?.transportError ? '连接失败，见明细' : record?.error ? record.error.message : '';
     return `<tr><td><strong>${index + 1}. ${info.label}</strong><small>${info.description}</small>${note ? `<small class="error">${escape(note)}</small>` : ''}</td>
-      <td><button data-run="${condition}" class="${next?.[0] === condition ? '' : 'secondary'}" ${running ? 'disabled' : ''}>${attempt && !attempt.settled ? '接收中…' : attempt ? '再次运行' : '运行一次'}</button></td>
       <td>${time(record?.firstContentMs ?? null)}</td><td>${time(record?.streamEndMs ?? null)}</td>
       <td>${count(usage.input, !!attempt?.settled)}</td><td>${count(usage.cached, !!attempt?.settled)}</td><td>${count(usage.output, !!attempt?.settled)}</td></tr>`;
   }).join('');
@@ -127,10 +130,11 @@ async function run(condition: Condition) {
   }
 }
 
-get('comparison-body').addEventListener('click', (event) => {
-  const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button[data-run]');
-  if (button) void run(button.dataset.run as Condition);
-});
+const conditionChoice = get<HTMLSelectElement>('condition');
+function describeCondition() { get('condition-note').textContent = CONDITIONS[conditionChoice.value as Condition].description; }
+conditionChoice.addEventListener('change', describeCondition);
+get('run').addEventListener('click', () => void run(conditionChoice.value as Condition));
+describeCondition();
 get('record-choice').addEventListener('change', () => { selected = Number(get<HTMLSelectElement>('record-choice').value); renderInspector(); if (!running) renderAnswer(attempts[selected]); });
 get('download').addEventListener('click', () => {
   const payload = { question: QUESTION, runs: attempts.map((attempt) => ({ condition: attempt.condition, settled: attempt.settled, transportError: attempt.transportError ?? null, record: attempt.record ?? null })) };

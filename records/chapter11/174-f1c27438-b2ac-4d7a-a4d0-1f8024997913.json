@@ -1,0 +1,884 @@
+{
+  "requestId": "f1c27438-b2ac-4d7a-a4d0-1f8024997913",
+  "serviceId": "8d28dd3b-8382-47dd-8d0f-03fd290537eb",
+  "fixtureKey": "A",
+  "scenario": "timeout",
+  "input": "《青岚修仙录》：药圃早巡\n\n林青到药圃时，东畦的叶尖还垂着。他是青岚宗外门弟子，修为停在炼气三层。日后筑基是长远的愿望，眼前这份照看药圃的差事却得先做明白。\n\n他已经清走东畦渠口的落叶，又在同一块石头旁量了一次水深，仍比昨日留下的刻线浅。叶师姐蹲下看了看，没有让他在“缺水原因”一栏落笔。\n\n“先别写木闸坏了。我们还没看过上游。”\n\n林青把纸上刚写的“木闸”二字划去，只留下两次量水的位置与所见。渠口是通的，为什么水浅，两人还不知道。\n\n叶师姐让林青明日辰时前带着量水记录到值房，和她一起核对昨日的开闸簿。林青把这句话记在纸背，说明日一早就去。\n\n“上游两处渠口也要逐处查看。”叶师姐望向山道，“这项查看由谁去、什么时候完成，还得安排。”\n\n墙边放着原本为今夜冲畦准备的长柄木耙。叶师姐收起木耙，取消了今夜放水冲畦的安排；在弄清来水情况前，不再加水。林青在清渠口一项旁画了个小勾，将量水纸折好，夹进自己的值日册里。\n",
+  "instructions": "只依据小说资料写一段约120字的简明摘要，区分已确定安排和未决事项。不补造事实，不提出问题，不加标题。",
+  "answerOrigin": "123第一轮真实模型摘要，本次经Mock重新发送",
+  "source": {
+    "kind": "live-model-record",
+    "runId": "250aa94b-3d55-4cce-a34c-df8b99c1b007",
+    "stage": "summary"
+  },
+  "sdkOptions": {
+    "maxRetries": 1,
+    "streamRetries": "omitted",
+    "totalTimeoutMs": 1200
+  },
+  "startedAt": "2026-10-13T01:38:41.038Z",
+  "state": "timed-out",
+  "cause": "timeout",
+  "finishedAt": "2026-10-13T01:38:42.253Z",
+  "manualStopRequestedAt": null,
+  "connectionClosedAt": null,
+  "providerCalls": [
+    {
+      "index": 1,
+      "beganAt": "2026-10-13T01:38:41.041Z",
+      "elapsedMs": 3.4,
+      "input": {
+        "maxOutputTokens": {
+          "kind": "undefined"
+        },
+        "temperature": {
+          "kind": "undefined"
+        },
+        "topP": {
+          "kind": "undefined"
+        },
+        "topK": {
+          "kind": "undefined"
+        },
+        "presencePenalty": {
+          "kind": "undefined"
+        },
+        "frequencyPenalty": {
+          "kind": "undefined"
+        },
+        "stopSequences": {
+          "kind": "undefined"
+        },
+        "seed": {
+          "kind": "undefined"
+        },
+        "reasoning": {
+          "kind": "undefined"
+        },
+        "tools": {
+          "kind": "undefined"
+        },
+        "toolChoice": {
+          "type": "auto"
+        },
+        "responseFormat": {
+          "kind": "undefined"
+        },
+        "prompt": [
+          {
+            "role": "system",
+            "content": "只依据小说资料写一段约120字的简明摘要，区分已确定安排和未决事项。不补造事实，不提出问题，不加标题。"
+          },
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "text",
+                "text": "《青岚修仙录》：药圃早巡\n\n林青到药圃时，东畦的叶尖还垂着。他是青岚宗外门弟子，修为停在炼气三层。日后筑基是长远的愿望，眼前这份照看药圃的差事却得先做明白。\n\n他已经清走东畦渠口的落叶，又在同一块石头旁量了一次水深，仍比昨日留下的刻线浅。叶师姐蹲下看了看，没有让他在“缺水原因”一栏落笔。\n\n“先别写木闸坏了。我们还没看过上游。”\n\n林青把纸上刚写的“木闸”二字划去，只留下两次量水的位置与所见。渠口是通的，为什么水浅，两人还不知道。\n\n叶师姐让林青明日辰时前带着量水记录到值房，和她一起核对昨日的开闸簿。林青把这句话记在纸背，说明日一早就去。\n\n“上游两处渠口也要逐处查看。”叶师姐望向山道，“这项查看由谁去、什么时候完成，还得安排。”\n\n墙边放着原本为今夜冲畦准备的长柄木耙。叶师姐收起木耙，取消了今夜放水冲畦的安排；在弄清来水情况前，不再加水。林青在清渠口一项旁画了个小勾，将量水纸折好，夹进自己的值日册里。\n"
+              }
+            ],
+            "providerOptions": {
+              "kind": "undefined"
+            }
+          }
+        ],
+        "providerOptions": {
+          "kind": "undefined"
+        },
+        "abortSignal": {
+          "kind": "AbortSignal",
+          "aborted": false,
+          "reason": {
+            "kind": "undefined"
+          }
+        },
+        "headers": {
+          "kind": "undefined"
+        },
+        "includeRawChunks": false
+      },
+      "result": "stream",
+      "assignedParts": [
+        {
+          "type": "stream-start",
+          "warnings": []
+        },
+        {
+          "type": "response-metadata",
+          "id": "mock-f1c27438-b2ac-4d7a-a4d0-1f8024997913-1",
+          "modelId": "controlled-summary"
+        },
+        {
+          "type": "text-start",
+          "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1"
+        },
+        {
+          "type": "text-delta",
+          "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+          "delta": "林青清走东畦渠口落叶并再"
+        },
+        {
+          "type": "text-delta",
+          "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+          "delta": "次量水深，仍比昨日刻线浅"
+        },
+        {
+          "type": "text-delta",
+          "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+          "delta": "，原因未知。叶师姐暂不许"
+        },
+        {
+          "type": "text-delta",
+          "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+          "delta": "写“木闸坏”，只留下量水"
+        },
+        {
+          "type": "text-delta",
+          "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+          "delta": "位置与所见。已确定：取消"
+        },
+        {
+          "type": "text-delta",
+          "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+          "delta": "今夜冲畦，不再加水；明日"
+        },
+        {
+          "type": "text-delta",
+          "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+          "delta": "辰时林青带记录到值房，与"
+        },
+        {
+          "type": "text-delta",
+          "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+          "delta": "叶师姐核对开闸簿。未决："
+        },
+        {
+          "type": "text-delta",
+          "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+          "delta": "上游两处渠口由谁查看、何"
+        },
+        {
+          "type": "text-delta",
+          "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+          "delta": "时完成，尚待安排。"
+        },
+        {
+          "type": "text-end",
+          "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1"
+        },
+        {
+          "type": "finish",
+          "finishReason": {
+            "unified": "stop",
+            "raw": "controlled-stop"
+          },
+          "usage": {
+            "inputTokens": {
+              "total": {
+                "kind": "undefined"
+              },
+              "noCache": {
+                "kind": "undefined"
+              },
+              "cacheRead": {
+                "kind": "undefined"
+              },
+              "cacheWrite": {
+                "kind": "undefined"
+              }
+            },
+            "outputTokens": {
+              "total": {
+                "kind": "undefined"
+              },
+              "text": {
+                "kind": "undefined"
+              },
+              "reasoning": {
+                "kind": "undefined"
+              }
+            }
+          }
+        }
+      ],
+      "emittedParts": [
+        {
+          "at": "2026-10-13T01:38:41.042Z",
+          "elapsedMs": 4.1,
+          "value": {
+            "type": "stream-start",
+            "warnings": []
+          }
+        },
+        {
+          "at": "2026-10-13T01:38:41.042Z",
+          "elapsedMs": 4.5,
+          "value": {
+            "type": "response-metadata",
+            "id": "mock-f1c27438-b2ac-4d7a-a4d0-1f8024997913-1",
+            "modelId": "controlled-summary"
+          }
+        },
+        {
+          "at": "2026-10-13T01:38:41.043Z",
+          "elapsedMs": 5.1,
+          "value": {
+            "type": "text-start",
+            "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1"
+          }
+        },
+        {
+          "at": "2026-10-13T01:38:41.212Z",
+          "elapsedMs": 174.4,
+          "value": {
+            "type": "text-delta",
+            "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+            "delta": "林青清走东畦渠口落叶并再"
+          }
+        },
+        {
+          "at": "2026-10-13T01:38:41.382Z",
+          "elapsedMs": 344.4,
+          "value": {
+            "type": "text-delta",
+            "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+            "delta": "次量水深，仍比昨日刻线浅"
+          }
+        },
+        {
+          "at": "2026-10-13T01:38:41.553Z",
+          "elapsedMs": 514.7,
+          "value": {
+            "type": "text-delta",
+            "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+            "delta": "，原因未知。叶师姐暂不许"
+          }
+        },
+        {
+          "at": "2026-10-13T01:38:41.723Z",
+          "elapsedMs": 684.9,
+          "value": {
+            "type": "text-delta",
+            "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+            "delta": "写“木闸坏”，只留下量水"
+          }
+        },
+        {
+          "at": "2026-10-13T01:38:41.893Z",
+          "elapsedMs": 855.2,
+          "value": {
+            "type": "text-delta",
+            "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+            "delta": "位置与所见。已确定：取消"
+          }
+        },
+        {
+          "at": "2026-10-13T01:38:42.063Z",
+          "elapsedMs": 1025.6,
+          "value": {
+            "type": "text-delta",
+            "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+            "delta": "今夜冲畦，不再加水；明日"
+          }
+        },
+        {
+          "at": "2026-10-13T01:38:42.233Z",
+          "elapsedMs": 1195.5,
+          "value": {
+            "type": "text-delta",
+            "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+            "delta": "辰时林青带记录到值房，与"
+          }
+        }
+      ],
+      "signalChanges": [
+        {
+          "at": "2026-10-13T01:38:42.249Z",
+          "elapsedMs": 1211.2,
+          "value": {
+            "kind": "AbortSignal",
+            "aborted": true,
+            "reason": {
+              "kind": "Error",
+              "name": "TimeoutError",
+              "message": "The operation was aborted due to timeout",
+              "stack": "TimeoutError: The operation was aborted due to timeout\n    at new DOMException (node:internal/per_context/domexception:76:18)\n    at Timeout._onTimeout (node:internal/abort_controller:154:9)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"
+            }
+          }
+        }
+      ],
+      "error": {
+        "kind": "Error",
+        "name": "AbortError",
+        "message": "The operation was aborted",
+        "cause": {
+          "kind": "Error",
+          "name": "TimeoutError",
+          "message": "The operation was aborted due to timeout",
+          "stack": "TimeoutError: The operation was aborted due to timeout\n    at new DOMException (node:internal/per_context/domexception:76:18)\n    at Timeout._onTimeout (node:internal/abort_controller:154:9)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"
+        },
+        "code": "ABORT_ERR",
+        "stack": "AbortError: The operation was aborted\n    at Timeout.cancelListenerHandler (node:timers/promises:49:12)\n    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:845:20)\n    at AbortSignal.dispatchEvent (node:internal/event_target:778:26)\n    at runAbort (node:internal/abort_controller:488:10)\n    at abortSignal (node:internal/abort_controller:465:5)\n    at Timeout._onTimeout (node:internal/abort_controller:152:7)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"
+      }
+    }
+  ],
+  "sdkParts": [
+    {
+      "at": "2026-10-13T01:38:41.040Z",
+      "elapsedMs": 1.8,
+      "value": {
+        "type": "start"
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:41.044Z",
+      "elapsedMs": 5.7,
+      "value": {
+        "type": "start-step",
+        "request": {
+          "body": {
+            "kind": "undefined"
+          },
+          "messages": {
+            "kind": "undefined"
+          }
+        },
+        "warnings": []
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:41.045Z",
+      "elapsedMs": 6.7,
+      "value": {
+        "type": "text-start",
+        "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1"
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:41.213Z",
+      "elapsedMs": 175.2,
+      "value": {
+        "type": "text-delta",
+        "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+        "text": "林青清走东畦渠口落叶并再",
+        "providerMetadata": {
+          "kind": "undefined"
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:41.383Z",
+      "elapsedMs": 345.4,
+      "value": {
+        "type": "text-delta",
+        "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+        "text": "次量水深，仍比昨日刻线浅",
+        "providerMetadata": {
+          "kind": "undefined"
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:41.553Z",
+      "elapsedMs": 515.5,
+      "value": {
+        "type": "text-delta",
+        "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+        "text": "，原因未知。叶师姐暂不许",
+        "providerMetadata": {
+          "kind": "undefined"
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:41.723Z",
+      "elapsedMs": 685.6,
+      "value": {
+        "type": "text-delta",
+        "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+        "text": "写“木闸坏”，只留下量水",
+        "providerMetadata": {
+          "kind": "undefined"
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:41.894Z",
+      "elapsedMs": 855.9,
+      "value": {
+        "type": "text-delta",
+        "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+        "text": "位置与所见。已确定：取消",
+        "providerMetadata": {
+          "kind": "undefined"
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:42.064Z",
+      "elapsedMs": 1026.5,
+      "value": {
+        "type": "text-delta",
+        "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+        "text": "今夜冲畦，不再加水；明日",
+        "providerMetadata": {
+          "kind": "undefined"
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:42.234Z",
+      "elapsedMs": 1196.2,
+      "value": {
+        "type": "text-delta",
+        "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+        "text": "辰时林青带记录到值房，与",
+        "providerMetadata": {
+          "kind": "undefined"
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:42.251Z",
+      "elapsedMs": 1213,
+      "value": {
+        "type": "abort",
+        "reason": "TimeoutError: The operation was aborted due to timeout"
+      }
+    }
+  ],
+  "callbacks": [
+    {
+      "at": "2026-10-13T01:38:41.039Z",
+      "elapsedMs": 1.5,
+      "value": {
+        "kind": "core.onStart",
+        "event": {
+          "callId": "call-fh8rHGZqHfzBhMZqR4sOkmW7",
+          "operationId": "ai.streamText",
+          "provider": "official-mock",
+          "modelId": "controlled-summary",
+          "instructions": "只依据小说资料写一段约120字的简明摘要，区分已确定安排和未决事项。不补造事实，不提出问题，不加标题。",
+          "messages": [
+            {
+              "role": "user",
+              "content": "《青岚修仙录》：药圃早巡\n\n林青到药圃时，东畦的叶尖还垂着。他是青岚宗外门弟子，修为停在炼气三层。日后筑基是长远的愿望，眼前这份照看药圃的差事却得先做明白。\n\n他已经清走东畦渠口的落叶，又在同一块石头旁量了一次水深，仍比昨日留下的刻线浅。叶师姐蹲下看了看，没有让他在“缺水原因”一栏落笔。\n\n“先别写木闸坏了。我们还没看过上游。”\n\n林青把纸上刚写的“木闸”二字划去，只留下两次量水的位置与所见。渠口是通的，为什么水浅，两人还不知道。\n\n叶师姐让林青明日辰时前带着量水记录到值房，和她一起核对昨日的开闸簿。林青把这句话记在纸背，说明日一早就去。\n\n“上游两处渠口也要逐处查看。”叶师姐望向山道，“这项查看由谁去、什么时候完成，还得安排。”\n\n墙边放着原本为今夜冲畦准备的长柄木耙。叶师姐收起木耙，取消了今夜放水冲畦的安排；在弄清来水情况前，不再加水。林青在清渠口一项旁画了个小勾，将量水纸折好，夹进自己的值日册里。\n"
+            }
+          ],
+          "tools": {
+            "kind": "undefined"
+          },
+          "toolChoice": {
+            "kind": "undefined"
+          },
+          "activeTools": {
+            "kind": "undefined"
+          },
+          "toolOrder": {
+            "kind": "undefined"
+          },
+          "maxOutputTokens": {
+            "kind": "undefined"
+          },
+          "temperature": {
+            "kind": "undefined"
+          },
+          "topP": {
+            "kind": "undefined"
+          },
+          "topK": {
+            "kind": "undefined"
+          },
+          "presencePenalty": {
+            "kind": "undefined"
+          },
+          "frequencyPenalty": {
+            "kind": "undefined"
+          },
+          "stopSequences": {
+            "kind": "undefined"
+          },
+          "seed": {
+            "kind": "undefined"
+          },
+          "reasoning": {
+            "kind": "undefined"
+          },
+          "maxRetries": 1,
+          "timeout": {
+            "totalMs": 1200
+          },
+          "headers": {
+            "kind": "undefined"
+          },
+          "providerOptions": {
+            "kind": "undefined"
+          },
+          "output": {
+            "kind": "undefined"
+          },
+          "runtimeContext": {},
+          "toolsContext": {}
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:41.041Z",
+      "elapsedMs": 3,
+      "value": {
+        "kind": "core.onLanguageModelCallStart",
+        "event": {
+          "callId": "call-fh8rHGZqHfzBhMZqR4sOkmW7",
+          "provider": "official-mock",
+          "modelId": "controlled-summary",
+          "instructions": "只依据小说资料写一段约120字的简明摘要，区分已确定安排和未决事项。不补造事实，不提出问题，不加标题。",
+          "messages": [
+            {
+              "role": "user",
+              "content": "《青岚修仙录》：药圃早巡\n\n林青到药圃时，东畦的叶尖还垂着。他是青岚宗外门弟子，修为停在炼气三层。日后筑基是长远的愿望，眼前这份照看药圃的差事却得先做明白。\n\n他已经清走东畦渠口的落叶，又在同一块石头旁量了一次水深，仍比昨日留下的刻线浅。叶师姐蹲下看了看，没有让他在“缺水原因”一栏落笔。\n\n“先别写木闸坏了。我们还没看过上游。”\n\n林青把纸上刚写的“木闸”二字划去，只留下两次量水的位置与所见。渠口是通的，为什么水浅，两人还不知道。\n\n叶师姐让林青明日辰时前带着量水记录到值房，和她一起核对昨日的开闸簿。林青把这句话记在纸背，说明日一早就去。\n\n“上游两处渠口也要逐处查看。”叶师姐望向山道，“这项查看由谁去、什么时候完成，还得安排。”\n\n墙边放着原本为今夜冲畦准备的长柄木耙。叶师姐收起木耙，取消了今夜放水冲畦的安排；在弄清来水情况前，不再加水。林青在清渠口一项旁画了个小勾，将量水纸折好，夹进自己的值日册里。\n"
+            }
+          ],
+          "tools": {
+            "kind": "undefined"
+          },
+          "maxOutputTokens": {
+            "kind": "undefined"
+          },
+          "temperature": {
+            "kind": "undefined"
+          },
+          "topP": {
+            "kind": "undefined"
+          },
+          "topK": {
+            "kind": "undefined"
+          },
+          "presencePenalty": {
+            "kind": "undefined"
+          },
+          "frequencyPenalty": {
+            "kind": "undefined"
+          },
+          "stopSequences": {
+            "kind": "undefined"
+          },
+          "seed": {
+            "kind": "undefined"
+          },
+          "reasoning": {
+            "kind": "undefined"
+          }
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:42.250Z",
+      "elapsedMs": 1212.6,
+      "value": {
+        "kind": "core.onAbort",
+        "event": {
+          "callId": "call-fh8rHGZqHfzBhMZqR4sOkmW7",
+          "steps": [],
+          "reason": {
+            "kind": "Error",
+            "name": "TimeoutError",
+            "message": "The operation was aborted due to timeout",
+            "stack": "TimeoutError: The operation was aborted due to timeout\n    at new DOMException (node:internal/per_context/domexception:76:18)\n    at Timeout._onTimeout (node:internal/abort_controller:154:9)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"
+          }
+        }
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:42.253Z",
+      "elapsedMs": 1215.5,
+      "value": {
+        "kind": "ui.onEnd",
+        "event": {
+          "isAborted": true,
+          "isContinuation": false,
+          "outcome": {
+            "status": "aborted"
+          },
+          "responseMessage": {
+            "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:assistant",
+            "metadata": {
+              "requestId": "f1c27438-b2ac-4d7a-a4d0-1f8024997913",
+              "fixtureKey": "A",
+              "state": "timed-out",
+              "cause": "timeout",
+              "origin": "controlled-exercise"
+            },
+            "role": "assistant",
+            "parts": [
+              {
+                "type": "step-start"
+              },
+              {
+                "type": "text",
+                "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与",
+                "providerMetadata": {
+                  "kind": "undefined"
+                },
+                "state": "streaming"
+              }
+            ]
+          },
+          "messages": [
+            {
+              "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:assistant",
+              "metadata": {
+                "requestId": "f1c27438-b2ac-4d7a-a4d0-1f8024997913",
+                "fixtureKey": "A",
+                "state": "timed-out",
+                "cause": "timeout",
+                "origin": "controlled-exercise"
+              },
+              "role": "assistant",
+              "parts": [
+                {
+                  "type": "step-start"
+                },
+                {
+                  "type": "text",
+                  "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与",
+                  "providerMetadata": {
+                    "kind": "undefined"
+                  },
+                  "state": "streaming"
+                }
+              ]
+            }
+          ],
+          "finishReason": {
+            "kind": "undefined"
+          }
+        }
+      }
+    }
+  ],
+  "uiEvents": [
+    {
+      "at": "2026-10-13T01:38:41.040Z",
+      "elapsedMs": 2.1,
+      "value": {
+        "type": "start",
+        "messageMetadata": {
+          "requestId": "f1c27438-b2ac-4d7a-a4d0-1f8024997913",
+          "fixtureKey": "A",
+          "state": "running",
+          "cause": null,
+          "origin": "controlled-exercise"
+        },
+        "messageId": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:assistant"
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:41.044Z",
+      "elapsedMs": 6,
+      "value": {
+        "type": "start-step"
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:41.045Z",
+      "elapsedMs": 7.1,
+      "value": {
+        "type": "text-start",
+        "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1"
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:41.213Z",
+      "elapsedMs": 175.6,
+      "value": {
+        "type": "text-delta",
+        "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+        "delta": "林青清走东畦渠口落叶并再"
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:41.384Z",
+      "elapsedMs": 345.8,
+      "value": {
+        "type": "text-delta",
+        "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+        "delta": "次量水深，仍比昨日刻线浅"
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:41.554Z",
+      "elapsedMs": 515.9,
+      "value": {
+        "type": "text-delta",
+        "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+        "delta": "，原因未知。叶师姐暂不许"
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:41.724Z",
+      "elapsedMs": 686,
+      "value": {
+        "type": "text-delta",
+        "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+        "delta": "写“木闸坏”，只留下量水"
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:41.894Z",
+      "elapsedMs": 856.3,
+      "value": {
+        "type": "text-delta",
+        "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+        "delta": "位置与所见。已确定：取消"
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:42.065Z",
+      "elapsedMs": 1026.9,
+      "value": {
+        "type": "text-delta",
+        "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+        "delta": "今夜冲畦，不再加水；明日"
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:42.235Z",
+      "elapsedMs": 1196.8,
+      "value": {
+        "type": "text-delta",
+        "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1",
+        "delta": "辰时林青带记录到值房，与"
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:42.251Z",
+      "elapsedMs": 1213.5,
+      "value": {
+        "type": "abort",
+        "reason": "TimeoutError: The operation was aborted due to timeout"
+      }
+    },
+    {
+      "at": "2026-10-13T01:38:42.252Z",
+      "elapsedMs": 1214.3,
+      "value": {
+        "type": "message-metadata",
+        "messageMetadata": {
+          "requestId": "f1c27438-b2ac-4d7a-a4d0-1f8024997913",
+          "fixtureKey": "A",
+          "state": "timed-out",
+          "cause": "timeout",
+          "origin": "controlled-exercise"
+        }
+      }
+    }
+  ],
+  "transport": [
+    {
+      "at": "2026-10-13T01:38:42.255Z",
+      "elapsedMs": 1216.9,
+      "value": {
+        "kind": "response-close",
+        "writableEnded": true,
+        "state": "timed-out"
+      }
+    }
+  ],
+  "serverSseProduced": [
+    {
+      "at": "2026-10-13T01:38:41.040Z",
+      "elapsedMs": 2.5,
+      "value": "data: {\"type\":\"start\",\"messageMetadata\":{\"requestId\":\"f1c27438-b2ac-4d7a-a4d0-1f8024997913\",\"fixtureKey\":\"A\",\"state\":\"running\",\"cause\":null,\"origin\":\"controlled-exercise\"},\"messageId\":\"f1c27438-b2ac-4d7a-a4d0-1f8024997913:assistant\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:38:41.044Z",
+      "elapsedMs": 6.4,
+      "value": "data: {\"type\":\"start-step\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:38:41.045Z",
+      "elapsedMs": 7.4,
+      "value": "data: {\"type\":\"text-start\",\"id\":\"f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:38:41.214Z",
+      "elapsedMs": 175.9,
+      "value": "data: {\"type\":\"text-delta\",\"id\":\"f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1\",\"delta\":\"林青清走东畦渠口落叶并再\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:38:41.384Z",
+      "elapsedMs": 346.3,
+      "value": "data: {\"type\":\"text-delta\",\"id\":\"f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1\",\"delta\":\"次量水深，仍比昨日刻线浅\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:38:41.554Z",
+      "elapsedMs": 516.3,
+      "value": "data: {\"type\":\"text-delta\",\"id\":\"f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1\",\"delta\":\"，原因未知。叶师姐暂不许\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:38:41.724Z",
+      "elapsedMs": 686.3,
+      "value": "data: {\"type\":\"text-delta\",\"id\":\"f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1\",\"delta\":\"写“木闸坏”，只留下量水\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:38:41.895Z",
+      "elapsedMs": 856.7,
+      "value": "data: {\"type\":\"text-delta\",\"id\":\"f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1\",\"delta\":\"位置与所见。已确定：取消\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:38:42.065Z",
+      "elapsedMs": 1027.2,
+      "value": "data: {\"type\":\"text-delta\",\"id\":\"f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1\",\"delta\":\"今夜冲畦，不再加水；明日\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:38:42.235Z",
+      "elapsedMs": 1197.1,
+      "value": "data: {\"type\":\"text-delta\",\"id\":\"f1c27438-b2ac-4d7a-a4d0-1f8024997913:text:1\",\"delta\":\"辰时林青带记录到值房，与\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:38:42.252Z",
+      "elapsedMs": 1213.9,
+      "value": "data: {\"type\":\"abort\",\"reason\":\"TimeoutError: The operation was aborted due to timeout\"}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:38:42.253Z",
+      "elapsedMs": 1214.7,
+      "value": "data: {\"type\":\"message-metadata\",\"messageMetadata\":{\"requestId\":\"f1c27438-b2ac-4d7a-a4d0-1f8024997913\",\"fixtureKey\":\"A\",\"state\":\"timed-out\",\"cause\":\"timeout\",\"origin\":\"controlled-exercise\"}}\n\n"
+    },
+    {
+      "at": "2026-10-13T01:38:42.254Z",
+      "elapsedMs": 1215.9,
+      "value": "data: [DONE]\n\n"
+    }
+  ],
+  "uiMessage": {
+    "id": "f1c27438-b2ac-4d7a-a4d0-1f8024997913:assistant",
+    "metadata": {
+      "requestId": "f1c27438-b2ac-4d7a-a4d0-1f8024997913",
+      "fixtureKey": "A",
+      "state": "timed-out",
+      "cause": "timeout",
+      "origin": "controlled-exercise"
+    },
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "step-start"
+      },
+      {
+        "type": "text",
+        "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与",
+        "state": "streaming"
+      }
+    ]
+  },
+  "uiOutcome": {
+    "status": "aborted"
+  },
+  "error": {
+    "kind": "Error",
+    "name": "TimeoutError",
+    "message": "The operation was aborted due to timeout",
+    "stack": "TimeoutError: The operation was aborted due to timeout\n    at new DOMException (node:internal/per_context/domexception:76:18)\n    at Timeout._onTimeout (node:internal/abort_controller:154:9)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"
+  }
+}

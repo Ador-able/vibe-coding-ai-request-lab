@@ -1,7 +1,7 @@
 @import '../context/style.css';
 main { max-width: 1260px; }
 .experiment { padding: 24px; border: 1px solid #c8dcdf; border-radius: 12px; background: white; }
-table { min-width: 990px; }
+table { min-width: 800px; }
 td, th { font-size: 13px; }
 td strong { font-size: 14px; }
 td small { display: block; color: #456672; font-size: 13px; margin-top: 6px; max-width: 260px; white-space: normal; line-height: 1.5; }
@@ -20,3 +20,5 @@ td button { font-size: 13px; padding: 9px 12px; }
 .answer-area { background: #f7f9fb; border-color: #dde3eb; }
 #answer { font-size: 16px; line-height: 1.8; }
 #comparison-body small { font-size: 12px; color: #71808d; }
+
+.run-controls { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 14px; }

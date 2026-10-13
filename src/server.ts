@@ -13,6 +13,8 @@ import { createFeedbackRouter } from './feedback/routes.ts';
 import { createStructuredRouter } from './structured/routes.ts';
 import { createStreamingRouter } from './streaming/routes.ts';
 import { createModelSettings } from './model-settings.ts';
+import { createMessageHistoryRouter } from './message-history/routes.ts';
+import { createRequestsRouter } from './requests/routes.ts';
 import type { AskPayload, AskResult, RequestTrace, Stage } from './contract.ts';
 
 export function createApp(env?: NodeJS.ProcessEnv, log = console.log, configPath?: string) {
@@ -92,6 +94,10 @@ export function createApp(env?: NodeJS.ProcessEnv, log = console.log, configPath
 
 async function start() {
   const app = createApp();
+  const messages = await createMessageHistoryRouter();
+  const requests = await createRequestsRouter();
+  app.use('/api/messages', messages.router);
+  app.use('/api/requests', requests.router);
   if (process.argv.includes('--production')) {
     app.use(express.static(resolve('dist/client')));
   } else {
@@ -99,9 +105,17 @@ async function start() {
     const vite = await createServer({ server: { middlewareMode: true, ws: { host: '127.0.0.1' } }, appType: 'spa' });
     app.use(vite.middlewares);
   }
-  const server = app.listen(4318, '127.0.0.1', () => console.log('请求观察室：http://127.0.0.1:4318'));
+  const port = Number(process.env.LAB_PORT || 4318);
+  const server = app.listen(port, '127.0.0.1', () => console.log(`请求观察室：http://127.0.0.1:${port}`));
+  const close = () => {
+    requests.close();
+    server.closeAllConnections();
+    server.close(() => { messages.close(); process.exit(0); });
+  };
+  process.once('SIGINT', close);
+  process.once('SIGTERM', close);
   server.on('error', (error: NodeJS.ErrnoException) => {
-    console.error(error.code === 'EADDRINUSE' ? '端口 4318 已被占用，请先停止另一个请求观察室。' : '服务启动失败。');
+    console.error(error.code === 'EADDRINUSE' ? `端口 ${port} 已被占用，请先停止另一个请求观察室。` : '服务启动失败。');
     process.exit(1);
   });
 }

@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "path": "chapter-one.md",
+      "sha256": "c6024123cf432a90122ce444be6bc4398ff26643de52747416042a79f838095d"
+    },
+    {
+      "path": "background.md",
+      "sha256": "ea704aa1de403d4e32e766df91364fa5f21f41316ae9f89862ccd50b1ed66d9c"
+    },
+    {
+      "path": "plans.md",
+      "sha256": "5013d3f9bd4380532c8ed1e719a010a6e27eae85da6e1288232973c28fc4957d"
+    },
+    {
+      "path": "current-task.md",
+      "sha256": "0b9fe4465a3ef5e9f84d83518e0bddc75ed6f6200d54dec2ede2530d86f120bd"
+    },
+    {
+      "path": "human-decision.md",
+      "sha256": "b5940bec995e2b8e72a85d0d79ce16154dd3e642365f0ae6c855c91ff8835a5e"
+    }
+  ]
+}

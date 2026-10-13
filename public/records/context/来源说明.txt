@@ -1,0 +1,8 @@
+青岚修仙录上下文实验真实记录，2026-10-13北京时间。
+原始文件chapter03/live-records/040-context-start.json、053-context-follow-up.json、054-context-follow-up.json、055-context-follow-up.json。响应型号deepseek-v4-flash-0731；实际请求temperature=0、max_tokens=4096。首轮只第一次调用提供get_herb_record工具定义并强制调用；参数room=炼丹房，返回registered_count=12、actual_count=11。助手tool_calls.id和tool.tool_call_id均为call_dqn3byzok4arttycmueidc9n。首轮依据工具结果回答“登记数量为12株。”没有把11株写进聊天文字。
+固定追问“现场实际有多少株这种灵草？”三组共用首轮记录，各自构造请求且不将前一次追问答案加入历史。三请求均无tools、tool_choice；仅本轮只有应用规则和追问；聊天文字组增加首轮问答；完整历史组再保留首轮调用及结果。三组均HTTP200、stop，没有再次执行工具。
+053仅本轮答“暂无法确定。缺少小说名称、具体场景或灵草种类描述，无法得知现场实际株数。”
+054聊天文字答“缺少现场实际数量的信息。当前仅提供了收药记录的登记数量（12株），未提供现场实际清点的数据。”
+055完整历史答“现场实际有11株。”
+实际输入用量分别136、97、250；不按直觉修改服务返回数字，不以这组用量推导历史长度排序或普遍效果。实验用于区分信息未提供与未利用，不证明模型总会正确。
+截图context-tool-result-xianxia.png为实际完整历史中的工具调用与结果，asset565，3738×1946。已实际查看，调用名、room、两个对应ID、登记12与实际11均清晰；不是将旧版本查询图换名。实验入口使用asset563请求观察室青岚修仙录第三章包，其他课程页沿用同一解压目录与模型设置，不声称GitHub已更新。

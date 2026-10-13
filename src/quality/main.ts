@@ -3,18 +3,18 @@ import '../lab.css';
 import { QUALITY_CONDITIONS, type Batch, type CaseResult, type QualityCase, type QualityCondition, type QualityResponse } from './contract.ts';
 
 document.querySelector('#app')!.innerHTML = `
-  <header><span class="eyebrow">材料对照实验</span>
-    <h1>材料对照</h1><p>改变材料长度、位置和干扰，比较提取结果与引用。</p></header>
-  <section class="run-panel"><div><p class="run-description">6 种材料条件，每种比较样例 A / B</p><p>教学虚构资料 · 本次调用模型 12 次，按次计费</p></div><button id="run" disabled>运行 12 个样例</button></section>
+  <header>
+    <h1>材料对照</h1><p>查炼丹房的灵草数量，比较资料长短、位置、干扰与冲突。</p></header>
+  <section class="run-panel"><div><p class="run-description">《青岚修仙录》· 炼丹房灵草清点</p><p>6 种条件 × A / B 两份教学表述 · 调用模型 12 次</p></div><button id="run" disabled>运行 12 个样例</button></section>
   <p id="status" role="status">正在读取合成材料……</p><progress id="progress" max="12" value="0" hidden></progress>
   <section id="observations" hidden><div class="result-toolbar"><label for="batch">查看运行记录</label><select id="batch"></select><button id="download" class="secondary">下载这次运行</button></div>
-    <p class="note">每种条件最多 2 例，不代表整体准确率。</p>
+    <p class="note">A / B 使用同一组小说事实的不同表述，不代表整体准确率。</p>
     <div class="table-scroll"><table><thead><tr><th>条件</th><th>实际输入 token</th><th>事实完整</th><th>引用正确</th><th>全部通过</th><th>逐例查看</th></tr></thead><tbody id="results"></tbody></table></div>
   </section>
   <details id="case-detail" hidden><summary id="case-title">查看一个样例</summary><div id="case-content" class="inspector-body"></div></details>
   <details class="guide"><summary>预览合成材料（不调用模型）</summary><div class="guide-body"><label for="preview">选择材料</label><select id="preview"></select><div id="preview-content"></div></div></details>
-  <details class="guide"><summary>实验设置与判定口径</summary><div class="guide-body"><p>非思考 · 温度 0 · 输出上限 512 token · 禁用工具。串行执行，不自动重试。分母只计已返回文本的请求；失败单列，格式异常或截断不算通过。</p><dl>
-    <dt>事实完整</dt><dd>状态、负责人和冻结日期三项都符合资料。冲突条件要求 conflict、负责人为 null、保留一致的冻结日期。</dd>
+  <details class="guide"><summary>实验设置与判定口径</summary><div class="guide-body"><p>温度 0 · 输出上限 4096 token（含推理与正文） · 禁用工具。串行执行，不自动重试。分母只计已返回文本的请求；失败单列，格式异常或截断不算通过。</p><dl>
+    <dt>事实完整</dt><dd>状态、实物数量和登记数量三项都符合资料。冲突条件要求 conflict、实物数量为 null、保留一致的登记数量。</dd>
     <dt>引用正确</dt><dd>记录编号必须完整、准确且没有多余或重复项。冲突条件需要同时引用两条互相矛盾的记录。</dd>
     <dt>全部通过</dt><dd>输出结构完整，事实与引用同时正确。原始回答和期望值都可以展开核对。</dd>
     <dt>实际输入 token</dt><dd>取自各次 API 返回的 usage.prompt_tokens；条数不是 token 阈值，也没有使用其他模型的分词器估算。</dd>
@@ -81,15 +81,20 @@ function showCase(item: QualityCase, result?: CaseResult) {
   const content = el('#case-content'); content.replaceChildren(p(item.question));
   if (!result) content.append(p('这个样例尚未运行；下面只有合成材料和期望值。', 'note'));
   if (result?.error) content.append(p(`请求失败：${result.error.message}。不计入效果判定。`, 'error'));
-  if (result?.answer !== null && result?.answer !== undefined) content.append(detail('模型返回原文', result.answer, true));
+  if (result?.answer !== null && result?.answer !== undefined) content.append(detail('模型返回原文', result.answer));
   const assessment = result?.assessment;
   if (assessment) {
     const judgment = assessment.valid
-      ? `状态：${assessment.statusCorrect ? '正确' : '有差异'}；负责人：${assessment.ownerCorrect ? '正确' : '有差异'}；冻结日期：${assessment.dateCorrect ? '正确' : '有差异'}；引用：${assessment.sourcesCorrect ? '正确' : '有差异'}`
+      ? `状态：${assessment.statusCorrect ? '正确' : '有差异'}；实物数量：${assessment.actualCorrect ? '正确' : '有差异'}；登记数量：${assessment.registeredCorrect ? '正确' : '有差异'}；引用：${assessment.sourcesCorrect ? '正确' : '有差异'}`
       : `输出异常：${assessment.issue}`;
     content.append(p(judgment, assessment.allCorrect ? 'passed' : 'error'));
   }
-  content.append(detail('期望结果 · 本地评分依据，不发给模型', pretty(item.expected), true));
+  if (assessment?.parsed) {
+    const answer = assessment.parsed;
+    content.prepend(p(`实际结果：登记 ${answer.registered_count ?? '未确定'} 株，实物 ${answer.actual_count ?? '未确定'} 株；依据 ${answer.source_ids.join('、') || '未提供'}。`));
+  }
+  content.append(p(`预期：登记 ${item.expected.registered_count} 株，实物${item.expected.actual_count === null ? '存在冲突，不能确定' : ` ${item.expected.actual_count} 株`}。`, 'note'));
+  content.append(detail('完整评分依据 · 不发给模型', pretty(item.expected)));
   if (result?.request) {
     const request = result.request;
     content.append(p(`HTTP ${request.httpStatus ?? '未返回'} · finish_reason: ${request.finishReason ?? '未返回'} · ${request.durationMs ?? '—'} ms`, 'meta'));
