@@ -1,4 +1,6 @@
 packages: []
+# 直接复制依赖，避免 Windows 跨盘硬链接失败后的目录替换。
+packageImportMethod: copy
 allowBuilds:
   esbuild: true
 minimumReleaseAgeExclude:
