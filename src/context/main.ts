@@ -83,7 +83,7 @@ function requestView(request: RequestRecord, index: number) {
   section.append(heading, paragraph(`请求型号 ${body.model} · ${request.httpStatus ? `HTTP ${request.httpStatus}` : '未收到 HTTP 响应'} · ${request.durationMs ?? '—'} ms`, 'meta'));
   const names = { system: '系统规则', user: '用户消息', assistant: '助手文字', tool: '工具结果' };
   section.append(paragraph(body.tools?.length
-    ? `另附 ${body.tools.length} 个工具定义 · 指定 get_herb_record`
+    ? `另附 ${body.tools.length} 个工具定义 · 指定 get_novel_excerpt`
     : '本次不提供可调用工具；历史中的工具消息只作为已有资料。', 'meta'));
   // 从实际请求体逐条展示；工具内容解析后易读，完整JSON保留原始结构。
   body.messages.forEach((message, i) => {

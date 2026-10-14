@@ -1,0 +1,66 @@
+{
+  "sourceVersion": "sha256:15f034f67e833bb43a1f09018c68acca7ab01c85d8e7d35a03471eacc403fc9f",
+  "sourceSha256": "141138ca40a7ddbad62264d3f011ee4c1e01bc00c3900f5ff4b9016f25db9d34",
+  "files": [
+    "14-context-start.json",
+    "15-context-follow-up.json",
+    "16-context-follow-up.json",
+    "17-context-follow-up.json"
+  ],
+  "checks": {
+    "originalExact": true,
+    "sourceId": true,
+    "sharedRule": true,
+    "sharedQuestion": true,
+    "noNewTools": true,
+    "callIdMatches": true,
+    "retainedOriginalExact": true,
+    "chatHasNoOriginal": true,
+    "currentHasNoOriginal": true,
+    "finished": true
+  },
+  "answers": [
+    {
+      "condition": "first",
+      "answer": "十岁",
+      "inputTokens": [
+        447,
+        1836
+      ],
+      "outputTokens": [
+        81,
+        18
+      ]
+    },
+    {
+      "condition": "current",
+      "answer": "缺少原文信息，无法确定韩立在家中的排行。请提供相关原文片段。",
+      "inputTokens": [
+        140
+      ],
+      "outputTokens": [
+        50
+      ]
+    },
+    {
+      "condition": "chat",
+      "answer": "第四",
+      "inputTokens": [
+        165
+      ],
+      "outputTokens": [
+        659
+      ]
+    },
+    {
+      "condition": "full",
+      "answer": "原文明确指出“他在家里排行老四”。",
+      "inputTokens": [
+        1854
+      ],
+      "outputTokens": [
+        153
+      ]
+    }
+  ]
+}

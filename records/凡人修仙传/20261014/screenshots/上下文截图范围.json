@@ -1,0 +1,59 @@
+[
+  {
+    "source": "上下文对照-原始.jpg",
+    "sourceSize": [
+      3185,
+      1792
+    ],
+    "crop": [
+      312,
+      740,
+      2872,
+      1390
+    ],
+    "image": "上下文对照-2K.png",
+    "size": [
+      2560,
+      650
+    ],
+    "upscaled": false
+  },
+  {
+    "source": "聊天文字输入-原始.jpg",
+    "sourceSize": [
+      3185,
+      1792
+    ],
+    "crop": [
+      312,
+      0,
+      2872,
+      1040
+    ],
+    "image": "聊天文字输入-2K.png",
+    "size": [
+      2560,
+      1040
+    ],
+    "upscaled": false
+  },
+  {
+    "source": "上下文工具记录-原始.jpg",
+    "sourceSize": [
+      3185,
+      1792
+    ],
+    "crop": [
+      312,
+      0,
+      2872,
+      1055
+    ],
+    "image": "上下文工具记录-2K.png",
+    "size": [
+      2560,
+      1055
+    ],
+    "upscaled": false
+  }
+]
