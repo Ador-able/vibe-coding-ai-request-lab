@@ -1,13 +1,11 @@
-import materials from '../scene-materials.json';
-
-export const BACKGROUND = materials.background;
-export const PREVIOUS_CHAPTER = materials.previousChapter;
-export const GOAL = materials.decisionsTask;
-export const DIRECTIONS = ['A 先查气流', 'B 先寻同版'] as const;
-export const SYSTEM = `为原创小说《青岚修仙录》提供两个尚未采用的完整情节方案，供作者判断和编辑。依据给定背景、完整前文与本轮任务，区分已发生的事实、未确定的事项和待选方案。理由与取舍是建议，不声称经过独立核验，不自行采用或发布。
-只返回一个JSON对象，恰好包含“方案A”“方案B”两个对象。每个方案恰好包含“情节方案”“理由”“取舍”“待问”四个非空字符串。“情节方案”写约350至500个汉字的完整连贯安排，不用短摘要代替；其余三项各用简洁中文说明。方案A先查气流，方案B先询问有无同版书并取得许可。`;
+import { SOURCES } from '../novel-materials.ts';
+export const BACKGROUND = '阅读《凡人修仙传》第一章，选择一份便于自己复习的笔记方案。全部内容依据原文，不续写小说、不添加人物或情节。';
+export const PREVIOUS_CHAPTER = SOURCES[0].text;
+export const GOAL = '提出两份简短阅读笔记方案：A 按事件顺序，B 按人物关系。每份说明记录哪些信息及如何回查原文。';
+export const DIRECTIONS = ['A 事件顺序', 'B 人物关系'] as const;
+export const SYSTEM = '依据所附原文提出两份阅读笔记方案，供读者选择和编辑，不续写故事。只返回JSON对象，包含“方案A”“方案B”；每份包含“阅读方案”“理由”“取舍”“待问”四个非空字符串。阅读方案不超过150字，其余各用一句话说明。不能把方案或推测写成小说事实。';
 export function requestBody(model: string) {
   return JSON.stringify({ model, messages: [{ role: 'system', content: SYSTEM },
-    { role: 'user', content: `${BACKGROUND}\n\n${PREVIOUS_CHAPTER}\n\n本轮任务：\n${GOAL}` }],
-    stream: false, temperature: 0, max_tokens: 16384, response_format: { type: 'json_object' } });
+    { role: 'user', content: `${BACKGROUND}\n\n[C01] ${PREVIOUS_CHAPTER}\n\n任务：${GOAL}` }],
+    stream: false, temperature: 0, max_tokens: 4096, response_format: { type: 'json_object' } });
 }

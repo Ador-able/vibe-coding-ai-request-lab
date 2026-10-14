@@ -4,18 +4,18 @@ import { QUALITY_CONDITIONS, type Batch, type CaseResult, type QualityCase, type
 
 document.querySelector('#app')!.innerHTML = `
   <header>
-    <h1>材料对照</h1><p>查炼丹房的灵草数量，比较资料长短、位置、干扰与冲突。</p></header>
-  <section class="run-panel"><div><p class="run-description">《青岚修仙录》· 炼丹房灵草清点</p><p>6 种条件 × A / B 两份教学表述 · 调用模型 12 次</p></div><button id="run" disabled>运行 12 个样例</button></section>
-  <p id="status" role="status">正在读取合成材料……</p><progress id="progress" max="12" value="0" hidden></progress>
+    <h1>材料对照</h1><p>查第一章韩立的年龄与排行，比较原文长短和位置。</p></header>
+  <section class="run-panel"><div><p class="run-description">《凡人修仙传》· 第一章事实核对</p><p>4 种条件 · 每种调用模型 1 次</p></div><button id="run" disabled>运行 4 个样例</button><button id="classroom" class="secondary">查看课堂实录</button></section>
+  <p id="status" role="status">正在读取小说原文……</p><progress id="progress" max="4" value="0" hidden></progress>
   <section id="observations" hidden><div class="result-toolbar"><label for="batch">查看运行记录</label><select id="batch"></select><button id="download" class="secondary">下载这次运行</button></div>
-    <p class="note">A / B 使用同一组小说事实的不同表述，不代表整体准确率。</p>
+    <p class="note">各条件使用同一份原文，仅改变长度或位置；单次结果不代表整体准确率。</p>
     <div class="table-scroll"><table><thead><tr><th>条件</th><th>实际输入 token</th><th>事实完整</th><th>引用正确</th><th>全部通过</th><th>逐例查看</th></tr></thead><tbody id="results"></tbody></table></div>
   </section>
   <details id="case-detail" hidden><summary id="case-title">查看一个样例</summary><div id="case-content" class="inspector-body"></div></details>
-  <details class="guide"><summary>预览合成材料（不调用模型）</summary><div class="guide-body"><label for="preview">选择材料</label><select id="preview"></select><div id="preview-content"></div></div></details>
+  <details class="guide"><summary>预览小说原文（不调用模型）</summary><div class="guide-body"><label for="preview">选择材料</label><select id="preview"></select><div id="preview-content"></div></div></details>
   <details class="guide"><summary>实验设置与判定口径</summary><div class="guide-body"><p>温度 0 · 输出上限 4096 token（含推理与正文） · 禁用工具。串行执行，不自动重试。分母只计已返回文本的请求；失败单列，格式异常或截断不算通过。</p><dl>
-    <dt>事实完整</dt><dd>状态、实物数量和登记数量三项都符合资料。冲突条件要求 conflict、实物数量为 null、保留一致的登记数量。</dd>
-    <dt>引用正确</dt><dd>记录编号必须完整、准确且没有多余或重复项。冲突条件需要同时引用两条互相矛盾的记录。</dd>
+    <dt>事实完整</dt><dd>状态、家中排行和年龄三项都符合资料。</dd>
+    <dt>引用正确</dt><dd>记录编号必须完整、准确且没有多余或重复项。</dd>
     <dt>全部通过</dt><dd>输出结构完整，事实与引用同时正确。原始回答和期望值都可以展开核对。</dd>
     <dt>实际输入 token</dt><dd>取自各次 API 返回的 usage.prompt_tokens；条数不是 token 阈值，也没有使用其他模型的分词器估算。</dd>
     </dl><p>两份样例不足以代表某个模型的整体能力。全部通过也是有效观察；一次差异不能单独证明其原因。运行记录暂存在本页，刷新前请下载。</p></div></details>`;
@@ -38,7 +38,7 @@ function detail(title: string, value: string, open = false) {
   const pre = document.createElement('pre'); pre.textContent = value; node.append(label, pre); return node;
 }
 function selectedBatch() { return batches.find((batch) => batch.id === batchSelect.value); }
-function name(item: QualityCase) { return `${QUALITY_CONDITIONS[item.condition]} · 样例 ${item.sample}`; }
+function name(item: QualityCase) { return `${QUALITY_CONDITIONS[item.condition]} · ${item.id}`; }
 function tokenCount(result: CaseResult): number | undefined {
   const usage = result.request?.usage;
   return usage && typeof usage === 'object' && 'prompt_tokens' in usage && typeof usage.prompt_tokens === 'number' ? usage.prompt_tokens : undefined;
@@ -68,7 +68,7 @@ function renderTable() {
     cases.filter((item) => item.condition === condition).forEach((item) => {
       const result = results.find((entry) => entry.caseId === item.id);
       const link = document.createElement('button'); link.className = 'link-button';
-      link.textContent = `${item.sample} · ${!result ? '未运行' : result.error ? '请求失败' : !result.assessment?.valid ? '输出异常' : result.assessment.allCorrect ? '通过' : '有差异'}`;
+      link.textContent = `${item.id} · ${!result ? '未运行' : result.error ? '请求失败' : !result.assessment?.valid ? '输出异常' : result.assessment.allCorrect ? '通过' : '有差异'}`;
       link.addEventListener('click', () => showCase(item, result)); links.append(link);
     });
     row.append(links); return row;
@@ -79,21 +79,21 @@ function showCase(item: QualityCase, result?: CaseResult) {
   const box = el<HTMLDetailsElement>('#case-detail'); box.hidden = false; box.open = true;
   el('#case-title').textContent = name(item);
   const content = el('#case-content'); content.replaceChildren(p(item.question));
-  if (!result) content.append(p('这个样例尚未运行；下面只有合成材料和期望值。', 'note'));
+  if (!result) content.append(p('这个样例尚未运行；下面只有小说原文和期望值。', 'note'));
   if (result?.error) content.append(p(`请求失败：${result.error.message}。不计入效果判定。`, 'error'));
   if (result?.answer !== null && result?.answer !== undefined) content.append(detail('模型返回原文', result.answer));
   const assessment = result?.assessment;
   if (assessment) {
     const judgment = assessment.valid
-      ? `状态：${assessment.statusCorrect ? '正确' : '有差异'}；实物数量：${assessment.actualCorrect ? '正确' : '有差异'}；登记数量：${assessment.registeredCorrect ? '正确' : '有差异'}；引用：${assessment.sourcesCorrect ? '正确' : '有差异'}`
+      ? `状态：${assessment.statusCorrect ? '正确' : '有差异'}；家中排行：${assessment.rankCorrect ? '正确' : '有差异'}；年龄：${assessment.ageCorrect ? '正确' : '有差异'}；引用：${assessment.sourcesCorrect ? '正确' : '有差异'}`
       : `输出异常：${assessment.issue}`;
     content.append(p(judgment, assessment.allCorrect ? 'passed' : 'error'));
   }
   if (assessment?.parsed) {
     const answer = assessment.parsed;
-    content.prepend(p(`实际结果：登记 ${answer.registered_count ?? '未确定'} 株，实物 ${answer.actual_count ?? '未确定'} 株；依据 ${answer.source_ids.join('、') || '未提供'}。`));
+    content.prepend(p(`实际结果：${answer.age ?? '未知'}岁，排行第${answer.family_rank ?? '未知'}；依据 ${answer.source_ids.join('、') || '未提供'}。`));
   }
-  content.append(p(`预期：登记 ${item.expected.registered_count} 株，实物${item.expected.actual_count === null ? '存在冲突，不能确定' : ` ${item.expected.actual_count} 株`}。`, 'note'));
+  content.append(p(`原文核对：${item.expected.age}岁，排行第${item.expected.family_rank}。`, 'note'));
   content.append(detail('完整评分依据 · 不发给模型', pretty(item.expected)));
   if (result?.request) {
     const request = result.request;
@@ -107,7 +107,7 @@ function showCase(item: QualityCase, result?: CaseResult) {
 
 function preview() {
   const item = cases.find((entry) => entry.id === previewSelect.value); if (!item) return;
-  el('#preview-content').replaceChildren(p(`${item.question} 共 ${item.documents.length} 条合成资料。`, 'note'), detail('预览资料全文', item.documents.map((document) => `[${document.id}] ${document.text}`).join('\n\n'), true));
+  el('#preview-content').replaceChildren(p(`${item.question} 共 ${item.documents.length} 条原文片段。`, 'note'), detail('预览资料全文', item.documents.map((document) => `[${document.id}] ${document.text}`).join('\n\n'), true));
 }
 
 button.addEventListener('click', async () => {
@@ -117,7 +117,7 @@ button.addEventListener('click', async () => {
   updateBatches(batch.id); renderTable(); el('#case-detail').hidden = true;
   progress.hidden = false; progress.value = 0; status.className = '';
   for (const [index, item] of cases.entries()) {
-    status.textContent = `正在请求 ${index + 1} / 12：${name(item)}……`;
+    status.textContent = `正在请求 ${index + 1} / ${cases.length}：${name(item)}……`;
     try {
       const response = await fetch('/api/quality/case', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ caseId: item.id }) });
       const data: QualityResponse = await response.json();
@@ -131,8 +131,18 @@ button.addEventListener('click', async () => {
       batch.state = 'failed'; status.textContent = `已停止在 ${name(item)}：本机回复无效，已有结果保留。`; status.className = 'error'; renderTable(); break;
     }
   }
-  if (batch.state === 'running') { batch.state = 'complete'; status.textContent = '12 个样例已完成。按条件比较结果，再展开具体样例核对证据。'; }
-  busy = false; button.disabled = false; batchSelect.disabled = false; button.textContent = '新开始一次 · 12 个样例'; updateBatches(batch.id);
+  if (batch.state === 'running') { batch.state = 'complete'; status.textContent = '4 个样例已完成。按条件比较结果，再展开具体样例核对证据。'; }
+  busy = false; button.disabled = false; batchSelect.disabled = false; button.textContent = '新开始一次 · 4 个样例'; updateBatches(batch.id);
+});
+el('#classroom').addEventListener('click', async () => {
+  if (busy || !cases.length) return;
+  try {
+    const response = await fetch('/records/凡人修仙传-quality.json');
+    if (!response.ok) throw new Error();
+    const batch = await response.json() as Batch;
+    batches.push(batch); updateBatches(batch.id); renderTable();
+    status.textContent = '2026-10-14 课堂实录 · 未新增模型请求。';
+  } catch { status.textContent = '课堂实录读取失败，请检查仓库文件。'; }
 });
 batchSelect.addEventListener('change', () => { renderTable(); el('#case-detail').hidden = true; });
 previewSelect.addEventListener('change', preview);
@@ -147,4 +157,4 @@ try {
   cases = await response.json();
   previewSelect.replaceChildren(...cases.map((item) => { const option = document.createElement('option'); option.value = item.id; option.textContent = name(item); return option; }));
   preview(); button.disabled = false; status.textContent = '';
-} catch { status.textContent = '合成材料读取失败，请确认本机服务已启动并刷新页面。'; status.className = 'error'; }
+} catch { status.textContent = '小说原文读取失败，请确认本机服务已启动并刷新页面。'; status.className = 'error'; }

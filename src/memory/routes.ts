@@ -2,15 +2,15 @@ import { Router } from 'express';
 import { resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { ModelError, readConfig } from '../model.ts';
-import { SOURCE_MAP, SOURCES, QUESTION, TEACHING_NOTE } from './materials.ts';
+import { SOURCE_MAP, SOURCES, QUESTION, TEACHING_NOTE, ORIGINAL_EXCERPT } from './materials.ts';
 import { createNoteStore } from './note-store.ts';
 import { FLOWS, type Flow, type FlowResponse, type FlowResult } from './contract.ts';
 import { runFlow } from './flows.ts';
 
-export function createMemoryRouter(env: NodeJS.ProcessEnv, notePath = resolve('artifacts/memory-task-note.json')) {
+export function createMemoryRouter(env: NodeJS.ProcessEnv, notePath = resolve('artifacts/material-summary.json')) {
   const router = Router();
   const store = createNoteStore(notePath);
-  router.get('/materials', (_req, res) => { res.json({ question: QUESTION, sources: SOURCES, teachingNote: TEACHING_NOTE }); });
+  router.get('/materials', (_req, res) => { res.json({ question: QUESTION, sources: SOURCES, teachingNote: TEACHING_NOTE, originalExcerpt: ORIGINAL_EXCERPT }); });
   router.get('/sources/:id', (req, res) => {
     const source = SOURCE_MAP.get(req.params.id);
     if (!source) { res.status(404).json({ error: '没有这个来源编号。' }); return; }
@@ -18,10 +18,10 @@ export function createMemoryRouter(env: NodeJS.ProcessEnv, notePath = resolve('a
   });
   router.get('/note', async (_req, res) => {
     try { res.json({ saved: await store.load() }); }
-    catch { res.status(500).json({ error: '本地摘要无法读取或与本次小说资料不符，请核对后重新保存。' }); }
+    catch { res.status(500).json({ error: '本机摘要无法读取或与当前资料不符，请重新保存。' }); }
   });
   router.post('/note', async (req, res) => {
-    if (req.body?.confirmed !== true) { res.status(400).json({ error: '请先勾选已核对这份人工教学记录。' }); return; }
+    if (req.body?.confirmed !== true) { res.status(400).json({ error: '请先确认保存当前摘要。' }); return; }
     try { res.json({ saved: await store.save() }); }
     catch { res.status(500).json({ error: '摘要未能写入本机文件，请检查目录是否可写。' }); }
   });

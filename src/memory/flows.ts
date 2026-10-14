@@ -15,13 +15,13 @@ export function parseSelectedIds(raw: string): string[] {
 }
 
 export function noteMessages(saved: SavedNote) {
-  return answerMessages(`人工核对并保存的任务摘要（并非本轮模型生成；确认时间${saved.confirmedAt}）：\n${JSON.stringify(saved.note)}\n\n摘要所指原文（请回到原文核对条件）：\n${sourceText(saved.note.sources.map((source) => source.id))}`);
+  return answerMessages(`从本机读回的摘要：\n${saved.note.text}\n来源：${saved.note.source_ids.map((id) => `[${id}]`).join(' ')}`);
 }
 
 export async function runFlow(config: ModelConfig, result: FlowResult, signal: AbortSignal, saved?: SavedNote) {
   async function call(messages: { role: string; content: string }[], step: string, json = false) {
-    // 输出预算同时容纳推理与正文；各条续写流程使用相同上限。
-    const maxTokens = step === '回答问题' ? 4096 : 2048;
+    // 输出预算包含推理；各流程只要求一个简短结果。
+    const maxTokens = step === '现场压缩资料' ? 8192 : 2048;
     const requestBody = JSON.stringify({ model: config.model, messages, stream: false,
       temperature: 0, max_tokens: maxTokens, ...(json ? { response_format: { type: 'json_object' } } : {}) });
     const record = { step, startedAt: new Date().toISOString(), requestBody };
@@ -42,8 +42,8 @@ export async function runFlow(config: ModelConfig, result: FlowResult, signal: A
     case 'full': material = sourceText(SOURCES.map((source) => source.id)); break;
     case 'retrieve': {
       const selection = await call([
-        { role: 'system', content: '根据当前任务和资料目录，选择需要读取原文的记录编号。返回且只返回 JSON 对象 {"source_ids":["编号"]}。只使用目录中存在的编号，不重复；选择应覆盖续写所需的前章接点、人物限制、已知事实和未决问题。此步不写正文。' },
-        { role: 'user', content: `${QUESTION}\n\n资料目录（标题、日期、主题与片段，不是原文）：\n${JSON.stringify(CATALOG)}` },
+        { role: 'system', content: '从目录选择回答问题所需的资料编号，只返回 JSON 对象 {"source_ids":["编号"]}。只选相关资料，不重复，不回答问题。' },
+        { role: 'user', content: `${QUESTION}\n\n资料目录：\n${JSON.stringify(CATALOG)}` },
       ], '选择资料编号', true);
       result.selectedIds = parseSelectedIds(selection);
       material = sourceText(result.selectedIds);
@@ -51,10 +51,10 @@ export async function runFlow(config: ModelConfig, result: FlowResult, signal: A
     }
     case 'summary': {
       result.summary = await call([
-        { role: 'system', content: '为指定任务整理一份不超过500字的任务摘要。保留前章接点、人物行动限制、具体数量、已知线索、未决问题和来源编号，不把猜测写成事实。无关内容可省略，不补造信息。此步只整理摘要，不续写正文。' },
-        { role: 'user', content: `${QUESTION}\n\n原文：\n${sourceText(SOURCES.map((source) => source.id))}` },
-      ], '生成任务摘要');
-      material = `以下是模型整理的任务摘要，本轮未附原文：\n${result.summary}`;
+        { role: 'system', content: '将全部小说原文压缩成约300字的阅读进度摘要，记录主要事件、人物关系和未决事项，附来源编号。不补造情节。只输出摘要。' },
+        { role: 'user', content: `原文：\n${sourceText(SOURCES.map((source) => source.id))}` },
+      ], '现场压缩资料');
+      material = `以下是本次模型现场生成的摘要，本轮未附原文：\n${result.summary}`;
       break;
     }
     case 'note':

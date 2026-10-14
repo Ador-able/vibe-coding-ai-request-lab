@@ -1,0 +1,6 @@
+{
+  "route": "/note",
+  "beganAt": "2026-10-14T12:24:45.570Z",
+  "status": 200,
+  "body": "{\"saved\":{\"origin\":\"reader-confirmed-teaching-note\",\"confirmedAt\":\"2026-10-14T12:24:45.570Z\",\"note\":{\"text\":\"第一章《山边小村》：韩立的大哥当铁匠学徒，每月有三十个铜板，管吃管住。\",\"source_ids\":[\"C01\"]}}}"
+}

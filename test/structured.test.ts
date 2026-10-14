@@ -37,7 +37,7 @@ test('拒绝、截断和无正文先停止，JSON解析失败不替换为合法�
 
 test('原句存在不等于负责人正确，引用未找到时仍保留原始提取内容', () => {
   assert.equal(COUNTEREXAMPLE_CHECK.checks[2].status, 'pass'); assert.equal(COUNTEREXAMPLE_CHECK.checks[3].status, 'pass');
-  assert.equal(COUNTEREXAMPLE_CHECK.data?.items[0].owner, '叶师姐'); assert(COUNTEREXAMPLE.material.includes('叶师姐让林青'));
+  assert.equal(COUNTEREXAMPLE_CHECK.data?.items[0].owner, '韩立的三叔'); assert(COUNTEREXAMPLE.material.includes('别乱跑啊'));
   const missing = inspectResponse(message({ items: [unknownTask] }), 'stop', '本次没有待办');
   assert.equal(missing.checks[3].status, 'fail'); assert.deepEqual(missing.data, { items: [unknownTask] }); assert.equal(missing.evidence?.[0].start, null);
 });

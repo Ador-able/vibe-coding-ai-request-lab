@@ -25,7 +25,7 @@ function record(): StreamRecord {
 }
 
 test('受控材料保留同一事实；重复请求逐字一致，前缀条件只改变最前标记', () => {
-  assert.equal((MANUAL.match(/【M\d+/g) ?? []).length, 40);
+  assert.equal((MANUAL.match(/\[C\d+\]/g) ?? []).length, 30);
   assert.equal(MANUAL.split(TARGET).length, 2);
   assert.equal(requestBody('repeat', 'qwen-flash'), requestBody('long', 'qwen-flash'));
   assert.equal(requestBody('prefix', 'qwen-flash').replace('实验版本：B', '实验版本：A'), requestBody('long', 'qwen-flash'));
@@ -59,11 +59,11 @@ test('实际转发串等于检查器；首正文排除空块，接收 choices �
   let sent = ''; let calls = 0;
   const upstream = createServer(async (req, res) => {
     calls++;
-    for await (const part of req) sent += part;
+    req.setEncoding('utf8'); for await (const part of req) sent += part;
     res.setHeader('Content-Type', 'text/event-stream');
     res.write(frame({ model: 'qwen-flash-test', choices: [{ index: 0, delta: { role: 'assistant', content: '' }, finish_reason: null }] }));
     await wait(35);
-    res.write(frame(chunk('登记12株，实物11株'))); await wait(10);
+    res.write(frame(chunk('每月三十个铜板'))); await wait(10);
     res.write(frame(chunk('。', 'stop')));
     res.write(frame({ model: 'qwen-flash-test', choices: [], usage: { prompt_tokens: 6000, completion_tokens: 8, prompt_tokens_details: { cached_tokens: 4096 } } }));
     res.end('data: [DONE]\r\n\r\n');
@@ -76,14 +76,14 @@ test('实际转发串等于检查器；首正文排除空块，接收 choices �
     const downstream: ClientEvent[] = []; for await (const event of readEvents(response.body!)) downstream.push(JSON.parse(event.data));
     const last = downstream.at(-1); assert.equal(last?.type, 'complete'); if (last?.type !== 'complete') throw new Error();
     const result = last.record;
-    assert.equal(result.requestBody, sent); assert.equal(result.answer, '登记12株，实物11株。'); assert.equal(result.events.length, 5);
+    assert.equal(result.requestBody, sent); assert.equal(result.answer, '每月三十个铜板。'); assert.equal(result.events.length, 5);
     assert.equal(calls, 1);
     assert.equal(result.firstContentMs, result.events[1].elapsedMs); assert.ok(result.firstContentMs > result.events[0].elapsedMs);
     assert.equal(result.streamEndMs, result.events[4].elapsedMs); assert.equal(result.endedBy, 'done'); assert.equal(result.finishReason, 'stop');
     assert.deepEqual(usageOf(result.usage), { input: 6000, output: 8, cached: 4096 });
     assert.equal(result.error, undefined); assert.equal(JSON.stringify(downstream).includes('test-private-key'), false);
     assert.equal(JSON.stringify(downstream).includes(baseUrl), false);
-    assert.deepEqual(downstream.filter((event) => event.type === 'delta').map((event) => event.text), ['登记12株，实物11株', '。']);
+    assert.deepEqual(downstream.filter((event) => event.type === 'delta').map((event) => event.text), ['每月三十个铜板', '。']);
   } finally { await close(backend); await close(upstream); }
 });
 

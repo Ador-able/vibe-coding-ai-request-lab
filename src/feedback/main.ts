@@ -3,13 +3,13 @@ import '../lab.css';
 import { CHARACTERS, RECORDS, SUGGESTED_RULE } from './scenario.ts';
 import type { FeedbackResponse, FeedbackRun, RuleMode, RuleResponse, SavedRule } from './contract.ts';
 
-document.querySelector<HTMLElement>('#app')!.innerHTML = `<header><span class="eyebrow">青岚修仙录 · 人的反馈</span>
-  <h1>人物指代</h1><p>比较同一笔记在不带规则与附带已确认规则时的判断。</p></header>
-  <details><summary>人物与笔记材料</summary><section class="reference"><div><h2>人物目录 · 教学预设</h2><ul id="characters"></ul></div>
-    <div><h2>三份笔记</h2><table><thead><tr><th>笔记</th><th>说话人</th><th>原话</th></tr></thead><tbody id="records"></tbody></table></div></section></details>
+document.querySelector<HTMLElement>('#app')!.innerHTML = `<header><span class="eyebrow">凡人修仙传 · 人的反馈</span>
+  <h1>人物指代</h1><p>比较同一原句在不带规则与附带已确认规则时的判断。</p></header>
+  <details><summary>人物与原文</summary><section class="reference"><div><h2>人物目录</h2><ul id="characters"></ul></div>
+    <div><h2>三段原句</h2><table><thead><tr><th>笔记</th><th>来源</th><th>原话</th></tr></thead><tbody id="records"></tbody></table></div></section></details>
   <details id="rule-panel"><summary id="rule-summary">指代规则 · 正在读取</summary><div class="rule-body">
-    <p class="note">规则只在约定的说话人和称呼范围内适用，明确姓名按原话处理。</p><label for="rule-text">规则内容与适用范围</label><textarea id="rule-text" rows="3" maxlength="2000"></textarea>
-    <label class="confirm"><input id="confirmed" type="checkbox" />我已核对规则内容及其说话人、称呼范围</label>
+    <p class="note">规则只在约定的来源和称呼范围内适用，明确姓名按原话处理。</p><label for="rule-text">规则内容与适用范围</label><textarea id="rule-text" rows="3" maxlength="2000"></textarea>
+    <label class="confirm"><input id="confirmed" type="checkbox" />我已核对规则内容及其来源、称呼范围</label>
     <div class="rule-actions"><button id="save-rule" class="secondary" disabled>确认保存并启用</button><button id="disable-rule" class="secondary" disabled>停用已保存规则</button></div>
     <p id="rule-note" class="note"></p><p id="rule-status" class="note" role="status"></p>
   </div></details>

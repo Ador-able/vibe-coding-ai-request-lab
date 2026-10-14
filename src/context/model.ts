@@ -3,7 +3,7 @@ import type { Message, RequestRecord, ToolCall } from './contract.ts';
 import { TOOLS } from './scenario.ts';
 import { isObject as object, sendRecordedRequest } from '../recorded-model.ts';
 
-type ToolChoice = 'none' | { type: 'function'; function: { name: 'get_herb_record' } };
+type ToolChoice = 'none' | { type: 'function'; function: { name: 'get_novel_excerpt' } };
 type AssistantMessage = Message & { role: 'assistant' };
 
 function parseMessage(value: unknown): AssistantMessage {

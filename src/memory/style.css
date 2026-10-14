@@ -3,33 +3,28 @@
 body main { max-width: 1120px; }
 .experiment-tabs { display: inline-flex; gap: 4px; padding: 4px; margin-bottom: 24px; border-radius: 8px; background: #e9eef3; }
 main .experiment-tabs button { background: transparent; color: #63717e; font-weight: 400; }
-main .experiment-tabs button[aria-selected="true"] { background: white; color: #284f78; box-shadow: 0 1px 3px #2338491a; }
-.primary-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-.question, .section-intro { max-width: 780px; margin: 0 0 20px; font-size: 15px; line-height: 1.8; }
-main [role="tabpanel"] details { border: 0; border-top: 1px solid #dce3eb; border-radius: 0; background: transparent; margin-top: 14px; }
-main [role="tabpanel"] summary { padding: 12px 0; color: #4e6377; font-size: 13px; }
-main [role="tabpanel"] details[open] > summary { border-bottom: 0; }
-main [role="tabpanel"] details details { margin: 0 0 0 14px; }
-.source-detail p { margin: 0 0 12px; font-size: 14px; line-height: 1.8; }
-.comparison-results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+main .experiment-tabs button[aria-selected="true"] { background: white; color: #284f78; }
+.question { font-size: 20px; margin: 0 0 20px; }
+.materials { border-left: 3px solid #d8e2ed; padding: 2px 18px; margin-bottom: 24px; }
+.materials p { margin: 10px 0; }
+.comparison-results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 24px; }
 .flow-result { min-width: 0; border-top: 2px solid #d8e2ed; padding-top: 18px; margin-top: 12px; }
-.flow-result .answer { font-size: 14px; line-height: 1.8; white-space: normal; }
-.flow-result .markdown { font-size: 14px; }
-.flow-result pre { max-height: 440px; overflow: auto; font-size: 12px; }
-.request-inputs h4 { margin: 14px 0 6px; font-size: 13px; font-weight: 600; }
-.input-message { white-space: pre-wrap; overflow-wrap: anywhere; margin: 0 0 18px; font-size: 13px; line-height: 1.8; }
-.input-note { padding: 0 14px; border-left: 2px solid #d8e2ed; font-size: 13px; line-height: 1.8; }
-.input-note ul { padding-left: 20px; }
+.flow-result h3 { font-size: 17px; }
+.flow-result .answer { font-size: 19px; line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; }
+.input-path { color: #536b7d; font-size: 14px; }
+.summary-text { font-size: 14px; line-height: 1.7; }
+.result-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 18px; }
+main .result-actions button { background: transparent; color: #285d6c; font-weight: 400; padding: 0; }
+.inspection-content { padding: 20px 24px; }
+.inspection-content > :first-child { margin-top: 0; }
+.inspection-content > :last-child { margin-bottom: 0; }
 #memory-panel { max-width: 780px; }
-#teaching-note h3 { margin: 20px 0 8px; }
-#teaching-note ul { padding-left: 22px; margin: 0; font-size: 14px; line-height: 1.9; }
-#teaching-note li { padding-left: 2px; margin: 5px 0; }
-#teaching-note > p { font-size: 14px; }
-.confirm { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; line-height: 1.7; margin: 20px 0 14px; }
-.confirm input { margin-top: 5px; accent-color: #315f91; }
+.saved-note { border-left: 3px solid #d8e2ed; padding: 14px 18px; font-size: 20px; }
+.request-inputs h4 { margin: 14px 0 6px; font-size: 13px; }
+.input-message { white-space: pre-wrap; overflow-wrap: anywhere; margin: 0 0 18px; font-size: 13px; line-height: 1.8; }
+.run-inspector pre { max-height: 440px; overflow: auto; font-size: 12px; }
 #resume-step { margin-top: 20px; }
 #load-status:empty, #note-status:empty { display: none; }
 .download-bar { border-top: 1px solid #dce3eb; margin-top: 32px; padding-top: 18px; }
-main .download-bar button { font-size: 12px; font-weight: 400; }
-@media (max-width: 900px) { .comparison-results { grid-template-columns: 1fr; gap: 14px; } }
-@media (max-width: 440px) { .experiment-tabs { display: flex; } main .experiment-tabs button { flex: 1; padding: 10px 12px; } }
+@media (max-width: 760px) { .comparison-results { grid-template-columns: 1fr; gap: 14px; } }
+@media (max-width: 440px) { .experiment-tabs { display: flex; } main .experiment-tabs button { flex: 1; padding: 10px 12px; } .inspection-content { padding: 16px; } }

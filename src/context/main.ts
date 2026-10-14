@@ -7,11 +7,10 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <h1>上下文对照</h1>
     <p>先查小说资料，再用同一个追问比较三种历史范围。</p>
   </header>
-  <p class="note">默认查看第三章已保存的真实记录，本页尚未发起模型请求。</p><button id="load-record" class="secondary">读取现成实录</button>
-  <details id="setup" class="setup">
-    <summary id="setup-title">选做：重新运行首轮查询</summary><div class="setup-body">
+  <details id="setup" class="setup" open>
+    <summary id="setup-title">首轮查询</summary><div class="setup-body">
     <p class="question" id="first-question"></p>
-    <div class="setup-actions"><button id="start">查询登记数量</button><span class="experiment-note">本实验教学资料 · 首轮调用模型 2 次</span></div>
+    <div class="setup-actions"><button id="start">查询年龄</button><span class="experiment-note">本实验教学资料 · 首轮调用模型 2 次</span></div>
     <div id="first-answer-wrap" hidden><span class="small-label">首轮回答 · 原文</span><p id="first-answer" class="answer"></p><p class="note">三种追问条件共享这一次首轮历史。</p></div>
   </div></details>
   <p id="status" role="status"></p>
@@ -187,24 +186,3 @@ element('#download').addEventListener('click', () => {
   const link = document.createElement('a'); link.href = url; link.download = '上下文实验-实际请求记录.json'; link.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
-
-async function loadRecordedContext() {
-  if (busy) return;
-  try {
-    const filenames = ['040-context-start.json', '053-context-follow-up.json', '054-context-follow-up.json', '055-context-follow-up.json'];
-    const results = await Promise.all(filenames.map(async name => {
-      const response = await fetch('/records/context/' + name);
-      if (!response.ok) throw new Error();
-      const archive = await response.json() as { body: string };
-      return JSON.parse(archive.body) as ContextResponse;
-    }));
-    sessionId = undefined; firstRound = results[0].run; runs = results.slice(1).map(item => item.run);
-    element('#first-answer').textContent = firstRound.answer;
-    element('#first-answer-wrap').hidden = false; element('#follow-section').hidden = false;
-    followButton.disabled = true;
-    renderInspector(firstRound.id); renderResults();
-    status.className = ''; status.textContent = '已读取第三章实录；没有发起新模型请求。';
-  } catch { status.className = 'error'; status.textContent = '未能读取实录文件，请检查交付包是否完整。'; }
-}
-element('#load-record').addEventListener('click', () => { void loadRecordedContext(); });
-void loadRecordedContext();

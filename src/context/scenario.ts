@@ -2,19 +2,18 @@ import { FOLLOW_UP, type Condition, type Message, type ToolCall } from './contra
 
 export const SYSTEM_RULE = '你是小说资料查询助手。只根据本次请求中的消息和工具结果回答；不要猜测小说设定。证据不足时，明确说明缺少什么信息。仅回答当前问题要求的字段，用简洁的中文表述。';
 
-// 工具执行后，清点记录才会进入模型请求。
-export { INVENTORY } from '../novel-materials.ts';
-import { INVENTORY } from '../novel-materials.ts';
+// 工具执行后，小说原文才会进入模型请求。
+import { SOURCES } from '../novel-materials.ts';
 
 export const TOOLS = [{
   type: 'function',
   function: {
-    name: 'get_herb_record',
-    description: '查询《青岚修仙录》中炼丹房的凝露草收药与清点记录。',
+    name: 'get_novel_excerpt',
+    description: '读取《凡人修仙传》第一条原文。',
     parameters: {
       type: 'object',
-      properties: { room: { type: 'string', enum: ['炼丹房'], description: '房间名称，只填炼丹房。' } },
-      required: ['room'],
+      properties: { source_id: { type: 'string', enum: ['C01'], description: '资料编号，只填C01。' } },
+      required: ['source_id'],
       additionalProperties: false,
     },
   },
@@ -26,17 +25,17 @@ export class LabError extends Error {
   }
 }
 
-export function executeHerbTool(call: ToolCall): Message & { role: 'tool' } {
+export function executeNovelTool(call: ToolCall): Message & { role: 'tool' } {
   let args: unknown;
   try { args = JSON.parse(call.function.arguments); } catch {
     throw new LabError('TOOL_ARGUMENTS_INVALID', '模型返回的工具参数不是有效 JSON，首轮尚未建立。');
   }
-  if (call.function.name !== 'get_herb_record' || !args || typeof args !== 'object'
+  if (call.function.name !== 'get_novel_excerpt' || !args || typeof args !== 'object'
       || Array.isArray(args) || Object.keys(args).length !== 1
-      || !('room' in args) || args.room !== INVENTORY.room) {
-    throw new LabError('TOOL_ARGUMENTS_INVALID', '模型没有提供本实验所需的工具名与房间名称，首轮尚未建立。');
+      || !('source_id' in args) || args.source_id !== 'C01') {
+    throw new LabError('TOOL_ARGUMENTS_INVALID', '模型没有提供本实验所需的工具名与资料编号，首轮尚未建立。');
   }
-  return { role: 'tool', tool_call_id: call.id, content: JSON.stringify(INVENTORY) };
+  return { role: 'tool', tool_call_id: call.id, content: JSON.stringify({ source_id: SOURCES[0].id, title: SOURCES[0].title, text: SOURCES[0].text }) };
 }
 
 export function projectHistory(history: Message[], condition: Condition): Message[] {

@@ -5,13 +5,13 @@ import { BACKGROUND, PREVIOUS_CHAPTER, INITIAL_TASK } from './scenario.ts';
 import { acceptTurn, type Turn, type CollaborationResponse, type CollaborationResult } from './contract.ts';
 
 const app = document.querySelector<HTMLElement>('#app')!;
-app.innerHTML = `<header><span class="eyebrow">青岚修仙录 · 人的反馈</span>
-  <h1>场景共写</h1><p>粘贴你选择并编辑的完整方案，生成后再根据实际草稿提出修改。</p></header>
+app.innerHTML = `<header><span class="eyebrow">凡人修仙传 · 人的反馈</span>
+  <h1>笔记共写</h1><p>粘贴你选择并编辑的完整方案，整理后再根据实际笔记提出修改。</p></header>
   <details><summary>完整前文与首轮任务</summary><section class="facts"><div id="background"></div><div id="previous-chapter"></div><h2>首轮任务</h2><p id="initial-task"></p></section></details>
   <section id="conversation" hidden><div class="section-heading"><h2>共写记录</h2><button id="copy" class="secondary" type="button">复制最新回答</button></div><div id="turns"></div></section>
   <form id="compose"><label id="input-label" for="input">已选择并编辑的完整方案</label>
     <textarea id="input" rows="7" maxlength="6000" placeholder="粘贴完整方案；你补充的条件与修改也一并写在这里。" required></textarea>
-    <div class="compose-actions"><p class="note">每次提交调用模型 1 次。</p><button id="send" type="submit">生成场景草稿</button></div>
+    <div class="compose-actions"><p class="note">每次提交调用模型 1 次。</p><button id="send" type="submit">整理阅读笔记</button></div>
   </form>
   <p id="status" role="status" aria-live="polite"></p>
   <div class="record-bar"><button id="download" class="secondary" disabled>下载共写记录</button><span class="note">刷新前下载，保留全部尝试。</span></div>
@@ -113,5 +113,5 @@ element('copy').addEventListener('click', async () => {
 element('download').addEventListener('click', () => {
   const data = { background: BACKGROUND, previousChapter: PREVIOUS_CHAPTER, successfulHistory: history, attempts };
   const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
-  const link = document.createElement('a'); link.href = url; link.download = '场景共写-实际请求记录.json'; link.click(); URL.revokeObjectURL(url);
+  const link = document.createElement('a'); link.href = url; link.download = '笔记共写-实际请求记录.json'; link.click(); URL.revokeObjectURL(url);
 });

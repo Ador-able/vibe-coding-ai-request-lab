@@ -26,8 +26,8 @@ test('每份笔记都独立使用同一目录，附带规则是唯一对照变�
     const plain = JSON.parse(buildRequestBody('qwen-flash', record, null));
     const saved = JSON.parse(buildRequestBody('qwen-flash', record, rule));
     assert.equal(plain.messages.length, 2); assert.equal(saved.messages.length, 2);
-    assert.equal(plain.messages[1].content, `人物目录：\n${JSON.stringify(CHARACTERS)}\n\n笔记：\n${JSON.stringify(record)}`);
-    assert.equal(saved.messages[1].content, `${plain.messages[1].content}\n\n经人确认的指代规则：\n${SUGGESTED_RULE}`);
+    assert.equal(plain.messages[1].content, `人物目录：\n${JSON.stringify(CHARACTERS)}\n\n第一章原句：\n${JSON.stringify(record)}`);
+    assert.equal(saved.messages[1].content, `${plain.messages[1].content}\n\n读者核对原文后保存的规则：\n${SUGGESTED_RULE}`);
     saved.messages[1].content = plain.messages[1].content; assert.deepEqual(saved, plain);
   }
 });
@@ -71,7 +71,7 @@ test('确认后持久保存，独立读取仍有效；在途快照不随编辑�
     assert.equal(plainData.run.ruleSnapshot, null); assert.equal(plainData.run.request?.requestBody, received[0]);
     assert(!JSON.parse(received[0]).messages[1].content.includes(SUGGESTED_RULE));
     const inFlight = request('/run', 'POST', { recordId: 'A', ruleMode: 'saved' }); await entered;
-    const newText = '林青笔记中的“师兄”仍需联系作者确认具体人物。';
+    const newText = '韩立笔记中的“师兄”仍需联系作者确认具体人物。';
     await request('/rule', 'PUT', { text: newText, confirmed: true });
     release();
     const response = await inFlight; const data = await response.json() as FeedbackResponse;

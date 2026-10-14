@@ -20,7 +20,7 @@ test('页面配置即时用于同一服务的各实验，留空保留密钥，�
   const directory = await mkdtemp(join(tmpdir(), 'vibe-settings-')); const path = join(directory, 'model.json');
   const secret = 'only-local-test-key'; const received: { authorization?: string; body: { model: string } }[] = [];
   const upstream = createServer(async (req, res) => {
-    let body = ''; for await (const chunk of req) body += chunk;
+    req.setEncoding('utf8'); let body = ''; for await (const chunk of req) body += chunk;
     received.push({ authorization: req.headers.authorization, body: JSON.parse(body) });
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify({ choices: [{ message: { content: '{"items":[]}' }, finish_reason: 'stop' }] }));

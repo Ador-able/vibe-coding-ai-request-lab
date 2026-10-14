@@ -1,38 +1,40 @@
 import './style.css';
 import '../lab.css';
-import { markdown } from '../markdown.ts';
 import { FLOWS, costOf, type Flow, type FlowResponse, type FlowResult, type SavedNote } from './contract.ts';
 import type { Source, TEACHING_NOTE } from './materials.ts';
 
 document.querySelector('#app')!.innerHTML = `
-  <header><h1>材料与记忆</h1><p>比较小说资料的三种读法，再用核对后的摘要接续写作。</p></header>
-  <p id="load-status" role="status">正在载入资料……</p>
+  <header><h1>读取、压缩与记忆</h1><p>《凡人修仙传》原文30条。查一个细节，比较全文、选读和现场压缩。</p></header>
+  <p id="load-status" role="status"></p>
   <div class="experiment-tabs" role="tablist" aria-label="实验内容">
-    <button id="compare-tab" role="tab" aria-controls="compare-panel" aria-selected="true">比较资料</button>
-    <button id="memory-tab" role="tab" aria-controls="memory-panel" aria-selected="false" tabindex="-1">跨会话接续</button>
+    <button id="compare-tab" role="tab" aria-controls="compare-panel" aria-selected="true">读取与压缩</button>
+    <button id="memory-tab" role="tab" aria-controls="memory-panel" aria-selected="false" tabindex="-1">保存与读回</button>
   </div>
   <section id="compare-panel" role="tabpanel" aria-labelledby="compare-tab">
-    <p id="question" class="question"></p>
-    <div class="primary-actions"><button id="start" disabled>比较三条流程</button><span class="note">每次比较调用模型 5 次</span></div>
-    <details class="reading"><summary>查看资料目录与原文</summary><p class="note">《青岚修仙录》· 10 份本实验教学资料。</p><div id="catalog"></div></details>
+    <div id="question" class="question"></div>
+    <div id="catalog" class="materials"></div>
+    <button id="start" disabled>比较三种读法</button><button id="classroom" class="secondary">查看课堂实录</button>
+    <p class="note">全文和选读直接查细节；压缩先做300字阅读回顾，再问同一问题。检查摘要保留了什么。</p>
     <p id="status" role="status"></p>
     <div id="results" class="comparison-results"></div>
+    <div id="compare-inspector" class="run-inspector"></div>
   </section>
   <section id="memory-panel" role="tabpanel" aria-labelledby="memory-tab" hidden>
-    <p class="section-intro">这份人工整理的摘要接续同一段小说。核对并保存后，新会话会读入摘要和关联原文。</p>
-    <div id="teaching-note"></div>
-    <div id="save-step"><label class="confirm"><input id="confirm" type="checkbox">我已核对摘要中的条件、待确认事项和来源。</label><button id="save" disabled>保存摘要</button></div>
-    <div class="primary-actions" id="resume-step" hidden><button id="resume" disabled>开始新会话</button><span class="note">调用模型 1 次</span></div>
-    <p id="note-status" class="note" role="status"></p><div id="note-results"></div>
+    <p>核对下方人工整理的教学摘要，保存后在新请求中读回。</p>
+    <p id="teaching-note" class="saved-note"></p>
+    <div id="save-step"><button id="save" disabled>保存这条摘要</button></div>
+    <div id="resume-step" hidden><button id="resume" disabled>读回摘要，再问一次</button></div>
+    <p id="note-status" role="status"></p><div id="note-results"></div>
+    <div id="note-inspector" class="run-inspector"></div>
   </section>
-  <footer class="download-bar"><button id="download" class="secondary" disabled>下载全部请求记录</button></footer>`;
+  <footer class="download-bar"><button id="download" class="secondary" disabled>下载运行记录</button></footer>`;
 
 const el = <T extends HTMLElement>(selector: string) => document.querySelector<T>(selector)!;
 const start = el<HTMLButtonElement>('#start'), save = el<HTMLButtonElement>('#save'), resume = el<HTMLButtonElement>('#resume');
-const status = el('#status'), noteStatus = el('#note-status'), confirm = el<HTMLInputElement>('#confirm');
+const status = el('#status'), noteStatus = el('#note-status');
 const runs: FlowResult[] = [];
 let busy = true, saved: SavedNote | null = null;
-let materials: { question: string; sources: Source[]; teachingNote: typeof TEACHING_NOTE };
+let materials: { question: string; sources: Source[]; teachingNote: typeof TEACHING_NOTE; originalExcerpt: string };
 const pretty = (value: unknown) => JSON.stringify(value, null, 2) ?? '未返回';
 function p(text: string, className = '') { const item = document.createElement('p'); item.textContent = text; item.className = className; return item; }
 function heading(text: string, level: 'h3' | 'h4' = 'h3') { const item = document.createElement(level); item.textContent = text; return item; }
@@ -41,7 +43,8 @@ function disclosure(title: string) {
   const label = document.createElement('summary'); label.textContent = title; box.append(label); return box;
 }
 function textDetail(title: string, value: string) {
-  const box = disclosure(title); const pre = document.createElement('pre'); pre.textContent = value; box.append(pre); return box;
+  const box = disclosure(title), body = document.createElement('div'); body.className = 'inspection-content';
+  const pre = document.createElement('pre'); pre.textContent = value; body.append(pre); box.append(body); return box;
 }
 
 const tabs = [el<HTMLButtonElement>('#compare-tab'), el<HTMLButtonElement>('#memory-tab')];
@@ -63,85 +66,59 @@ selectPanel(location.hash === '#memory-step' ? 1 : 0);
 window.addEventListener('hashchange', () => selectPanel(location.hash === '#memory-step' ? 1 : 0));
 
 function setBusy(value: boolean) {
-  busy = value; start.disabled = value || !materials; save.disabled = value || !materials || !confirm.checked; resume.disabled = value || !saved;
+  busy = value; start.disabled = value || !materials; save.disabled = value || !materials; resume.disabled = value || !saved;
 }
 function showSavedState() {
   el('#save-step').hidden = !!saved; el('#resume-step').hidden = !saved;
 }
-function sourceDetail(id: string) {
-  const source = materials.sources.find((item) => item.id === id);
-  const box = disclosure(source ? `[${id}] ${source.title}` : `[${id}] 来源缺失`);
-  box.className = 'source-detail';
-  box.append(source ? p(source.text) : p('资料中没有这个编号，请核对引用。', 'error'));
-  if (source) box.append(p(`来源日期：${source.date}`, 'note'));
-  return box;
-}
-function sourceList(ids: string[], title = '核对来源') {
-  const box = disclosure(title); box.className = 'source-list';
-  ids.forEach((id) => box.append(sourceDetail(id))); return box;
-}
-function citations(text: string) {
-  const ids = [...new Set(text.match(/C\d{2}/g) ?? [])];
-  return ids.length ? sourceList(ids) : null;
-}
-function appendCitations(target: HTMLElement, text: string) {
-  const sources = citations(text); if (sources) target.append(sources);
-}
-function readableMessage(content: string) {
-  const box = document.createElement('div');
-  // 摘要在实际消息中占一行；只展开已知字段，其余内容保留原文。
-  for (const part of content.split(/(\n\{[^\n]+\}\n)/)) {
-    try {
-      const note = JSON.parse(part) as typeof TEACHING_NOTE;
-      if (Object.keys(note).sort().join(',') !== 'confirmed,goal,next_steps,pending,sources') throw new Error('other-content');
-      const summary = document.createElement('div'); summary.className = 'input-note';
-      summary.append(p(`目标：${note.goal}`));
-      for (const [title, items] of [['已确认的事实与条件', note.confirmed], ['仍待确认', note.pending]] as const) {
-        const list = document.createElement('ul');
-        items.forEach((item) => { const line = document.createElement('li'); line.textContent = `${item.text} ${item.source_ids.map((id) => `[${id}]`).join(' ')}`; list.append(line); });
-        summary.append(heading(title, 'h4'), list);
-      }
-      summary.append(p(`下一步：${note.next_steps.join(' ')}`), p(`来源：${note.sources.map((source) => `${source.id}（${source.date}）`).join('、')}`));
-      box.append(summary);
-    } catch { if (part.trim()) box.append(p(part, 'input-message')); }
-  }
-  return box;
-}
 function requestInputs(result: FlowResult) {
-  const box = disclosure('查看本次输入'); box.className = 'request-inputs';
-  if (!result.requests.length) { box.append(p('本次尚未发出请求。', 'note')); return box; }
-  // 输入直接取自请求记录，避免用页面摘要重建模型看到的内容。
+  const box = disclosure(`${FLOWS[result.flow]} · 实际输入`); box.className = 'request-inputs';
+  const body = document.createElement('div'); body.className = 'inspection-content';
+  // 直接读取已发送的消息，不用回答或页面摘要重建输入。
   result.requests.forEach((request, index) => {
-    const step = result.requests.length > 1 ? disclosure(`第 ${index + 1} 步：${request.step}`) : document.createElement('div');
-    if (step instanceof HTMLDetailsElement) step.open = index === result.requests.length - 1;
-    try {
-      const body = JSON.parse(request.requestBody) as { messages: { role: string; content: unknown }[] };
-      for (const message of body.messages) {
-        const labels: Record<string, string> = { system: '任务要求', user: '提供给模型的内容', assistant: '助手消息', tool: '工具结果' };
-        step.append(heading(labels[message.role] ?? message.role, 'h4'));
-        step.append(typeof message.content === 'string' ? readableMessage(message.content) : p(pretty(message.content), 'input-message'));
-      }
-    } catch { step.append(p('输入无法展开，请在技术详情中查看原始记录。', 'error')); }
-    box.append(step);
+    const messages = JSON.parse(request.requestBody).messages;
+    body.append(heading(`第 ${index + 1} 步：${request.step}`, 'h4'));
+    for (const message of messages) {
+      const label = message.role === 'system' ? '要求' : '资料';
+      if (message.content.length > 1200) {
+        // 大段原文按需展开，保存完整消息，不在显示时另作摘要。
+        const detail = textDetail(`${label} · 完整输入 ${message.content.length} 字符`, message.content);
+        body.append(detail);
+      } else body.append(p(`${label}\n${message.content}`, 'input-message'));
+    }
   });
+  box.append(body);
   return box;
 }
 function renderResult(result: FlowResult) {
   const block = document.createElement('article'); block.className = 'flow-result';
-  block.append(heading(result.flow === 'note' ? '新会话的回答' : FLOWS[result.flow]));
-  if (result.answer) block.append(markdown(result.answer, 'answer'));
-  if (result.error) block.append(p(result.error.message, 'error'));
-  else if (!result.answer) block.append(p('本次没有完整回答。', 'error'));
-  if (result.selectedIds) block.append(sourceList(result.selectedIds, `选中的资料（${result.selectedIds.length} 份）`));
+  const main = document.createElement('div'); main.className = 'result-main';
+  main.append(heading(result.flow === 'note' ? '读回后的回答' : FLOWS[result.flow]));
+  const input = result.flow === 'full' ? `直接读入 ${materials.sources.length} 份原文`
+    : result.flow === 'retrieve' ? `先选 ${result.selectedIds?.join('、') ?? '尚未选出资料'}，再读原文`
+    : result.flow === 'summary' ? '30条原文 → 300字阅读摘要 → 新请求问细节' : '使用核对原文后保存的摘要';
+  main.append(p(input, 'input-path'));
   if (result.summary !== undefined) {
-    const summary = disclosure('生成的摘要'); summary.append(markdown(result.summary)); appendCitations(summary, result.summary); block.append(summary);
+    const originalLength = materials.sources.reduce((sum, source) => sum + source.text.length, 0);
+    main.append(p(`原文正文 ${originalLength} 字符 → 摘要 ${result.summary.length} 字符`, 'input-path'));
+
   }
-  if (result.answer) appendCitations(block, result.answer);
-  const cost = costOf(result);
-  const count = (value: number | null) => value === null ? '未完整返回' : value.toLocaleString('zh-CN');
-  block.append(p(`最后回答输入 ${count(cost.finalInput)} · 整条流程输入 ${count(cost.totalInput)} / 输出 ${count(cost.totalOutput)} token`, 'note'));
-  if (result.flow === 'note') block.append(p('本次用量只计新会话，未计先前调用与人工核对。', 'note'));
-  block.append(requestInputs(result), textDetail('技术详情', pretty({ 用量: cost, 请求: result.requests })));
+  if (result.answer) main.append(p(result.answer, 'answer'));
+  if (result.summary !== undefined) main.append(textDetail('本次完整摘要', result.summary));
+  if (result.error) main.append(p(result.error.message, 'error'));
+  else if (!result.answer) main.append(p('没有取得完整回答。', 'error'));
+  const actions = document.createElement('div'); actions.className = 'result-actions';
+  for (const [label, input] of [['查看实际输入', true], ['用量与记录', false]] as const) {
+    const button = document.createElement('button'); button.textContent = label;
+    button.addEventListener('click', () => {
+      // 详情独立占满宽度，结果列只保留简短回答。
+      const area = el(result.flow === 'note' ? '#note-inspector' : '#compare-inspector');
+      const detail = input ? requestInputs(result) : textDetail(`${FLOWS[result.flow]} · 用量与记录`, pretty({ 用量: costOf(result), 请求: result.requests }));
+      detail.open = true; area.replaceChildren(detail);
+    });
+    actions.append(button);
+  }
+  block.append(main, actions);
   return block;
 }
 async function requestFlow(flow: Flow): Promise<FlowResponse> {
@@ -149,7 +126,7 @@ async function requestFlow(flow: Flow): Promise<FlowResponse> {
   const data: FlowResponse = await response.json();
   if (!data.result || !Array.isArray(data.result.requests)) throw new Error('invalid-response');
   runs.push(data.result);
-  // 只更新本次结果，保留其它答案下正在展开的内容。
+  // 各组返回后立即显示，保留已有结果。
   const result = renderResult(data.result);
   if (flow === 'note') el('#note-results').replaceChildren(result);
   else el('#results').append(result);
@@ -157,32 +134,44 @@ async function requestFlow(flow: Flow): Promise<FlowResponse> {
   return data;
 }
 start.addEventListener('click', async () => {
-  if (busy) return; setBusy(true); status.className = ''; el('#results').replaceChildren();
+  if (busy) return; setBusy(true); status.className = ''; el('#results').replaceChildren(); el('#compare-inspector').replaceChildren();
   try {
     for (const [index, flow] of (['full', 'retrieve', 'summary'] as const).entries()) {
       status.textContent = `正在比较 ${index + 1}/3：${FLOWS[flow]}……`;
       const data = await requestFlow(flow);
       if (!data.ok) { status.textContent = '比较已停止。请查看下方错误，已有结果已保留。'; status.className = 'error'; return; }
     }
-    status.textContent = '比较完成。核对三份片段是否保留灵草数量、行动限制和未决问题。';
+    status.textContent = '比较完成。核对实际摘要和各组输入，再判断回答是否有依据。';
   } catch { status.textContent = '未收到有效结果，执行状态未知。' + (runs.length ? '已有请求记录可下载。' : ''); status.className = 'error'; }
   finally { setBusy(false); start.textContent = '重新比较'; }
 });
-confirm.addEventListener('change', () => { save.disabled = busy || !materials || !confirm.checked; });
+el('#classroom').addEventListener('click', async () => {
+  if (busy || !materials) return;
+  try {
+    const response = await fetch('/records/凡人修仙传-memory.json');
+    if (!response.ok) throw new Error();
+    const record = await response.json() as { recordedAt: string; results: FlowResult[] };
+    runs.splice(0, runs.length, ...record.results);
+    el('#results').replaceChildren(...record.results.map(renderResult));
+    el('#compare-inspector').replaceChildren();
+    status.textContent = `课堂实录 · ${new Date(record.recordedAt).toLocaleString('zh-CN')} · 未新增请求。压缩和后续回答来自实录中的连续两次请求。`;
+    el<HTMLButtonElement>('#download').disabled = false;
+  } catch { status.textContent = '课堂实录读取失败，请检查仓库文件。'; }
+});
 save.addEventListener('click', async () => {
-  if (busy || !confirm.checked) return; setBusy(true); noteStatus.className = 'note';
+  if (busy) return; setBusy(true); noteStatus.className = 'note';
   try {
     const response = await fetch('/api/memory/note', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ confirmed: true }) });
     const data = await response.json(); if (!response.ok) throw new Error(data.error);
-    saved = data.saved; showSavedState(); noteStatus.textContent = '摘要已保存到本机。';
+    saved = data.saved; showSavedState(); noteStatus.textContent = '已保存到本机。刷新页面后再读回，观察信息是否还在。';
   } catch { noteStatus.textContent = '摘要保存失败，请检查本机服务后重试。'; noteStatus.className = 'error'; }
   finally { setBusy(false); }
 });
 resume.addEventListener('click', async () => {
-  if (busy || !saved) return; setBusy(true); noteStatus.className = 'note'; noteStatus.textContent = '正在读入摘要和关联原文……';
-  el('#note-results').replaceChildren();
+  if (busy || !saved) return; setBusy(true); noteStatus.className = 'note'; noteStatus.textContent = '正在从本机读回摘要……';
+  el('#note-results').replaceChildren(); el('#note-inspector').replaceChildren();
   try {
-    const data = await requestFlow('note'); noteStatus.textContent = data.ok ? '新会话已完成。' : '新会话未完成，请查看下方错误。';
+    const data = await requestFlow('note'); noteStatus.textContent = data.ok ? '已用读回的摘要发出新请求。展开实际输入核对。' : '新会话未完成，请查看下方错误。';
     if (!data.ok) noteStatus.className = 'error';
   } catch { noteStatus.textContent = '未收到有效结果，执行状态未知。' + (runs.length ? '已有请求记录可下载。' : ''); noteStatus.className = 'error'; }
   finally { setBusy(false); }
@@ -195,21 +184,17 @@ el('#download').addEventListener('click', () => {
 try {
   const response = await fetch('/api/memory/materials'); if (!response.ok) throw new Error('materials-missing'); materials = await response.json();
   el('#question').textContent = materials.question;
-  el('#catalog').replaceChildren(...materials.sources.map((source) => sourceDetail(source.id)));
-  const note = materials.teachingNote; const box = el('#teaching-note');
-  for (const [title, items] of [['已确认的事实与条件', note.confirmed], ['仍待确认', note.pending]] as const) {
-    const list = document.createElement('ul');
-    items.forEach((item) => {
-      const line = document.createElement('li'); line.textContent = `${item.text} ${item.source_ids.map((id) => `[${id}]`).join(' ')}`; list.append(line);
-    });
-    box.append(heading(title), list);
-  }
-  box.append(p(`下一步：${note.next_steps.join(' ')}`), sourceList(note.sources.map((source) => source.id), '核对摘要来源'));
+  const originals = disclosure(`查看 ${materials.sources.length} 条资料目录与原文`);
+  const body = document.createElement('div'); body.className = 'inspection-content';
+  body.append(...materials.sources.map((source) => textDetail(`[${source.id}] ${source.title}`, source.text)));
+  originals.append(body);
+  el('#catalog').replaceChildren(p(`[C01] 原文节选：${materials.originalExcerpt}`), originals);
+  el('#teaching-note').textContent = `${materials.teachingNote.text} [${materials.teachingNote.source_ids.join('、')}]`;
   el('#load-status').textContent = '';
   try {
     const noteResponse = await fetch('/api/memory/note'); const data = await noteResponse.json();
     if (!noteResponse.ok) throw new Error('note-unavailable');
-    saved = data.saved; showSavedState(); noteStatus.textContent = saved ? '摘要已保存在本机。' : '';
-  } catch { noteStatus.textContent = '本机摘要无法用于本次资料。请核对上方小说摘要后重新保存；保存前不会改动原文件。'; noteStatus.className = 'error'; }
+    saved = data.saved; showSavedState(); noteStatus.textContent = saved ? '已从本机读回摘要。' : '';
+  } catch { noteStatus.textContent = '本机摘要无法读取，请重新保存当前这条摘要。'; noteStatus.className = 'error'; }
   setBusy(false);
 } catch { el('#load-status').textContent = '资料读取失败，请检查本机服务后刷新。'; el('#load-status').className = 'error'; }

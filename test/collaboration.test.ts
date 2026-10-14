@@ -22,7 +22,7 @@ async function turn(url: string, input: string, history: Turn[]) {
 test('自由反馈与之前原始回答完整进入下一轮，实际请求与检查器同串', async () => {
   // 只以本地 HTTP 桩核对对话传输，不把桩文字当作模型共写效果。
   const received: string[] = [];
-  const answers = ['测试场景：林青请执事确认是否存有同版书。', '按读者纠正整理的待核对问题。'];
+  const answers = ['测试笔记：韩立由三叔举荐参加考验。', '按读者纠正整理的待核对问题。'];
   const upstream = createServer(async (req, res) => {
     let body = ''; for await (const part of req) body += part; received.push(body);
     res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify(message(answers[received.length - 1])));

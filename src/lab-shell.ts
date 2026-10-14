@@ -6,7 +6,7 @@ const experiments = [
   ['/latency.html', '等待与用量'], ['/memory.html', '按需读取与记忆'],
   ['/structured.html', '结构化输出'], ['/streaming.html', '流式消息'],
   ['/message-history.html', '消息记录'], ['/requests.html', '请求状态'],
-  ['/decisions.html', '场景方案'], ['/collaboration.html', '场景共写'], ['/feedback.html', '人物指代'],
+  ['/decisions.html', '阅读方案'], ['/collaboration.html', '笔记共写'], ['/feedback.html', '人物指代'],
 ];
 const bar = document.createElement('nav'); bar.className = 'lab-nav'; bar.setAttribute('aria-label', '实验导航');
 bar.innerHTML = `<div><label for="lab-page">实验</label><select id="lab-page"></select></div><button id="model-settings-open" type="button">模型设置</button>`;

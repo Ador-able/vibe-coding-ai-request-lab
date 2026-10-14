@@ -5,9 +5,9 @@ import { BACKGROUND, PREVIOUS_CHAPTER, GOAL } from './scenario.ts';
 import { chooseOption, clearSelection, editDraft, emptyDecision, type Decision, type DecisionRun, type DecisionResponse, type OptionIndex } from './contract.ts';
 
 const app = document.querySelector<HTMLElement>('#app')!;
-app.innerHTML = `<header><span class="eyebrow">青岚修仙录 · 人的判断</span>
-  <h1>场景方案</h1><p>承接《阁前问路》，比较“先查气流”和“先寻同版”，选择后再编辑。</p></header>
-  <div class="generate-bar"><button id="generate">生成两份场景方案</button><p class="note">调用模型 1 次。</p></div>
+app.innerHTML = `<header><span class="eyebrow">凡人修仙传 · 人的判断</span>
+  <h1>阅读方案</h1><p>比较按事件顺序和按人物关系记笔记，选择后再编辑。</p></header>
+  <div class="generate-bar"><button id="generate">生成两份阅读方案</button><p class="note">调用模型 1 次。</p></div>
   <details><summary>完整前文与本轮任务</summary><section class="common"><div><h2>背景与边界</h2><div id="background"></div></div><div><h2>本轮任务</h2><p id="goal"></p></div></section><div id="previous-chapter" class="previous-chapter"></div></details>
   <p id="status" role="status" aria-live="polite"></p>
   <div id="run-picker" hidden><label for="run-choice">查看本页记录 </label><select id="run-choice"></select></div>
@@ -18,7 +18,7 @@ app.innerHTML = `<header><span class="eyebrow">青岚修仙录 · 人的判断</
   <section id="editor" hidden><div class="section-heading"><h2>本地待编辑稿</h2><button id="clear" class="secondary">放弃当前选择</button></div>
     <p class="note">修改只保存在本页，不调用模型或对外发布。</p>
     <label for="draft-title">标题</label><input id="draft-title" type="text" />
-    <label for="draft-text">完整情节方案</label><textarea id="draft-text" rows="12"></textarea>
+    <label for="draft-text">完整阅读方案</label><textarea id="draft-text" rows="12"></textarea>
   </section>
   <div class="export-bar"><button id="download" class="secondary" disabled>导出本次判断记录</button><span class="note">刷新前导出，保留尝试、选择和编辑稿。</span></div>
   <details id="inspector"><summary>请求明细与用量</summary><div id="request-content" class="inspector-body"><p class="note">尚未调用模型。</p></div></details>`;
@@ -52,7 +52,7 @@ function render() {
   const error = work?.transportError || work?.run?.error?.message;
   const status = get('status');
   status.className = !busy && error ? 'error' : '';
-  status.textContent = busy ? '正在根据完整前文生成两份场景方案…' : error
+  status.textContent = busy ? '正在根据完整前文生成两份阅读方案…' : error
     || (work?.run?.options ? '两份方案已生成。先核对前文与未知事项，再选择和编辑。' : '');
   get('run-picker').hidden = works.length < 2;
   const select = get<HTMLSelectElement>('run-choice'); select.replaceChildren(...works.map((item, index) => new Option(`第${index + 1}次生成${item.run?.error || item.transportError ? ' · 未完成' : ''}`, String(index))));
@@ -120,5 +120,5 @@ get('download').addEventListener('click', () => {
   const payload = { background: BACKGROUND, previousChapter: PREVIOUS_CHAPTER, goal: GOAL, currentRun: current, runs: works.map((work) => ({ ...work,
     currentDraft: work.decision.selected === null ? null : work.decision.drafts[work.decision.selected] })) };
   const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' }));
-  const link = document.createElement('a'); link.href = url; link.download = '场景方案-实际请求与编辑记录.json'; link.click(); URL.revokeObjectURL(url);
+  const link = document.createElement('a'); link.href = url; link.download = '阅读方案-实际请求与编辑记录.json'; link.click(); URL.revokeObjectURL(url);
 });

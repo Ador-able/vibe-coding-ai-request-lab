@@ -7,7 +7,7 @@ import type { CaseResult, QualityResponse } from './contract.ts';
 
 export function createQualityRouter(env: NodeJS.ProcessEnv) {
   const router = Router();
-  // 只返回合成材料供预览；这里没有进行模型调用。
+  // 只返回小说原文供预览；这里没有进行模型调用。
   router.get('/cases', (_req, res) => { res.json(CASES); });
   router.post('/case', async (req, res) => {
     const item = CASES.find((entry) => entry.id === req.body?.caseId);
@@ -28,7 +28,7 @@ export function createQualityRouter(env: NodeJS.ProcessEnv) {
       result.answer = message.content;
       result.assessment = assessAnswer(message.content, result.request.finishReason, item.expected);
       if (Array.isArray(message.tool_calls) && message.tool_calls.length) {
-        result.assessment = { parsed: null, valid: false, issue: '禁止工具调用时返回了工具指令，未执行。', statusCorrect: false, actualCorrect: false, registeredCorrect: false, sourcesCorrect: false, factsComplete: false, allCorrect: false };
+        result.assessment = { parsed: null, valid: false, issue: '禁止工具调用时返回了工具指令，未执行。', statusCorrect: false, rankCorrect: false, ageCorrect: false, sourcesCorrect: false, factsComplete: false, allCorrect: false };
       }
       if (!res.destroyed) res.json({ ok: true, result } satisfies QualityResponse);
     } catch (error) {

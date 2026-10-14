@@ -1,0 +1,42 @@
+[
+  {
+    "sourceRecordId": "250aa94b-3d55-4cce-a34c-df8b99c1b007",
+    "message": {
+      "id": "250aa94b-3d55-4cce-a34c-df8b99c1b007-review",
+      "role": "user",
+      "parts": [
+        {
+          "type": "text",
+          "text": "请根据我的校正，重新整理摘要和待确认问题。保留未决事项，不新增承诺。"
+        },
+        {
+          "type": "data-review-note",
+          "data": {
+            "targetMessageId": "250aa94b-3d55-4cce-a34c-df8b99c1b007",
+            "text": "摘要中的“明日辰时”应保留原文的“明日辰时前”。继续保留来水原因未明、上游查看人选和时间未定，不补造木闸损坏。"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sourceRecordId": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+    "message": {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52-review",
+      "role": "user",
+      "parts": [
+        {
+          "type": "text",
+          "text": "请根据我的校正，重新整理摘要和待确认问题。保留未决事项，不新增承诺。"
+        },
+        {
+          "type": "data-review-note",
+          "data": {
+            "targetMessageId": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+            "text": "这份问题正文没有接收完整，请重新整理摘要和待确认问题。明日辰时前带记录到值房是已确定安排；上游查看的人选、时间和来水原因仍未确定。"
+          }
+        }
+      ]
+    }
+  }
+]

@@ -19,13 +19,13 @@ type LiveCatalog = Catalog & { serviceId: string; sourceVersion: string };
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <header class="page-heading"><div><p class="eyebrow">AI 请求观察 · 受控演练</p><h1>小说资料整理</h1>
-    <p class="intro">受控演练 · 不调用云模型</p></div></header>
+    <p class="intro">《凡人修仙传》原文回显 · 受控演练 · 不调用云模型</p></div></header>
   <main>
     <div class="workspace">
       <section class="input-panel panel"><h2>准备这次工作</h2>
         <details class="material-panel"><summary>查看完整材料</summary><label for="material" class="sr-only">完整输入</label><textarea id="material" rows="8" spellcheck="false"></textarea></details>
         <details class="settings"><summary>选择下次演练</summary><div class="choices">
-          <label>下次材料<select id="fixture"><option value="A">A · 药圃早巡</option><option value="B">B · 夜雨后的练功场</option></select></label>
+          <label>下次材料<select id="fixture"><option value="A">A · 第一条原文</option><option value="B">B · 第二条原文</option></select></label>
           <label>下次条件<select id="scenario"></select></label>
         </div><p class="quiet">本页只使用两份固定全文。模拟文字不理解自行改动。</p></details>
         <div class="actions"><button id="run">开始演练</button><button id="stop" hidden>停止本次</button><button id="inspect" class="secondary" hidden>核查本次记录</button></div>

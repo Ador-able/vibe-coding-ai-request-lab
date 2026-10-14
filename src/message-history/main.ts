@@ -79,7 +79,7 @@ function updatePhases(key: FixtureKey, value: Phase = 'user'): void {
   phaseSelect.replaceChildren(...(['user', ...phases] as Phase[]).map(phase => {
     const option = document.createElement('option');
     option.value = phase;
-    option.textContent = ({ user: '用户材料', snapshotEarly: '较早快照', snapshotLater: '后续快照', final: '完整历史消息' })[phase];
+    option.textContent = ({ user: '用户材料', snapshotEarly: '较早快照', snapshotLater: '后续快照', final: '完整回显消息' })[phase];
     return option;
   }));
   phaseSelect.value = value;
@@ -96,7 +96,7 @@ function chooseCurrent(view: ConversationView, resetDraft = false): void {
 }
 
 function stateName(state: CompletionState | undefined): string {
-  return ({ submitted: '用户材料已保存', incomplete: '原快照未完成', completed: '历史消息完整结束', stopped: '受控接收已停止 · 未完成' })[state ?? 'submitted'];
+  return ({ submitted: '用户材料已保存', incomplete: '原快照未完成', completed: '原文回显完整接收', stopped: '受控接收已停止 · 未完成' })[state ?? 'submitted'];
 }
 function addText(parent: HTMLElement, className: string, text: string, tag = 'p'): HTMLElement {
   const node = document.createElement(tag);
@@ -121,7 +121,7 @@ function renderAssistant(): void {
   const texts = message.parts.filter(part => part.type === 'text');
   for (const [index, part] of texts.entries()) {
     const section = document.createElement('section');
-    addText(section, 'answer-heading', index === 0 ? '摘要' : '待确认问题', 'h3');
+    addText(section, 'answer-heading', `原文回显片段 ${index + 1}`, 'h3');
     addText(section, 'answer', part.text);
     addText(section, 'part-state', `原片段状态：${part.state ?? '未提供'}`);
     parent.append(section);
@@ -267,7 +267,7 @@ openButton.addEventListener('click', () => void operation(async () => {
   chooseCurrent(await api<ConversationView>(`/api/messages/conversations/${savedSelect.value}`), true);
   fixtureSelect.value = activeFixture()!.key;
   updatePhases(fixtureSelect.value as FixtureKey, 'final');
-  setStatus('已读取选中记录；没有恢复原模型运行。');
+  setStatus('已读取选中记录；没有运行模型。');
 }));
 element('download').addEventListener('click', () => {
   const url = URL.createObjectURL(new Blob([JSON.stringify(observation(), null, 2)], { type: 'application/json' }));
@@ -286,7 +286,7 @@ void operation(async () => {
     chooseCurrent(await api<ConversationView>(`/api/messages/conversations/${encodeURIComponent(id)}`), true);
     fixtureSelect.value = activeFixture()!.key;
     updatePhases(fixtureSelect.value as FixtureKey, 'final');
-    setStatus('已从数据库读取完整记录，没有恢复原模型运行。');
+    setStatus('已从数据库读取完整记录，没有运行模型。');
   } else setStatus('材料尚未保存。先装入用户材料。');
   await updateList();
 });

@@ -1,4 +1,5 @@
 import './style.css';
+import { QUESTION } from './novel-materials.ts';
 import './lab.css';
 import { renderMarkdown } from './markdown.ts';
 import type { AskResult, RequestTrace } from './contract.ts';
@@ -8,7 +9,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <section class="workspace">
     <form id="question-form">
       <label for="question">问题</label>
-      <textarea id="question" rows="4" maxlength="2000" required placeholder="例如：用两句话解释，为什么浏览器页面里不应该放 API 密钥？"></textarea>
+      <textarea id="question" rows="4" maxlength="2000" required placeholder="例如：第一章韩立离开家时几岁？"></textarea>
       <div class="actions"><span id="status" role="status">每次发送都是一次独立提问。</span><button type="submit">发送问题 <span aria-hidden="true">↗</span></button></div>
     </form>
     <section class="response" aria-labelledby="answer-heading"><h2 id="answer-heading">模型的回答</h2><div id="answer" class="empty">发送后，回答会显示在这里。</div></section>
@@ -20,6 +21,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <div class="server-trace"><h2>后端实际经过的步骤</h2><p id="trace-description" class="trace-description"></p><ol id="stages"></ol><dl id="trace-meta"></dl></div>
     </div>
   </details>`;
+
+document.querySelector<HTMLTextAreaElement>('#question')!.value = QUESTION;
 
 const form = document.querySelector<HTMLFormElement>('#question-form')!;
 const questionInput = document.querySelector<HTMLTextAreaElement>('#question')!;

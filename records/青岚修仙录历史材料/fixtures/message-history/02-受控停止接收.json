@@ -1,0 +1,4136 @@
+{
+  "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+  "material": "《青岚修仙录》：药圃早巡\n\n林青到药圃时，东畦的叶尖还垂着。他是青岚宗外门弟子，修为停在炼气三层。日后筑基是长远的愿望，眼前这份照看药圃的差事却得先做明白。\n\n他已经清走东畦渠口的落叶，又在同一块石头旁量了一次水深，仍比昨日留下的刻线浅。叶师姐蹲下看了看，没有让他在“缺水原因”一栏落笔。\n\n“先别写木闸坏了。我们还没看过上游。”\n\n林青把纸上刚写的“木闸”二字划去，只留下两次量水的位置与所见。渠口是通的，为什么水浅，两人还不知道。\n\n叶师姐让林青明日辰时前带着量水记录到值房，和她一起核对昨日的开闸簿。林青把这句话记在纸背，说明日一早就去。\n\n“上游两处渠口也要逐处查看。”叶师姐望向山道，“这项查看由谁去、什么时候完成，还得安排。”\n\n墙边放着原本为今夜冲畦准备的长柄木耙。叶师姐收起木耙，取消了今夜放水冲畦的安排；在弄清来水情况前，不再加水。林青在清渠口一项旁画了个小勾，将量水纸折好，夹进自己的值日册里。\n",
+  "state": "stopped",
+  "origin": {
+    "kind": "teacher-controlled-reception",
+    "parentRunId": "250aa94b-3d55-4cce-a34c-df8b99c1b007",
+    "description": "截取完整模型实录到问题第一段增量，再追加教师停止事件；不是云模型取消实录。"
+  },
+  "uiEvents": [
+    {
+      "elapsedMs": 17.2,
+      "event": {
+        "type": "start",
+        "messageId": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+        "messageMetadata": {
+          "model": "ep-ymk08qa8",
+          "state": "running",
+          "stages": []
+        }
+      }
+    },
+    {
+      "elapsedMs": 18.5,
+      "event": {
+        "type": "data-progress",
+        "id": "workflow-progress",
+        "data": {
+          "stage": "summary",
+          "label": "应用正在生成摘要"
+        }
+      }
+    },
+    {
+      "elapsedMs": 18.7,
+      "event": {
+        "type": "start-step"
+      }
+    },
+    {
+      "elapsedMs": 18.7,
+      "event": {
+        "type": "text-start",
+        "id": "summary"
+      }
+    },
+    {
+      "elapsedMs": 2604.2,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "林"
+      }
+    },
+    {
+      "elapsedMs": 2606,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "青"
+      }
+    },
+    {
+      "elapsedMs": 2606.7,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "清"
+      }
+    },
+    {
+      "elapsedMs": 2637.3,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "走"
+      }
+    },
+    {
+      "elapsedMs": 2638.2,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "东"
+      }
+    },
+    {
+      "elapsedMs": 2638.9,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "畦"
+      }
+    },
+    {
+      "elapsedMs": 2639.5,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "渠"
+      }
+    },
+    {
+      "elapsedMs": 2671.8,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "口"
+      }
+    },
+    {
+      "elapsedMs": 2672.8,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "落叶"
+      }
+    },
+    {
+      "elapsedMs": 2673.4,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "并"
+      }
+    },
+    {
+      "elapsedMs": 2706.6,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "再次"
+      }
+    },
+    {
+      "elapsedMs": 2707.2,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "量"
+      }
+    },
+    {
+      "elapsedMs": 2741,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "水深"
+      }
+    },
+    {
+      "elapsedMs": 2776.4,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "，"
+      }
+    },
+    {
+      "elapsedMs": 2777.6,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "仍"
+      }
+    },
+    {
+      "elapsedMs": 2777.9,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "比"
+      }
+    },
+    {
+      "elapsedMs": 2820.2,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "昨日"
+      }
+    },
+    {
+      "elapsedMs": 2821,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "刻"
+      }
+    },
+    {
+      "elapsedMs": 2880.7,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "线"
+      }
+    },
+    {
+      "elapsedMs": 2881.4,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "浅"
+      }
+    },
+    {
+      "elapsedMs": 2882.7,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "，"
+      }
+    },
+    {
+      "elapsedMs": 2883.1,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "原因"
+      }
+    },
+    {
+      "elapsedMs": 2884.1,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "未知"
+      }
+    },
+    {
+      "elapsedMs": 2915.8,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "。"
+      }
+    },
+    {
+      "elapsedMs": 2917.2,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "叶"
+      }
+    },
+    {
+      "elapsedMs": 2917.6,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "师姐"
+      }
+    },
+    {
+      "elapsedMs": 2918.5,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "暂"
+      }
+    },
+    {
+      "elapsedMs": 2950.1,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "不许"
+      }
+    },
+    {
+      "elapsedMs": 2986.3,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "写"
+      }
+    },
+    {
+      "elapsedMs": 3020,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "“"
+      }
+    },
+    {
+      "elapsedMs": 3021.1,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "木"
+      }
+    },
+    {
+      "elapsedMs": 3021.7,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "闸"
+      }
+    },
+    {
+      "elapsedMs": 3022.1,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "坏"
+      }
+    },
+    {
+      "elapsedMs": 3054.8,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "”，"
+      }
+    },
+    {
+      "elapsedMs": 3055.3,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "只"
+      }
+    },
+    {
+      "elapsedMs": 3055.6,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "留下"
+      }
+    },
+    {
+      "elapsedMs": 3056.8,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "量"
+      }
+    },
+    {
+      "elapsedMs": 3088.2,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "水"
+      }
+    },
+    {
+      "elapsedMs": 3089.1,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "位置"
+      }
+    },
+    {
+      "elapsedMs": 3089.5,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "与"
+      }
+    },
+    {
+      "elapsedMs": 3122.6,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "所见"
+      }
+    },
+    {
+      "elapsedMs": 3123.8,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "。"
+      }
+    },
+    {
+      "elapsedMs": 3124.3,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "已"
+      }
+    },
+    {
+      "elapsedMs": 3124.7,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "确定"
+      }
+    },
+    {
+      "elapsedMs": 3125,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "："
+      }
+    },
+    {
+      "elapsedMs": 3155.3,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "取消"
+      }
+    },
+    {
+      "elapsedMs": 3156.3,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "今夜"
+      }
+    },
+    {
+      "elapsedMs": 3158.1,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "冲"
+      }
+    },
+    {
+      "elapsedMs": 3158.7,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "畦"
+      }
+    },
+    {
+      "elapsedMs": 3188.8,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "，"
+      }
+    },
+    {
+      "elapsedMs": 3189.5,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "不再"
+      }
+    },
+    {
+      "elapsedMs": 3222.3,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "加水"
+      }
+    },
+    {
+      "elapsedMs": 3223,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "；"
+      }
+    },
+    {
+      "elapsedMs": 3223.5,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "明日"
+      }
+    },
+    {
+      "elapsedMs": 3224,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "辰"
+      }
+    },
+    {
+      "elapsedMs": 3256.3,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "时"
+      }
+    },
+    {
+      "elapsedMs": 3257.7,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "林"
+      }
+    },
+    {
+      "elapsedMs": 3258.2,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "青"
+      }
+    },
+    {
+      "elapsedMs": 3258.7,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "带"
+      }
+    },
+    {
+      "elapsedMs": 3259,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "记录"
+      }
+    },
+    {
+      "elapsedMs": 3289.4,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "到"
+      }
+    },
+    {
+      "elapsedMs": 3290.4,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "值"
+      }
+    },
+    {
+      "elapsedMs": 3290.8,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "房"
+      }
+    },
+    {
+      "elapsedMs": 3323.9,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "，"
+      }
+    },
+    {
+      "elapsedMs": 3358.7,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "与"
+      }
+    },
+    {
+      "elapsedMs": 3359.3,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "叶"
+      }
+    },
+    {
+      "elapsedMs": 3392.7,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "师姐"
+      }
+    },
+    {
+      "elapsedMs": 3393.7,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "核对"
+      }
+    },
+    {
+      "elapsedMs": 3394.4,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "开"
+      }
+    },
+    {
+      "elapsedMs": 3394.8,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "闸"
+      }
+    },
+    {
+      "elapsedMs": 3395.1,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "簿"
+      }
+    },
+    {
+      "elapsedMs": 3427.6,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "。"
+      }
+    },
+    {
+      "elapsedMs": 3428.3,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "未"
+      }
+    },
+    {
+      "elapsedMs": 3428.6,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "决"
+      }
+    },
+    {
+      "elapsedMs": 3430,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "："
+      }
+    },
+    {
+      "elapsedMs": 3430.7,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "上游"
+      }
+    },
+    {
+      "elapsedMs": 3461.2,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "两"
+      }
+    },
+    {
+      "elapsedMs": 3462,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "处"
+      }
+    },
+    {
+      "elapsedMs": 3462.7,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "渠"
+      }
+    },
+    {
+      "elapsedMs": 3463.5,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "口"
+      }
+    },
+    {
+      "elapsedMs": 3463.8,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "由"
+      }
+    },
+    {
+      "elapsedMs": 3503,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "谁"
+      }
+    },
+    {
+      "elapsedMs": 3503.6,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "查看"
+      }
+    },
+    {
+      "elapsedMs": 3531,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "、"
+      }
+    },
+    {
+      "elapsedMs": 3531.7,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "何时"
+      }
+    },
+    {
+      "elapsedMs": 3532.3,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "完成"
+      }
+    },
+    {
+      "elapsedMs": 3532.8,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "，"
+      }
+    },
+    {
+      "elapsedMs": 3533.3,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "尚"
+      }
+    },
+    {
+      "elapsedMs": 3564.6,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "待"
+      }
+    },
+    {
+      "elapsedMs": 3636.2,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "安排"
+      }
+    },
+    {
+      "elapsedMs": 3637.3,
+      "event": {
+        "type": "text-delta",
+        "id": "summary",
+        "delta": "。"
+      }
+    },
+    {
+      "elapsedMs": 3717.8,
+      "event": {
+        "type": "text-end",
+        "id": "summary"
+      }
+    },
+    {
+      "elapsedMs": 3718.9,
+      "event": {
+        "type": "finish-step"
+      }
+    },
+    {
+      "elapsedMs": 3719,
+      "event": {
+        "type": "data-progress",
+        "id": "workflow-progress",
+        "data": {
+          "stage": "questions",
+          "label": "摘要已结束，应用正在生成待确认问题"
+        }
+      }
+    },
+    {
+      "elapsedMs": 3719.8,
+      "event": {
+        "type": "start-step"
+      }
+    },
+    {
+      "elapsedMs": 3720,
+      "event": {
+        "type": "text-start",
+        "id": "questions"
+      }
+    },
+    {
+      "elapsedMs": 9373.4,
+      "event": {
+        "type": "text-delta",
+        "id": "questions",
+        "delta": "1"
+      }
+    },
+    {
+      "elapsedMs": 9377.1,
+      "event": {
+        "type": "text-delta",
+        "id": "questions",
+        "delta": "."
+      }
+    },
+    {
+      "elapsedMs": 9378.4,
+      "event": {
+        "type": "text-delta",
+        "id": "questions",
+        "delta": " "
+      }
+    },
+    {
+      "elapsedMs": 9379,
+      "event": {
+        "type": "text-delta",
+        "id": "questions",
+        "delta": "上游"
+      }
+    },
+    {
+      "elapsedMs": 9379.8,
+      "event": {
+        "type": "text-delta",
+        "id": "questions",
+        "delta": "两"
+      }
+    },
+    {
+      "elapsedMs": 9404.5,
+      "event": {
+        "type": "text-delta",
+        "id": "questions",
+        "delta": "处"
+      }
+    },
+    {
+      "elapsedMs": 9405.6,
+      "event": {
+        "type": "text-delta",
+        "id": "questions",
+        "delta": "渠"
+      }
+    },
+    {
+      "elapsedMs": 9406.2,
+      "event": {
+        "type": "text-delta",
+        "id": "questions",
+        "delta": "口的"
+      }
+    },
+    {
+      "elapsedMs": 9435.4,
+      "event": {
+        "type": "text-delta",
+        "id": "questions",
+        "delta": "查看"
+      }
+    },
+    {
+      "elapsedMs": 9436.4,
+      "event": {
+        "type": "text-delta",
+        "id": "questions",
+        "delta": "将由"
+      }
+    },
+    {
+      "elapsedMs": 9473,
+      "event": {
+        "type": "text-delta",
+        "id": "questions",
+        "delta": "谁"
+      }
+    },
+    {
+      "elapsedMs": 9474,
+      "event": {
+        "type": "text-delta",
+        "id": "questions",
+        "delta": "负责"
+      }
+    },
+    {
+      "elapsedMs": 9474,
+      "event": {
+        "type": "data-progress",
+        "id": "workflow-progress",
+        "data": {
+          "stage": "stopped",
+          "label": "教师接收条件：停止，未完成"
+        }
+      }
+    },
+    {
+      "elapsedMs": 9474,
+      "event": {
+        "type": "message-metadata",
+        "messageMetadata": {
+          "model": "ep-ymk08qa8",
+          "state": "stopped",
+          "stages": [
+            {
+              "stage": "summary",
+              "model": "deepseek-v4-flash-0731",
+              "finishReason": "stop",
+              "usage": {
+                "prompt_tokens": 410,
+                "completion_tokens": 205,
+                "total_tokens": 615,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 111
+                }
+              }
+            },
+            {
+              "stage": "questions",
+              "model": null,
+              "finishReason": null,
+              "usage": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "elapsedMs": 9474,
+      "event": {
+        "type": "abort",
+        "reason": "教师接收条件：停止，未完成"
+      }
+    }
+  ],
+  "finalMessage": {
+    "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+    "metadata": {
+      "model": "ep-ymk08qa8",
+      "state": "stopped",
+      "stages": [
+        {
+          "stage": "summary",
+          "model": "deepseek-v4-flash-0731",
+          "finishReason": "stop",
+          "usage": {
+            "prompt_tokens": 410,
+            "completion_tokens": 205,
+            "total_tokens": 615,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 111
+            }
+          }
+        },
+        {
+          "stage": "questions",
+          "model": null,
+          "finishReason": null,
+          "usage": null
+        }
+      ]
+    },
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "data-progress",
+        "id": "workflow-progress",
+        "data": {
+          "stage": "stopped",
+          "label": "教师接收条件：停止，未完成"
+        }
+      },
+      {
+        "type": "step-start"
+      },
+      {
+        "type": "text",
+        "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+        "state": "done"
+      },
+      {
+        "type": "step-start"
+      },
+      {
+        "type": "text",
+        "text": "1. 上游两处渠口的查看将由谁负责",
+        "state": "streaming"
+      }
+    ]
+  },
+  "snapshots": [
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": []
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "summary",
+            "label": "应用正在生成摘要"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+          "state": "done"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "questions",
+            "label": "摘要已结束，应用正在生成待确认问题"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+          "state": "done"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "questions",
+            "label": "摘要已结束，应用正在生成待确认问题"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+          "state": "done"
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "questions",
+            "label": "摘要已结束，应用正在生成待确认问题"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+          "state": "done"
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "1",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "questions",
+            "label": "摘要已结束，应用正在生成待确认问题"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+          "state": "done"
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "1.",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "questions",
+            "label": "摘要已结束，应用正在生成待确认问题"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+          "state": "done"
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "1. ",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "questions",
+            "label": "摘要已结束，应用正在生成待确认问题"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+          "state": "done"
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "1. 上游",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "questions",
+            "label": "摘要已结束，应用正在生成待确认问题"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+          "state": "done"
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "1. 上游两",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "questions",
+            "label": "摘要已结束，应用正在生成待确认问题"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+          "state": "done"
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "1. 上游两处",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "questions",
+            "label": "摘要已结束，应用正在生成待确认问题"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+          "state": "done"
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "1. 上游两处渠",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "questions",
+            "label": "摘要已结束，应用正在生成待确认问题"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+          "state": "done"
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "1. 上游两处渠口的",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "questions",
+            "label": "摘要已结束，应用正在生成待确认问题"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+          "state": "done"
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "1. 上游两处渠口的查看",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "questions",
+            "label": "摘要已结束，应用正在生成待确认问题"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+          "state": "done"
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "1. 上游两处渠口的查看将由",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "questions",
+            "label": "摘要已结束，应用正在生成待确认问题"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+          "state": "done"
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "1. 上游两处渠口的查看将由谁",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "questions",
+            "label": "摘要已结束，应用正在生成待确认问题"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+          "state": "done"
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "1. 上游两处渠口的查看将由谁负责",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "running",
+        "stages": []
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "stopped",
+            "label": "教师接收条件：停止，未完成"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+          "state": "done"
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "1. 上游两处渠口的查看将由谁负责",
+          "state": "streaming"
+        }
+      ]
+    },
+    {
+      "id": "04ba3ac4-4b2e-4ea3-bebf-76622fff4a52",
+      "metadata": {
+        "model": "ep-ymk08qa8",
+        "state": "stopped",
+        "stages": [
+          {
+            "stage": "summary",
+            "model": "deepseek-v4-flash-0731",
+            "finishReason": "stop",
+            "usage": {
+              "prompt_tokens": 410,
+              "completion_tokens": 205,
+              "total_tokens": 615,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 111
+              }
+            }
+          },
+          {
+            "stage": "questions",
+            "model": null,
+            "finishReason": null,
+            "usage": null
+          }
+        ]
+      },
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "data-progress",
+          "id": "workflow-progress",
+          "data": {
+            "stage": "stopped",
+            "label": "教师接收条件：停止，未完成"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "林青清走东畦渠口落叶并再次量水深，仍比昨日刻线浅，原因未知。叶师姐暂不许写“木闸坏”，只留下量水位置与所见。已确定：取消今夜冲畦，不再加水；明日辰时林青带记录到值房，与叶师姐核对开闸簿。未决：上游两处渠口由谁查看、何时完成，尚待安排。",
+          "state": "done"
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "1. 上游两处渠口的查看将由谁负责",
+          "state": "streaming"
+        }
+      ]
+    }
+  ]
+}

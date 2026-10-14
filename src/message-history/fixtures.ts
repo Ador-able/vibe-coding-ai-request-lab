@@ -1,94 +1,35 @@
-import { createHash } from 'node:crypto';
-import { readFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
-import assert from 'node:assert/strict';
-import { z } from 'zod';
+import { SOURCES, CORPUS_INFO } from '../novel-materials.ts';
 import { validateMessages } from './contract.ts';
 import type { Catalog, CompletionState, FixtureKey, FixtureSummary, ImportPhase, Message } from './contract.ts';
 
-const materialDirectory = resolve('fixtures/message-history');
-const historySchema = z.looseObject({
-  id: z.uuid(), material: z.string(), state: z.enum(['completed', 'stopped']), finalMessage: z.unknown(),
-});
-type Fixture = FixtureSummary & {
-  finalMessage: Message;
-  snapshots: Map<ImportPhase, Message>;
-};
-export type Fixtures = {
-  catalog: Catalog;
-  rule: string;
-  byKey: Map<FixtureKey, Fixture>;
-  bySourceId: Map<string, Fixture>;
-};
-
+type Fixture = FixtureSummary & { finalMessage: Message; snapshots: Map<ImportPhase, Message> };
+export type Fixtures = { catalog: Catalog; rule: string; byKey: Map<FixtureKey, Fixture>; bySourceId: Map<string, Fixture> };
 export async function loadFixtures(): Promise<Fixtures> {
-  const filenames = [
-    '01-历史完整结束.json', '02-受控停止接收.json', '03-完整小说资料.txt',
-    '04-四个实际请求与完整正文.json', '05-完整拟用UI数组.json',
-    '06-同一消息的完整快照.json', '07-两个人工校正UI.json',
-    '08-下一轮完整规则.prompt.txt', '09-迁移到小说工作台.prompt.txt',
-  ];
-  const buffers = await Promise.all(filenames.map(filename => readFile(resolve(materialDirectory, filename))));
-  const files = buffers.map((buffer, index) => ({
-    filename: filenames[index], bytes: buffer.length,
-    sha256: createHash('sha256').update(buffer).digest('hex'),
-  }));
-  const histories = [historySchema.parse(JSON.parse(buffers[0].toString('utf8'))),
-    historySchema.parse(JSON.parse(buffers[1].toString('utf8')))];
-  const arrays = JSON.parse(buffers[4].toString('utf8')) as {
-    sourceRecordId: string; sourceRecordState: string; messages: Message[];
-  }[];
-  const snapshots = JSON.parse(buffers[5].toString('utf8')) as {
-    snapshots: { originalOneBasedIndex: number; inputCompletionState: string; message: Message }[];
-  };
-  const feedback = JSON.parse(buffers[6].toString('utf8')) as { sourceRecordId: string; message: Message }[];
-  const byKey = new Map<FixtureKey, Fixture>();
-  const bySourceId = new Map<string, Fixture>();
-
-  for (const [index, history] of histories.entries()) {
-    const key: FixtureKey = index === 0 ? 'normal' : 'stopped';
-    const input = arrays.find(item => item.sourceRecordId === history.id);
-    const correction = feedback.find(item => item.sourceRecordId === history.id);
-    assert(input && correction, '固定来源必须有完整用户材料及对应校正。');
-    assert.equal(input.sourceRecordState, history.state);
-    await validateMessages(input.messages);
-    await validateMessages([history.finalMessage, correction.message]);
-    assert.equal(input.messages.length, 2);
-    assert.deepEqual(input.messages[1], history.finalMessage);
-    const fixture: Fixture = {
-      key, sourceRecordId: history.id, sourceRecordState: history.state,
-      userMessage: input.messages[0], finalMessage: input.messages[1],
-      feedbackMessage: correction.message,
+  const byKey = new Map<FixtureKey, Fixture>(), bySourceId = new Map<string, Fixture>();
+  for (const [index, key] of (['normal', 'stopped'] as const).entries()) {
+    const source = SOURCES[index];
+    const id = index === 0 ? 'bf429dc5-1857-48e3-bf19-65c2494b1bbc' : 'd8609f26-b07b-49ce-a2e6-bb1a202d087d';
+    const sourceRecordState = key === 'normal' ? 'completed' : 'stopped';
+    const userMessage: Message = { id: `${key}-user`, role: 'user', parts: [{ type: 'text', text: `原文回显练习；不是模型生成。\n[${source.id}] ${source.title}\n${source.text}` }] };
+    const answer = source.text.slice(0, key === 'normal' ? 800 : 250);
+    const message = (text: string, state: 'running' | 'completed' | 'stopped'): Message => ({
+      id: `${key}-echo`, role: 'assistant', parts: [{ type: 'text', text }],
+      metadata: { model: '无模型 · 原文回显', state, stages: [], source: { kind: 'teacher-controlled-original-echo', sourceId: source.id, ...CORPUS_INFO } },
+    });
+    const finalMessage = message(answer, sourceRecordState);
+    const feedbackMessage: Message = { id: `${key}-review`, role: 'user', parts: [{ type: 'text', text: '这段是受控原文回显，不是生成摘要。下一轮请只核对引用和完成状态。' }] };
+    await validateMessages([userMessage, finalMessage, feedbackMessage]);
+    const fixture: Fixture = { key, sourceRecordId: id, sourceRecordState, userMessage, finalMessage, feedbackMessage,
       phases: key === 'normal' ? ['snapshotEarly', 'snapshotLater', 'final'] : ['final'],
-      snapshots: new Map(),
-    };
-    if (key === 'normal') {
-      for (const [index, snapshot] of snapshots.snapshots.entries()) {
-        await validateMessages([snapshot.message]);
-        assert.equal(snapshot.message.id, fixture.finalMessage.id);
-        assert.equal(snapshot.inputCompletionState, 'incomplete');
-        fixture.snapshots.set(index === 0 ? 'snapshotEarly' : 'snapshotLater', snapshot.message);
-      }
-      assert.equal(fixture.snapshots.size, 2);
-    }
-    byKey.set(key, fixture);
-    bySourceId.set(history.id, fixture);
+      snapshots: key === 'normal' ? new Map([['snapshotEarly', message(answer.slice(0, 150), 'running')], ['snapshotLater', message(answer.slice(0, 400), 'running')]]) : new Map() };
+    byKey.set(key, fixture); bySourceId.set(id, fixture);
   }
-  return {
-    byKey, bySourceId, rule: buffers[7].toString('utf8'),
-    catalog: {
-      fixtures: [...byKey.values()].map(({ snapshots, finalMessage, ...summary }) => summary),
-      files, sdkVersion: '7.0.122', modelCalls: 0,
-    },
-  };
+  return { byKey, bySourceId, rule: '只核对所附《凡人修仙传》原文和消息状态。回显不代表模型生成；未完成消息不能当作完整答案。',
+    catalog: { fixtures: [...byKey.values()].map(({ snapshots, finalMessage, ...summary }) => summary), files: [], sdkVersion: '7.0.122', modelCalls: 0 } };
 }
-
 export function historyImport(fixture: Fixture, phase: ImportPhase): { message: Message; state: CompletionState } {
-  if (phase === 'final') return {
-    message: fixture.finalMessage,
-    state: fixture.sourceRecordState === 'completed' ? 'completed' : 'stopped',
-  };
+  if (phase === 'final') return { message: fixture.finalMessage, state: fixture.sourceRecordState };
   const message = fixture.snapshots.get(phase);
-  if (!message) throw new Error('这份历史原件没有所选快照。');
+  if (!message) throw new Error('这份接收示例没有所选快照。');
   return { message, state: 'incomplete' };
 }

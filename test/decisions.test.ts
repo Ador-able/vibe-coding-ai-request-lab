@@ -8,12 +8,12 @@ import { chooseOption, clearSelection, editDraft, emptyDecision, type Options, t
 import { requestBody } from '../src/decisions/scenario.ts';
 
 const options: Options = [
-  { direction: 'A 先查气流', title: 'A 先查气流', text: '测试桩方案甲', reason: '便于观察', tradeoff: '暂不比较同版书', unknowns: '窗户状态待确认' },
-  { direction: 'B 先寻同版', title: 'B 先寻同版', text: '测试桩方案乙', reason: '有机会对照页码', tradeoff: '需要先取得许可', unknowns: '同版书是否存在待确认' },
+  { direction: 'A 事件顺序', title: 'A 事件顺序', text: '测试桩方案甲', reason: '便于观察', tradeoff: '暂不比较同版书', unknowns: '窗户状态待确认' },
+  { direction: 'B 人物关系', title: 'B 人物关系', text: '测试桩方案乙', reason: '有机会对照页码', tradeoff: '需要先取得许可', unknowns: '同版书是否存在待确认' },
 ];
 const payload = {
-  方案A: { 情节方案: options[0].text, 理由: options[0].reason, 取舍: options[0].tradeoff, 待问: options[0].unknowns },
-  方案B: { 情节方案: options[1].text, 理由: options[1].reason, 取舍: options[1].tradeoff, 待问: options[1].unknowns },
+  方案A: { 阅读方案: options[0].text, 理由: options[0].reason, 取舍: options[0].tradeoff, 待问: options[0].unknowns },
+  方案B: { 阅读方案: options[1].text, 理由: options[1].reason, 取舍: options[1].tradeoff, 待问: options[1].unknowns },
 };
 async function listen(server: Server) {
   server.listen(0, '127.0.0.1'); await once(server, 'listening');

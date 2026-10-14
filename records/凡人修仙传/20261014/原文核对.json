@@ -1,0 +1,13 @@
+{
+  "originalSha256": "2fc1698410418bf136448807335c6359bf515b75e6f9c1e1d1f443a1c928e6cc",
+  "sourceSha256": "141138ca40a7ddbad62264d3f011ee4c1e01bc00c3900f5ff4b9016f25db9d34",
+  "records": 30,
+  "hanCount": 60910,
+  "eachRange": [
+    2000,
+    2119
+  ],
+  "matchesOriginalExactly": true,
+  "rangesAreContinuous": true,
+  "bodyCharacters": 70987
+}

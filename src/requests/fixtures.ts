@@ -1,31 +1,16 @@
-import { readFile } from 'node:fs/promises';
-import { createHash } from 'node:crypto';
-import { resolve } from 'node:path';
-import assert from 'node:assert/strict';
-import { SCENARIOS } from './contract.ts';
-import type { Catalog, Fixture, FixtureKey } from './contract.ts';
+import { SOURCES, CORPUS_INFO } from '../novel-materials.ts';
+import { SCENARIOS, type Catalog, type Fixture, type FixtureKey } from './contract.ts';
 
-const directory = resolve('public/requests-fixtures');
 export async function loadCatalog(): Promise<Catalog> {
-  const manifest: Array<{ filename: string; bytes: number; sha256: string }> = JSON.parse(await readFile(resolve(directory, '材料清单.json'), 'utf8'));
-  const values = new Map<string, Buffer>();
-  for (const entry of manifest) {
-    const bytes = await readFile(resolve(directory, entry.filename));
-    assert.equal(bytes.length, entry.bytes, `${entry.filename}长度不同`);
-    assert.equal(createHash('sha256').update(bytes).digest('hex'), entry.sha256, `${entry.filename}字节不同`);
-    values.set(entry.filename, bytes);
-  }
-  const input = JSON.parse(values.get('03-两份完整任务输入.json')!.toString('utf8'));
-  const output = JSON.parse(values.get('04-受控输出全文与来源.json')!.toString('utf8'));
-  const chunks = JSON.parse(values.get('08-完整文本分段.json')!.toString('utf8'));
   const fixtures = {} as Record<FixtureKey, Fixture>;
-  for (const key of ['A', 'B'] as const) {
-    const deltas: string[] = chunks[key].chunks.map((part: { delta: string }) => part.delta);
-    assert.equal(deltas.join(''), output[key].text, `${key}分段与全文不同`);
-    fixtures[key] = { key, title: input[key].prompt.split('\n')[0], instructions: input[key].instructions,
-      input: input[key].prompt, answer: output[key].text, deltas,
-      answerOrigin: output[key].origin, source: output[key].source ?? { kind: 'teacher-authored' } };
+  for (const [index, key] of (['A', 'B'] as const).entries()) {
+    const source = SOURCES[index];
+    // 状态演练回显现成原文，不冒充云模型生成。
+    const answer = source.text.slice(0, 800);
+    fixtures[key] = { key, title: `《凡人修仙传》· ${source.title}`,
+      instructions: '受控回显下面的小说原文，用于观察停止、超时与失败。', input: source.text,
+      answer, deltas: answer.match(/[\s\S]{1,24}/g)!, answerOrigin: 'teacher-controlled-original-echo',
+      source: { kind: 'original-excerpt', sourceId: source.id, ...CORPUS_INFO } };
   }
-  return { sdkVersion: '7.0.122', fixtures, scenarios: SCENARIOS,
-    files: manifest.map(entry => ({ file: entry.filename, bytes: entry.bytes, sha256: entry.sha256 })) };
+  return { sdkVersion: '7.0.122', fixtures, scenarios: SCENARIOS, files: [] };
 }
