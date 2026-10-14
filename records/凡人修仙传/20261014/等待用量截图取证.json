@@ -1,0 +1,38 @@
+[
+  {
+    "file": "screenshots/等待用量-2K.png",
+    "native": [
+      3185,
+      1792
+    ],
+    "crop": [
+      312,
+      20,
+      2872,
+      1050
+    ],
+    "result": [
+      2560,
+      1030
+    ],
+    "upscaled": false
+  },
+  {
+    "file": "screenshots/缓存用量-2K.png",
+    "native": [
+      3185,
+      1792
+    ],
+    "crop": [
+      312,
+      60,
+      2872,
+      1480
+    ],
+    "result": [
+      2560,
+      1420
+    ],
+    "upscaled": false
+  }
+]

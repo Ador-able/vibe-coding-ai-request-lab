@@ -1,0 +1,131 @@
+{
+  "sourceVersion": "sha256:98fac62e67a78b872511a23e297600be3f9d43f6b7b25bc7fc9e0a9098c13a5b",
+  "manifest": "源码清单-统一蓝色.json",
+  "checkedSourceFiles": 111,
+  "originalSha256": "2fc1698410418bf136448807335c6359bf515b75e6f9c1e1d1f443a1c928e6cc",
+  "longAndRepeatExact": true,
+  "prefixOnlyAtoB": true,
+  "detailedChanges": [
+    "回答要求",
+    "输出上限4096至8192"
+  ],
+  "sseAnswersAndTimingVerified": true,
+  "modelCalls": 5,
+  "runs": [
+    {
+      "file": "18-latency-run.json",
+      "fileSha256": "454f7ddffdfee442a592a3749dce87c305fbe7915db2767f4dd32ef2b102dd05",
+      "condition": "short",
+      "startedAt": "2026-10-14T14:32:26.939Z",
+      "firstContentMs": 2285.7,
+      "streamEndMs": 2389.6,
+      "responseModel": "deepseek-v4-flash-0731",
+      "usage": {
+        "prompt_tokens": 1709,
+        "completion_tokens": 124,
+        "total_tokens": 1833,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 113
+        }
+      },
+      "finishReason": "stop",
+      "answer": "三十个铜板（[C01]）。",
+      "requestSha256": "cb5568d6135005781df417af6d1fcbbabd0ad6d442b6c1e4d3b2aa172244ae85"
+    },
+    {
+      "file": "19-latency-run.json",
+      "fileSha256": "bb1530662c2ad8009fa8ded51cda8981f49cfeb773135f0febdf496c1f7159e9",
+      "condition": "long",
+      "startedAt": "2026-10-14T14:33:07.607Z",
+      "firstContentMs": 3812.5,
+      "streamEndMs": 3943.4,
+      "responseModel": "deepseek-v4-flash-0731",
+      "usage": {
+        "prompt_tokens": 45106,
+        "completion_tokens": 44,
+        "total_tokens": 45150,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 33
+        }
+      },
+      "finishReason": "stop",
+      "answer": "30个铜板（[C01]）",
+      "requestSha256": "5c169e632ae7d6d220a49227a94a88f91fff4eaccdc0dec3e6e2620107c94181"
+    },
+    {
+      "file": "20-latency-run.json",
+      "fileSha256": "4fbd84315119eacb11da06d2e8c187686fa9a8f54c303a3401f979b631722e66",
+      "condition": "repeat",
+      "startedAt": "2026-10-14T14:33:45.265Z",
+      "firstContentMs": 3175.1,
+      "streamEndMs": 3268.6,
+      "responseModel": "deepseek-v4-flash-0731",
+      "usage": {
+        "prompt_tokens": 45106,
+        "completion_tokens": 171,
+        "total_tokens": 45277,
+        "prompt_tokens_details": {
+          "cached_tokens": 45056
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 160
+        }
+      },
+      "finishReason": "stop",
+      "answer": "三十个铜板（[C01]）。",
+      "requestSha256": "5c169e632ae7d6d220a49227a94a88f91fff4eaccdc0dec3e6e2620107c94181"
+    },
+    {
+      "file": "21-latency-run.json",
+      "fileSha256": "4755246099a7e3550ce4a40e255c3d969b8f194829d4c80916f4d4aacd131eb6",
+      "condition": "prefix",
+      "startedAt": "2026-10-14T14:34:37.130Z",
+      "firstContentMs": 3408.3,
+      "streamEndMs": 3503.2,
+      "responseModel": "deepseek-v4-flash-0731",
+      "usage": {
+        "prompt_tokens": 45106,
+        "completion_tokens": 74,
+        "total_tokens": 45180,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 63
+        }
+      },
+      "finishReason": "stop",
+      "answer": "三十个铜板（[C01]）。",
+      "requestSha256": "65d18e8417251ba12cf528c42fc8e79d1715f72066fe7d61239608b64c0b413e"
+    },
+    {
+      "file": "22-latency-run.json",
+      "fileSha256": "21ceeadc54ba93d19a96732e818d69245c7e553692e6c4f67e3fb8e4c66324cc",
+      "condition": "detailed",
+      "startedAt": "2026-10-14T14:36:15.873Z",
+      "firstContentMs": 2521.2,
+      "streamEndMs": 4166,
+      "responseModel": "deepseek-v4-flash-0731",
+      "usage": {
+        "prompt_tokens": 45121,
+        "completion_tokens": 208,
+        "total_tokens": 45329,
+        "prompt_tokens_details": {
+          "cached_tokens": 45056
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 62
+        }
+      },
+      "finishReason": "stop",
+      "answer": "三十个铜板。\n\n依据原文第一章（资料编号C01），韩立得知大哥当铁匠学徒的待遇时，原文明确写道：“听说当铁匠的学徒，不但管吃管住，一个月还有三十个铜板拿”。大哥在城里给一位老铁匠当学徒，这份工作是由三叔介绍的。韩立对此非常羡慕，因为家中生活清苦，大哥能靠手艺吃饭，成为“体面人”，而且正式出师后挣钱更多。因此，韩立心目中最好的工作就是被城里的手艺师傅收做学徒，从此改变命运。文中还提到，每当父母提起大哥就神采飞扬，这也加深了韩立对这份工作的向往。",
+      "requestSha256": "8a31e0981890b1850c6f82fa8ed0a7eecb78f36416faac88d9a52508790ccc24"
+    }
+  ]
+}
