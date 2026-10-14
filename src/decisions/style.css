@@ -21,7 +21,7 @@ h1 { font-size: 26px; }
 .option dl { grid-template-columns: 62px 1fr; gap: 10px; font-size: 14px; }
 .option dd { color: #345967; overflow-wrap: anywhere; }
 .option button { margin-top: 18px; }
-.option button[aria-pressed=true] { background: #17494e; outline: 2px solid #6daeb1; outline-offset: 2px; }
+.option button[aria-pressed=true] { background: #254c75; outline: 2px solid #638eba; outline-offset: 2px; }
 .decision-state { margin: 18px 0 0; border-top: 1px solid #d6e4e5; padding-top: 14px; font-size: 14px; }
 #editor { margin-top: 20px; padding: 22px; background: #fff; border: 1px solid #a8c9ce; border-radius: 9px; }
 #editor label { display: block; font-size: 14px; font-weight: 600; margin: 14px 0 7px; }

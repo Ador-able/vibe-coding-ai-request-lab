@@ -1,3 +1,4 @@
+:root { color: #202c36; background: #f7f8fa; --lab-accent: #315f91; }
 .lab-nav { max-width: 1120px; margin: auto; padding: 18px 32px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; font: 13px 'Microsoft YaHei', system-ui, sans-serif; }
 .lab-nav > div { display: flex; align-items: center; gap: 10px; }
 .lab-nav label { margin: 0; font-size: 13px; }

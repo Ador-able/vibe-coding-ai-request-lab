@@ -1,4 +1,4 @@
-:root { font-family: 'Noto Sans SC', 'Microsoft YaHei', system-ui, sans-serif; color: #142e38; background: #f1f5f5; font-synthesis: none; }
+:root { font-family: 'Noto Sans SC', 'Microsoft YaHei', system-ui, sans-serif; font-synthesis: none; }
 * { box-sizing: border-box; }
 body { margin: 0; min-width: 320px; }
 main { max-width: 1080px; padding: 54px 40px 64px; margin: auto; }
@@ -17,9 +17,9 @@ textarea::placeholder { color: #83999f; }
 .actions { display: flex; gap: 24px; align-items: center; justify-content: space-between; margin-top: 18px; }
 #status { font-size: 13px; line-height: 1.7; color: #678087; }
 #status.error { color: #9b472f; }
-button { flex-shrink: 0; border: 0; border-radius: 8px; padding: 12px 20px; color: #fff; background: #1e6f7a; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
+button { flex-shrink: 0; border: 0; border-radius: 8px; padding: 12px 20px; color: #fff; background: var(--lab-accent); font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
 button span { margin-left: 16px; }
-button:hover { background: #175e68; }
+button:hover { background: #254c75; }
 button:disabled { cursor: wait; opacity: .65; }
 .response { border-top: 1px solid #e4ebed; padding: 24px 28px 30px; background: #fbfdfd; min-height: 150px; }
 h2 { margin: 0 0 13px; font-size: 14px; color: #526f79; }

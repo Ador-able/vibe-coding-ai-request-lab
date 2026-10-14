@@ -1,5 +1,4 @@
 /* 实验页共用阅读层级；各页保留自己的结果布局。 */
-:root { color: #202c36; background: #f7f8fa; --lab-accent: #315f91; }
 body main { max-width: 1120px; padding: 28px 32px 56px; }
 main > header { margin-bottom: 24px; }
 main > header h1 { font-size: 25px; line-height: 1.4; letter-spacing: 0; margin: 10px 0 7px; }

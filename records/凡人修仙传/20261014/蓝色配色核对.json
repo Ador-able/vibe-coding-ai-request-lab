@@ -1,0 +1,164 @@
+{
+  "pages": [
+    {
+      "accent": "#315f91",
+      "background": "rgb(247, 248, 250)",
+      "page": "/",
+      "primary": [
+        {
+          "color": "rgb(49, 95, 145)",
+          "label": "发送问题 ↗"
+        }
+      ]
+    },
+    {
+      "accent": "#315f91",
+      "background": "rgb(247, 248, 250)",
+      "page": "/context.html",
+      "primary": [
+        {
+          "color": "rgb(49, 95, 145)",
+          "label": "查询年龄"
+        },
+        {
+          "color": "rgb(49, 95, 145)",
+          "label": "发送追问"
+        }
+      ]
+    },
+    {
+      "accent": "#315f91",
+      "background": "rgb(247, 248, 250)",
+      "page": "/quality.html",
+      "primary": [
+        {
+          "color": "rgb(49, 95, 145)",
+          "label": "运行 4 个样例"
+        }
+      ]
+    },
+    {
+      "accent": "#315f91",
+      "background": "rgb(247, 248, 250)",
+      "page": "/latency.html",
+      "primary": [
+        {
+          "color": "rgb(49, 95, 145)",
+          "label": "运行本条件"
+        }
+      ]
+    },
+    {
+      "accent": "#315f91",
+      "background": "rgb(247, 248, 250)",
+      "page": "/memory.html",
+      "primary": [
+        {
+          "color": "rgb(49, 95, 145)",
+          "label": "比较三种读法"
+        },
+        {
+          "color": "rgb(49, 95, 145)",
+          "label": "保存这条摘要"
+        },
+        {
+          "color": "rgb(49, 95, 145)",
+          "label": "读回摘要，再问一次"
+        }
+      ]
+    },
+    {
+      "accent": "#315f91",
+      "background": "rgb(247, 248, 250)",
+      "page": "/structured.html",
+      "primary": [
+        {
+          "color": "rgb(49, 95, 145)",
+          "label": "提取待办"
+        }
+      ]
+    },
+    {
+      "accent": "#315f91",
+      "background": "rgb(247, 248, 250)",
+      "page": "/streaming.html",
+      "primary": [
+        {
+          "color": "rgb(49, 95, 145)",
+          "label": "生成摘要和问题"
+        }
+      ]
+    },
+    {
+      "accent": "#315f91",
+      "background": "rgb(247, 248, 250)",
+      "page": "/message-history.html",
+      "primary": []
+    },
+    {
+      "accent": "#315f91",
+      "background": "rgb(247, 248, 250)",
+      "page": "/requests.html",
+      "primary": [
+        {
+          "color": "rgb(49, 95, 145)",
+          "label": "开始演练"
+        },
+        {
+          "color": "rgb(49, 95, 145)",
+          "label": "停止本次"
+        }
+      ]
+    },
+    {
+      "accent": "#315f91",
+      "background": "rgb(247, 248, 250)",
+      "page": "/decisions.html",
+      "primary": [
+        {
+          "color": "rgb(49, 95, 145)",
+          "label": "生成两份阅读方案"
+        }
+      ]
+    },
+    {
+      "accent": "#315f91",
+      "background": "rgb(247, 248, 250)",
+      "page": "/collaboration.html",
+      "primary": [
+        {
+          "color": "rgb(49, 95, 145)",
+          "label": "整理阅读笔记"
+        }
+      ]
+    },
+    {
+      "accent": "#315f91",
+      "background": "rgb(247, 248, 250)",
+      "page": "/feedback.html",
+      "primary": [
+        {
+          "color": "rgb(49, 95, 145)",
+          "label": "核对人物指代"
+        }
+      ]
+    }
+  ],
+  "sourceImage": "流式页-蓝色原图.jpg",
+  "sourceSize": [
+    3200,
+    1800
+  ],
+  "crop": [
+    312,
+    160,
+    2872,
+    660
+  ],
+  "imageSize": [
+    2560,
+    500
+  ],
+  "upscaled": false,
+  "modelCalls": 0
+}

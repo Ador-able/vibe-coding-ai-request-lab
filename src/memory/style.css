@@ -14,7 +14,7 @@ main .experiment-tabs button[aria-selected="true"] { background: white; color: #
 .input-path { color: #536b7d; font-size: 14px; }
 .summary-text { font-size: 14px; line-height: 1.7; }
 .result-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 18px; }
-main .result-actions button { background: transparent; color: #285d6c; font-weight: 400; padding: 0; }
+main .result-actions button { background: transparent; color: var(--lab-accent); font-weight: 400; padding: 0; }
 .inspection-content { padding: 20px 24px; }
 .inspection-content > :first-child { margin-top: 0; }
 .inspection-content > :last-child { margin-bottom: 0; }
