@@ -1,0 +1,173 @@
+{
+  "newModelRequests": 7,
+  "freshIndependentRequests": true,
+  "allMessageCounts": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "eachPairOnlyAddsSameSavedRule": true,
+  "firstAndLastRequestBytesIdentical": true,
+  "snapshotsPreservedAfterDisable": true,
+  "actualRuleFileReadBack": true,
+  "initialRuleAbsent": true,
+  "source": "完整C01用于编者核对；实际请求只附目录与当次完整原文段落，不把整章当作已经发给模型。",
+  "observedCharacters": [
+    null,
+    "韩铸",
+    "韩立的三叔",
+    "韩立",
+    "韩铸",
+    "韩立的三叔",
+    null
+  ],
+  "CautionC": "C两次结论均为韩立的三叔，与完整原文相符；第3次把他指代韩立写入依据，但单句未展开先行词。应区分目录匹配与字面明示，不把结论相符等同依据充分，也不据此硬造事实错误。",
+  "actor": "编者已核对完整C01后通过真实页面保存、启用和停用本实验规则；不写Codex个人记忆，不代表用户批准文学内容。",
+  "limits": "只对三段原句做一轮独立请求对照，不证明所有称呼或资料冲突都能处理。课堂笔记偏好另为明确标注的未执行练习，未据此声称文学或学习效果。",
+  "results": [
+    {
+      "n": 1,
+      "record": "A",
+      "rule": "none",
+      "character": null,
+      "basis": "原句称呼人物为“二愣子”，该称呼不在人物目录中，无法确认对应目录中的哪一位。",
+      "model": "deepseek-v4-flash-0731",
+      "finish": "stop",
+      "usage": {
+        "prompt_tokens": 341,
+        "completion_tokens": 134,
+        "total_tokens": 475,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 100
+        }
+      }
+    },
+    {
+      "n": 2,
+      "record": "B",
+      "rule": "none",
+      "character": "韩铸",
+      "basis": "原句明确提到‘是二哥韩铸’。人物目录中包含‘韩铸’，故判断为韩铸。",
+      "model": "deepseek-v4-flash-0731",
+      "finish": "stop",
+      "usage": {
+        "prompt_tokens": 323,
+        "completion_tokens": 86,
+        "total_tokens": 409,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 53
+        }
+      }
+    },
+    {
+      "n": 3,
+      "record": "C",
+      "rule": "none",
+      "character": "韩立的三叔",
+      "basis": "原句明确提到‘他的亲三叔’，‘他’指代韩立，故此人物为韩立的三叔。",
+      "model": "deepseek-v4-flash-0731",
+      "finish": "stop",
+      "usage": {
+        "prompt_tokens": 311,
+        "completion_tokens": 93,
+        "total_tokens": 404,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 55
+        }
+      }
+    },
+    {
+      "n": 4,
+      "record": "A",
+      "rule": "saved",
+      "character": "韩立",
+      "basis": "原文明确二愣子姓韩名立，即韩立",
+      "model": "deepseek-v4-flash-0731",
+      "finish": "stop",
+      "usage": {
+        "prompt_tokens": 397,
+        "completion_tokens": 63,
+        "total_tokens": 460,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 40
+        }
+      }
+    },
+    {
+      "n": 5,
+      "record": "B",
+      "rule": "saved",
+      "character": "韩铸",
+      "basis": "原句明确提到‘二哥韩铸’",
+      "model": "deepseek-v4-flash-0731",
+      "finish": "stop",
+      "usage": {
+        "prompt_tokens": 379,
+        "completion_tokens": 72,
+        "total_tokens": 451,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 53
+        }
+      }
+    },
+    {
+      "n": 6,
+      "record": "C",
+      "rule": "saved",
+      "character": "韩立的三叔",
+      "basis": "原句明确说“这位贵客……是他的亲三叔”，主要人物为这位贵客，即三叔。目录中对应称呼为“韩立的三叔”。",
+      "model": "deepseek-v4-flash-0731",
+      "finish": "stop",
+      "usage": {
+        "prompt_tokens": 367,
+        "completion_tokens": 765,
+        "total_tokens": 1132,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 710
+        }
+      }
+    },
+    {
+      "n": 7,
+      "record": "A",
+      "rule": "none",
+      "character": null,
+      "basis": "原句中出现的人物是“二愣子”，不在目录中，无法对应。",
+      "model": "deepseek-v4-flash-0731",
+      "finish": "stop",
+      "usage": {
+        "prompt_tokens": 341,
+        "completion_tokens": 250,
+        "total_tokens": 591,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 224
+        }
+      }
+    }
+  ]
+}
