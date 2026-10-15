@@ -1,0 +1,61 @@
+{
+  "checkedAt": "2026-10-15T09:01:23.355Z",
+  "origin": "重新启动既有4359课堂服务后，独立GET与新的只读SQLite连接核对",
+  "modelCalls": 0,
+  "databaseWrites": 0,
+  "rawRecordSha256": "193efb834e0709a7f558dfdab3a6be1427fbe6cad8867fd9f0f18554f18b2012",
+  "cases": [
+    {
+      "fixtureKey": "normal",
+      "conversationId": "d8daa33b-8fd7-4045-ad6a-b956c278f3cc",
+      "httpStatus": 200,
+      "fullGetMatches": true,
+      "fullSqlRowsMatch": true,
+      "conversationMatches": true,
+      "lockFailureUnchanged": true,
+      "entries": [
+        {
+          "messageId": "normal-user",
+          "position": 1,
+          "completionState": "submitted"
+        },
+        {
+          "messageId": "normal-echo",
+          "position": 2,
+          "completionState": "completed"
+        },
+        {
+          "messageId": "normal-review",
+          "position": 3,
+          "completionState": "submitted"
+        }
+      ]
+    },
+    {
+      "fixtureKey": "stopped",
+      "conversationId": "7f254d98-f148-41c7-af05-c3b8069ea82f",
+      "httpStatus": 200,
+      "fullGetMatches": true,
+      "fullSqlRowsMatch": true,
+      "conversationMatches": true,
+      "lockFailureUnchanged": null,
+      "entries": [
+        {
+          "messageId": "stopped-user",
+          "position": 1,
+          "completionState": "submitted"
+        },
+        {
+          "messageId": "stopped-echo",
+          "position": 2,
+          "completionState": "stopped"
+        },
+        {
+          "messageId": "stopped-review",
+          "position": 3,
+          "completionState": "submitted"
+        }
+      ]
+    }
+  ]
+}

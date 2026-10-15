@@ -28,10 +28,16 @@ function render(){
   document.querySelector('#result').innerHTML=body;
  }else{
   const r=c.record,text=(c.finalMessage?.parts||[]).filter(p=>p.type==='text').map(p=>p.text).join('');
-  body='<h2>八次实际请求的终态</h2>'+table(['条件','服务端终态','提供方调用次数','收到正文长度'],DATA.map(x=>[x.label,x.record.state,x.record.providerCalls.length,(x.finalMessage?.parts||[]).filter(p=>p.type==='text').map(p=>p.text).join('').length]));
+  const overview=table(['条件','服务端终态','提供方调用次数','收到正文长度'],DATA.map(x=>[x.label,x.record.state,x.record.providerCalls.length,(x.finalMessage?.parts||[]).filter(p=>p.type==='text').map(p=>p.text).join('').length]));
   body+='<div class="state"><b>当前记录：'+E(r.state)+'</b><span>材料'+E(r.fixtureKey)+' · 官方Mock原文回显</span></div><div class="small muted">请求ID：'+E(r.requestId)+'</div>';
-  const counts={};for(const x of r.callbacks)counts[x.value.kind]=(counts[x.value.kind]||0)+1;
-  body+='<div class="columns">'+panel('已收到正文片段',text||'未收到正文')+panel('本次收尾','原因：'+JSON.stringify(r.cause)+'\nUI收尾：'+JSON.stringify(r.uiOutcome)+'\n回调：'+JSON.stringify(counts))+'</div>';
+  const clientState=c.finalMessage?.metadata?.state??'未取得metadata';
+  const clientError=c.error?c.error.name+' / '+c.error.message:'无读取错误';
+  const signals=r.providerCalls.flatMap(p=>(p.signalChanges||[]).map(v=>v.value));
+  const signalText=signals.map(v=>v.aborted?'已取消 · '+(v.reason?.name||'')+' / '+(v.reason?.message||''):'未取消').join('；')||'未记录取消信号';
+  const ui=r.uiOutcome?.status??'未记录';
+  const end=r.callbacks.find(v=>v.value.kind==='core.onEnd')?.value.event?.finishReason??'未触发onEnd';
+  body+='<div class="columns">'+panel('客户端实际接收','HTTP '+c.httpStatus+' · '+c.events.length+'个事件\nmetadata.state：'+clientState+'\n读取错误：'+clientError+'\n\n'+(text||'未收到正文'))+panel('随后同编号GET','应用状态：'+r.state+' / '+(r.cause||'无异常原因')+'\n服务端事件：'+r.uiEvents.length+'个\n提供方调用：'+r.providerCalls.length+'次\n取消信号：'+signalText+'\nUI层收尾：'+ui+'\nSDK结束原因：'+end)+'</div>';
+  body+='<details><summary>八次实际请求总览</summary><div>'+overview+'</div></details>';
   document.querySelector('#result').innerHTML=body;
  }
  document.querySelector('#raw').textContent=JSON.stringify(c,null,2);
