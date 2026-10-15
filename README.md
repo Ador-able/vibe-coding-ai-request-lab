@@ -71,3 +71,5 @@ node scripts/run-lab.mjs "D:/练习/动作审批" dist/approval-cli.js
 目标项目按自身 README 完成准备，当前入口复用已保存的模型设置。课堂记录的源码标识取当前克隆仓库的实际 Git 提交；实际新运行结果以本次完整记录为准。
 
 </details>
+
+本轮已有实录可直接读回：[结构化输出](http://127.0.0.1:4318/records/output/122-readback.html)、[流式输出](http://127.0.0.1:4318/records/output/123-readback.html)、[消息保存与转换](http://127.0.0.1:4318/records/output/168-readback.html)、[请求状态](http://127.0.0.1:4318/records/output/174-readback.html)。沿用上面的启动方式，查看不调用模型。

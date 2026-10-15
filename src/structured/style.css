@@ -38,3 +38,6 @@ textarea { display: block; width: 100%; resize: vertical; font: inherit; font-si
 .task h4 { font-size: 17px; }
 .task .meta { font-size: 14px; color: #405467; }
 #result { border-top: 1px solid #dce3eb; padding-top: 22px; margin-top: 20px; }
+
+/* 原文独立滚动，核对后段时仍能看到右侧结果。 */
+#source { max-height: 420px; overflow: auto; }
