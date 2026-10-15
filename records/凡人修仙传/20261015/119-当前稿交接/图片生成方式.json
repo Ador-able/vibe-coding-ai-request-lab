@@ -1,0 +1,12 @@
+{
+  "来源": "真实打开的collaboration.html第二轮完整当前稿、新目标与实际两项问题",
+  "生成": "浏览器Page.printToPDF原生矢量导出；PyMuPDF直接渲染聚焦区域，不放大截图。",
+  "width": 2560,
+  "height": 1423,
+  "pdfClipPoints": [
+    0,
+    310,
+    864,
+    790
+  ]
+}

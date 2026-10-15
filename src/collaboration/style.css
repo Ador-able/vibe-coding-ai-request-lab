@@ -26,4 +26,4 @@ textarea:focus-visible { outline: 2px solid #458f96; outline-offset: 2px; }
 #compose { background: white; border: 1px solid #dce3eb; border-radius: 8px; }
 .latest-turn { border-color: #dce3eb; background: white; }
 .answer { font-size: 16px; line-height: 1.8; }
-.human-input { background: #f3f6fa; }
+.human-input { background: #f3f6fa; padding: 14px 16px; }
