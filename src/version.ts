@@ -1,7 +1,6 @@
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { execFileSync } from 'node:child_process';
 
-// 交付包带固定源码标识，运行时不依赖 Git。
+// 课堂记录对应当前克隆仓库的实际提交。
 export function codeVersion(): string {
-  return JSON.parse(readFileSync(resolve('source-version.json'), 'utf8')).sourceVersion;
+  return execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8', windowsHide: true }).trim();
 }

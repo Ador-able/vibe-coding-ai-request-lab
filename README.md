@@ -68,6 +68,6 @@ node scripts/messages-inspect.mjs --db .data/messages.sqlite --conversation <会
 node scripts/run-lab.mjs "D:/练习/动作审批" dist/approval-cli.js
 ```
 
-目标项目按自身 README 完成准备，当前入口复用已保存的模型设置。source-version.json 保留课堂程序的源码标识；实际新运行结果以本次完整记录为准。
+目标项目按自身 README 完成准备，当前入口复用已保存的模型设置。课堂记录的源码标识取当前克隆仓库的实际 Git 提交；实际新运行结果以本次完整记录为准。
 
 </details>

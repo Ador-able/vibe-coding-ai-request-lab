@@ -17,7 +17,8 @@ export async function loadFixtures(): Promise<Fixtures> {
       metadata: { model: '无模型 · 原文回显', state, stages: [], source: { kind: 'teacher-controlled-original-echo', sourceId: source.id, ...CORPUS_INFO } },
     });
     const finalMessage = message(answer, sourceRecordState);
-    const feedbackMessage: Message = { id: `${key}-review`, role: 'user', parts: [{ type: 'text', text: '这段是受控原文回显，不是生成摘要。下一轮请只核对引用和完成状态。' }] };
+    const feedbackMessage: Message = { id: `${key}-review`, role: 'user', parts: [{ type: 'data-review-note',
+      data: { targetMessageId: `${key}-echo`, text: '这段是受控原文回显，不是生成摘要。下一轮请只核对引用和完成状态。' } }] };
     await validateMessages([userMessage, finalMessage, feedbackMessage]);
     const fixture: Fixture = { key, sourceRecordId: id, sourceRecordState, userMessage, finalMessage, feedbackMessage,
       phases: key === 'normal' ? ['snapshotEarly', 'snapshotLater', 'final'] : ['final'],
