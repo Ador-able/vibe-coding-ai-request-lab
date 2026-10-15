@@ -1,0 +1,13 @@
+{
+  "kind": "真实记录整理图，不是浏览器截图",
+  "originalRecordDate": "2026-10-14",
+  "source": "14-context-start.json",
+  "script": "生成实录图.py",
+  "width": 2560,
+  "height": 1530,
+  "generatedFrom": [
+    "实际content/finishReason/tool_call编号",
+    "工具原文中的完整年龄段",
+    "第二次请求与实际回答"
+  ]
+}
