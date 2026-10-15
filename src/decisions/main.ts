@@ -6,7 +6,7 @@ import { chooseOption, clearSelection, editDraft, emptyDecision, type Decision, 
 
 const app = document.querySelector<HTMLElement>('#app')!;
 app.innerHTML = `<header><span class="eyebrow">凡人修仙传 · 人的判断</span>
-  <h1>阅读方案</h1><p>比较按事件顺序和按人物关系记笔记，选择后再编辑。</p></header>
+  <h1>选择摘要重点</h1><p>同一段原文，两份短摘要。先比较事情经过与考核条件，再选择和修改。</p></header>
   <div class="generate-bar"><button id="generate">生成两份阅读方案</button><p class="note">调用模型 1 次。</p></div>
   <details><summary>完整前文与本轮任务</summary><section class="common"><div><h2>背景与边界</h2><div id="background"></div></div><div><h2>本轮任务</h2><p id="goal"></p></div></section><div id="previous-chapter" class="previous-chapter"></div></details>
   <p id="status" role="status" aria-live="polite"></p>

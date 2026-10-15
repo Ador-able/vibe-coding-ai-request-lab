@@ -8,8 +8,8 @@ import { chooseOption, clearSelection, editDraft, emptyDecision, type Options, t
 import { requestBody } from '../src/decisions/scenario.ts';
 
 const options: Options = [
-  { direction: 'A 事件顺序', title: 'A 事件顺序', text: '测试桩方案甲', reason: '便于观察', tradeoff: '暂不比较同版书', unknowns: '窗户状态待确认' },
-  { direction: 'B 人物关系', title: 'B 人物关系', text: '测试桩方案乙', reason: '有机会对照页码', tradeoff: '需要先取得许可', unknowns: '同版书是否存在待确认' },
+  { direction: 'A 事情经过', title: 'A 事情经过', text: '测试桩摘要甲', reason: '便于回顾动作', tradeoff: '暂不展开完整规则', unknowns: '是否选择事情经过' },
+  { direction: 'B 考核条件', title: 'B 考核条件', text: '测试桩摘要乙', reason: '便于核对规则', tradeoff: '压缩途中经历', unknowns: '是否选择考核条件' },
 ];
 const payload = {
   方案A: { 阅读方案: options[0].text, 理由: options[0].reason, 取舍: options[0].tradeoff, 待问: options[0].unknowns },
