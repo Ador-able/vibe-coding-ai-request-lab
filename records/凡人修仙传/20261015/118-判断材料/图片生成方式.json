@@ -1,0 +1,35 @@
+{
+  "来源": "实际打开的decisions.html页面，生成后选择B、人工编辑、两份都不采用、重新选择B；五次页面导出保留完整过程。",
+  "生成": "浏览器Page.printToPDF原生导出同一实际页面；以现有PyMuPDF从矢量PDF直接渲染2560宽局部，不放大截图。",
+  "页面参数": {
+    "printBackground": true,
+    "paperWidth": 12,
+    "paperHeight": 35,
+    "scale": 1,
+    "margins": 0
+  },
+  "图片": [
+    {
+      "file": "两份实际摘要.png",
+      "width": 2561,
+      "height": 1316,
+      "pdfClipPoints": [
+        24,
+        282,
+        840,
+        701
+      ]
+    },
+    {
+      "file": "人工修改后的摘要.png",
+      "width": 2561,
+      "height": 720,
+      "pdfClipPoints": [
+        24,
+        720,
+        840,
+        949
+      ]
+    }
+  ]
+}

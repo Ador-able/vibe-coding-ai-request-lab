@@ -1,0 +1,57 @@
+{
+  "codeCommit": "4c942c39da594925f6e09aa36a9e26ef0576809d",
+  "runId": "b50431f9-2aca-4706-9cb4-a11a67b1aaa6",
+  "newModelRequests": 1,
+  "originalSourceId": "C03",
+  "originalHanCount": 2036,
+  "originalSha256": "1db13c62a03f00754c4e53cff3297e602ba939b5484402b89f7380b79170d91a",
+  "originalFileSha256": "2fc1698410418bf136448807335c6359bf515b75e6f9c1e1d1f443a1c928e6cc",
+  "actualRequestIncludesFullOriginal": true,
+  "httpStatus": 200,
+  "finishReason": "stop",
+  "responseModel": "deepseek-v4-flash-0731",
+  "requestModelRoute": "ep-ymk08qa8",
+  "usage": {
+    "prompt_tokens": 1952,
+    "completion_tokens": 867,
+    "total_tokens": 2819,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 517
+    }
+  },
+  "originalAnswerHanCounts": [
+    99,
+    117
+  ],
+  "manualHanCount": 92,
+  "originalResponsesUnchangedAcrossFiveExports": true,
+  "editSurvivesRejectAndReselect": true,
+  "actor": "编者通过真实页面执行的受控教学选择与改稿，不表示人类用户已作文学采用或发布批准。",
+  "observation": "两份摘要均满足本轮字数，没有为制造差异添加错误。A聚焦事件，B聚焦考核；人工明确未达崖顶的记名弟子条件并压缩随行师兄描写。B的待问不能代替核对原文给出的正式弟子与记名弟子区别。",
+  "limits": "未做真实受众比较，理由不是学习效果证据；页面改稿不调用模型、不写业务小说、不发布。",
+  "exports": [
+    {
+      "file": "01-生成后未选择.json",
+      "sha256": "e57e27860c07693e1d14f274f3af36fcdb798dcd975c56dbb366e5f8ea5640cc"
+    },
+    {
+      "file": "02-选择B.json",
+      "sha256": "2d766015729d30eb83b9e4e94f24cb1f22f320fed86f1802c541a751ffb8a348"
+    },
+    {
+      "file": "03-人工改稿.json",
+      "sha256": "0c998410688002ef69f4cc175277377fb36922b6851f2aa70954490518b691e9"
+    },
+    {
+      "file": "04-两份都不采用.json",
+      "sha256": "44729b66e08fcd73a0be0326bd9152e6a57815309ccf560b38d86118dc111771"
+    },
+    {
+      "file": "05-重新选择B.json",
+      "sha256": "0c998410688002ef69f4cc175277377fb36922b6851f2aa70954490518b691e9"
+    }
+  ]
+}
