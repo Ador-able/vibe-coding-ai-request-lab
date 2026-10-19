@@ -1,0 +1,10 @@
+{
+  "用途": "《上下文装得下，不等于用得好》人物说辞教学插图",
+  "方式": "内置图像生成工具",
+  "图中文字": [
+    "一年内练到第四层",
+    "实际已练成第四层"
+  ],
+  "核对": "已查看生成原图；只保留两处短文字，以韩立对墨大夫的承诺与实际修为形成对照。属于教学插图，不是实验结果或小说影视截图。",
+  "原始提示词": "Use case: scientific-educational, illustration-story.\nCreate one polished editorial teaching illustration for a Chinese lesson about reading facts in context, inspired by the early mortal-world chapters of the novel 凡人修仙传. The learning point is ONLY this: young Han Li promises Doctor Mo that he will reach level four within one year, while the narrative reveals he has already reached level four. Make that contrast instantly clear.\nWide landscape, roughly 2:1. Warm off-white paper background, refined Chinese storybook ink drawing with restrained blue and warm neutral watercolor, expressive but understated. A single coherent room scene: a lean teenage boy in a plain blue-grey robe speaking calmly to a shrewd older doctor in a muted brown robe, seated across a low wooden table. Keep background spare. Their interaction should occupy most of the image.\nUse one large clean speech balloon clearly originating from the boy, containing ONLY the exact Chinese: “一年内练到第四层”.\nNext to the boy, offset from the speech balloon, use a visually distinct small blue narrator badge or unobtrusive cutaway annotation containing ONLY the exact Chinese: “实际已练成第四层”. The badge is for the reader, not something the doctor sees.\nThe contrast between his spoken promise and the narrator's actual fact is the sole visual hierarchy. Include NO title, NO subtitle, NO chapter labels, NO timeline, NO source codes, NO footer, NO paragraph text, NO explanatory cards, NO numbered steps, NO ornamental symbols, NO logos, NO watermarks. Only those two short Chinese text elements. Do not portray a novel chapter screenshot or experimental result; this is an original teaching illustration. Give the characters clear body language and keep the typography highly legible."
+}

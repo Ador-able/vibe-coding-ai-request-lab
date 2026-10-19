@@ -4,21 +4,21 @@ import { QUALITY_CONDITIONS, type Batch, type CaseResult, type QualityCase, type
 
 document.querySelector('#app')!.innerHTML = `
   <header>
-    <h1>材料对照</h1><p>查第一章韩立的年龄与排行，比较原文长短和位置。</p></header>
-  <section class="run-panel"><div><p class="run-description">《凡人修仙传》· 第一章事实核对</p><p>4 种条件 · 每种调用模型 1 次</p></div><button id="run" disabled>运行 4 个样例</button><button id="classroom" class="secondary">查看课堂实录</button></section>
+    <h1>材料对照</h1><p>查韩立的实际修为和墨大夫误认的药名，比较原文长短和位置。</p></header>
+  <section class="run-panel"><div><p class="run-description">《凡人修仙传》· 豪气生事实核对</p><p>4 种条件 · 每种调用模型 1 次</p></div><button id="run" disabled>运行 4 个样例</button><button id="classroom" class="secondary">查看课堂实录</button></section>
   <p id="status" role="status">正在读取小说原文……</p><progress id="progress" max="4" value="0" hidden></progress>
   <section id="observations" hidden><div class="result-toolbar"><label for="batch">查看运行记录</label><select id="batch"></select><button id="download" class="secondary">下载这次运行</button></div>
-    <p class="note">各条件使用同一份原文，仅改变长度或位置；单次结果不代表整体准确率。</p>
+    <p class="note">各条件使用同一份原文，仅改变长度或位置；输出未完成时不评价事实与引用。</p>
     <div class="table-scroll"><table><thead><tr><th>条件</th><th>实际输入 token</th><th>事实完整</th><th>引用正确</th><th>全部通过</th><th>逐例查看</th></tr></thead><tbody id="results"></tbody></table></div>
   </section>
   <details id="case-detail" hidden><summary id="case-title">查看一个样例</summary><div id="case-content" class="inspector-body"></div></details>
   <details class="guide"><summary>预览小说原文（不调用模型）</summary><div class="guide-body"><label for="preview">选择材料</label><select id="preview"></select><div id="preview-content"></div></div></details>
-  <details class="guide"><summary>实验设置与判定口径</summary><div class="guide-body"><p>温度 0 · 输出上限 4096 token（含推理与正文） · 禁用工具。串行执行，不自动重试。分母只计已返回文本的请求；失败单列，格式异常或截断不算通过。</p><dl>
-    <dt>事实完整</dt><dd>状态、家中排行和年龄三项都符合资料。</dd>
+  <details class="guide"><summary>实验设置与判定口径</summary><div class="guide-body"><p>温度 0 · 输出上限 8192 token（含推理与正文） · 禁用工具。串行执行，不自动重试。事实和引用只核对完整的结构化回答；请求失败、输出截断和格式异常单独标明，不算通过。</p><dl>
+    <dt>事实完整</dt><dd>状态、当时的实际修为和墨大夫误认的药名都符合资料。</dd>
     <dt>引用正确</dt><dd>记录编号必须完整、准确且没有多余或重复项。</dd>
     <dt>全部通过</dt><dd>输出结构完整，事实与引用同时正确。原始回答和期望值都可以展开核对。</dd>
     <dt>实际输入 token</dt><dd>取自各次 API 返回的 usage.prompt_tokens；条数不是 token 阈值，也没有使用其他模型的分词器估算。</dd>
-    </dl><p>两份样例不足以代表某个模型的整体能力。全部通过也是有效观察；一次差异不能单独证明其原因。运行记录暂存在本页，刷新前请下载。</p></div></details>`;
+    </dl><p>单次对照不足以代表某个模型的整体能力。全部通过也是有效观察；一次差异不能单独证明其原因。运行记录暂存在本页，刷新前请下载。</p></div></details>`;
 
 const el = <T extends HTMLElement>(selector: string) => document.querySelector<T>(selector)!;
 const button = el<HTMLButtonElement>('#run');
@@ -59,16 +59,17 @@ function renderTable() {
     const row = document.createElement('tr');
     const results = batch.results.filter((result) => cases.find((item) => item.id === result.caseId)?.condition === condition);
     const judged = results.filter((result) => result.assessment && !result.error);
+    const complete = judged.filter((result) => result.assessment!.valid);
     const tokens = results.flatMap((result) => tokenCount(result) === undefined ? [] : [tokenCount(result)!]);
     const range = tokens.length ? (Math.min(...tokens) === Math.max(...tokens) ? String(tokens[0]) : `${Math.min(...tokens)}–${Math.max(...tokens)}`) : '—';
-    const ratio = (predicate: (result: CaseResult) => boolean) => judged.length ? `${judged.filter(predicate).length} / ${judged.length}` : '—';
-    const values = [QUALITY_CONDITIONS[condition], range, ratio((result) => result.assessment!.factsComplete), ratio((result) => result.assessment!.sourcesCorrect), ratio((result) => result.assessment!.allCorrect)];
+    const ratio = (entries: CaseResult[], predicate: (result: CaseResult) => boolean) => entries.length ? `${entries.filter(predicate).length} / ${entries.length}` : '—';
+    const values = [QUALITY_CONDITIONS[condition], range, ratio(complete, (result) => result.assessment!.factsComplete), ratio(complete, (result) => result.assessment!.sourcesCorrect), ratio(judged, (result) => result.assessment!.allCorrect)];
     values.forEach((value) => { const cell = document.createElement('td'); cell.textContent = value; row.append(cell); });
     const links = document.createElement('td'); links.className = 'sample-links';
     cases.filter((item) => item.condition === condition).forEach((item) => {
       const result = results.find((entry) => entry.caseId === item.id);
       const link = document.createElement('button'); link.className = 'link-button';
-      link.textContent = `${item.id} · ${!result ? '未运行' : result.error ? '请求失败' : !result.assessment?.valid ? '输出异常' : result.assessment.allCorrect ? '通过' : '有差异'}`;
+      link.textContent = `${item.id} · ${!result ? '未运行' : result.error ? '请求失败' : result.request?.finishReason === 'length' ? '输出截断' : !result.assessment?.valid ? '输出异常' : result.assessment.allCorrect ? '通过' : '有差异'}`;
       link.addEventListener('click', () => showCase(item, result)); links.append(link);
     });
     row.append(links); return row;
@@ -85,15 +86,15 @@ function showCase(item: QualityCase, result?: CaseResult) {
   const assessment = result?.assessment;
   if (assessment) {
     const judgment = assessment.valid
-      ? `状态：${assessment.statusCorrect ? '正确' : '有差异'}；家中排行：${assessment.rankCorrect ? '正确' : '有差异'}；年龄：${assessment.ageCorrect ? '正确' : '有差异'}；引用：${assessment.sourcesCorrect ? '正确' : '有差异'}`
+      ? `状态：${assessment.statusCorrect ? '正确' : '有差异'}；实际修为：${assessment.levelCorrect ? '正确' : '有差异'}；误认药名：${assessment.drugCorrect ? '正确' : '有差异'}；引用：${assessment.sourcesCorrect ? '正确' : '有差异'}`
       : `输出异常：${assessment.issue}`;
     content.append(p(judgment, assessment.allCorrect ? 'passed' : 'error'));
   }
   if (assessment?.parsed) {
     const answer = assessment.parsed;
-    content.prepend(p(`实际结果：${answer.age ?? '未知'}岁，排行第${answer.family_rank ?? '未知'}；依据 ${answer.source_ids.join('、') || '未提供'}。`));
+    content.prepend(p(`实际结果：长春功第${answer.actual_level ?? '未知'}层，误认药名为${answer.mistaken_drug ?? '未知'}；依据 ${answer.source_ids.join('、') || '未提供'}。`));
   }
-  content.append(p(`原文核对：${item.expected.age}岁，排行第${item.expected.family_rank}。`, 'note'));
+  content.append(p(`原文核对：长春功第${item.expected.actual_level}层，误认药名为${item.expected.mistaken_drug}。`, 'note'));
   content.append(detail('完整评分依据 · 不发给模型', pretty(item.expected)));
   if (result?.request) {
     const request = result.request;
@@ -131,7 +132,7 @@ button.addEventListener('click', async () => {
       batch.state = 'failed'; status.textContent = `已停止在 ${name(item)}：本机回复无效，已有结果保留。`; status.className = 'error'; renderTable(); break;
     }
   }
-  if (batch.state === 'running') { batch.state = 'complete'; status.textContent = '4 个样例已完成。按条件比较结果，再展开具体样例核对证据。'; }
+  if (batch.state === 'running') { batch.state = 'complete'; status.textContent = '4 个请求已结束。先查看输出是否完整，再比较事实与引用。'; }
   busy = false; button.disabled = false; batchSelect.disabled = false; button.textContent = '新开始一次 · 4 个样例'; updateBatches(batch.id);
 });
 el('#classroom').addEventListener('click', async () => {
@@ -141,7 +142,7 @@ el('#classroom').addEventListener('click', async () => {
     if (!response.ok) throw new Error();
     const batch = await response.json() as Batch;
     batches.push(batch); updateBatches(batch.id); renderTable();
-    status.textContent = '2026-10-14 课堂实录 · 未新增模型请求。';
+    status.textContent = '历史运行实录 · 查看记录不会调用模型。';
   } catch { status.textContent = '课堂实录读取失败，请检查仓库文件。'; }
 });
 batchSelect.addEventListener('change', () => { renderTable(); el('#case-detail').hidden = true; });

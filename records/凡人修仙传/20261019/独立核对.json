@@ -1,0 +1,40 @@
+{
+  "cloudRequests": 8,
+  "corpusByteIdenticalToGit": true,
+  "protocolCasesFixedBeforeBothRuns": true,
+  "actualBodiesAndResponsesChecked": true,
+  "rows": [
+    {
+      "condition": "short",
+      "inputTokens": 1848,
+      "finish": "stop",
+      "answer": "{\"status\":\"resolved\",\"actual_level\":4,\"mistaken_drug\":\"神仙倒\",\"source_ids\":[\"第三十二章\"]}",
+      "facts": true,
+      "sources": false
+    },
+    {
+      "condition": "middle",
+      "inputTokens": 44920,
+      "finish": "length",
+      "answer": "",
+      "facts": null,
+      "sources": null
+    },
+    {
+      "condition": "first",
+      "inputTokens": 44920,
+      "finish": "stop",
+      "answer": "{\"status\":\"resolved\",\"actual_level\":4,\"mistaken_drug\":\"神仙倒\",\"source_ids\":[\"C25\"]}",
+      "facts": true,
+      "sources": false
+    },
+    {
+      "condition": "last",
+      "inputTokens": 44920,
+      "finish": "length",
+      "answer": "",
+      "facts": null,
+      "sources": null
+    }
+  ]
+}

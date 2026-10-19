@@ -15,7 +15,7 @@ test('长材料位置对照使用相同原文集合与问题，短材料只读�
   assert.equal(short.documents.length, 1); assert.equal(middle.documents.length, 30);
   assert.deepEqual(sorted(first), sorted(middle)); assert.deepEqual(sorted(last), sorted(middle));
   assert.deepEqual(short.documents[0], middle.documents[15]);
-  assert.equal(first.documents[0].id, 'C01'); assert.equal(last.documents[29].id, 'C01');
+  assert.equal(first.documents[0].id, 'C28'); assert.equal(last.documents[29].id, 'C28');
   assert.equal(first.question, middle.question); assert.equal(last.question, short.question);
 });
 
@@ -26,8 +26,10 @@ test('缺字段、错误和重复引用、截断均不判通过', () => {
   const { source_ids: _ids, ...missing } = expected;
   assert.equal(grade(missing).valid, false);
   assert.equal(grade({ ...expected, source_ids: ['C02'] }).allCorrect, false);
-  assert.equal(grade({ ...expected, source_ids: ['C01','C01'] }).sourcesCorrect, false);
-  assert.equal(grade({ ...expected, family_rank: 99 }).rankCorrect, false);
+  assert.equal(grade({ ...expected, source_ids: ['C28','C28'] }).sourcesCorrect, false);
+  assert.equal(grade({ ...expected, actual_level: 5 }).levelCorrect, false);
+  assert.equal(grade({ ...expected, mistaken_drug: '五毒水' }).drugCorrect, false);
+  assert.equal(grade({ ...expected, mistaken_drug: '普通迷药神仙倒' }).drugCorrect, true);
   assert.equal(assessAnswer(JSON.stringify(expected), 'length', expected).allCorrect, false);
 });
 
@@ -65,7 +67,7 @@ test('HTTP 边界收到的原串就是检查器请求，失败保留记录且不
     assert.deepEqual(body.messages, caseMessages(get('short')));
     assert.deepEqual(body.response_format, { type: 'json_object' });
     assert.equal(Object.hasOwn(body, 'tools'), false); assert.equal(Object.hasOwn(body, 'tool_choice'), false);
-    assert.equal(body.temperature, 0); assert.equal(body.max_tokens, 4096); assert(!('enable_thinking' in body));
+    assert.equal(body.temperature, 0); assert.equal(body.max_tokens, 8192); assert(!('enable_thinking' in body));
     assert.equal(success.data.result.assessment?.allCorrect, true);
     const failed = await send();
     assert.equal(failed.status, 502); assert.equal(failed.data.ok, false);
