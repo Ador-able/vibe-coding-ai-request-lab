@@ -7,9 +7,11 @@ td strong { font-size: 14px; }
 td small { display: block; color: #456672; font-size: 13px; margin-top: 6px; max-width: 260px; white-space: normal; line-height: 1.5; }
 td small.error { color: #9b3c24; }
 td button { font-size: 13px; padding: 9px 12px; }
-.answer-area { border-top: 1px solid #d1e0e2; margin-top: 20px; padding-top: 20px; }
+.answer-area { margin-top: 20px; padding: 16px 18px; border: 1px solid #dde3eb; border-radius: 6px; background: #f7f9fb; }
+.answer-area .section-heading { margin-bottom: 10px; }
 .answer-area h3 { margin: 0; }
-.answer { font-size: 15px; min-height: 38px; line-height: 1.8; }
+.answer-area .note { margin: 0; }
+#answer { margin: 0; font-size: 16px; min-height: 38px; line-height: 1.8; }
 .download-bar { display: flex; align-items: center; gap: 18px; margin: 20px 0; }
 .json pre, #materials-content { max-height: 420px; overflow: auto; }
 .guide-body > p { font-size: 14px; color: #355864; }
@@ -17,8 +19,6 @@ td button { font-size: 13px; padding: 9px 12px; }
 @media (max-width: 760px) { .experiment { padding: 18px; } .download-bar { align-items: flex-start; flex-direction: column; gap: 8px; } }
 
 .experiment { background: white; border-color: #dce3eb; box-shadow: none; border-radius: 8px; }
-.answer-area { background: #f7f9fb; border-color: #dde3eb; }
-#answer { font-size: 16px; line-height: 1.8; }
 #comparison-body small { font-size: 12px; color: #71808d; }
 
 .run-controls { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 14px; }
