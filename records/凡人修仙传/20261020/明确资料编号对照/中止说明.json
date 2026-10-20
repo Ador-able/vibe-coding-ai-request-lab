@@ -1,0 +1,11 @@
+{
+  "state": "interrupted",
+  "stoppedAt": "2026-10-20T09:49:01.3988115+08:00",
+  "reason": "本轮提问包含章节定位信息，停止后另起不含章节名的完整四组对照。",
+  "completedCaseIds": [
+    "short",
+    "middle"
+  ],
+  "pendingRequest": "停止时正在请求的模型是否完成未知，没有将未收到的结果补入记录。",
+  "adoptedForClassroom": false
+}

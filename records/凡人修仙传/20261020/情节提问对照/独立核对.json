@@ -1,0 +1,48 @@
+{
+  "cloudRequests": 4,
+  "previousCompleteBatchRequests": 12,
+  "interruptedBatchReceivedResponses": 2,
+  "corpusByteIdenticalToGit": true,
+  "materialsAndExpectedAnswersUnchanged": true,
+  "actualBodiesAndResponsesChecked": true,
+  "allOutputsComplete": true,
+  "outputLimit": 32768,
+  "rows": [
+    {
+      "condition": "short",
+      "inputTokens": 1908,
+      "outputTokens": 466,
+      "finish": "stop",
+      "answer": "{\"status\":\"resolved\",\"actual_level\":4,\"mistaken_drug\":\"神仙倒\",\"source_ids\":[\"C28\"]}",
+      "facts": true,
+      "sources": true
+    },
+    {
+      "condition": "middle",
+      "inputTokens": 44980,
+      "outputTokens": 9969,
+      "finish": "stop",
+      "answer": "{\n  \"status\": \"resolved\",\n  \"actual_level\": 4,\n  \"mistaken_drug\": \"神仙倒\",\n  \"source_ids\": [\"C28\"]\n}",
+      "facts": true,
+      "sources": true
+    },
+    {
+      "condition": "first",
+      "inputTokens": 44980,
+      "outputTokens": 6006,
+      "finish": "stop",
+      "answer": "{\n  \"status\": \"resolved\",\n  \"actual_level\": 4,\n  \"mistaken_drug\": \"神仙倒\",\n  \"source_ids\": [\"C24\"]\n}",
+      "facts": true,
+      "sources": false
+    },
+    {
+      "condition": "last",
+      "inputTokens": 44980,
+      "outputTokens": 296,
+      "finish": "stop",
+      "answer": "{\n  \"status\": \"resolved\",\n  \"actual_level\": 4,\n  \"mistaken_drug\": \"神仙倒\",\n  \"source_ids\": [\"C32\"]\n}",
+      "facts": true,
+      "sources": false
+    }
+  ]
+}

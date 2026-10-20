@@ -13,7 +13,7 @@ document.querySelector('#app')!.innerHTML = `
   </section>
   <details id="case-detail" hidden><summary id="case-title">查看一个样例</summary><div id="case-content" class="inspector-body"></div></details>
   <details class="guide"><summary>预览小说原文（不调用模型）</summary><div class="guide-body"><label for="preview">选择材料</label><select id="preview"></select><div id="preview-content"></div></div></details>
-  <details class="guide"><summary>实验设置与判定口径</summary><div class="guide-body"><p>温度 0 · 输出上限 8192 token（含推理与正文） · 禁用工具。串行执行，不自动重试。事实和引用只核对完整的结构化回答；请求失败、输出截断和格式异常单独标明，不算通过。</p><dl>
+  <details class="guide"><summary>实验设置与判定口径</summary><div class="guide-body"><p>温度 0 · 输出上限 32768 token（含推理与正文） · 禁用工具。串行执行，不自动重试。事实和引用只核对完整的结构化回答；请求失败、输出截断和格式异常单独标明，不算通过。</p><dl>
     <dt>事实完整</dt><dd>状态、当时的实际修为和墨大夫误认的药名都符合资料。</dd>
     <dt>引用正确</dt><dd>记录编号必须完整、准确且没有多余或重复项。</dd>
     <dt>全部通过</dt><dd>输出结构完整，事实与引用同时正确。原始回答和期望值都可以展开核对。</dd>

@@ -1,0 +1,47 @@
+{
+  "cloudRequests": 4,
+  "previousArchivedRequests": 8,
+  "corpusByteIdenticalToGit": true,
+  "protocolCasesIdenticalToPreviousRound": true,
+  "actualBodiesAndResponsesChecked": true,
+  "allOutputsComplete": true,
+  "outputLimit": 32768,
+  "rows": [
+    {
+      "condition": "short",
+      "inputTokens": 1848,
+      "outputTokens": 5439,
+      "finish": "stop",
+      "answer": "{\"status\":\"resolved\",\"actual_level\":4,\"mistaken_drug\":\"神仙倒\",\"source_ids\":[\"第三十二章\"]}",
+      "facts": true,
+      "sources": false
+    },
+    {
+      "condition": "middle",
+      "inputTokens": 44920,
+      "outputTokens": 3107,
+      "finish": "stop",
+      "answer": "{\n  \"status\": \"resolved\",\n  \"actual_level\": 4,\n  \"mistaken_drug\": \"神仙倒\",\n  \"source_ids\": [\"C28\"]\n}",
+      "facts": true,
+      "sources": true
+    },
+    {
+      "condition": "first",
+      "inputTokens": 44920,
+      "outputTokens": 5665,
+      "finish": "stop",
+      "answer": "{\n  \"status\": \"resolved\",\n  \"actual_level\": 4,\n  \"mistaken_drug\": \"神仙倒\",\n  \"source_ids\": [\"第三十二章\"]\n}",
+      "facts": true,
+      "sources": false
+    },
+    {
+      "condition": "last",
+      "inputTokens": 44920,
+      "outputTokens": 3242,
+      "finish": "stop",
+      "answer": "{\n  \"status\": \"resolved\",\n  \"actual_level\": 4,\n  \"mistaken_drug\": \"神仙倒\",\n  \"source_ids\": [\"第三十二章\"]\n}",
+      "facts": true,
+      "sources": false
+    }
+  ]
+}

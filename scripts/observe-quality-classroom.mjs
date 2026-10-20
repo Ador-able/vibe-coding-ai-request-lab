@@ -20,7 +20,7 @@ const origin = `http://127.0.0.1:${server.address().port}`;
 const batch = { id: randomUUID(), startedAt: new Date().toISOString(), results: [], state: 'running' };
 try {
   for (const [index, item] of CASES.entries()) {
-    const response = await fetch(`${origin}/api/quality/case`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ caseId: item.id }), signal: AbortSignal.timeout(190_000) });
+    const response = await fetch(`${origin}/api/quality/case`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ caseId: item.id }), signal: AbortSignal.timeout(610_000) });
     const data = await response.json();
     await save(`${String(index + 1).padStart(2, '0')}-${item.id}.json`, { localHttpStatus: response.status, ...data });
     batch.results.push(data.result);
@@ -29,9 +29,11 @@ try {
   }
   if (batch.state === 'running') batch.state = 'complete';
   await save('完整运行.json', batch);
-  // 页面回放真实请求的结果；失败时保留已有课堂实录和本次已取得的记录。
-  if (batch.state === 'complete') await writeFile('public/records/凡人修仙传-quality.json', JSON.stringify(batch, null, 2) + '\n');
-  console.log(JSON.stringify({ directory, state: batch.state, results: batch.results.length }));
+  // 只采用四组完整输出；事实或引用错误照常保留，不按答对与否筛选。
+  const replayable = batch.state === 'complete' && batch.results.length === CASES.length
+    && batch.results.every(result => result.request?.finishReason === 'stop' && result.assessment?.valid);
+  if (replayable) await writeFile('public/records/凡人修仙传-quality.json', JSON.stringify(batch, null, 2) + '\n');
+  console.log(JSON.stringify({ directory, state: batch.state, results: batch.results.length, replayable }));
 } finally {
   server.closeAllConnections();
   await new Promise(resolve => server.close(resolve));

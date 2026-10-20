@@ -19,9 +19,9 @@ export function createQualityRouter(env: NodeJS.ProcessEnv) {
     try {
       const config = readConfig(env);
       const requestBody = JSON.stringify({ model: config.model, messages: caseMessages(item), stream: false,
-        temperature: 0, max_tokens: 8192, response_format: { type: 'json_object' } });
+        temperature: 0, max_tokens: 32768, response_format: { type: 'json_object' } });
       result.request = { step: '固定样例提取', startedAt: new Date().toISOString(), requestBody };
-      const message = await sendRecordedRequest(config, result.request, AbortSignal.any([controller.signal, AbortSignal.timeout(180_000)]));
+      const message = await sendRecordedRequest(config, result.request, AbortSignal.any([controller.signal, AbortSignal.timeout(600_000)]));
       if (!isObject(message) || typeof message.content !== 'string') {
         throw new ModelError('MODEL_RESPONSE_INVALID', '模型服务没有返回可识别的文本消息，已有响应保存在记录中。');
       }
