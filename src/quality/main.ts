@@ -5,14 +5,14 @@ import { QUALITY_CONDITIONS, type Batch, type CaseResult, type QualityCase, type
 document.querySelector('#app')!.innerHTML = `
   <header>
     <h1>材料对照</h1><p>查韩立的实际修为和墨大夫误认的药名，比较原文长短和位置。</p></header>
-  <section class="run-panel"><div><p class="run-description">《凡人修仙传》· 豪气生事实核对</p><p>4 种条件 · 每种调用模型 1 次</p></div><button id="run" disabled>运行 4 个样例</button><button id="classroom" class="secondary">查看课堂实录</button></section>
+  <details class="guide"><summary>预览小说原文</summary><div class="guide-body"><label for="preview">选择材料</label><select id="preview"></select><div id="preview-content"></div></div></details>
+  <section class="run-panel"><div><p class="run-description">《凡人修仙传》· 事实核对</p><p>4 种条件 · 每种调用模型 1 次</p></div><button id="run" disabled>运行 4 个样例</button><button id="classroom" class="secondary">查看课堂实录</button></section>
   <p id="status" role="status">正在读取小说原文……</p><progress id="progress" max="4" value="0" hidden></progress>
   <section id="observations" hidden><div class="result-toolbar"><label for="batch">查看运行记录</label><select id="batch"></select><button id="download" class="secondary">下载这次运行</button></div>
     <p class="note">各条件使用同一份原文，仅改变长度或位置；输出未完成时不评价事实与引用。</p>
     <div class="table-scroll"><table><thead><tr><th>条件</th><th>实际输入 token</th><th>事实完整</th><th>引用正确</th><th>全部通过</th><th>逐例查看</th></tr></thead><tbody id="results"></tbody></table></div>
   </section>
   <details id="case-detail" hidden><summary id="case-title">查看一个样例</summary><div id="case-content" class="inspector-body"></div></details>
-  <details class="guide"><summary>预览小说原文（不调用模型）</summary><div class="guide-body"><label for="preview">选择材料</label><select id="preview"></select><div id="preview-content"></div></div></details>
   <details class="guide"><summary>实验设置与判定口径</summary><div class="guide-body"><p>温度 0 · 输出上限 32768 token（含推理与正文） · 禁用工具。串行执行，不自动重试。事实和引用只核对完整的结构化回答；请求失败、输出截断和格式异常单独标明，不算通过。</p><dl>
     <dt>事实完整</dt><dd>状态、当时的实际修为和墨大夫误认的药名都符合资料。</dd>
     <dt>引用正确</dt><dd>记录编号必须完整、准确且没有多余或重复项。</dd>
@@ -46,7 +46,7 @@ function tokenCount(result: CaseResult): number | undefined {
 function updateBatches(selectedId: string) {
   batchSelect.replaceChildren(...batches.map((batch, index) => {
     const option = document.createElement('option'); option.value = batch.id;
-    option.textContent = `运行 ${index + 1} · ${batch.state === 'complete' ? '已完成' : batch.state === 'failed' ? '遇到请求失败' : '进行中'} · ${new Date(batch.startedAt).toLocaleTimeString('zh-CN')}`;
+    option.textContent = `运行 ${index + 1} · ${batch.state === 'complete' ? '已完成' : batch.state === 'failed' ? '遇到请求失败' : '进行中'}`;
     return option;
   }));
   batchSelect.value = selectedId;
